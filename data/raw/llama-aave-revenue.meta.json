@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue",
+  "retrieved_at": "2026-10-03T08:30:39.218503+00:00",
+  "sha256": "a5823ab0a81d7bad49f452261e595b63c17cb79f609e1c8770c645099474de85",
+  "status": "fresh"
+}

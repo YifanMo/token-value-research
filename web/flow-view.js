@@ -1,5 +1,7 @@
 import {known} from './core.js';
 import {buildFlow} from './flows.js';
+import {isReserveBurn, statisticLabel} from './models.js';
+import {burnRecordsMarkup, burnObservationsMarkup} from './burns.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=value=>!known(value)?'金额待核':Math.abs(value)>=1e8?`${(value/1e8).toFixed(2)}亿美元`:Math.abs(value)>=1e4?`${(value/1e4).toLocaleString('zh-CN',{maximumFractionDigits:1})}万美元`:`${value.toLocaleString('en-US',{maximumFractionDigits:2})}美元`;
@@ -17,33 +19,34 @@ const link=(label,url)=>url?`<a href="${esc(url)}" target="_blank" rel="noreferr
 function compositionMarkup(node,project) {
   const c=node.composition;
   if (!c) return '';
-  const valuation=node.id==='outcome' && project.flow.mode!=='allocation';
-  const axis=valuation && project.ticker==='UNI'?'chains':'products';
+  const valuation=node.id==='outcome' && project.flow?.mode!=='allocation';
+  const axis=valuation ? project.flow?.composition_axis || (project.flow?.mode==='token_redemption_valuation'?'chains':'products') : 'products';
   const entries=(c[axis]||[]).filter(part=>known(part.usd)&&part.usd!==0);
   if (!entries.length) return '';
-  const label=valuation?(project.ticker==='UNI'?'按执行链看兑换估值':node.evidence==='mixed'?'统计挂载位置（历史回购／销毁）':'统计挂载位置（全产品销毁）'):'按业务看这笔金额';
+  const label=valuation?(axis==='chains'?'按执行链看兑换估值':node.evidence==='mixed'?'统计挂载位置（历史回购／销毁）':'统计挂载位置（全产品销毁）'):'按业务看这笔金额';
   const rows=entries.map(part=>`<div class="flow-part"><span>${esc(valuation&&project.ticker==='PUMP'?'全产品集中记录':names[part.label]||part.label)}</span><span>${money(part.usd)}</span></div>`).join('');
   return `<details class="flow-composition"${node.id==='revenue'||valuation?' open':''}><summary>${label}</summary>${rows}<p>${c.complete?'同窗分项记录完整':`分项仅覆盖${c.observed_days}/${c.days}天，不能视为完整构成`}。${known(c.difference_from_total_usd)&&Math.abs(c.difference_from_total_usd)>.01?`与总额差${money(c.difference_from_total_usd)}，保留差异。`:''}${valuation&&project.ticker==='UNI'?'v2／v4等兑换集中挂v3接口，按链展示不代表费用来自该版本。':''}</p></details>`;
 }
 
 export function moneyFlowMarkup(project,days) {
   const model=buildFlow(project,days);
-  const rule=project.flow;
+  const rule=project.flow || {};
   const warnings=[...new Set(model.warnings||[])];
-  const sources=[...project.data_sources,...(project.windows[String(days)].flow_distributions?.sources||[])];
+  const window=project.windows?.[String(days)] || {};
+  const sources=[...(project.data_sources || []),...(window.flow_distributions?.sources||[])];
   const normalizations={...(project.fee_normalization?{fees:project.fee_normalization}:{}),...project.flow_normalizations};
   return `<article class="card money-flow-section" id="money-flow-section" aria-labelledby="money-flow-title">
-    <div class="section-title"><h3 id="money-flow-title">${esc(project.ticker)} · 钱从哪里来，又去了哪里</h3><span>${esc(model.start)} → ${esc(model.end)} · ${days}天 · USD</span></div>
-    <p class="flow-origins"><strong>收费业务：</strong>${esc(rule.origins)}</p>
+    <div class="section-title"><h3 id="money-flow-title">${esc(project.ticker)} · ${isReserveBurn(project)?'两条销毁路径':'钱从哪里来，又去了哪里'}</h3><span>${esc(model.start)} → ${esc(model.end)} · ${days}天${isReserveBurn(project)?'':' · USD'}</span></div>
+    <p class="flow-origins"><strong>${isReserveBurn(project)?'链上业务：':'收费业务：'}</strong>${esc(rule.origins)}</p>
     ${rule.direct_path_note?`<p class="flow-bypass">${esc(rule.direct_path_note)}</p>`:''}
     <div class="flow-map" role="group" aria-label="${esc(project.ticker)}收入与回购去向" data-flow-mode="${esc(model.mode)}">
       <svg class="flow-paths" aria-hidden="true"></svg>
-      ${model.nodes.map(node=>`<section class="flow-node flow-node-${esc(node.id)}" data-flow-node="${esc(node.id)}"><div class="flow-node-heading"><span>${esc(node.label)}</span><small class="flow-evidence flow-evidence-${esc(node.evidence)}">${esc(evidence[node.evidence]||node.evidence)}</small></div><strong class="flow-amount">${node.id==='outcome'&&model.mode==='allocation'?'代币去向，枚数待核':money(node.usd)}</strong><p>${esc(node.note)}</p>${node.id==='funding'?`<p class="flow-policy">${esc(rule.funding_rule)}</p>`:''}${node.id==='funding'&&known(model.unallocatedUsd)?`<p>其他协议收入分配：${money(model.unallocatedUsd)}（统计金额，尚未扣完整经营成本）。</p>`:''}${compositionMarkup(node,project)}</section>`).join('')}
+      ${model.nodes.map(node=>`<section class="flow-node flow-node-${esc(node.id)}" data-flow-node="${esc(node.id)}"><div class="flow-node-heading"><span>${esc(node.label)}</span><small class="flow-evidence flow-evidence-${esc(node.evidence)}">${esc(evidence[node.evidence]||node.evidence)}</small></div><strong class="flow-amount">${isReserveBurn(project)?node.id==='outcome'?'记录见下表':'同窗金额待核':node.id==='outcome'&&model.mode==='allocation'?'代币去向，枚数待核':money(node.usd)}</strong><p>${esc(node.note)}</p>${node.id==='funding'?`<p class="flow-policy">${esc(rule.funding_rule)}</p>`:''}${node.id==='funding'&&known(model.unallocatedUsd)?`<p>其他协议收入分配：${money(model.unallocatedUsd)}（统计金额，尚未扣完整经营成本）。</p>`:''}${compositionMarkup(node,project)}</section>`).join('')}
     </div>
     <p class="flow-legend"><span class="flow-line-sample"></span>同窗统计关系 <span class="flow-line-sample is-dashed"></span>政策路径或金额未对账 · 箭头不表示已经现金成交</p>
     ${warnings.length?`<details class="flow-warnings" open><summary>数据性质与待核部分</summary><ul>${warnings.map(note=>`<li>${esc(note)}</li>`).join('')}</ul></details>`:''}
-    <details class="flow-proof"><summary>数据来源、费用去重与构成依据</summary><p>构成来自同一保存响应的逐日子项，没有把子协议再次加回总额。两统计额的差值不能自动称为净利润或全部运营成本。</p>${Object.entries(normalizations).map(([kind,norm])=>{const w=project.windows[String(days)][kind];return `<p>${kind==='fees'?'手续费':'收入'}原始${money(w.raw_usd)} − 重复${money(w.excluded_usd)} → 去重${money(w.usd)}。${esc(norm.note)} ${link('去重依据',norm.source_url)}</p>`;}).join('')}<div class="flow-source-list">${sources.map(source=>`<div><strong>${esc({fees:'用户费用',revenue:rule.revenue_is_income===false?'UNI兑换估值（API revenue）':'协议收入统计',holders:'回购／销毁统计',supply:'供给侧分配',protocol:'其他协议收入分配'}[source.kind]||source.kind)}</strong><span>抓取：${esc(source.retrieved_at||'未知')} · ${link('在线API',source.url)} · ${link('本次JSON',source.response_path)}</span></div>`).join('')}</div><p>${link('本项目流向与证据说明',rule.source_note_url)}</p>${project.windows[String(days)].flow_distributions?'<p>补充分配接口随在线刷新更新，保留独立抓取时间；失败保留旧响应，窗口缺日时显示未知。</p>':''}</details>
-  </article>`;
+    <details class="flow-proof"><summary>数据来源、费用去重与构成依据</summary><p>${isReserveBurn(project)?'两条路径按政策分别展示，缺少同窗Gas费用和销毁台账时不填金额。季度记录、实时观察和当前供应量有各自的日期。':'构成来自同一保存响应的逐日子项，没有把子协议再次加回总额。两统计额的差值不能自动称为净利润或全部运营成本。'}</p>${Object.entries(normalizations).map(([kind,norm])=>{const w=window[kind] || {};return `<p>${kind==='fees'?'手续费':'收入'}原始${money(w.raw_usd)} − 重复${money(w.excluded_usd)} → 去重${money(w.usd)}。${esc(norm.note)} ${link('去重依据',norm.source_url)}</p>`;}).join('')}<div class="flow-source-list">${sources.map(source=>`<div><strong>${esc({fees:'用户费用',revenue:statisticLabel(project),holders:'回购／销毁统计',supply:'供给侧分配',protocol:'其他协议收入分配'}[source.kind]||source.kind)}</strong><span>抓取：${esc(source.retrieved_at||'未知')} · ${link('在线API',source.url)} · ${link('本次JSON',source.response_path)}</span></div>`).join('')}</div><p>${link('本项目流向与证据说明',rule.source_note_url)}</p>${window.flow_distributions?'<p>补充分配接口随在线刷新更新，保留独立抓取时间；失败保留旧响应，窗口缺日时显示未知。</p>':''}</details>
+  </article>${isReserveBurn(project)?burnRecordsMarkup(project,model.start,model.end)+burnObservationsMarkup(project):''}`;
 }
 
 let observer;

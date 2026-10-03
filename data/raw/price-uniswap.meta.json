@@ -1,6 +1,6 @@
 {
   "url": "https://api.coingecko.com/api/v3/coins/uniswap/market_chart?vs_currency=usd&days=365&interval=daily",
-  "retrieved_at": "2026-10-02T21:32:27.720626+00:00",
-  "sha256": "9f343ba080cd5e3075addc471fcb905b078a82b470e82d12077b6466554dd4ce",
+  "retrieved_at": "2026-10-03T08:30:25.407074+00:00",
+  "sha256": "3a40683dbf08c70277da79bc2f6c805e3122ee4e49ad1a15ba16cb69213c5221",
   "status": "fresh"
 }

@@ -18,11 +18,13 @@ import urllib.request
 
 try:
     from scripts.web_assets import generate_web_assets
+    from scripts import bnb_data
 except ModuleNotFoundError as error:
     if error.name != "scripts":
         raise
     # Direct execution (python scripts/refresh.py) starts with scripts/ on sys.path.
     from web_assets import generate_web_assets
+    import bnb_data
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
@@ -34,12 +36,19 @@ PROJECTS = {
     "UNI": ("uniswap", "uniswap"),
     "JUP": ("jupiter", "jupiter-exchange-solana"),
     "RAY": ("raydium", "raydium"),
+    "CAKE": ("pancakeswap", "pancakeswap-token"),
+    "BNB": (None, "binancecoin"),
+    "AAVE": ("aave", "aave"),
 }
 TYPES = {"fees": "dailyFees", "revenue": "dailyRevenue", "holders": "dailyHoldersRevenue"}
 SUPPLEMENTAL_PRICE_KEY = "price-supplemental-llama"
 SUPPLEMENTAL_PRICE_START = dt.date(2020, 1, 1)
 SUPPLEMENTAL_PRICE_TOLERANCE_SECONDS = 3600
-SUPPLEMENTAL_PRICE_CHUNK_DAYS = 70  # Seven coins × 70 points = 490; upstream maximum is 500 total.
+SUPPLEMENTAL_PRICE_CHUNK_DAYS = 70
+SUPPLEMENTAL_PRICE_MAX_POINTS = 500
+# Preserve the exact URLs of already archived historical requests when the
+# project list grows. New coins use separate batches under the same point cap.
+LEGACY_PRICE_COINS = ("hyperliquid", "pump-fun", "uniswap", "jupiter-exchange-solana", "raydium", "bitcoin", "solana")
 PRICE_HISTORY_LIMIT_NOTE = "CoinGecko 免费历史接口限最近365天；更早日期仅使用已单独标明的 DeFiLlama 历史价格补充，缺日不插值。"
 
 
@@ -103,8 +112,11 @@ def request(item):
                     raise
                 time.sleep(retry_after_delay(error.headers.get("Retry-After") if error.headers else None))
         data = json.loads(body)
-        if isinstance(data, dict) and (data.get("error") or data.get("status", {}).get("error_code")):
+        api_status = data.get("status") if isinstance(data, dict) else None
+        if isinstance(data, dict) and (data.get("error") or isinstance(api_status, dict) and api_status.get("error_code")):
             raise ValueError(str(data)[:200])
+        if isinstance(data, list) and any(isinstance(row, dict) and row.get("error") for row in data):
+            raise ValueError("RPC batch contains failed results")
         if key.startswith("llama-") and not isinstance(data.get("totalDataChart"), list):
             raise ValueError("Missing totalDataChart; incompatible response")
         if key.startswith(SUPPLEMENTAL_PRICE_KEY) and not isinstance(data.get("coins"), dict):
@@ -261,15 +273,22 @@ def supplemental_price_jobs(cutoff):
     states a maximum of 500 total points, across all requested coins. Completed
     chunks have fixed URLs and can be reused; only a changed tail needs fetching.
     """
-    coins = [coin for _, coin in PROJECTS.values()] + ["bitcoin", "solana"]
-    jobs, first = [], SUPPLEMENTAL_PRICE_START
-    while first <= cutoff:
-        span = min(SUPPLEMENTAL_PRICE_CHUNK_DAYS, (cutoff - first).days + 1)
-        start = int(dt.datetime.combine(first, dt.time(), UTC).timestamp())
-        url = ("https://coins.llama.fi/chart/" + ",".join("coingecko:" + coin for coin in coins)
-               + f"?start={start}&span={span}&period=1d&searchWidth=1h")
-        jobs.append((SUPPLEMENTAL_PRICE_KEY + "-" + first.strftime("%Y%m%d"), url))
-        first += dt.timedelta(days=span)
+    coins = list(dict.fromkeys([coin for _, coin in PROJECTS.values()] + ["bitcoin", "solana"]))
+    legacy = [coin for coin in LEGACY_PRICE_COINS if coin in coins]
+    extra = [coin for coin in coins if coin not in legacy]
+    size = SUPPLEMENTAL_PRICE_MAX_POINTS // SUPPLEMENTAL_PRICE_CHUNK_DAYS
+    groups = ([legacy] if legacy else []) + [extra[i:i + size] for i in range(0, len(extra), size)]
+    jobs = []
+    for group in groups:
+        suffix = "" if group == list(LEGACY_PRICE_COINS) else "-" + hashlib.sha256(",".join(group).encode()).hexdigest()[:12]
+        first = SUPPLEMENTAL_PRICE_START
+        while first <= cutoff:
+            span = min(SUPPLEMENTAL_PRICE_CHUNK_DAYS, SUPPLEMENTAL_PRICE_MAX_POINTS // len(group), (cutoff - first).days + 1)
+            start = int(dt.datetime.combine(first, dt.time(), UTC).timestamp())
+            url = ("https://coins.llama.fi/chart/" + ",".join("coingecko:" + coin for coin in group)
+                   + f"?start={start}&span={span}&period=1d&searchWidth=1h")
+            jobs.append((SUPPLEMENTAL_PRICE_KEY + suffix + "-" + first.strftime("%Y%m%d"), url))
+            first += dt.timedelta(days=span)
     return jobs
 
 
@@ -424,6 +443,39 @@ def update_supplemental_sources(manifest, status, offline=False):
         dump(ROOT / "data" / "flow-distributions.json", {**manifest, "records": records})
 
 
+def bnb_responses():
+    keys = [job[0] for job in bnb_data.bnb_jobs()] + [bnb_data.TRANSACTIONS_KEY, bnb_data.BLOCKS_KEY]
+    return {key: load(RAW / (key + ".json"), {}) for key in keys}
+
+
+def update_bnb_proofs(status, cutoff, offline=False):
+    """Transaction/receipt discovery precedes block proofs; never parallelize stages."""
+    for builder in [bnb_data.bnb_rpc_jobs, bnb_data.bnb_block_jobs]:
+        jobs = builder(bnb_responses(), cutoff)
+        if offline:
+            for key, url, payload in jobs:
+                meta = load(RAW / (key + ".meta.json"), {})
+                status[key] = {**meta, "url": url, "status": "offline-cache" if (RAW / (key + ".json")).exists() else "missing"}
+        else:
+            for job in jobs:
+                key, url, payload = job
+                path = RAW / (key + ".json")
+                meta = load(RAW / (key + ".meta.json"), {})
+                if path.exists() and meta.get("url") == url and meta.get("request") == payload and meta.get("sha256") == hashlib.sha256(path.read_bytes()).hexdigest():
+                    status[key] = {**meta, "status": "cached", "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"}
+                else:
+                    _, status[key] = request(job)
+
+
+def compile_bnb_sources(cutoff, prices, fetch_meta):
+    raw = bnb_responses()
+    metadata = {}
+    for key in raw:
+        meta = {**load(RAW / (key + ".meta.json"), {}), **fetch_meta.get(key, {})}
+        metadata[key] = {**meta, **archive_response(key, meta)}
+    return bnb_data.compile_bnb_data(raw, cutoff, prices, metadata)
+
+
 def compile_snapshot(as_of, fetch_meta, now=None):
     cutoff = completed_day_cutoff(as_of, now)
     profiles = load(ROOT / "data" / "profiles.json", [])
@@ -469,7 +521,7 @@ def compile_snapshot(as_of, fetch_meta, now=None):
         project["market"]["remaining_supply_fdv"] = (
             m["current_price"] * m["total_supply"] if m.get("current_price") and m.get("total_supply") else None)
         project["market"]["original_cap_fdv"] = (
-            m["current_price"] * profile["initial_supply"] if m.get("current_price") else None)
+            m["current_price"] * profile["initial_supply"] if m.get("current_price") and profile.get("initial_supply") else None)
         mint_key = {"PUMP":"rpc-pump-mint", "RAY":"rpc-ray-mint"}.get(ticker)
         mint = load(RAW / f"{mint_key}.json", {}) if mint_key else {}
         if mint.get("result", {}).get("value"):
@@ -493,6 +545,11 @@ def compile_snapshot(as_of, fetch_meta, now=None):
             charts[kind], excluded, statuses, issues = normalize_fees(flow_responses[kind], cutoff, rule)
             normalization[kind] = (raw_values, excluded, statuses, issues)
         price, price_observations, price_primary, price_supplementary = price_cache[coin]
+        if ticker == "BNB":
+            bnb = compile_bnb_sources(cutoff, price, fetch_meta)
+            charts = bnb["charts"]
+            raw_charts = {kind: dict(values) for kind, values in charts.items()}
+            project["burns"] = {key: value for key, value in bnb.items() if key not in ["charts", "data_sources"]}
         # All projects use the SAME completed UTC day. Late sources make a window unknown,
         # rather than moving only that project backward and comparing different periods.
         common = set.intersection(*(set(x) for x in charts.values()))
@@ -506,6 +563,8 @@ def compile_snapshot(as_of, fetch_meta, now=None):
             project["windows"][str(days)] = {
                 kind: window(values, end, days, profile.get("zero_before", {}).get(kind))
                 for kind, values in charts.items()}
+            if ticker == "BNB":
+                project["windows"][str(days)]["burns"] = bnb["quarterly_windows"][str(days)]
             for kind, rule in flow_rules.items():
                 raw_values, excluded, statuses, issues = normalization[kind]
                 flow_window = project["windows"][str(days)][kind]
@@ -593,7 +652,9 @@ def compile_snapshot(as_of, fetch_meta, now=None):
                                     **fetch_meta.get(f"llama-{slug}-{kind}", {}),
                                     **archive_response(f"llama-{slug}-{kind}", fetch_meta.get(f"llama-{slug}-{kind}", {})),
                                     "latest_observation": max(charts[kind]) if charts[kind] else None}
-                                   for kind, dtype in TYPES.items()]
+                                   for kind, dtype in TYPES.items()] if slug else []
+        if ticker == "BNB":
+            project["data_sources"] = bnb["data_sources"]
         project["price_source"] = {"url": f"https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days=365&interval=daily",
                                    **fetch_meta.get(f"price-{coin}", {}),
                                    "provider": "CoinGecko", "first": min(price) if price else None,
@@ -637,8 +698,9 @@ def main():
     ids = ",".join(coin for _, coin in PROJECTS.values())
     jobs.append(("coingecko-markets", f"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={ids}"))
     for slug, coin in PROJECTS.values():
-        jobs.extend((f"llama-{slug}-{kind}", f"https://api.llama.fi/summary/fees/{slug}?dataType={dtype}")
-                    for kind, dtype in TYPES.items())
+        if slug:
+            jobs.extend((f"llama-{slug}-{kind}", f"https://api.llama.fi/summary/fees/{slug}?dataType={dtype}")
+                        for kind, dtype in TYPES.items())
         jobs.append((f"price-{coin}", f"https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days=365&interval=daily"))
     for coin in ["bitcoin", "solana"]:
         jobs.append((f"price-{coin}", f"https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days=365&interval=daily"))
@@ -649,6 +711,7 @@ def main():
                      {"jsonrpc":"2.0","id":1,"method":"getAccountInfo","params":[mint,{"encoding":"jsonParsed","commitment":"finalized"}]}))
     distribution_manifest = load(ROOT / "data" / "flow-distributions.json", {})
     jobs.extend(supplemental_jobs(distribution_manifest))
+    jobs.extend(bnb_data.bnb_jobs())
     previous = load(ROOT / "data" / "fetch-status.json", {})
     if args.offline:
         status = {job[0]: {**previous.get(job[0], {}), **load(RAW / f"{job[0]}.meta.json", {}), "status": "offline-cache" if (RAW / f"{job[0]}.json").exists() else "missing"} for job in jobs}
@@ -657,6 +720,7 @@ def main():
             status = dict(pool.map(lambda job: request_supplemental_price_chunk(job)
                                    if job[0].startswith(SUPPLEMENTAL_PRICE_KEY) else request(job), jobs))
     try:
+        update_bnb_proofs(status, completed_day_cutoff(as_of, now=run_started_at), offline=args.offline)
         update_supplemental_sources(distribution_manifest, status, offline=args.offline)
         if not args.offline:
             dump(ROOT / "data" / "fetch-status.json", status)

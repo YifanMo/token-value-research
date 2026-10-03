@@ -1,0 +1,6 @@
+{
+  "url": "https://api.coingecko.com/api/v3/coins/binancecoin/market_chart?vs_currency=usd&days=365&interval=daily",
+  "retrieved_at": "2026-10-03T08:31:31.235735+00:00",
+  "sha256": "db380100925cf764cf9d6d467152152284f2b324347bc73812f930e593b4354c",
+  "status": "fresh"
+}

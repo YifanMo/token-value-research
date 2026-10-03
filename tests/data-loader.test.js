@@ -21,7 +21,10 @@ const readerFixture = () => {
 test('initial ninety days need no history downloads and preserve chart values for every token', () => {
   const {reads, reader} = readerFixture();
   const loader = new HistoryLoader(lite, reader);
-  assert.ok(fs.statSync(new URL('../data/dashboard-lite.json', import.meta.url)).size < 600000);
+  const liteSize=fs.statSync(new URL('../data/dashboard-lite.json', import.meta.url)).size;
+  const fullSize=fs.statSync(new URL('../data/dashboard.json', import.meta.url)).size;
+  assert.ok(liteSize < fullSize * .15, 'initial delivery must exclude bulk history');
+  assert.ok(liteSize < 150000 * full.projects.length, 'initial metadata and 90-day history stay bounded per token');
   for (const original of full.projects) {
     const project = lite.projects.find(p => p.ticker === original.ticker);
     for (const days of [7, 30, 90]) {
@@ -81,16 +84,16 @@ test('corrupt or failed files are not treated as missing days and remain retryab
   assert.equal(reads, 2);
 });
 
-test('worker range results match full archived aggregation for all five projects without returning history', async () => {
+test('worker range results match full archived aggregation for every registered project without returning history', async () => {
   const {reader} = readerFixture();
   const engine = createRangeEngine(reader);
   const metadata = lite.projects.map(({history, ...project}) => project);
   const start = '2025-12-30', end = '2026-01-02';
   const result = await engine(metadata, start, end);
-  assert.equal(result.projects.length, 5);
+  assert.equal(result.projects.length, full.projects.length);
   assert.deepEqual(result.errors, []);
   for (const original of full.projects) {
-    const sources = [...original.data_sources, ...(original.windows['30'].flow_distributions?.sources || [])];
+    const sources = [...original.data_sources.filter(source=>['fees','revenue','holders'].includes(source.kind)), ...(original.windows['30'].flow_distributions?.sources || [])];
     const responses = Object.fromEntries(sources.map(source => [source.kind, JSON.parse(fs.readFileSync(new URL(source.response_path, webRoot)))]));
     const expected = createRangeProject(original, start, end, responses);
     const actual = result.projects.find(p => p.ticker === original.ticker);
@@ -110,7 +113,7 @@ test('one failed source preserves every project and marks only affected flow unk
   });
   const metadata = lite.projects.map(({history, ...project}) => project);
   const result = await engine(metadata, '2026-09-30', '2026-10-01');
-  assert.equal(result.projects.length, 5);
+  assert.equal(result.projects.length, full.projects.length);
   assert.equal(result.errors.length, 1);
   const hype = result.projects.find(p => p.ticker === 'HYPE');
   assert.equal(hype.window.holders.usd, null);

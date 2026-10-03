@@ -4,47 +4,47 @@
   "records": [
     {
       "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyProtocolRevenue",
-      "retrieved_at": "2026-10-02T21:32:30.626365+00:00",
-      "sha256": "45071759791d066e0e3d72b24a97cfdfc792be4d08c428bd609299d537714e70",
-      "response_path": "../data/responses/45071759791d066e0e3d72b24a97cfdfc792be4d08c428bd609299d537714e70.json",
+      "retrieved_at": "2026-10-03T08:31:33.955910+00:00",
+      "sha256": "cea85044f362a5e9352f405b727f98cd525332fccc6147289b84905e1648a53a",
+      "response_path": "../data/responses/cea85044f362a5e9352f405b727f98cd525332fccc6147289b84905e1648a53a.json",
       "ticker": "JUP",
       "kind": "protocol",
       "status": "fresh",
-      "stored_sha256": "45071759791d066e0e3d72b24a97cfdfc792be4d08c428bd609299d537714e70",
-      "fetched_at": "2026-10-02T21:32:30.626365+00:00"
+      "stored_sha256": "cea85044f362a5e9352f405b727f98cd525332fccc6147289b84905e1648a53a",
+      "fetched_at": "2026-10-03T08:31:33.955910+00:00"
     },
     {
       "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailySupplySideRevenue",
-      "retrieved_at": "2026-10-02T21:32:30.667226+00:00",
-      "sha256": "1cd5b40661effcac9992301e36619942abb0ec2c5c363be229a7f0d6b8971084",
-      "response_path": "../data/responses/1cd5b40661effcac9992301e36619942abb0ec2c5c363be229a7f0d6b8971084.json",
+      "retrieved_at": "2026-10-03T08:31:33.829269+00:00",
+      "sha256": "56aafed8719c60914bea91759fe96e6f6fe21952d004bf9eaa1cebafd06376d0",
+      "response_path": "../data/responses/56aafed8719c60914bea91759fe96e6f6fe21952d004bf9eaa1cebafd06376d0.json",
       "ticker": "JUP",
       "kind": "supply",
       "status": "fresh",
-      "stored_sha256": "1cd5b40661effcac9992301e36619942abb0ec2c5c363be229a7f0d6b8971084",
-      "fetched_at": "2026-10-02T21:32:30.667226+00:00"
+      "stored_sha256": "56aafed8719c60914bea91759fe96e6f6fe21952d004bf9eaa1cebafd06376d0",
+      "fetched_at": "2026-10-03T08:31:33.829269+00:00"
     },
     {
       "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyProtocolRevenue",
-      "retrieved_at": "2026-10-02T21:32:30.511226+00:00",
-      "sha256": "b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392",
-      "response_path": "../data/responses/b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392.json",
+      "retrieved_at": "2026-10-03T08:31:34.951153+00:00",
+      "sha256": "f3d32680d8c8ee99dd378bfcdd509f3ae874dea613b9e4cf0d0ca2ba8819c315",
+      "response_path": "../data/responses/f3d32680d8c8ee99dd378bfcdd509f3ae874dea613b9e4cf0d0ca2ba8819c315.json",
       "ticker": "RAY",
       "kind": "protocol",
       "status": "fresh",
-      "stored_sha256": "b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392",
-      "fetched_at": "2026-10-02T21:32:30.511226+00:00"
+      "stored_sha256": "f3d32680d8c8ee99dd378bfcdd509f3ae874dea613b9e4cf0d0ca2ba8819c315",
+      "fetched_at": "2026-10-03T08:31:34.951153+00:00"
     },
     {
       "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailySupplySideRevenue",
-      "retrieved_at": "2026-10-02T21:32:30.552952+00:00",
-      "sha256": "83b99994cc24fe54f1408bc9c7e0720b7e426f0aea92e76f936ccfdacb8aafad",
-      "response_path": "../data/responses/83b99994cc24fe54f1408bc9c7e0720b7e426f0aea92e76f936ccfdacb8aafad.json",
+      "retrieved_at": "2026-10-03T08:31:35.166472+00:00",
+      "sha256": "099ca06806bd7afcbc7e00bbc569856c1375e34a0de0aeb783191834b546a318",
+      "response_path": "../data/responses/099ca06806bd7afcbc7e00bbc569856c1375e34a0de0aeb783191834b546a318.json",
       "ticker": "RAY",
       "kind": "supply",
       "status": "fresh",
-      "stored_sha256": "83b99994cc24fe54f1408bc9c7e0720b7e426f0aea92e76f936ccfdacb8aafad",
-      "fetched_at": "2026-10-02T21:32:30.552952+00:00"
+      "stored_sha256": "099ca06806bd7afcbc7e00bbc569856c1375e34a0de0aeb783191834b546a318",
+      "fetched_at": "2026-10-03T08:31:35.166472+00:00"
     }
   ]
 }

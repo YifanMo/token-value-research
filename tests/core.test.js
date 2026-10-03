@@ -53,7 +53,7 @@ test('cash retention is not permanent burn; stocks are excluded from annualizati
 });
 test('all projects share the same dated observation window and no false complete supply',()=>{
   const data=JSON.parse(fs.readFileSync(new URL('../data/dashboard.json',import.meta.url)));
-  assert.equal(data.projects.length,5);
+  for(const ticker of ['HYPE','PUMP','UNI','JUP','RAY']) assert.ok(data.projects.some(project=>project.ticker===ticker));
   for(const project of data.projects) {
     assert.equal(project.flow_end,data.completed_day_cutoff_utc);
     assert.equal(project.supply_ledger.complete,false);

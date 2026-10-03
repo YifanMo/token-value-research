@@ -1,6 +1,6 @@
 {
   "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyFees",
-  "retrieved_at": "2026-10-02T21:32:26.864871+00:00",
-  "sha256": "6815c60053f893c4849e43b9c98a896db5fd8bcb7314c5bd1dbb341a1643b5d4",
+  "retrieved_at": "2026-10-03T08:30:28.593382+00:00",
+  "sha256": "2839e6e06eed81d872817b20014e13388b599190c61682bb4bb6f4a72937599f",
   "status": "fresh"
 }

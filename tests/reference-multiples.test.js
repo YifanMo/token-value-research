@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {calculate, calculateReferenceMultiples} from '../web/core.js';
+import {calculate, calculateReferenceMultiples, known, annual, ratio} from '../web/core.js';
+import {isReserveBurn} from '../web/models.js';
 
 const series = usd => ({usd, complete:true, start:'2026-09-25', end:'2026-10-01'});
 const fixture = () => ({
@@ -137,19 +138,26 @@ test('reference compatibility permits absent complete flag but never an explicit
   assert.equal(calculateReferenceMultiples(p,7).psMc,null);
 });
 
-test('all five saved 30-day projects produce reproducible reference multiples without invented profits', () => {
+test('saved 30-day projects produce reproducible reference multiples without invented profits', () => {
   const snapshot=JSON.parse(fs.readFileSync(new URL('../data/dashboard.json',import.meta.url)));
-  assert.equal(snapshot.projects.length,5);
+  for(const ticker of ['HYPE','PUMP','UNI','JUP','RAY']) assert.ok(snapshot.projects.some(project=>project.ticker===ticker));
   for(const p of snapshot.projects) {
     const before=structuredClone(p);
     const w=p.windows['30'];
     const m=calculateReferenceMultiples(p,30,'reported');
-    close(m.peMc,p.market.market_cap/(w.holders.usd*365/30),`${p.ticker} reference PE mc`);
-    close(m.peFdv,p.market.fully_diluted_valuation/(w.holders.usd*365/30),`${p.ticker} reference PE fdv`);
-    close(m.psMc,p.market.market_cap/(w.revenue.usd*365/30),`${p.ticker} reference PS mc`);
-    close(m.psFdv,p.market.fully_diluted_valuation/(w.revenue.usd*365/30),`${p.ticker} reference PS fdv`);
+    if (isReserveBurn(p)) {
+      assert.equal(m.peMc,null);assert.equal(m.psMc,null);assert.equal(m.revenueStatus,'not_applicable');
+      assert.deepEqual(p,before);
+      continue;
+    }
+    const expected=(series,valuation)=>series.complete!==false&&known(series.usd)?ratio(valuation,annual(series.usd,30)):null;
+    const compare=(actual,value,label)=>value===null?assert.equal(actual,null,label):close(actual,value,label);
+    compare(m.peMc,expected(w.holders,p.market.market_cap),`${p.ticker} reference PE mc`);
+    compare(m.peFdv,expected(w.holders,p.market.fully_diluted_valuation),`${p.ticker} reference PE fdv`);
+    compare(m.psMc,expected(w.revenue,p.market.market_cap),`${p.ticker} reference PS mc`);
+    compare(m.psFdv,expected(w.revenue,p.market.fully_diluted_valuation),`${p.ticker} reference PS fdv`);
     assert.equal(calculate(p,30,'reported').peMc,null);
-    assert.equal(m.revenueStatus,p.ticker==='UNI'?'valuation_only':'income');
+    assert.equal(m.revenueStatus,w.revenue.complete===false?'incomplete':!known(w.revenue.usd)?'missing':p.flow?.revenue_is_income===false?'valuation_only':'income');
     assert.deepEqual(p,before);
   }
   const pump=snapshot.projects.find(p=>p.ticker==='PUMP');

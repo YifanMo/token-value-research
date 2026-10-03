@@ -1,0 +1,98 @@
+{
+  "url": "https://bsc-dataseed.bnbchain.org",
+  "retrieved_at": "2026-10-03T08:26:55.485093+00:00",
+  "sha256": "385c9a7b61d7c23ad9fbc169f707d66e47ca52169c0c9aecbb0c8d5f0d0e6a8a",
+  "status": "fresh",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x16adcd790b080fa63e2285e02be16ae9368de7a0a3768cc4f7918e258877d1d2",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x16adcd790b080fa63e2285e02be16ae9368de7a0a3768cc4f7918e258877d1d2",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x45b4184051e5835cfdf9a12a1cfd0b34f2e3e811521ca37d3017e10eb54709be",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x45b4184051e5835cfdf9a12a1cfd0b34f2e3e811521ca37d3017e10eb54709be",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x4c2121ff144f8cf98930955d64233c8129f15ba108d668253c0b79bcbba27431",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x4c2121ff144f8cf98930955d64233c8129f15ba108d668253c0b79bcbba27431",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x68b868d99a8338bf21f142459f5af564809bd15b6cd9ff2bd5730ddaa5aad425",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x68b868d99a8338bf21f142459f5af564809bd15b6cd9ff2bd5730ddaa5aad425",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x8add0f6a7b93d4197b71ad9c20ab9995ef6e69da69fc5a4755521a74d37b09e5",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x8add0f6a7b93d4197b71ad9c20ab9995ef6e69da69fc5a4755521a74d37b09e5",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x98e3844c6f4e49241a0ea4e8ff6883d43f85d1b862e88b1c08583ccb2ba2f590",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x98e3844c6f4e49241a0ea4e8ff6883d43f85d1b862e88b1c08583ccb2ba2f590",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xae44aa63bfbafa9176c15a565c77840fbf337a3547377c63c938194a1c2caea9",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xae44aa63bfbafa9176c15a565c77840fbf337a3547377c63c938194a1c2caea9",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xb0c177dba88dd872d5d4ff48ab1d9ab2c8ecc5355037b7a271b01df66da384f7",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xb0c177dba88dd872d5d4ff48ab1d9ab2c8ecc5355037b7a271b01df66da384f7",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xd6203d293c172537a6021dfc1c5038ceb9ec6c5856ff27b90972cf16ea208084",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xd6203d293c172537a6021dfc1c5038ceb9ec6c5856ff27b90972cf16ea208084",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xdddbf6a0ab97a0131aeeae098e76896a8a7cf7e3b1afc88186e5d9e045d2accf",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xdddbf6a0ab97a0131aeeae098e76896a8a7cf7e3b1afc88186e5d9e045d2accf",
+        false
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "ticker": "BNB",
+  "name": "BNB",
+  "sector": "原生Gas / 季度储备销毁",
+  "initial_supply": 200000000,
+  "income_linked": false,
+  "data_adapter": "bnb_burn",
+  "capture": {
+    "permanent_burn_proxy": true,
+    "label": "季度自动销毁 + Gas销毁",
+    "kind": "burn",
+    "basis": "已核季度native转账枚数×执行日价格；不是现金回购支出",
+    "policy": "2021-12季度机制改为价格、区块数和参数驱动的Auto-Burn，独立于Binance CEX收入；另有BEP-95按验证者Gas费的一部分实时销毁。初始gas burnRatio为10%，可治理修改；不把初始参数当作已核当前值。",
+    "denominator": "季度销毁无可比营业收入分母；Gas路径只对应链上验证者收费，不能替代币安交易所收入",
+    "annualization_note": "季度执行不平滑成每日回购。季度销毁与Gas销毁分开，当前只有Gas滚动7日及累计摘要，完整同窗总销毁未知。",
+    "stat_label": "已核季度销毁的美元估值（不含Gas）",
+    "stat_note": "季度数量、日期用BSC转账和成功receipt及区块时间核验；不把预测行、原错误日期或Pioneer补偿统计再次相加。美元值按同UTC执行日价格估值，非实际购买成本。"
+  },
+  "business": "BNB是BSC、opBNB及Greenfield等生态的原生使用资产，并在交易平台提供功能。BSC用户Gas收费是验证者费用路径；季度Auto-Burn是独立于Binance CEX收入的供应机制，不能把销毁价值当作交易所收入或利润。",
+  "sustainability": "Gas销毁依赖真实链上使用、收费水平与验证者治理比例；季度Auto-Burn取决于价格、区块数及可调整参数，并非营业收入回购。交易所功能、链上交易周期、竞争和治理会影响需求，供应变少本身不证明价格或收入改善。",
+  "allocations": [
+    {
+      "label": "ICO历史初始分配",
+      "pct": 50
+    },
+    {
+      "label": "团队历史初始分配",
+      "pct": 40
+    },
+    {
+      "label": "天使投资人历史初始分配",
+      "pct": 10
+    }
+  ],
+  "allocation_note": "仅描述2017年初始2亿枚分配，不是当前持仓。2019-07-12官方宣布团队放弃原80M份额并用于后续销毁承诺；不能继续把初始40%当当前待解锁团队持仓，亦不能推定全部份额已销毁。当前团队、投资人和储备钱包余额未完整核实。",
+  "supply_note": "季度Auto-Burn目标约100M；BEP-95的Gas销毁在达到该目标后仍可继续。没有固定挖矿增发奖励，验证者报酬主要来自费用；完整经济供应与自由流通历史仍需处理跨链迁移及储备去向，不拿单次供应快照反推全部历史。",
+  "supply_ledger": {
+    "complete": false,
+    "next365_unlock_tokens": null,
+    "next365_reserve_rewards_tokens": null,
+    "next365_new_mint_tokens": null,
+    "note": "季度销毁已核执行与Gas摘要分开；储备变动、Gas日历史及完整流通台账未齐，当前不判定同窗净流通通缩。"
+  },
+  "scenario_release_tokens": null,
+  "scenario_note": "不以旧团队40%分配构造当前解锁，不以季度预测行假装已执行销毁；完整未来供应未知。",
+  "zero_before": {},
+  "events": [
+    {
+      "date": "2019-07-12",
+      "title": "团队宣布放弃初始80M份额，纳入销毁承诺",
+      "status": "官方公告",
+      "source": "https://www.binance.com/en/blog/all/356254016530468864",
+      "note": "这是后续销毁用途承诺，不是当日一次性销毁80M或当前持仓快照。"
+    },
+    {
+      "date": "2021-11-30",
+      "title": "Bruno升级启用BEP-95 Gas实时销毁",
+      "status": "官方回顾确认",
+      "source": "https://www.binance.com/en/blog/ecosystem/421499824684903205",
+      "note": "初始烧毁比例10%，允许治理修改；不能把历史示例日枚数作为当前速度。"
+    },
+    {
+      "date": "2021-12-22",
+      "title": "季度销毁改为独立CEX收入的Auto-Burn",
+      "status": "官方公告日期",
+      "source": "https://www.binance.com/en/support/announcement/detail/611c8f41f49e4cd2a02a7c7d66fdf3c0",
+      "note": "博文为12-21，公告为12-22；不是收入固定比例回购，区块提速后参数还会调整。"
+    },
+    {
+      "date": "2026-07-15",
+      "title": "第36次季度销毁已执行",
+      "status": "官方公告及BSC交易核验",
+      "source": "https://www.bnbchain.org/en/blog/36th-bnb-burn",
+      "note": "1,615,827.795 BNB native转账至dead地址，UTC08:06:26；跟踪器日期写7-16，应以链上时间为准。非收入改善证据。"
+    }
+  ],
+  "sources": [
+    {
+      "title": "官方季度Auto-Burn公告",
+      "url": "https://www.binance.com/en/support/announcement/detail/611c8f41f49e4cd2a02a7c7d66fdf3c0"
+    },
+    {
+      "title": "官方第36次销毁及目标供应",
+      "url": "https://www.bnbchain.org/en/blog/36th-bnb-burn"
+    },
+    {
+      "title": "官方BEP-95规范",
+      "url": "https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP95.md"
+    },
+    {
+      "title": "官方团队初始分配用途调整",
+      "url": "https://www.binance.com/en/blog/all/356254016530468864"
+    },
+    {
+      "title": "初始分配的SEC披露引用",
+      "url": "https://www.sec.gov/Archives/edgar/data/2066824/000162828025053634/vaneckbnbs-1a2.htm"
+    },
+    {
+      "title": "官方链接的季度销毁JSON",
+      "url": "https://www.bnbburn.info/api/getQuarterBurns"
+    }
+  ],
+  "flow": {
+    "revenue_is_income": false,
+    "mode": "reserve_and_gas_burn",
+    "income_linked": false,
+    "fees_label": "BSC验证者Gas收费（历史未接入）",
+    "revenue_label": "统一营业收入未取得",
+    "origins": "链上Gas路径与季度储备销毁是两个机制，不能混成一个收入分配漏斗",
+    "parties": "Gas去向包括验证者、委托人、系统奖励及BEP-95销毁；季度Auto-Burn独立于交易所收入",
+    "funding_label": "季度Auto-Burn及Gas销毁",
+    "funding_rule": "季度按价格、区块数和参数确定烧币量；Gas按治理参数烧毁一部分验证者费用",
+    "funding_note": "未取得季度烧币对应的实际市场购买成本；不能用金额除旧20%比例反推币安利润",
+    "outcome_label": "已核native代币销毁",
+    "outcome_note": "已执行季度交易用实际数量和UTC日期；当前Gas滚动摘要不填充历史日序列",
+    "cautions": [
+      "没有可比的统一营业收入及净利润，不计算收入P/S或项目净利润P/E。",
+      "季度burn估值不是实际现金回购，也不是股息。",
+      "Gas历史缺失及旧链记录未核，完整销毁与净流通变化未知。"
+    ],
+    "composition_axis": "mechanisms"
+  },
+  "analysis": {
+    "headline": "BNB的供应销毁路径明确，但季度烧币独立于营业收入，必须把真实Gas销毁与储备减少分开评价。",
+    "verified_on": "2026-10-03",
+    "basis": "官方机制公告及成功native转账证明；交易所利润未取得。",
+    "business": "需求来自链上Gas、质押与交易平台功能；Gas销毁随真实使用变化，季度Auto-Burn由价格、区块数和参数决定，不能视为交易所利润回购。",
+    "allocation": "历史初始团队40%、天使投资人10%；团队2019年宣布放弃原80M份额用于后续销毁，历史分配不是当前持仓或待解锁比例",
+    "future": "季度预测数量随参数与价格变化，不能当已执行；当前团队、储备转出与完整未来流通排期未取得",
+    "supplyEffect": "已核季度销毁减少原生代币存量，但Gas历史、旧链销毁与完整流通台账未齐，不能仅凭烧币确认自由流通净通缩",
+    "event_date": "2021-12-22"
+  }
+}

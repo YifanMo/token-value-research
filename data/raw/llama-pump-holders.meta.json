@@ -1,6 +1,6 @@
 {
   "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyHoldersRevenue",
-  "retrieved_at": "2026-10-02T21:32:25.459061+00:00",
-  "sha256": "9bff7bab8ea92128288ca969f7052b40c6531967870c176f343ec4b4847ca00d",
+  "retrieved_at": "2026-10-03T08:30:23.473734+00:00",
+  "sha256": "5166143e3626bb0d2cdf2ba9880cdac460b3e99873cda02570ffe2e08773d809",
   "status": "fresh"
 }

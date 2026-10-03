@@ -89,8 +89,9 @@ test('UNI redemption valuation is preserved without becoming income or blocking 
 test('the current snapshot has no substituted profits; PUMP missing duplicate data and stock event block annual ratios',()=>{
   const snapshot=JSON.parse(fs.readFileSync(new URL('../data/dashboard.json',import.meta.url)));
   for(const p of snapshot.projects) {
-    assert.equal(calculate(p,30,'reported').netIncomeStatus,'missing');
+    assert.equal(calculate(p,30,'reported').netIncomeStatus,p.flow?.mode==='reserve_and_gas_burn'?'not_applicable':'missing');
     assert.equal(calculate(p,30,'reported').peMc,null);
+    if(p.flow?.mode==='reserve_and_gas_burn') continue;
     for(const kind of ['fees','revenue']) {
       const source=p.data_sources.find(s=>s.kind===kind);
       const raw=JSON.parse(fs.readFileSync(new URL(source.response_path,new URL('../web/',import.meta.url))));

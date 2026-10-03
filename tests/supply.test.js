@@ -38,7 +38,7 @@ test('alternative vesting models cannot be added or treated as exercised mint pe
 
 test('dated five-token forecasts preserve known parts without asserting complete float',()=>{
   const data=JSON.parse(fs.readFileSync(new URL('../data/supply-forecasts.json',import.meta.url)));
-  assert.equal(data.projects.length,5);
+  for(const ticker of ['HYPE','PUMP','UNI','JUP','RAY']) assert.ok(data.projects.some(project=>project.ticker===ticker));
   const by=Object.fromEntries(data.projects.map(p=>[p.ticker,p]));
   assert.equal(componentAmount(by.PUMP.components.find(c=>c.id==='pump-insiders-model'),data.verified_on,365),82.5e9);
   assert.equal(componentAmount(by.UNI.components.find(c=>c.id==='uni-quarterly-budget'),data.verified_on,365),20e6);

@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/pancakeswap?dataType=dailyRevenue",
+  "retrieved_at": "2026-10-03T08:30:33.106945+00:00",
+  "sha256": "bdd990069b64e48c4144140369104dd7f93c16e95af79fb100b1306f4c54ada4",
+  "status": "fresh"
+}

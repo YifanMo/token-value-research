@@ -1,5 +1,7 @@
 import {calculate, known} from './core.js';
 import {componentAmount} from './supply.js';
+import {isReserveBurn, statisticLabel} from './models.js';
+import {burnStats} from './burns.js';
 
 // These are reviewed interpretations of the research, not fetched facts.
 // Amounts, ratios, dated schedules and event observations come from the snapshot.
@@ -46,6 +48,13 @@ const interpretations = {
   },
 };
 
+function interpretation(project) {
+  const configured = project.analysis || {};
+  return {...(interpretations[project.ticker] || {}), ...configured,
+    ...(configured.supply_effect ? {supplyEffect:configured.supply_effect} : {}),
+    ...(configured.event_date ? {eventDate:configured.event_date} : {})};
+}
+
 const pct = value => known(value) ? `${(value * 100).toFixed(2)}%` : '未知';
 const quantity = value => {
   if (!known(value)) return '未知';
@@ -64,8 +73,9 @@ function captureSentence(project, metrics, asOf) {
   if (project.ticker === 'HYPE') {
     return `本窗代币去向统计÷协议收入为${pct(metrics.holderCapture)}，但该收入字段本身已是AF分配与销毁统计；按总费用统计看为${pct(metrics.feeCapture)}，99%只针对合格交易费，实际现金回购成本仍待对账。`;
   }
+  const captureLabel = project.ticker === 'PUMP' ? '销毁估值' : ['HYPE','UNI','JUP','RAY'].includes(project.ticker) ? '回购额度' : project.capture?.stat_label || '回购／销毁统计';
   const share = known(metrics.holderCapture)
-    ? `本窗${project.ticker === 'PUMP' ? '销毁估值' : '回购额度'}÷协议收入为${pct(metrics.holderCapture)}`
+    ? `本窗${captureLabel}÷协议收入为${pct(metrics.holderCapture)}`
     : '本窗进入代币的比例因缺完整可比数据而未知';
   if (project.ticker === 'PUMP') {
     const commitment = asOf > '2027-04-28' ? '一年承诺期已结束，后续政策需复核' : '承诺至2027-04-28';
@@ -77,7 +87,7 @@ function captureSentence(project, metrics, asOf) {
   if (project.ticker === 'RAY') {
     return `AMM按交易费12%、LaunchLab按协议收入25%计算额度，${share}；分母各异，不能当固定现金回购率。`;
   }
-  return `${share}；${project.capture?.stat_note || '实际买入与销毁须另核。'}`;
+  return `${project.analysis?.capture_sentence || share}；${project.capture?.stat_note || '实际买入与销毁须另核。'}`;
 }
 
 function futureSentence(project, asOf) {
@@ -92,12 +102,12 @@ function futureSentence(project, asOf) {
   const additional = project.ticker === 'HYPE' ? forecast?.components?.find(item => item.id === 'hype-october-subset') : null;
   const additionalTokens = additional ? componentAmount(additional, asOf, horizon) : null;
   const alternative = known(additionalTokens) && additionalTokens > 0 ? `另有媒体转述近期拟分发${quantity(additionalTokens)}枚，实际执行未核且不能与理论模型相加。` : '';
-  return {horizon, tokens, component, additional, text: `${estimate}；${interpretations[project.ticker]?.future || '其他释放仍须复核'}。${alternative}`};
+  return {horizon, tokens, component, additional, text: `${estimate}；${interpretation(project).future || '其他释放仍须复核'}。${alternative}`};
 }
 
 function yieldSentence(project, metrics, days) {
   const names = {HYPE: 'AF分配及销毁统计', PUMP: '销毁估值', UNI: '费用兑换UNI估值', JUP: '政策回购额度', RAY: '政策回购额度'};
-  const name = names[project.ticker] || '回购／销毁统计';
+  const name = names[project.ticker] || project.capture?.stat_label || '回购／销毁统计';
   if (!known(metrics.holderAnnual)) {
     return `所选${days}天窗口${metrics.coverage?.holders?.oneoff_dates?.length ? '跨存量销毁事件、经常性金额未对账' : '缺完整经常性金额'}，流通市值与FDV两种年化回购／销毁收益率均无法可靠计算。`;
   }
@@ -120,15 +130,21 @@ function modelHistory(project) {
 }
 
 function eventObservation(project) {
-  const date = interpretations[project.ticker]?.eventDate;
-  const event = project.event_studies?.find(item => item.date === date);
+  const configuredDate = interpretation(project).eventDate;
+  const events = project.event_studies || [];
+  // An explicitly selected policy event must not silently fall back to another
+  // event. For newly onboarded projects use their most recent registered study.
+  const event = configuredDate ? events.find(item => item.date === configuredDate) :
+    [...events].filter(item => item.studies?.some(study => study.days === 30)).sort((a,b) => a.date.localeCompare(b.date)).at(-1);
+  const date = event?.date || configuredDate;
   const study = event?.studies?.find(item => item.days === 30);
   if (!event || !study?.pre || !study?.post) {
     return {event, study, text: '政策前后尚缺完整30天对照，不能确认收入、供应与价格持续改善。'};
   }
   const cashIncome = project.flow?.revenue_is_income !== false;
   const incomeKnown = study.pre.complete === true && study.post.complete === true && known(study.revenue_change);
-  const income = incomeKnown ? `${cashIncome ? '收入' : '费用兑换估值'}${change(study.revenue_change)}` : `${cashIncome ? '收入' : '费用兑换估值'}因缺日无法比较`;
+  const incomeName = cashIncome ? '收入' : statisticLabel(project);
+  const income = incomeKnown ? `${incomeName}${change(study.revenue_change)}` : `${incomeName}因缺日无法比较`;
   const price = known(study.token_return) ? `币价${change(study.token_return)}` : '币价缺历史数据';
   const benchmark = known(study.relative_btc) ? `（相对BTC ${change(study.relative_btc)}）` : '';
   const supply = known(study.historical_supply_change) ? `、供应变化${change(study.historical_supply_change)}` : '；供应前后变化缺历史快照';
@@ -137,18 +153,29 @@ function eventObservation(project) {
 }
 
 export function buildConclusion(project, days, asOf) {
-  const reviewed = interpretations[project.ticker];
+  const reviewed = interpretation(project);
   const metrics = calculate(project, days, 'reported');
   const future = futureSentence(project, asOf);
   const observation = eventObservation(project);
   const market = project.market || {};
   const supply = `当前流通${quantity(market.circulating_supply)}枚、数据源总量${quantity(market.total_supply)}枚，流通市值${usd(market.market_cap)}、FDV${usd(metrics.fdv)}；${reviewed?.allocation || project.allocation_note || '初始分配未齐'}，当前团队与投资人持仓尚未完整核实。`;
-  const sentences = [reviewed?.business || project.business || '收费来源与持续性仍需核实。', captureSentence(project, metrics, asOf), supply, future.text,
+  const window = metrics.coverage;
+  const burn = isReserveBurn(project) ? burnStats(project, window?.fees?.start || window?.holders?.start, window?.fees?.end || window?.holders?.end) : null;
+  const burnObservation = burn?.count ? `所选期间已核${burn.count}笔季度销毁、共${quantity(burn.tokens)}枚，销毁日美元估值合计${usd(burn.usd)}；估值÷当前流通市值${pct(burn.shareMc)}、÷FDV${pct(burn.shareFdv)}，仅是已核记录比例，未年化。` : '所选期间暂无已核季度销毁记录，实际总销毁量未知，不能填零。';
+  const sentences = isReserveBurn(project) ? [
+    reviewed.business || project.business || 'BNB Chain的Gas使用与季度储备销毁分别研究，交易所企业收入未公开为完整可核的同窗数据。',
+    'Auto-Burn季度储备销毁与BEP-95实时Gas销毁是两条独立路径，不能称为企业净利润用于回购；收入进入代币的比例、P/S和P/E均不适用。',
+    supply, future.text,
+    (reviewed.supplyEffect || '已核销毁会减少对应供应，但当前流通口径、其他销毁与释放未完整对账，不能确认自由流通净通缩或净通胀').replace(/[。.]?$/u,'。'),
+    burnObservation + ' 未覆盖全部历史季度和实时Gas销毁；美元估值不是已成交回购现金。',
+    modelHistory(project), '季度销毁、Gas活动和币价受多种因素影响；缺少完整收入与历史供应对照，不能证明经济模型变化持续改善收入或价格。',
+  ] : [reviewed?.business || project.business || '收费来源与持续性仍需核实。', captureSentence(project, metrics, asOf), supply, future.text,
     `${reviewed?.supplyEffect || '同窗供应台账未齐，净通缩或净通胀仍待核'}。`, yieldSentence(project, metrics, days), modelHistory(project), observation.text];
   const sourceUrls = new Set();
-  const sources = [...(project.sources || []), {title: '本次市场快照', url: market.source},
+  const sources = [...(project.sources || []), ...(project.analysis?.sources || []), {title: '本次市场快照', url: market.source},
     ...(project.data_sources || []).filter(source => source.kind === 'holders').map(source => ({title: '本次回购／销毁JSON', url: source.response_path})),
-    ...(future.component?.sources || []), ...(future.additional?.sources || []), ...(observation.event?.source ? [{title: '本次事件对照的政策来源', url: observation.event.source}] : [])]
+    ...(future.component?.sources || []), ...(future.additional?.sources || []), ...(observation.event?.source ? [{title: '本次事件对照的政策来源', url: observation.event.source}] : []),
+    ...(burn?.records || []).map(record => ({title: record.quarter || '季度销毁依据', url: record.source_url || record.source || record.url}))]
     .filter(source => source.url && !sourceUrls.has(source.url) && sourceUrls.add(source.url));
   return {headline: reviewed?.headline || `${project.ticker} 的收入、回购与供应关系仍需结合完整证据评估。`, text: sentences.join(' '), sentences,
     metrics, future, observation, sources, netSupplyStatus: 'unverified', policyVerifiedOn: project.supply_forecast?.verified_on || null};

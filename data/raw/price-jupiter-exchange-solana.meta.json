@@ -1,6 +1,6 @@
 {
   "url": "https://api.coingecko.com/api/v3/coins/jupiter-exchange-solana/market_chart?vs_currency=usd&days=365&interval=daily",
-  "retrieved_at": "2026-10-02T21:32:28.768335+00:00",
-  "sha256": "298c028c028864ff717231f125f6745f46d06851824ab7499d597cce79537966",
+  "retrieved_at": "2026-10-03T08:30:28.875293+00:00",
+  "sha256": "17ae875f80bfbf85ab00461c36c9b2af1e746eebcfb5d2671ad55f20c90d6e50",
   "status": "fresh"
 }

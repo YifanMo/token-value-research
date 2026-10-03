@@ -1,146 +1,705 @@
 {
   "coingecko-markets": {
-    "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=hyperliquid,pump-fun,uniswap,jupiter-exchange-solana,raydium",
-    "retrieved_at": "2026-10-02T21:32:24.728928+00:00",
-    "sha256": "75804c3d7d5779813f92e7e0f64a9395eea285df929d149a46b0416aaf41a357",
+    "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=hyperliquid,pump-fun,uniswap,jupiter-exchange-solana,raydium,pancakeswap-token,binancecoin,aave",
+    "retrieved_at": "2026-10-03T08:30:21.636915+00:00",
+    "sha256": "af1bdeb4afb63cd6e75707289380a3797378f231d51c87db5a49ecf10709d399",
     "status": "fresh"
   },
   "llama-hyperliquid-fees": {
     "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyFees",
-    "retrieved_at": "2026-10-02T21:32:24.775487+00:00",
-    "sha256": "47dccf7033968ec724a3633c42bccef30f60b3bc8110e244fb12a24d82b1cb77",
+    "retrieved_at": "2026-10-03T08:30:21.739687+00:00",
+    "sha256": "e1d72c232c1facaafb49a599794aa9cd0a0bf5eead67522c2d28fdc0421448ea",
     "status": "fresh"
   },
   "llama-hyperliquid-revenue": {
     "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue",
-    "retrieved_at": "2026-10-02T21:32:24.775707+00:00",
-    "sha256": "e026499d3931e6de8b70c3f07b78f82d19ed0f07466ae20974a79b511fcf8f6b",
+    "retrieved_at": "2026-10-03T08:30:21.746290+00:00",
+    "sha256": "ce5da9fd7b1688af19dc44bbc90bd17ca253af820eafa1f1d7fe430f0e58ee01",
     "status": "fresh"
   },
   "llama-hyperliquid-holders": {
     "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue",
-    "retrieved_at": "2026-10-02T21:32:24.746721+00:00",
-    "sha256": "5352cb2a289f596181db9b0fc681b08d9ab159e194a0d569d9117403e0dd6eff",
+    "retrieved_at": "2026-10-03T08:30:21.773598+00:00",
+    "sha256": "f58e34c54cb55961d2f2505254db50a50e2133e6ed4efcac3abd0401cf691749",
     "status": "fresh"
   },
   "price-hyperliquid": {
     "url": "https://api.coingecko.com/api/v3/coins/hyperliquid/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:32:25.527497+00:00",
-    "sha256": "50889bc8ce78c5cf35c7631a14ab78bc5d9ff824c93575be47edbeb95f19e589",
+    "retrieved_at": "2026-10-03T08:30:22.969929+00:00",
+    "sha256": "8332ab9ef93063a53d380e4aa21b2b508ecb14cae78633ea3a04c4d1e9887397",
     "status": "fresh"
   },
   "llama-pump-fees": {
     "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyFees",
-    "retrieved_at": "2026-10-02T21:32:26.863485+00:00",
-    "sha256": "5c332d07f5a9c89890a151d25913f5b783c2cb3564861a46f94552cd258bb5c7",
+    "retrieved_at": "2026-10-03T08:30:22.996346+00:00",
+    "sha256": "7633023ccab9db4f28d62eca5b1551748ace27b8c0f1e322cb6df09163183bf9",
     "status": "fresh"
   },
   "llama-pump-revenue": {
     "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyRevenue",
-    "retrieved_at": "2026-10-02T21:32:26.864301+00:00",
-    "sha256": "6fd2f6fea141fadf0085b7bbc4188d06263f71862230621145e31ad2550d1375",
+    "retrieved_at": "2026-10-03T08:30:23.004707+00:00",
+    "sha256": "15bc6c45d66068000a6529273ea793dfe21b4d75ab5a815720a162be600542f5",
     "status": "fresh"
   },
   "llama-pump-holders": {
     "url": "https://api.llama.fi/summary/fees/pump?dataType=dailyHoldersRevenue",
-    "retrieved_at": "2026-10-02T21:32:25.459061+00:00",
-    "sha256": "9bff7bab8ea92128288ca969f7052b40c6531967870c176f343ec4b4847ca00d",
+    "retrieved_at": "2026-10-03T08:30:23.473734+00:00",
+    "sha256": "5166143e3626bb0d2cdf2ba9880cdac460b3e99873cda02570ffe2e08773d809",
     "status": "fresh"
   },
   "price-pump-fun": {
     "url": "https://api.coingecko.com/api/v3/coins/pump-fun/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:32:26.347679+00:00",
-    "sha256": "f4b2017f0298cc81686a83c1bb6062de85d96badf3f69af91dd8ac7a7e1a68fc",
+    "retrieved_at": "2026-10-03T08:30:24.063912+00:00",
+    "sha256": "6356289d7010fa14a312efdc69467aa4c7877ece96adb4a2382609600c202ad4",
     "status": "fresh"
   },
   "llama-uniswap-fees": {
     "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyFees",
-    "retrieved_at": "2026-10-02T21:32:26.864871+00:00",
-    "sha256": "6815c60053f893c4849e43b9c98a896db5fd8bcb7314c5bd1dbb341a1643b5d4",
+    "retrieved_at": "2026-10-03T08:30:28.593382+00:00",
+    "sha256": "2839e6e06eed81d872817b20014e13388b599190c61682bb4bb6f4a72937599f",
     "status": "fresh"
   },
   "llama-uniswap-revenue": {
     "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyRevenue",
-    "retrieved_at": "2026-10-02T21:32:27.467699+00:00",
-    "sha256": "6760f798b235a7848d49a2275f0d369761836158abe0af85c24e1497c3524312",
+    "retrieved_at": "2026-10-03T08:30:26.293754+00:00",
+    "sha256": "ff643dd2ea69c62f0fe8a4122c76b0ff4126aa158f36dbd8752ff5b984d0c5b4",
     "status": "fresh"
   },
   "llama-uniswap-holders": {
     "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyHoldersRevenue",
-    "retrieved_at": "2026-10-02T21:32:28.050201+00:00",
-    "sha256": "d445ac55f72c6f170ea4fbc25933e99bb1d502fbbd08d33004080b7490f473e7",
+    "retrieved_at": "2026-10-03T08:30:27.716418+00:00",
+    "sha256": "a68f2a430674b7b5f6e1d3cda4f25da5d217e737ae00ac034de592fbf9954240",
     "status": "fresh"
   },
   "price-uniswap": {
     "url": "https://api.coingecko.com/api/v3/coins/uniswap/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:32:27.720626+00:00",
-    "sha256": "9f343ba080cd5e3075addc471fcb905b078a82b470e82d12077b6466554dd4ce",
+    "retrieved_at": "2026-10-03T08:30:25.407074+00:00",
+    "sha256": "3a40683dbf08c70277da79bc2f6c805e3122ee4e49ad1a15ba16cb69213c5221",
     "status": "fresh"
   },
   "llama-jupiter-fees": {
     "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyFees",
-    "retrieved_at": "2026-10-02T21:32:27.851869+00:00",
-    "sha256": "8bfe49d154879c9d2acf04462de46d4ca5032f48ac702f1bf0778d15040895ac",
+    "retrieved_at": "2026-10-03T08:30:27.205241+00:00",
+    "sha256": "f50fb2e0e59a8e3e52ff12550cb80095b75d084a247c6723d3f5e4daa7e6e3b1",
     "status": "fresh"
   },
   "llama-jupiter-revenue": {
     "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyRevenue",
-    "retrieved_at": "2026-10-02T21:32:28.440563+00:00",
-    "sha256": "cdf172f6c1a53c9278ec534e44063d361459400126ad1e74b2c4665d523d3fb2",
+    "retrieved_at": "2026-10-03T08:30:28.102852+00:00",
+    "sha256": "961abee5ae9b384a5f207b35a7eb34978e280c66ac12b22b7a36b2f61409cc3b",
     "status": "fresh"
   },
   "llama-jupiter-holders": {
     "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyHoldersRevenue",
-    "retrieved_at": "2026-10-02T21:32:28.566016+00:00",
-    "sha256": "d4f2d4fae9263668ec38bdf551f62291bdfb51e920f996beca4fecd5c6fd3acb",
+    "retrieved_at": "2026-10-03T08:30:29.086375+00:00",
+    "sha256": "3c7fd6af2bf7af24a453cca7ac96ed970c6ae4916bf928d5c2d146653b892be3",
     "status": "fresh"
   },
   "price-jupiter-exchange-solana": {
     "url": "https://api.coingecko.com/api/v3/coins/jupiter-exchange-solana/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:32:28.768335+00:00",
-    "sha256": "298c028c028864ff717231f125f6745f46d06851824ab7499d597cce79537966",
+    "retrieved_at": "2026-10-03T08:30:28.875293+00:00",
+    "sha256": "17ae875f80bfbf85ab00461c36c9b2af1e746eebcfb5d2671ad55f20c90d6e50",
     "status": "fresh"
   },
   "llama-raydium-fees": {
     "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyFees",
-    "retrieved_at": "2026-10-02T21:32:28.768381+00:00",
-    "sha256": "ce96c6212b4b7746f29eb042f84ddd220c7ce2d9b7f184ede952cf6f6813bb99",
+    "retrieved_at": "2026-10-03T08:30:29.208736+00:00",
+    "sha256": "a309e8a235436256a9645234bc17fdbde269f317482a0d3fdcbd60d1ec8c1ae0",
     "status": "fresh"
   },
   "llama-raydium-revenue": {
     "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyRevenue",
-    "retrieved_at": "2026-10-02T21:32:29.644103+00:00",
-    "sha256": "86dcd26e8275cf73110d756a741f0d8c7440f940e18731faa3acd2e8972be5d4",
+    "retrieved_at": "2026-10-03T08:30:29.791899+00:00",
+    "sha256": "77bc2f2f9ce0f2f948e246914d896793af87ff6f08e912c08ffadfc8279aa014",
     "status": "fresh"
   },
   "llama-raydium-holders": {
     "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyHoldersRevenue",
-    "retrieved_at": "2026-10-02T21:32:29.294476+00:00",
-    "sha256": "5b24a9b9129363c009ea0efef6713567abf72191db5d8ec34421e818b0a31d19",
+    "retrieved_at": "2026-10-03T08:30:30.130066+00:00",
+    "sha256": "694141cc3b625b5c2bc53088fd8c4b959339eb7cff9d6efd39bb999fdd6b4505",
     "status": "fresh"
   },
   "price-raydium": {
     "url": "https://api.coingecko.com/api/v3/coins/raydium/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:36:05.301301+00:00",
-    "sha256": "26370f9cbd6d03a6962d5d09ad4cc29feefd3a5bd33a3822e95dbc177bd11499",
+    "retrieved_at": "2026-10-03T08:31:31.258761+00:00",
+    "sha256": "275c24300f9d4e9cca0c872fb4b1bf6f2e8d844b9706a10a322d934b9f05f29b",
     "status": "fresh"
+  },
+  "llama-pancakeswap-fees": {
+    "url": "https://api.llama.fi/summary/fees/pancakeswap?dataType=dailyFees",
+    "retrieved_at": "2026-10-03T08:30:33.085478+00:00",
+    "sha256": "d14f3e60439f5618d634b3cbbfa455fae64a25cdb5b2e5bd9a7eb430c77112ba",
+    "status": "fresh"
+  },
+  "llama-pancakeswap-revenue": {
+    "url": "https://api.llama.fi/summary/fees/pancakeswap?dataType=dailyRevenue",
+    "retrieved_at": "2026-10-03T08:30:33.106945+00:00",
+    "sha256": "bdd990069b64e48c4144140369104dd7f93c16e95af79fb100b1306f4c54ada4",
+    "status": "fresh"
+  },
+  "llama-pancakeswap-holders": {
+    "url": "https://api.llama.fi/summary/fees/pancakeswap?dataType=dailyHoldersRevenue",
+    "retrieved_at": "2026-10-03T08:30:33.290202+00:00",
+    "sha256": "62bcad0529eb086c97f117a059f2f60dbbbe8977091c86188a9f30cd20a6824e",
+    "status": "fresh"
+  },
+  "price-pancakeswap-token": {
+    "url": "https://api.coingecko.com/api/v3/coins/pancakeswap-token/market_chart?vs_currency=usd&days=365&interval=daily",
+    "retrieved_at": "2026-10-03T08:31:31.130535+00:00",
+    "sha256": "6bcb2ba0a45122aa82051e9259ab49e116a6011a6410c1ec9226dd891a520105",
+    "status": "fresh"
+  },
+  "price-binancecoin": {
+    "url": "https://api.coingecko.com/api/v3/coins/binancecoin/market_chart?vs_currency=usd&days=365&interval=daily",
+    "retrieved_at": "2026-10-03T08:31:31.235735+00:00",
+    "sha256": "db380100925cf764cf9d6d467152152284f2b324347bc73812f930e593b4354c",
+    "status": "fresh"
+  },
+  "llama-aave-fees": {
+    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyFees",
+    "retrieved_at": "2026-10-03T08:30:36.224561+00:00",
+    "sha256": "a91d87495aaa1005cd824a4903ca8388deb3de4498e620260aec1967236f6cad",
+    "status": "fresh"
+  },
+  "llama-aave-revenue": {
+    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue",
+    "retrieved_at": "2026-10-03T08:30:39.218503+00:00",
+    "sha256": "a5823ab0a81d7bad49f452261e595b63c17cb79f609e1c8770c645099474de85",
+    "status": "fresh"
+  },
+  "llama-aave-holders": {
+    "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+    "retrieved_at": "2026-10-03T08:30:43.088828+00:00",
+    "sha256": "565942212da7da687966106477c8eec816d4441f20df3e3552bac7684b5c8ad4",
+    "status": "fresh"
+  },
+  "price-aave": {
+    "url": "https://api.coingecko.com/api/v3/coins/aave/market_chart?vs_currency=usd&days=365&interval=daily",
+    "retrieved_at": "2026-10-03T08:21:28.915114+00:00",
+    "sha256": "f83c97d30e1eaa48a03f650f79bacd4e5d8ae9a64d4379c01742561af1bd7114",
+    "status": "cached",
+    "refresh_error": "HTTP Error 429: Too Many Requests"
   },
   "price-bitcoin": {
     "url": "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:36:05.301340+00:00",
-    "sha256": "a46dc8e158a82dead81d67c14daf7b229463f1337c62efd24ac723a101df9a95",
+    "retrieved_at": "2026-10-03T08:32:33.036791+00:00",
+    "sha256": "948a3bfabaa0689fc0f4084900cde2162a46e0573e3555f51851523d1e60cb75",
     "status": "fresh"
   },
   "price-solana": {
     "url": "https://api.coingecko.com/api/v3/coins/solana/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-02T21:36:05.301361+00:00",
-    "sha256": "a0b318a96a22e9756567ca17ae2a2b3cbb3daa2a5c840334c4a3e7d2c8645907",
+    "retrieved_at": "2026-10-03T08:32:32.403788+00:00",
+    "sha256": "46eaff6f669ee6c1e670c5a9cf3fda2a0903485b1e82338b343675f1b7945627",
     "status": "fresh"
+  },
+  "price-supplemental-llama-20200101": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1577836800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:19.341735+00:00",
+    "sha256": "a4ffd9d7c2682e55a57bc64eecfddb089f3503844f0e7f1c01f96971aab528bd",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20200311": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1583884800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:19.331792+00:00",
+    "sha256": "548938250ad35afe0d65f15f8f323aa3acf692872c379ad517d7b1bcbe096d14",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20200520": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1589932800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:19.326933+00:00",
+    "sha256": "73bf3a2487bbf6c38819ac0de9aa8514d004d1c9016fa54342daa896ada0b28d",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20200729": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1595980800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:19.348271+00:00",
+    "sha256": "37596dcaebfd07ba6256c8913dcea2079e1bc5218ac3097ff623ad9afdabc51a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20201007": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1602028800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:20.254286+00:00",
+    "sha256": "6755a60131c05357c2139f1f3db7439199e66dc9bc30140153343430fe5d1fb4",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20201216": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1608076800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:20.990847+00:00",
+    "sha256": "a7d12d637ff8a1262f3ce76b1ee5e484dde3ff2165a77114c889943cc3efa180",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20210224": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1614124800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:20.254369+00:00",
+    "sha256": "a7712e249d145d051f351403396e572032b915b6587478c2bd247661fdeb879b",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20210505": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1620172800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:21.032313+00:00",
+    "sha256": "0dc12fcea5e50196746436bcf120f32ac24f4dc0e6c57ddd5d411ec6e6117b7c",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20210714": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1626220800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:21.055432+00:00",
+    "sha256": "c593c32059e3bbe2d88c9d9b123383b8abf40aee34fc8cccb3598a8d5da42b67",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20210922": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1632268800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:21.804640+00:00",
+    "sha256": "d14433d070b6686f2aa09d61f5c695a6fd47016171c28eb25e00ae031a2d4e33",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20211201": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1638316800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:21.859294+00:00",
+    "sha256": "f7000e7f5d9ebbb712e443188d5af16dd7cd3de8a65a89f7d498893f097c8cc9",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20220209": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1644364800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:21.895162+00:00",
+    "sha256": "756275e3b63e30ee532b0edd7d2742a5189c5cffc0217ed312a0de2576f0b16e",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20220420": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1650412800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:22.847906+00:00",
+    "sha256": "29a64d9bc11575673cff38e98bdf789d2e19e5206b9c337d83e29acf1edc0c4b",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20220629": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1656460800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:22.588223+00:00",
+    "sha256": "5cd191311197fa040521066f0634e373d844ed1f47cfa5cfca806919c254ccc9",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20220907": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1662508800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:22.651634+00:00",
+    "sha256": "8e9ee278ce850e3069b8c2357962290b12bc66a2e6bfb71885271bf2a5f8b759",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20221116": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1668556800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:22.755995+00:00",
+    "sha256": "4da02c6e2f157e2980a391db9c56836c0479a9d98a4c7c2b31411a3ded9fb243",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20230125": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1674604800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:23.470071+00:00",
+    "sha256": "ea6884cb89cf34f9b15489d6fe227a1c1561cf1a1e73aaf7feaac78b87b11d4c",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20230405": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1680652800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:23.437229+00:00",
+    "sha256": "834822c1324be2de67d2ea2b1efa741da2715345c5d5707d6f39b44c29500334",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20230614": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1686700800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:23.637571+00:00",
+    "sha256": "9bd3dc6e1bf0d980b862a76c248e30cfce940b2f66910315713e9f81071da156",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20230823": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1692748800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:23.661232+00:00",
+    "sha256": "ac8d3f7b728b336717630dcbfed717204fc5f9137fb269acda36fd4c53078929",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20231101": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1698796800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:24.422352+00:00",
+    "sha256": "81e48583e4c859fdcd069b89475e701e43676bfc2915afca0f0666d750ba0ab5",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20240110": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1704844800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:24.333733+00:00",
+    "sha256": "59815ea3234acfe2526fa49239fd94fc665ec28fa918a41f0fdec33b5c2af6c0",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20240320": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1710892800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:24.568509+00:00",
+    "sha256": "82daf60284abff038c9ae8883bef9fb1697880dc2e23b1d1dc7e9e0852e3286a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20240529": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1716940800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:24.549486+00:00",
+    "sha256": "56bc906a3a1feadf19783c4665b416b8ebc733be03f8806dbbe67901a9efa8d1",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20240807": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1722988800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:25.180288+00:00",
+    "sha256": "90a0bcb2a0ee54f8f1a5682fd937bb60c94fdbae8acd22157ab97533136f8f16",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20241016": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1729036800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:25.280352+00:00",
+    "sha256": "01746e1ff21a07a48e0ba46008007dd9a9ccb74859aa00c94d4008819dce3aaf",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20241225": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1735084800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:26.243435+00:00",
+    "sha256": "ea4f6d0a112d03016c78c2382b9bb1b3ff23c18c3a3aad1abdb824434d071586",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20250305": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1741132800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:26.251231+00:00",
+    "sha256": "dd8cad110ea5e08c157bc18946195c9386d5b5a7d3e6c200d822015041836ec6",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20250514": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1747180800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:26.036859+00:00",
+    "sha256": "6d59bea9d64899f114e343696119ba280724de5205749937e2a4af6ea5f5d5b8",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20250723": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1753228800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:26.082876+00:00",
+    "sha256": "f79ddeb27284137c8a1dbe47a480004084f3392aa093fc5bafe0e20f07d16e4d",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20251001": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1759276800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:27.882538+00:00",
+    "sha256": "d72b7bdc8845cc5e45e940133566b84066e5201b6bfde8ba45fd29f7b92a1853",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20251210": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1765324800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:27.127999+00:00",
+    "sha256": "cb057d973cccee68040c5e94287cf4b330ae91c2fd180d68c202881f0983cc3e",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20260218": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1771372800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:27.232492+00:00",
+    "sha256": "1425cdfe3a92b995c4968e3b2e7dc23b825cd97e6abc1c32fa8805c1dbbeb2c8",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20260429": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1777420800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:27.279489+00:00",
+    "sha256": "ce73580af52d580b0bb74b376c1b0d785e9890d4dc52b7c043ce58f7a40609ca",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20260708": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1783468800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-02T22:18:28.171485+00:00",
+    "sha256": "6510530afcc7b4c4951096cd5c2a020d188b558303b94378aebb5ef4c5acc801",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-20260916": {
+    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1789516800&span=17&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:30.375963+00:00",
+    "sha256": "67ad4099ce9c14f2b9ec41e954a545e3b99f49152ea974662800fb044cbb8114",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20200101": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1577836800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:30.769656+00:00",
+    "sha256": "aff78a550f916004c3de811d17b7f823e073f582dbb1df4885f9d38c7433df25",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20200311": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1583884800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:31.581781+00:00",
+    "sha256": "751060917637a2be6c506f40c41e705bb9ca2774b2e1d93d50ac04df19705c35",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20200520": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1589932800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:31.457084+00:00",
+    "sha256": "dfee7f10a0f3d127ae5eaad582f8a1e60bbfb99b527889137a288a9129ceb00c",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20200729": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1595980800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:31.456990+00:00",
+    "sha256": "27b3411dc563744327c4d4e19c5a10cc2b068deb9ca69bb21a74b3a68b124d97",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20201007": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1602028800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:31.962841+00:00",
+    "sha256": "0df8d5c9eaac6f1c01bb547ebccf6baa8cc7548feb2d6a403d4dcfe79efc4ece",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20201216": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1608076800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:33.269532+00:00",
+    "sha256": "254238f07d32c6b4b138f0f1b4c3485a23c1bc0b263399dfc3359262f4aa5d0a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20210224": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1614124800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:32.735945+00:00",
+    "sha256": "b7e47f0339fde26a01ab52e395ff05c614442b03c8eb9349bdc3e6027f981834",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20210505": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1620172800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:32.733396+00:00",
+    "sha256": "731d361e66f99521f64b9f26049bc2b52cc2c00b5f904e8b2ec5005c42a894a8",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20210714": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1626220800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:33.410279+00:00",
+    "sha256": "424c1e2ab4479f7c7b0dc431495024d51bb8cb51ed8c6cf3265a15f5b0614cef",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20210922": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1632268800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:34.089607+00:00",
+    "sha256": "501dbd0d2e68bed1fcb8c35517b723a8490d0f96b0091faf8d9ac8ec636993f7",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20211201": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1638316800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:34.303856+00:00",
+    "sha256": "ce3a86f09d6b3cbad287070c00d38c2f02a9f2e6ef2bbbe8304d0fbaa52f8f2a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20220209": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1644364800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:34.434711+00:00",
+    "sha256": "24f78a56c37db8ab4226eb501a23728204a7ed526743366ee5d112f03b2f82ff",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20220420": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1650412800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:34.664317+00:00",
+    "sha256": "0c21fe9d4a97312d8c2f57c9b3e7e43a6b44ca68ae21945cf1c868937aa72b7f",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20220629": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1656460800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:35.364210+00:00",
+    "sha256": "de86f13aca2a111029336f4177f89116ee7860ec9071b780af47414b49592ee7",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20220907": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1662508800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:37.220266+00:00",
+    "sha256": "4d3546be56ab6eae7ce25bab8365d324d302937d2b22b61d899b7b44574b8803",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20221116": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1668556800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:35.559155+00:00",
+    "sha256": "3836a1cba6e5960665fd1ba711341ad8ad9d29a95bcb0189d9467594da16c59a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20230125": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1674604800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:35.880353+00:00",
+    "sha256": "996b86ea8b0616e7a9dff0abf27ab42af3ddbeaaacb5f246f5a1c323ec97ad8b",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20230405": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1680652800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:37.489601+00:00",
+    "sha256": "a7fa779f18a7c2c1513e2f0d22d8850339f3e722660e407e648e93a57b87cc59",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20230614": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1686700800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:36.726696+00:00",
+    "sha256": "623075d0a57fbb4c4d34fb2831f938db44f00213bc101107312ebb6008a3ac46",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20230823": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1692748800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:37.000872+00:00",
+    "sha256": "789c915cb98a9c275dd9d11ee84fc3ca76aebca89b8b3da99141a71fb451f271",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20231101": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1698796800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:38.156729+00:00",
+    "sha256": "230a70bf11bab7ab7fcf15f0015d1fa380cdde377fd0e7f22db98c184de3181a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20240110": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1704844800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:38.093050+00:00",
+    "sha256": "199206fd137959cd43e8d801b40c54d4579ea162404362a7a6c83f75a788d88a",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20240320": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1710892800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:38.611660+00:00",
+    "sha256": "77781c167008ef9944aa19e0a7e52c60bf19d0421429f708e5aa4b895662d541",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20240529": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1716940800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:38.664594+00:00",
+    "sha256": "ce8a20ceff63bd74b0ec9f6401c963e5ddda5964f31ab73641523f723cea291c",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20240807": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1722988800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:39.220131+00:00",
+    "sha256": "4372079fbea4c64805750b023b68465382d12d115adb642535de469393c69a85",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20241016": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1729036800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:39.411785+00:00",
+    "sha256": "55033782b79a73aa938343feb027e5ff9eaf6e0499fb60a113e3ea5a69656ecd",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20241225": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1735084800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:39.765941+00:00",
+    "sha256": "695ae56b2bba9bdc0b65d532a95937dedc907de0cb29ef8f075b6a62197d0fa0",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20250305": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1741132800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:39.835210+00:00",
+    "sha256": "2562112c0bbc5df373105f97f4f6b6aff4226626b8d7b71a9b2e765238d7a98d",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20250514": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1747180800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:40.320570+00:00",
+    "sha256": "8799240e495856bc8cd3787541ad5c882418cd17c1a48b0bcef99a8791a18f52",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20250723": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1753228800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:40.595572+00:00",
+    "sha256": "129fa58f63eb59adfa47a2ca630828c5369026130cef607b940b8e27c532bc0d",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20251001": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1759276800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:40.888319+00:00",
+    "sha256": "3475b60c332dc623e1430462ce5108f70ff49f809928cd480f9d48a430cfa30d",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20251210": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1765324800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:40.971694+00:00",
+    "sha256": "53d46f5aadad28828c10fd37809ee6696df32e788fa00b07742764934e77c31b",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20260218": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1771372800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:41.408017+00:00",
+    "sha256": "135d7a65886fdd7f48567530fc8060fd4584c261634a6e53fcae1c93558687bb",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20260429": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1777420800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:41.773210+00:00",
+    "sha256": "28729da9dded3571aeb41b6a690a2a1252b45e948e7e6cbe5760e6a7c9d2c8b8",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20260708": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1783468800&span=70&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:42.171663+00:00",
+    "sha256": "1712d9c95de870823257a4e7e21682696da8b3c884313f646daf9cbe2bc7fa65",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
+  },
+  "price-supplemental-llama-808e97456612-20260916": {
+    "url": "https://coins.llama.fi/chart/coingecko:pancakeswap-token,coingecko:binancecoin,coingecko:aave?start=1789516800&span=17&period=1d&searchWidth=1h",
+    "retrieved_at": "2026-10-03T08:21:42.171379+00:00",
+    "sha256": "df88d09efe43cb9b77d5cf26aa0ce0b5b4e16daab0d53644a2aa1d047031ed00",
+    "status": "cached",
+    "cache_note": "已完成历史分块复用原始响应；未更新原始抓取时间。"
   },
   "rpc-pump-mint": {
     "url": "https://api.mainnet-beta.solana.com",
-    "retrieved_at": "2026-10-02T21:32:29.816318+00:00",
-    "sha256": "7585063e2fcce77690b4af065d360c5194592966ce1df9d779d335eb2d8a2cdd",
+    "retrieved_at": "2026-10-03T08:31:32.161153+00:00",
+    "sha256": "5ea588e46bd115c03312902149ae8d99a1e6a686eabe76a8fc427c430d4801b9",
     "status": "fresh",
     "request": {
       "jsonrpc": "2.0",
@@ -157,8 +716,8 @@
   },
   "rpc-ray-mint": {
     "url": "https://api.mainnet-beta.solana.com",
-    "retrieved_at": "2026-10-02T21:32:29.816166+00:00",
-    "sha256": "5ce84f9ac1b3b00124f588e0bcc143bde43ccddf1519629feeb403c5f5695609",
+    "retrieved_at": "2026-10-03T08:31:32.134297+00:00",
+    "sha256": "44fb05d9c8d70574126b330b09e263786085cdf077f2ca55a7e937b1e5c960c1",
     "status": "fresh",
     "request": {
       "jsonrpc": "2.0",
@@ -175,262 +734,338 @@
   },
   "llama-supplemental-jup-protocol": {
     "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyProtocolRevenue",
-    "retrieved_at": "2026-10-02T21:32:30.626365+00:00",
-    "sha256": "45071759791d066e0e3d72b24a97cfdfc792be4d08c428bd609299d537714e70",
-    "response_path": "../data/responses/45071759791d066e0e3d72b24a97cfdfc792be4d08c428bd609299d537714e70.json",
+    "retrieved_at": "2026-10-03T08:31:33.955910+00:00",
+    "sha256": "cea85044f362a5e9352f405b727f98cd525332fccc6147289b84905e1648a53a",
+    "response_path": "../data/responses/cea85044f362a5e9352f405b727f98cd525332fccc6147289b84905e1648a53a.json",
     "ticker": "JUP",
     "kind": "protocol",
     "status": "fresh",
-    "stored_sha256": "45071759791d066e0e3d72b24a97cfdfc792be4d08c428bd609299d537714e70",
-    "fetched_at": "2026-10-02T21:32:30.626365+00:00"
+    "stored_sha256": "cea85044f362a5e9352f405b727f98cd525332fccc6147289b84905e1648a53a",
+    "fetched_at": "2026-10-03T08:31:33.955910+00:00"
   },
   "llama-supplemental-jup-supply": {
     "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailySupplySideRevenue",
-    "retrieved_at": "2026-10-02T21:32:30.667226+00:00",
-    "sha256": "1cd5b40661effcac9992301e36619942abb0ec2c5c363be229a7f0d6b8971084",
-    "response_path": "../data/responses/1cd5b40661effcac9992301e36619942abb0ec2c5c363be229a7f0d6b8971084.json",
+    "retrieved_at": "2026-10-03T08:31:33.829269+00:00",
+    "sha256": "56aafed8719c60914bea91759fe96e6f6fe21952d004bf9eaa1cebafd06376d0",
+    "response_path": "../data/responses/56aafed8719c60914bea91759fe96e6f6fe21952d004bf9eaa1cebafd06376d0.json",
     "ticker": "JUP",
     "kind": "supply",
     "status": "fresh",
-    "stored_sha256": "1cd5b40661effcac9992301e36619942abb0ec2c5c363be229a7f0d6b8971084",
-    "fetched_at": "2026-10-02T21:32:30.667226+00:00"
+    "stored_sha256": "56aafed8719c60914bea91759fe96e6f6fe21952d004bf9eaa1cebafd06376d0",
+    "fetched_at": "2026-10-03T08:31:33.829269+00:00"
   },
   "llama-supplemental-ray-protocol": {
     "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyProtocolRevenue",
-    "retrieved_at": "2026-10-02T21:32:30.511226+00:00",
-    "sha256": "b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392",
-    "response_path": "../data/responses/b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392.json",
+    "retrieved_at": "2026-10-03T08:31:34.951153+00:00",
+    "sha256": "f3d32680d8c8ee99dd378bfcdd509f3ae874dea613b9e4cf0d0ca2ba8819c315",
+    "response_path": "../data/responses/f3d32680d8c8ee99dd378bfcdd509f3ae874dea613b9e4cf0d0ca2ba8819c315.json",
     "ticker": "RAY",
     "kind": "protocol",
     "status": "fresh",
-    "stored_sha256": "b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392",
-    "fetched_at": "2026-10-02T21:32:30.511226+00:00"
+    "stored_sha256": "f3d32680d8c8ee99dd378bfcdd509f3ae874dea613b9e4cf0d0ca2ba8819c315",
+    "fetched_at": "2026-10-03T08:31:34.951153+00:00"
   },
   "llama-supplemental-ray-supply": {
     "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailySupplySideRevenue",
-    "retrieved_at": "2026-10-02T21:32:30.552952+00:00",
-    "sha256": "83b99994cc24fe54f1408bc9c7e0720b7e426f0aea92e76f936ccfdacb8aafad",
-    "response_path": "../data/responses/83b99994cc24fe54f1408bc9c7e0720b7e426f0aea92e76f936ccfdacb8aafad.json",
+    "retrieved_at": "2026-10-03T08:31:35.166472+00:00",
+    "sha256": "099ca06806bd7afcbc7e00bbc569856c1375e34a0de0aeb783191834b546a318",
+    "response_path": "../data/responses/099ca06806bd7afcbc7e00bbc569856c1375e34a0de0aeb783191834b546a318.json",
     "ticker": "RAY",
     "kind": "supply",
     "status": "fresh",
-    "stored_sha256": "83b99994cc24fe54f1408bc9c7e0720b7e426f0aea92e76f936ccfdacb8aafad",
-    "fetched_at": "2026-10-02T21:32:30.552952+00:00"
+    "stored_sha256": "099ca06806bd7afcbc7e00bbc569856c1375e34a0de0aeb783191834b546a318",
+    "fetched_at": "2026-10-03T08:31:35.166472+00:00"
   },
-  "price-supplemental-llama-20200101": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1577836800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:19.341735+00:00",
-    "sha256": "a4ffd9d7c2682e55a57bc64eecfddb089f3503844f0e7f1c01f96971aab528bd",
+  "bnb-quarter-burns": {
+    "url": "https://www.bnbburn.info/api/getQuarterBurns",
+    "retrieved_at": "2026-10-03T08:31:36.492384+00:00",
+    "sha256": "440768e74e8fa7cd927c4cbe4313329e02756ef1fd3b468b11333cdcfcae2218",
     "status": "fresh"
   },
-  "price-supplemental-llama-20200311": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1583884800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:19.331792+00:00",
-    "sha256": "548938250ad35afe0d65f15f8f323aa3acf692872c379ad517d7b1bcbe096d14",
+  "bnb-supply": {
+    "url": "https://www.bnbburn.info/api/getBnbSupply",
+    "retrieved_at": "2026-10-03T08:31:36.390800+00:00",
+    "sha256": "a9c29bf6a7007a0d78d660944a956c112f4ca8d5d21193f3e048a81f1fd08ebd",
     "status": "fresh"
   },
-  "price-supplemental-llama-20200520": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1589932800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:19.326933+00:00",
-    "sha256": "73bf3a2487bbf6c38819ac0de9aa8514d004d1c9016fa54342daa896ada0b28d",
+  "bnb-realtime-burn-info": {
+    "url": "https://www.bnbburn.info/api/getRealTimeBurnInfo",
+    "retrieved_at": "2026-10-03T08:31:37.985348+00:00",
+    "sha256": "141a1a2d4fa3b6be737b66414817446661a5d1f218884e6a9fd625dd335a3d40",
     "status": "fresh"
   },
-  "price-supplemental-llama-20200729": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1595980800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:19.348271+00:00",
-    "sha256": "37596dcaebfd07ba6256c8913dcea2079e1bc5218ac3097ff623ad9afdabc51a",
+  "bnb-burn-breakdown": {
+    "url": "https://www.bnbburn.info/api/getBurnBreakdown",
+    "retrieved_at": "2026-10-03T08:31:37.839838+00:00",
+    "sha256": "437d6945654e4a36035aec029f3c90cdffab519777032674c84ea7d88893bca9",
     "status": "fresh"
   },
-  "price-supplemental-llama-20201007": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1602028800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:20.254286+00:00",
-    "sha256": "6755a60131c05357c2139f1f3db7439199e66dc9bc30140153343430fe5d1fb4",
-    "status": "fresh"
+  "rpc-bnb-burn-transactions": {
+    "url": "https://bsc-dataseed.bnbchain.org",
+    "retrieved_at": "2026-10-03T08:26:53.685158+00:00",
+    "sha256": "facd1fef7ff299e66bc101c0d1ca21d583965749f11b8cf7598a3565f6ee9b31",
+    "status": "cached",
+    "request": [
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x44df032bb1790ef26195d2b5a8a74b1ce03607ff627bbc02f096451b83250eae",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x44df032bb1790ef26195d2b5a8a74b1ce03607ff627bbc02f096451b83250eae"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x44df032bb1790ef26195d2b5a8a74b1ce03607ff627bbc02f096451b83250eae",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x44df032bb1790ef26195d2b5a8a74b1ce03607ff627bbc02f096451b83250eae"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x6c36e62d0c2c62a963c2410bb8feec49c5ce562bdfdac1fb2dbfa3c190be374c",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x6c36e62d0c2c62a963c2410bb8feec49c5ce562bdfdac1fb2dbfa3c190be374c"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x6c36e62d0c2c62a963c2410bb8feec49c5ce562bdfdac1fb2dbfa3c190be374c",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x6c36e62d0c2c62a963c2410bb8feec49c5ce562bdfdac1fb2dbfa3c190be374c"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x6e8b15a99eac623219c6439f95810a6cc8dccd8c15aea648ce17f45f57601065",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x6e8b15a99eac623219c6439f95810a6cc8dccd8c15aea648ce17f45f57601065"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x6e8b15a99eac623219c6439f95810a6cc8dccd8c15aea648ce17f45f57601065",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x6e8b15a99eac623219c6439f95810a6cc8dccd8c15aea648ce17f45f57601065"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x8c85b7c3be353083ba5994eceb15da64cb0bf0618e70bb4932e6ef6b3de10f07",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x8c85b7c3be353083ba5994eceb15da64cb0bf0618e70bb4932e6ef6b3de10f07"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x8c85b7c3be353083ba5994eceb15da64cb0bf0618e70bb4932e6ef6b3de10f07",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x8c85b7c3be353083ba5994eceb15da64cb0bf0618e70bb4932e6ef6b3de10f07"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x9fbe14355cfa89ec524af1b4b8f3b9d3035f2fdabd6cd0db8a2f4c1b6b236bfc",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x9fbe14355cfa89ec524af1b4b8f3b9d3035f2fdabd6cd0db8a2f4c1b6b236bfc"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x9fbe14355cfa89ec524af1b4b8f3b9d3035f2fdabd6cd0db8a2f4c1b6b236bfc",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x9fbe14355cfa89ec524af1b4b8f3b9d3035f2fdabd6cd0db8a2f4c1b6b236bfc"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xa9c1d03773a2edd29d5fe24bef231fb404b0c193661941a41457f8317fc49fa7",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xa9c1d03773a2edd29d5fe24bef231fb404b0c193661941a41457f8317fc49fa7"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xa9c1d03773a2edd29d5fe24bef231fb404b0c193661941a41457f8317fc49fa7",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xa9c1d03773a2edd29d5fe24bef231fb404b0c193661941a41457f8317fc49fa7"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xb70c9d7bb30bbe3407397b65d4297421796ecb7bfbc57ab271048e950d289a40",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xb70c9d7bb30bbe3407397b65d4297421796ecb7bfbc57ab271048e950d289a40"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xb70c9d7bb30bbe3407397b65d4297421796ecb7bfbc57ab271048e950d289a40",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xb70c9d7bb30bbe3407397b65d4297421796ecb7bfbc57ab271048e950d289a40"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xcb7c733619b81875d1735a1ecc09d505d6881fbe722c65f5e8425b36237ea564",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xcb7c733619b81875d1735a1ecc09d505d6881fbe722c65f5e8425b36237ea564"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xcb7c733619b81875d1735a1ecc09d505d6881fbe722c65f5e8425b36237ea564",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xcb7c733619b81875d1735a1ecc09d505d6881fbe722c65f5e8425b36237ea564"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xd1c43cf12d721261f1e1ae2a50dc765eb9062322bc05cd53ada63700960fadde",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xd1c43cf12d721261f1e1ae2a50dc765eb9062322bc05cd53ada63700960fadde"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xd1c43cf12d721261f1e1ae2a50dc765eb9062322bc05cd53ada63700960fadde",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xd1c43cf12d721261f1e1ae2a50dc765eb9062322bc05cd53ada63700960fadde"
+        ]
+      }
+    ],
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
   },
-  "price-supplemental-llama-20201216": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1608076800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:20.990847+00:00",
-    "sha256": "a7d12d637ff8a1262f3ce76b1ee5e484dde3ff2165a77114c889943cc3efa180",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20210224": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1614124800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:20.254369+00:00",
-    "sha256": "a7712e249d145d051f351403396e572032b915b6587478c2bd247661fdeb879b",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20210505": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1620172800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:21.032313+00:00",
-    "sha256": "0dc12fcea5e50196746436bcf120f32ac24f4dc0e6c57ddd5d411ec6e6117b7c",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20210714": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1626220800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:21.055432+00:00",
-    "sha256": "c593c32059e3bbe2d88c9d9b123383b8abf40aee34fc8cccb3598a8d5da42b67",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20210922": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1632268800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:21.804640+00:00",
-    "sha256": "d14433d070b6686f2aa09d61f5c695a6fd47016171c28eb25e00ae031a2d4e33",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20211201": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1638316800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:21.859294+00:00",
-    "sha256": "f7000e7f5d9ebbb712e443188d5af16dd7cd3de8a65a89f7d498893f097c8cc9",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20220209": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1644364800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:21.895162+00:00",
-    "sha256": "756275e3b63e30ee532b0edd7d2742a5189c5cffc0217ed312a0de2576f0b16e",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20220420": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1650412800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:22.847906+00:00",
-    "sha256": "29a64d9bc11575673cff38e98bdf789d2e19e5206b9c337d83e29acf1edc0c4b",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20220629": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1656460800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:22.588223+00:00",
-    "sha256": "5cd191311197fa040521066f0634e373d844ed1f47cfa5cfca806919c254ccc9",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20220907": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1662508800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:22.651634+00:00",
-    "sha256": "8e9ee278ce850e3069b8c2357962290b12bc66a2e6bfb71885271bf2a5f8b759",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20221116": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1668556800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:22.755995+00:00",
-    "sha256": "4da02c6e2f157e2980a391db9c56836c0479a9d98a4c7c2b31411a3ded9fb243",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20230125": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1674604800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:23.470071+00:00",
-    "sha256": "ea6884cb89cf34f9b15489d6fe227a1c1561cf1a1e73aaf7feaac78b87b11d4c",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20230405": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1680652800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:23.437229+00:00",
-    "sha256": "834822c1324be2de67d2ea2b1efa741da2715345c5d5707d6f39b44c29500334",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20230614": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1686700800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:23.637571+00:00",
-    "sha256": "9bd3dc6e1bf0d980b862a76c248e30cfce940b2f66910315713e9f81071da156",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20230823": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1692748800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:23.661232+00:00",
-    "sha256": "ac8d3f7b728b336717630dcbfed717204fc5f9137fb269acda36fd4c53078929",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20231101": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1698796800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:24.422352+00:00",
-    "sha256": "81e48583e4c859fdcd069b89475e701e43676bfc2915afca0f0666d750ba0ab5",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20240110": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1704844800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:24.333733+00:00",
-    "sha256": "59815ea3234acfe2526fa49239fd94fc665ec28fa918a41f0fdec33b5c2af6c0",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20240320": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1710892800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:24.568509+00:00",
-    "sha256": "82daf60284abff038c9ae8883bef9fb1697880dc2e23b1d1dc7e9e0852e3286a",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20240529": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1716940800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:24.549486+00:00",
-    "sha256": "56bc906a3a1feadf19783c4665b416b8ebc733be03f8806dbbe67901a9efa8d1",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20240807": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1722988800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:25.180288+00:00",
-    "sha256": "90a0bcb2a0ee54f8f1a5682fd937bb60c94fdbae8acd22157ab97533136f8f16",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20241016": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1729036800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:25.280352+00:00",
-    "sha256": "01746e1ff21a07a48e0ba46008007dd9a9ccb74859aa00c94d4008819dce3aaf",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20241225": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1735084800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:26.243435+00:00",
-    "sha256": "ea4f6d0a112d03016c78c2382b9bb1b3ff23c18c3a3aad1abdb824434d071586",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20250305": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1741132800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:26.251231+00:00",
-    "sha256": "dd8cad110ea5e08c157bc18946195c9386d5b5a7d3e6c200d822015041836ec6",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20250514": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1747180800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:26.036859+00:00",
-    "sha256": "6d59bea9d64899f114e343696119ba280724de5205749937e2a4af6ea5f5d5b8",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20250723": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1753228800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:26.082876+00:00",
-    "sha256": "f79ddeb27284137c8a1dbe47a480004084f3392aa093fc5bafe0e20f07d16e4d",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20251001": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1759276800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:27.882538+00:00",
-    "sha256": "d72b7bdc8845cc5e45e940133566b84066e5201b6bfde8ba45fd29f7b92a1853",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20251210": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1765324800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:27.127999+00:00",
-    "sha256": "cb057d973cccee68040c5e94287cf4b330ae91c2fd180d68c202881f0983cc3e",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20260218": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1771372800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:27.232492+00:00",
-    "sha256": "1425cdfe3a92b995c4968e3b2e7dc23b825cd97e6abc1c32fa8805c1dbbeb2c8",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20260429": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1777420800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:27.279489+00:00",
-    "sha256": "ce73580af52d580b0bb74b376c1b0d785e9890d4dc52b7c043ce58f7a40609ca",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20260708": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1783468800&span=70&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:28.171485+00:00",
-    "sha256": "6510530afcc7b4c4951096cd5c2a020d188b558303b94378aebb5ef4c5acc801",
-    "status": "fresh"
-  },
-  "price-supplemental-llama-20260916": {
-    "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1789516800&span=16&period=1d&searchWidth=1h",
-    "retrieved_at": "2026-10-02T22:18:28.095362+00:00",
-    "sha256": "b898d928024b5bb4ad611ae93c78c66d5c4e1283e817b7f2064e4068153ca298",
-    "status": "fresh"
+  "rpc-bnb-burn-blocks": {
+    "url": "https://bsc-dataseed.bnbchain.org",
+    "retrieved_at": "2026-10-03T08:26:55.485093+00:00",
+    "sha256": "385c9a7b61d7c23ad9fbc169f707d66e47ca52169c0c9aecbb0c8d5f0d0e6a8a",
+    "status": "cached",
+    "request": [
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x16adcd790b080fa63e2285e02be16ae9368de7a0a3768cc4f7918e258877d1d2",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x16adcd790b080fa63e2285e02be16ae9368de7a0a3768cc4f7918e258877d1d2",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x45b4184051e5835cfdf9a12a1cfd0b34f2e3e811521ca37d3017e10eb54709be",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x45b4184051e5835cfdf9a12a1cfd0b34f2e3e811521ca37d3017e10eb54709be",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x4c2121ff144f8cf98930955d64233c8129f15ba108d668253c0b79bcbba27431",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x4c2121ff144f8cf98930955d64233c8129f15ba108d668253c0b79bcbba27431",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x68b868d99a8338bf21f142459f5af564809bd15b6cd9ff2bd5730ddaa5aad425",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x68b868d99a8338bf21f142459f5af564809bd15b6cd9ff2bd5730ddaa5aad425",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x8add0f6a7b93d4197b71ad9c20ab9995ef6e69da69fc5a4755521a74d37b09e5",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x8add0f6a7b93d4197b71ad9c20ab9995ef6e69da69fc5a4755521a74d37b09e5",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x98e3844c6f4e49241a0ea4e8ff6883d43f85d1b862e88b1c08583ccb2ba2f590",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x98e3844c6f4e49241a0ea4e8ff6883d43f85d1b862e88b1c08583ccb2ba2f590",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xae44aa63bfbafa9176c15a565c77840fbf337a3547377c63c938194a1c2caea9",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xae44aa63bfbafa9176c15a565c77840fbf337a3547377c63c938194a1c2caea9",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xb0c177dba88dd872d5d4ff48ab1d9ab2c8ecc5355037b7a271b01df66da384f7",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xb0c177dba88dd872d5d4ff48ab1d9ab2c8ecc5355037b7a271b01df66da384f7",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xd6203d293c172537a6021dfc1c5038ceb9ec6c5856ff27b90972cf16ea208084",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xd6203d293c172537a6021dfc1c5038ceb9ec6c5856ff27b90972cf16ea208084",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xdddbf6a0ab97a0131aeeae098e76896a8a7cf7e3b1afc88186e5d9e045d2accf",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xdddbf6a0ab97a0131aeeae098e76896a8a7cf7e3b1afc88186e5d9e045d2accf",
+          false
+        ]
+      }
+    ],
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
   }
 }

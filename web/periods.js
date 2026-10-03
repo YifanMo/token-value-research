@@ -1,5 +1,7 @@
 import {known} from './core.js';
 import {auditResponse} from './sources.js';
+import {isReserveBurn} from './models.js';
+import {burnStats} from './burns.js';
 
 const DAY = 86400000;
 const MAIN_KINDS = ['fees', 'revenue', 'holders'];
@@ -146,5 +148,6 @@ export function createRangeProject(project, start, end, responses = {}) {
     extra.complete = [...sourceKinds].every(kind => extra[kind].complete);
     window.flow_distributions = extra;
   }
+  if (isReserveBurn(project)) window.burns = burnStats(project, start, end);
   return {...project, windows: {...project.windows, [String(range.days)]: window}, custom_range: {...range, research_start: researchStart}};
 }

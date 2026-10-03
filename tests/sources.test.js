@@ -62,9 +62,18 @@ test('fee audit with missing children, changed methods or failed reconciliation 
     assert.equal(audit.issues.length,1,scenario);
   }
 });
-test('saved evidence hashes and daily sums reproduce all five projects and all three flow kinds',()=>{
+test('saved evidence hashes reproduce all projects and daily sums reproduce DeFi flow kinds',()=>{
   const snapshot=JSON.parse(fs.readFileSync(new URL('../data/dashboard.json',import.meta.url)));
   for(const p of snapshot.projects) {
+    if(p.flow?.mode==='reserve_and_gas_burn') {
+      assert.equal(buybackSource(p),undefined);
+      for(const s of p.burns.data_sources || p.data_sources) {
+        const bytes=fs.readFileSync(new URL(s.response_path,new URL('../web/',import.meta.url)));
+        assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),s.stored_sha256);
+      }
+      for(const days of [7,30,90,365]) assert.equal(p.windows[String(days)].holders.usd,null);
+      continue;
+    }
     const source=buybackSource(p);
     assert.ok(source?.url.includes('dataType=dailyHoldersRevenue'));
     for(const kind of ['fees','revenue','holders']) {

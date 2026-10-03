@@ -671,5 +671,386 @@
       "composition_axis": "products",
       "source_note_url": "../research/flow-jup-ray-notes.md"
     }
+  },
+  {
+    "ticker": "CAKE",
+    "name": "PancakeSwap",
+    "sector": "多链 AMM / 发行 / 彩票",
+    "initial_supply": null,
+    "capture": {
+      "income_linked": true,
+      "permanent_burn_proxy": true,
+      "label": "费用回购销毁 / 产品直接销毁",
+      "kind": "burn",
+      "basis": "按产品手续费分配规则计算的额度；不是实际买入现金或最终销毁台账",
+      "policy": "Spot各池按交易费15%–23%等不同规则支持CAKE回购销毁；Infinity按协议收入50%，StableSwap按交易费40%；彩票为投入CAKE的20%直接销毁。官方另列永续与CAKE.PAD，但本次父级API不保证完整覆盖全部产品。",
+      "denominator": "各产品的交易费、协议收入或投入CAKE；不是统一收入回购比例",
+      "annualization_note": "永久销毁是政策去向；年度额度统计不是已核销毁收益，尚缺完整同窗mint、回购成交及burn对账。",
+      "stat_label": "按产品规则计算的回购 / 销毁额度",
+      "stat_note": "AMM、StableSwap、V3、Infinity、Prediction、Lottery子项按不同分配率计算并合并。Lottery包括用户直接支付CAKE的销毁，不能将合计全部称为市场回购现金；不读取完整最终销毁执行。"
+    },
+    "business": "AMM/V3/Infinity与StableSwap换币手续费，Prediction和Lottery等产品费用。父级回购统计包含交易费分配和直接支付CAKE的销毁；官方列出的永续、CAKE.PAD等收入不保证都在本次API覆盖内。",
+    "sustainability": "实际换币与产品付费支持费用收入，但依赖交易量、费率、流动性和市场份额；多链和产品扩展并不使收入脱离牛熊周期。应比较真实收入与CAKE激励成本，不能把铸币后直接销毁包装成经营收益。",
+    "allocations": [],
+    "allocation_note": "未取得可验证的创世发行量及团队/投资人初始分配表，也未核实其当前持仓；不编造为100%社区或0%内部人。400M是2026年现行经济供应上限，不是初始发行量。",
+    "supply_note": "CAKE仍有farm、Lottery与生态奖励排放。Tokenomics 3.0在2025年降低计划日排放并结束veCAKE；旧14,500枚/日为当时计划，未当成当前或未来固定速度。合约累计totalSupply、死地址、永久锁仓与供应商经济供应须分别对账。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "同窗实际mint、各产品最终burn及生态储备外流尚未完整取得；收入回购额度不能直接扣出净供应变化。"
+    },
+    "scenario_release_tokens": null,
+    "scenario_note": "未核实当前完整排放及后续调参，未来释放情景保持未知；不把2025历史计划自动外推。",
+    "zero_before": {},
+    "events": [
+      {
+        "date": "2025-03-24",
+        "title": "官方销毁周报改为净通缩展示",
+        "status": "官方报告口径调整",
+        "source": "https://blog.pancakeswap.finance/articles/pancake-swap-cake-burn-mechanics-a-comprehensive-guide",
+        "note": "报告引入产品排放减产品销毁，生态增长基金未入市部分另处理；这不是回购首次启动，不能直接等同合约总量变动。"
+      },
+      {
+        "date": "2025-04-23",
+        "title": "CAKE Tokenomics 3.0实施 / veCAKE退出",
+        "status": "官方实施计划",
+        "source": "https://blog.pancakeswap.finance/articles/implementation-of-cake-tokenomics-3-0-what-you-need-to-know",
+        "note": "4月18日提案通过，4月23日启动；解锁、最后epoch分配及排放削减各有不同日期。未将旧锁仓解锁记为新增mint。"
+      },
+      {
+        "date": "2025-05-07",
+        "title": "最后veCAKE奖励期结束 / V3分成转销毁",
+        "status": "官方计划截止",
+        "source": "https://blog.pancakeswap.finance/articles/implementation-of-cake-tokenomics-3-0-what-you-need-to-know",
+        "note": "原低费率V3池5%收入分享结束并导向burn，销毁份额10%→15%。截至时间按官方UTC计划记录，实际逐池执行仍需链上核验。"
+      },
+      {
+        "date": "2026-01-19",
+        "title": "CAKE供应上限450M→400M",
+        "status": "官方月报披露已实施",
+        "source": "https://blog.pancakeswap.finance/articles/kitchen-report-january-2026",
+        "note": "降低未来上限不是当日销毁50M既有代币；不记为收入回购或一次性已burn金额。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方CAKE现行供应与费用销毁规则",
+        "url": "https://docs.pancakeswap.finance/protocol/cake-tokenomics"
+      },
+      {
+        "title": "Tokenomics 3.0实施与旧锁仓退出",
+        "url": "https://blog.pancakeswap.finance/articles/implementation-of-cake-tokenomics-3-0-what-you-need-to-know"
+      },
+      {
+        "title": "官方mint与burn报告口径",
+        "url": "https://blog.pancakeswap.finance/articles/pancake-swap-cake-burn-mechanics-a-comprehensive-guide"
+      },
+      {
+        "title": "官方400M上限实施报告",
+        "url": "https://blog.pancakeswap.finance/articles/kitchen-report-january-2026"
+      },
+      {
+        "title": "AMM回购分配适配器",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-v2.ts"
+      },
+      {
+        "title": "V3回购分配适配器",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-v3.ts"
+      },
+      {
+        "title": "Infinity回购分配适配器",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-infinity.ts"
+      },
+      {
+        "title": "研究与供应证据",
+        "url": "../research/cake-aave.md"
+      }
+    ],
+    "flow": {
+      "revenue_is_income": true,
+      "mode": "allocation",
+      "other_label": "LP及其他产品参与者分配",
+      "fees_label": "交易与产品费用统计",
+      "revenue_label": "协议收入（含代币销毁分配）",
+      "origins": "AMM/V3/Infinity/StableSwap交易，Prediction与Lottery等",
+      "parties": "各交易池LP、预测及彩票参与者等；细分按不同产品规则统计。",
+      "funding_label": "按规则计算的CAKE回购 / 销毁额度",
+      "funding_rule": "V3低费档交易费15%、高费档23%；V2按成交额0.0575%（交易费的23%）；Infinity按协议收入50%；StableSwap按交易费40%；Lottery直接销毁投入CAKE的20%。",
+      "funding_note": "这是各产品分配规则的合计，既含回购资金份额，也含直接销毁CAKE估值；实际成交现金和最终到账待核。",
+      "outcome_label": "政策为永久移除 / 执行待核",
+      "outcome_note": "官方按买回销毁和产品直接销毁减少经济供应；须排除mint后直接burn及跨链重复，当前未建立完整同窗执行台账。",
+      "cautions": [
+        "现行政策去向为销毁，金额仅为额度统计，不能当实际烧毁或现金支出。",
+        "400M上限不是初始量，也不是降低上限当日实际销毁50M。",
+        "旧veCAKE释放、farm排放、生态库存与收入支持销毁分别记账。"
+      ],
+      "composition_axis": "products",
+      "source_note_url": "../research/cake-aave.md",
+      "funding_effective_from": "2025-05-07"
+    },
+    "analysis": {
+      "headline": "CAKE有真实费用支持销毁，但净通缩必须把排放和实际销毁同时核清。",
+      "business": "收入来自多链换币与彩票等产品付费，较单一Meme发行更分散，但仍受交易量、费率、流动性与市场份额影响；铸币后销毁不能当经营利润。",
+      "allocation": "创世发行量、团队与投资人分配及当前持仓未完整取得；400M是现行经济供应上限，非初始量",
+      "future": "farm、Lottery及生态奖励仍有排放，当前速率及完整未来日历未核；旧veCAKE退出不等于新增铸币",
+      "supplyEffect": "回购与直接销毁有永久移除政策，但同窗实际mint、burn及储备外流缺完整台账，目前不能确认所选窗口或未来一年净通缩",
+      "event_date": "2025-04-23"
+    },
+    "research_reviewed_on": "2026-10-03"
+  },
+  {
+    "ticker": "BNB",
+    "name": "BNB",
+    "sector": "原生Gas / 季度储备销毁",
+    "initial_supply": 200000000,
+    "income_linked": false,
+    "data_adapter": "bnb_burn",
+    "capture": {
+      "permanent_burn_proxy": true,
+      "label": "季度自动销毁 + Gas销毁",
+      "kind": "burn",
+      "basis": "已核季度native转账枚数×执行日价格；不是现金回购支出",
+      "policy": "2021-12季度机制改为价格、区块数和参数驱动的Auto-Burn，独立于Binance CEX收入；另有BEP-95按验证者Gas费的一部分实时销毁。初始gas burnRatio为10%，可治理修改；不把初始参数当作已核当前值。",
+      "denominator": "季度销毁无可比营业收入分母；Gas路径只对应链上验证者收费，不能替代币安交易所收入",
+      "annualization_note": "季度执行不平滑成每日回购。季度销毁与Gas销毁分开，当前只有Gas滚动7日及累计摘要，完整同窗总销毁未知。",
+      "stat_label": "已核季度销毁的美元估值（不含Gas）",
+      "stat_note": "季度数量、日期用BSC转账和成功receipt及区块时间核验；不把预测行、原错误日期或Pioneer补偿统计再次相加。美元值按同UTC执行日价格估值，非实际购买成本。"
+    },
+    "business": "BNB是BSC、opBNB及Greenfield等生态的原生使用资产，并在交易平台提供功能。BSC用户Gas收费是验证者费用路径；季度Auto-Burn是独立于Binance CEX收入的供应机制，不能把销毁价值当作交易所收入或利润。",
+    "sustainability": "Gas销毁依赖真实链上使用、收费水平与验证者治理比例；季度Auto-Burn取决于价格、区块数及可调整参数，并非营业收入回购。交易所功能、链上交易周期、竞争和治理会影响需求，供应变少本身不证明价格或收入改善。",
+    "allocations": [
+      {
+        "label": "ICO历史初始分配",
+        "pct": 50
+      },
+      {
+        "label": "团队历史初始分配",
+        "pct": 40
+      },
+      {
+        "label": "天使投资人历史初始分配",
+        "pct": 10
+      }
+    ],
+    "allocation_note": "仅描述2017年初始2亿枚分配，不是当前持仓。2019-07-12官方宣布团队放弃原80M份额并用于后续销毁承诺；不能继续把初始40%当当前待解锁团队持仓，亦不能推定全部份额已销毁。当前团队、投资人和储备钱包余额未完整核实。",
+    "supply_note": "季度Auto-Burn目标约100M；BEP-95的Gas销毁在达到该目标后仍可继续。没有固定挖矿增发奖励，验证者报酬主要来自费用；完整经济供应与自由流通历史仍需处理跨链迁移及储备去向，不拿单次供应快照反推全部历史。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "季度销毁已核执行与Gas摘要分开；储备变动、Gas日历史及完整流通台账未齐，当前不判定同窗净流通通缩。"
+    },
+    "scenario_release_tokens": null,
+    "scenario_note": "不以旧团队40%分配构造当前解锁，不以季度预测行假装已执行销毁；完整未来供应未知。",
+    "zero_before": {},
+    "events": [
+      {
+        "date": "2019-07-12",
+        "title": "团队宣布放弃初始80M份额，纳入销毁承诺",
+        "status": "官方公告",
+        "source": "https://www.binance.com/en/blog/all/356254016530468864",
+        "note": "这是后续销毁用途承诺，不是当日一次性销毁80M或当前持仓快照。"
+      },
+      {
+        "date": "2021-11-30",
+        "title": "Bruno升级启用BEP-95 Gas实时销毁",
+        "status": "官方回顾确认",
+        "source": "https://www.binance.com/en/blog/ecosystem/421499824684903205",
+        "note": "初始烧毁比例10%，允许治理修改；不能把历史示例日枚数作为当前速度。"
+      },
+      {
+        "date": "2021-12-22",
+        "title": "季度销毁改为独立CEX收入的Auto-Burn",
+        "status": "官方公告日期",
+        "source": "https://www.binance.com/en/support/announcement/detail/611c8f41f49e4cd2a02a7c7d66fdf3c0",
+        "note": "博文为12-21，公告为12-22；不是收入固定比例回购，区块提速后参数还会调整。"
+      },
+      {
+        "date": "2026-07-15",
+        "title": "第36次季度销毁已执行",
+        "status": "官方公告及BSC交易核验",
+        "source": "https://www.bnbchain.org/en/blog/36th-bnb-burn",
+        "note": "1,615,827.795 BNB native转账至dead地址，UTC08:06:26；跟踪器日期写7-16，应以链上时间为准。非收入改善证据。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方季度Auto-Burn公告",
+        "url": "https://www.binance.com/en/support/announcement/detail/611c8f41f49e4cd2a02a7c7d66fdf3c0"
+      },
+      {
+        "title": "官方第36次销毁及目标供应",
+        "url": "https://www.bnbchain.org/en/blog/36th-bnb-burn"
+      },
+      {
+        "title": "官方BEP-95规范",
+        "url": "https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP95.md"
+      },
+      {
+        "title": "官方团队初始分配用途调整",
+        "url": "https://www.binance.com/en/blog/all/356254016530468864"
+      },
+      {
+        "title": "初始分配的SEC披露引用",
+        "url": "https://www.sec.gov/Archives/edgar/data/2066824/000162828025053634/vaneckbnbs-1a2.htm"
+      },
+      {
+        "title": "官方链接的季度销毁JSON",
+        "url": "https://www.bnbburn.info/api/getQuarterBurns"
+      }
+    ],
+    "flow": {
+      "revenue_is_income": false,
+      "mode": "reserve_and_gas_burn",
+      "income_linked": false,
+      "fees_label": "BSC验证者Gas收费（历史未接入）",
+      "revenue_label": "统一营业收入未取得",
+      "origins": "链上Gas路径与季度储备销毁是两个机制，不能混成一个收入分配漏斗",
+      "parties": "Gas去向包括验证者、委托人、系统奖励及BEP-95销毁；季度Auto-Burn独立于交易所收入",
+      "funding_label": "季度Auto-Burn及Gas销毁",
+      "funding_rule": "季度按价格、区块数和参数确定烧币量；Gas按治理参数烧毁一部分验证者费用",
+      "funding_note": "未取得季度烧币对应的实际市场购买成本；不能用金额除旧20%比例反推币安利润",
+      "outcome_label": "已核native代币销毁",
+      "outcome_note": "已执行季度交易用实际数量和UTC日期；当前Gas滚动摘要不填充历史日序列",
+      "cautions": [
+        "没有可比的统一营业收入及净利润，不计算收入P/S或项目净利润P/E。",
+        "季度burn估值不是实际现金回购，也不是股息。",
+        "Gas历史缺失及旧链记录未核，完整销毁与净流通变化未知。"
+      ],
+      "composition_axis": "mechanisms"
+    },
+    "analysis": {
+      "headline": "BNB的供应销毁路径明确，但季度烧币独立于营业收入，必须把真实Gas销毁与储备减少分开评价。",
+      "verified_on": "2026-10-03",
+      "basis": "官方机制公告及成功native转账证明；交易所利润未取得。",
+      "business": "需求来自链上Gas、质押与交易平台功能；Gas销毁随真实使用变化，季度Auto-Burn由价格、区块数和参数决定，不能视为交易所利润回购。",
+      "allocation": "历史初始团队40%、天使投资人10%；团队2019年宣布放弃原80M份额用于后续销毁，历史分配不是当前持仓或待解锁比例",
+      "future": "季度预测数量随参数与价格变化，不能当已执行；当前团队、储备转出与完整未来流通排期未取得",
+      "supplyEffect": "已核季度销毁减少原生代币存量，但Gas历史、旧链销毁与完整流通台账未齐，不能仅凭烧币确认自由流通净通缩",
+      "event_date": "2021-12-22"
+    }
+  },
+  {
+    "ticker": "AAVE",
+    "name": "Aave",
+    "sector": "借贷 / GHO稳定币",
+    "initial_supply": 16000000,
+    "capture": {
+      "income_linked": true,
+      "permanent_burn_proxy": false,
+      "label": "回购进储备 / 已披露暂停",
+      "kind": "treasury",
+      "basis": "回购金库收到AAVE代币的美元估值；并非支付现金成本",
+      "policy": "AFC用DAO收入/储备资金买入AAVE并送入Ecosystem Reserve，用于治理批准的质押奖励、拨款与服务支出，不烧毁。TokenLogic于2026-04-22披露自4月19日暂停，未查得已核恢复执行；预算由治理调整，不能当固定收入比例。",
+      "denominator": "治理拨款与实际买入节奏；不等于全部借款人利息",
+      "annualization_note": "按窗口金库收到代币的估值统计速度年化，不能把旧年度预算当持续回购，也不能算永久销毁收益。",
+      "stat_label": "回购金库收到AAVE的估值",
+      "stat_note": "V3适配器读取Ethereum指定回购金库收到AAVE的Transfer并排除一组地址，按代币价格估值；未逐笔核对每次资金来源、交易现金成本及未来重新释放。",
+      "pause_from": "2026-04-19",
+      "pause_source": "https://governance.aave.com/t/arfc-pause-aave-buybacks/24686"
+    },
+    "business": "借款人利息、flashloan与清算费用，GHO借款收益，以及V3的前端合作分成和Chainlink SVR。先区分出贷人所得与DAO所得；协议收入还未扣全部服务、激励、坏账与运营成本。",
+    "sustainability": "借贷与稳定币需求比Meme发行更广，但资产规模、利用率、利率、竞争与信用/智能合约风险会改变收入。2026年桥接资产事故与回购暂停说明，收入增长并不保证持续向代币回流。",
+    "allocations": [
+      {
+        "label": "LEND持有人迁移",
+        "pct": 81.25
+      },
+      {
+        "label": "生态储备",
+        "pct": 18.75
+      }
+    ],
+    "allocation_note": "2020迁移方案为总量16M：13M对应LEND持有人（100 LEND换1 AAVE），3M生态储备，比例81.25%/18.75%。这是迁移时分配，不是团队/投资人持仓分类；未核实当前内部人余额或完整未来归属。",
+    "supply_note": "买回的AAVE进生态储备可再次用于奖励、拨款与服务支付，不能因回购自动扣总供应。储备释放、旧Safety Module奖励与治理新增支出应分别追踪，当前完整未来外流和实际新mint台账未齐。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "回购转储备不烧毁；完整奖励、拨款和储备外流尚未取得。未来团队解锁/实际mint无完整独立核验，保持未知。"
+    },
+    "scenario_release_tokens": null,
+    "scenario_note": "未来支出由治理及奖励计划调整，未把2020初始年率或旧回购预算自动外推。",
+    "zero_before": {},
+    "events": [
+      {
+        "date": "2025-04-09",
+        "title": "AAVE回购统计起算",
+        "status": "适配器记录；官方确认2025年4月启动",
+        "source": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/aave-v3.ts",
+        "note": "官方概述仅确认4月执行启动，具体4月9日来自适配器方法说明，不冒充已独立核验首笔成交日期。买回送储备而非burn。"
+      },
+      {
+        "date": "2026-04-19",
+        "title": "AAVE回购暂停",
+        "status": "执行方回溯披露已暂停",
+        "source": "https://governance.aave.com/t/arfc-pause-aave-buybacks/24686",
+        "note": "TokenLogic 4月22日说明rsETH事故后自4月19日暂停，本文区分执行方披露和正式治理投票；未取得恢复执行依据。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方AAVE回购和储备去向",
+        "url": "https://www.aave.com/docs/ecosystem/aave"
+      },
+      {
+        "title": "2020迁移分配与储备",
+        "url": "https://governance.aave.com/t/welcome-to-aaves-governance-discussion/7"
+      },
+      {
+        "title": "执行方回购暂停披露",
+        "url": "https://governance.aave.com/t/arfc-pause-aave-buybacks/24686"
+      },
+      {
+        "title": "V3费用与回购代币流入适配器",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/aave-v3.ts"
+      },
+      {
+        "title": "V4费用分配适配器",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/aave-v4.ts"
+      },
+      {
+        "title": "官方初始储备奖励讨论（历史）",
+        "url": "https://governance.aave.com/t/initial-discussion-aave-reserve-emission-for-safety-and-ecosystem-incentives/85"
+      },
+      {
+        "title": "研究与供应证据",
+        "url": "../research/cake-aave.md"
+      }
+    ],
+    "flow": {
+      "revenue_is_income": true,
+      "mode": "allocation",
+      "other_label": "出贷人等所得（统计差额）",
+      "fees_label": "利息与借贷相关费用",
+      "revenue_label": "DAO所得收入（未扣完整成本）",
+      "origins": "借款利息、GHO、flashloan、清算及其他已覆盖分成",
+      "parties": "存款出贷人、清算参与者及其他相关方；不同版本与费用项的分配不同。",
+      "funding_label": "回购金库收到AAVE的估值",
+      "funding_rule": "由治理拨款和AFC执行，并非固定收入百分比；2026-04-19起执行方披露暂停，后续恢复需核实。",
+      "funding_note": "数值来自指定金库AAVE流入的估值，不是按收入固定比例生成，也不等于对应交易实际花费；未计入所有质押奖励或其他现金回报。",
+      "outcome_label": "Ecosystem Reserve可再支出",
+      "outcome_note": "官方明确买回币用于治理批准的质押奖励、拨款和服务支付，未永久销毁。",
+      "cautions": [
+        "收入仍在产生不代表回购同步进行；暂停状态与完整窗口API零值分别核实。",
+        "金库代币流入估值不是现金回购成本，内部转入及最终来源仍需逐笔确认。",
+        "回购储备再释放与原储备奖励分开记账，不能仅凭回购宣称净通缩。"
+      ],
+      "composition_axis": "products",
+      "source_note_url": "../research/cake-aave.md"
+    },
+    "analysis": {
+      "headline": "Aave有真实借贷收入，但回购已披露暂停且买回币仍可从储备重新释放。",
+      "business": "收入来自借款利息、GHO及借贷相关费用，需求较Meme发行更广，但仍受资产规模、利用率、利率与坏账风险影响；DAO所得不是完整净利润。",
+      "allocation": "2020迁移分配为LEND持有人81.25%、生态储备18.75%，不代表团队或投资人当前持仓",
+      "future": "储备奖励、拨款与服务支出仍可能释放代币；未来完整日历尚未取得，暂停回购也不代表暂停全部发币",
+      "supplyEffect": "买回转入Ecosystem Reserve不减少总量，并可再次流出；未建立完整同窗回购、奖励与储备释放台账，无法确认净流通通缩或通胀",
+      "event_date": "2026-04-19"
+    },
+    "research_reviewed_on": "2026-10-03"
   }
 ]

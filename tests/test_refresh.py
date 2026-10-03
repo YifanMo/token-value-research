@@ -344,21 +344,34 @@ class MultiYearHistory(unittest.TestCase):
 
     def test_chunk_urls_cover_requested_period_within_live_total_point_limit(self):
         jobs = refresh.supplemental_price_jobs(self.cutoff)
-        self.assertEqual(len(jobs), 36)
         from urllib.parse import urlparse, parse_qs
-        starts, spans = [], []
+        groups = {}
         for key, url in jobs:
-            query = parse_qs(urlparse(url).query)
+            parsed = urlparse(url)
+            query = parse_qs(parsed.query)
             start, span = int(query['start'][0]), int(query['span'][0])
-            starts.append(start)
-            spans.append(span)
-            self.assertLessEqual(span * 7, 500)
+            coins = parsed.path.removeprefix('/chart/').split(',')
+            groups.setdefault(tuple(coins), []).append((start, span))
+            self.assertLessEqual(span * len(coins), 500)
             self.assertTrue(key.startswith(refresh.SUPPLEMENTAL_PRICE_KEY + '-'))
-        self.assertEqual(starts[0], self.timestamp('2020-01-01'))
-        self.assertEqual(sum(spans), 2466)
-        for index in range(1, len(starts)):
-            self.assertEqual(starts[index], starts[index - 1] + spans[index - 1] * 86400)
-        self.assertEqual(starts[-1] + (spans[-1] - 1) * 86400, self.timestamp('2026-10-01'))
+        expected = {'coingecko:' + coin for _, coin in refresh.PROJECTS.values()} | {'coingecko:bitcoin', 'coingecko:solana'}
+        self.assertEqual({coin for coins in groups for coin in coins}, expected)
+        self.assertEqual(sum(len(coins) for coins in groups), len(expected))
+        for ranges in groups.values():
+            self.assertEqual(len(ranges), 36)
+            self.assertEqual(ranges[0][0], self.timestamp('2020-01-01'))
+            self.assertEqual(sum(span for _, span in ranges), 2466)
+            for index in range(1, len(ranges)):
+                self.assertEqual(ranges[index][0], ranges[index - 1][0] + ranges[index - 1][1] * 86400)
+            self.assertEqual(ranges[-1][0] + (ranges[-1][1] - 1) * 86400, self.timestamp('2026-10-01'))
+
+    def test_new_coins_preserve_existing_seven_coin_cache_urls(self):
+        jobs = refresh.supplemental_price_jobs(self.cutoff)
+        key, url = jobs[0]
+        self.assertEqual(key, 'price-supplemental-llama-20200101')
+        legacy = ','.join('coingecko:' + coin for coin in refresh.LEGACY_PRICE_COINS)
+        self.assertTrue(url.startswith('https://coins.llama.fi/chart/' + legacy + '?'))
+        self.assertNotIn('coingecko:binancecoin', url)
 
     def test_completed_chunk_cache_preserves_original_retrieval_date(self):
         with tempfile.TemporaryDirectory() as folder, patch.object(refresh, 'RAW', pathlib.Path(folder)):

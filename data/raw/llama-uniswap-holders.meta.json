@@ -1,6 +1,6 @@
 {
   "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyHoldersRevenue",
-  "retrieved_at": "2026-10-02T21:32:28.050201+00:00",
-  "sha256": "d445ac55f72c6f170ea4fbc25933e99bb1d502fbbd08d33004080b7490f473e7",
+  "retrieved_at": "2026-10-03T08:30:27.716418+00:00",
+  "sha256": "a68f2a430674b7b5f6e1d3cda4f25da5d217e737ae00ac034de592fbf9954240",
   "status": "fresh"
 }
