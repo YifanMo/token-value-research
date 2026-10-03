@@ -739,7 +739,7 @@ def compile_bnb(raw, cutoff, price, metadata=None):
         "Gas日销毁美元值为供应商按链手续费10%推算；本区块RPC参数观测不证明整个历史窗口都采用该比例。",
         "实际BEP-95只取得滚动7日及累计摘要，缺逐日feeBurned事件核验；季度与Gas模型不做完整实际合计。",
         "跟踪器不同摘要口径存在差异；供应与销毁拆分不自动对平初始2亿，需独立复核。",
-        "历史价格缺失时不使用当前价格代替，净流通变化仍缺完整供应快照。",
+        "季度交易的执行日美元估值缺历史价格时保持未知，不用当前价格补齐；365日季度指标另按实际枚数乘当前价格注明估值时点，净流通变化仍缺完整供应快照。",
     ]
     executed = [record for record in records if record.get("reported_date") and record.get("reported_transaction_url")]
     verified = [record for record in executed if record.get("verified")]

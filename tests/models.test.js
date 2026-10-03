@@ -62,7 +62,7 @@ test('BNB presents two unconnected burn paths and source JSON without a daily-in
   assert.match(html,/proof.json/);assert.match(html,/proof-hash/);assert.match(html,/执行日UTC采样价/);assert.doesNotMatch(html,/executed_native_tokens|totalDataChart/);
   assert.match(burnRecordsMarkup(p,'2026-08-01','2026-08-30'),/不能推定实际销毁为零/);
   const conclusion=buildConclusion(p,30,'2026-10-03');
-  assert.match(conclusion.text,/已核1笔季度销毁/);assert.match(conclusion.text,/未年化/);assert.match(conclusion.text,/P\/S和P\/E均不适用/);
+  assert.match(conclusion.text,/已核1笔季度销毁/);assert.match(conclusion.text,/不强行年化/);assert.match(conclusion.text,/收入P\/S和经营净利润P\/E不适用/);
 });
 
 test('new DeFi conclusions use reviewed profile fields and a configured or latest registered policy study',()=>{

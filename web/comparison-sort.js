@@ -1,5 +1,6 @@
 import {calculate, calculateReferenceMultiples, known} from './core.js';
 import {isReserveBurn} from './models.js';
+import {bnbAnnualBurnStats} from './burns.js';
 
 export const COMPARISON_SORT_KEYS = Object.freeze([
   'ticker', 'name', 'marketCap', 'fdv', 'revenue', 'yieldMc', 'yieldFdv',
@@ -11,9 +12,9 @@ const keys = new Set(COMPARISON_SORT_KEYS);
 const textKeys = new Set(['ticker', 'name']);
 const collator = new Intl.Collator('en', {numeric:true, sensitivity:'base'});
 
-// Use the same calculations as the comparison cells. A saved burn valuation is
-// not income, and reserve burns have no comparable income or buyback multiple.
-export function comparisonSortValue(project, key, {days=30, valuationBasis='reported'}={}) {
+// Use the same calculations as the comparison cells. Quarterly burns have a
+// separately labeled trailing-year valuation, never an income denominator.
+export function comparisonSortValue(project, key, {days=30, end, valuationBasis='reported'}={}) {
   if (!keys.has(key)) return null;
   if (textKeys.has(key)) {
     const value=project[key];
@@ -22,7 +23,14 @@ export function comparisonSortValue(project, key, {days=30, valuationBasis='repo
   if (key==='marketCap') return known(project.market?.market_cap) ? project.market.market_cap : null;
   const metrics=calculate(project, days, valuationBasis);
   if (key==='fdv') return known(metrics.fdv) ? metrics.fdv : null;
-  if (isReserveBurn(project)) return null;
+  if (isReserveBurn(project)) {
+    if (!['yieldMc','yieldFdv','holderPeMc','holderPeFdv'].includes(key)) return null;
+    const cutoff=end || project.burns?.cutoff_utc || project.flow_end;
+    if (!cutoff) return null;
+    const annual=bnbAnnualBurnStats(project,cutoff,{fdv:metrics.fdv});
+    const value=annual[{yieldMc:'yieldMc',yieldFdv:'yieldFdv',holderPeMc:'multipleMc',holderPeFdv:'multipleFdv'}[key]];
+    return known(value) ? value : null;
+  }
 
   let value;
   switch (key) {

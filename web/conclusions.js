@@ -1,7 +1,7 @@
 import {calculate, known} from './core.js';
 import {componentAmount, componentWindowSummary} from './supply.js';
 import {isReserveBurn, statisticLabel} from './models.js';
-import {burnStats, bnbChainWindow} from './burns.js';
+import {burnStats, bnbChainWindow, bnbAnnualBurnStats} from './burns.js';
 
 // These are reviewed interpretations of the research, not fetched facts.
 // Amounts, ratios, dated schedules and event observations come from the snapshot.
@@ -166,15 +166,20 @@ export function buildConclusion(project, days, asOf) {
   const supply = `当前流通${quantity(market.circulating_supply)}枚、数据源总量${quantity(market.total_supply)}枚，流通市值${usd(market.market_cap)}、FDV${usd(metrics.fdv)}；${reviewed?.allocation || project.allocation_note || '初始分配未齐'}，当前团队与投资人持仓尚未完整核实。`;
   const window = metrics.coverage;
   const burn = isReserveBurn(project) ? burnStats(project, window?.fees?.start || window?.holders?.start, window?.fees?.end || window?.holders?.end) : null;
+  const annualEnd=window?.fees?.end || window?.holders?.end || project.burns?.cutoff_utc || project.flow_end;
+  const annualBurn=isReserveBurn(project) && annualEnd ? bnbAnnualBurnStats(project,annualEnd,{fdv:metrics.fdv}) : null;
   const bnb = isReserveBurn(project) ? bnbChainWindow(project, window?.fees?.start, window?.fees?.end) : null;
   const gasObservation = bnb ? `${bnb.fees.complete ? `所选${days}天BSC链手续费${usd(bnb.fees.usd)}` : `所选${days}天BSC链手续费缺${bnb.fees.missing_days}天，总额未知`}；${bnb.gasEstimate.complete ? `供应商按10%模型推算的Gas销毁估值${usd(bnb.gasEstimate.usd)}` : 'Gas销毁估算因缺日未知'}，不是逐日实际销毁核验，亦不含Binance公司收入。` : '';
-  const burnObservation = burn?.count ? `所选期间已核${burn.count}笔季度销毁、共${quantity(burn.tokens)}枚，销毁日美元估值合计${usd(burn.usd)}；估值÷当前流通市值${pct(burn.shareMc)}、÷FDV${pct(burn.shareFdv)}，仅是已核记录比例，未年化。` : '所选期间暂无已核季度销毁记录，实际总销毁量未知，不能填零。';
+  const burnObservation = burn?.count ? `所选期间已核${burn.count}笔季度销毁、共${quantity(burn.tokens)}枚，销毁日美元估值合计${usd(burn.usd)}。` : '所选期间暂无已核季度销毁事件；全年指标另按近365天计算。';
+  const annualObservation=annualBurn?.complete
+    ? `近365天（${annualBurn.start}至${annualBurn.end}）已核${annualBurn.count}笔季度销毁、共${quantity(annualBurn.tokens)}枚，按当前价格估值${usd(annualBurn.annualUsd)}；年化销毁收益率按流通市值${pct(annualBurn.yieldMc)}、按FDV${pct(annualBurn.yieldFdv)}，对应销毁估值倍数${known(annualBurn.multipleMc)?annualBurn.multipleMc.toFixed(2)+'x':'不适用'}／${known(annualBurn.multipleFdv)?annualBurn.multipleFdv.toFixed(2)+'x':'不适用'}。`
+    : '近365天季度记录或估值资料未齐，年度销毁收益率暂未计算；部分已核记录不强行年化。';
   const sentences = isReserveBurn(project) ? [
     reviewed.business || project.business || 'BNB Chain的Gas使用与季度储备销毁分别研究，交易所企业收入未公开为完整可核的同窗数据。',
-    'Auto-Burn季度储备销毁与BEP-95实时Gas销毁是两条独立路径，不能称为企业净利润用于回购；收入进入代币的比例、P/S和P/E均不适用。',
+    'Auto-Burn季度储备销毁与BEP-95实时Gas销毁是两条独立路径；收入进入代币的比例、收入P/S和经营净利润P/E不适用，季度销毁价值另算。',
     supply, future.text,
     (reviewed.supplyEffect || '已核销毁会减少对应供应，但当前流通口径、其他销毁与释放未完整对账，不能确认自由流通净通缩或净通胀').replace(/[。.]?$/u,'。'),
-    gasObservation + ' ' + burnObservation + ' 未覆盖全部历史季度和实时Gas销毁；美元估值不是已成交回购现金。',
+    annualObservation + ' ' + burnObservation + ' ' + gasObservation + ' 年度季度统计不含实时Gas销毁、转换或质押收益；销毁估值不是回购现金或持币人到手利息。',
     modelHistory(project), '季度销毁、Gas活动和币价受多种因素影响；缺少完整收入与历史供应对照，不能证明经济模型变化持续改善收入或价格。',
   ] : [reviewed?.business || project.business || '收费来源与持续性仍需核实。', captureSentence(project, metrics, asOf), supply, future.text,
     `${reviewed?.supplyEffect || '同窗供应台账未齐，净通缩或净通胀仍待核'}。`, yieldSentence(project, metrics, days), modelHistory(project), observation.text];
@@ -182,8 +187,8 @@ export function buildConclusion(project, days, asOf) {
   const sources = [...(project.sources || []), ...(project.analysis?.sources || []), {title: '本次市场快照', url: market.source},
     ...(project.data_sources || []).filter(source => source.kind === 'holders').map(source => ({title: '本次回购／销毁JSON', url: source.response_path})),
     ...(future.component?.sources || []), ...(future.additional?.sources || []), ...(observation.event?.source ? [{title: '本次事件对照的政策来源', url: observation.event.source}] : []),
-    ...(burn?.records || []).map(record => ({title: record.quarter || '季度销毁依据', url: record.source_url || record.source || record.url}))]
+    ...[...(burn?.records || []),...(annualBurn?.records || [])].map(record => ({title: record.quarter || '季度销毁依据', url: record.source_url || record.source || record.url}))]
     .filter(source => source.url && !sourceUrls.has(source.url) && sourceUrls.add(source.url));
   return {headline: reviewed?.headline || `${project.ticker} 的收入、回购与供应关系仍需结合完整证据评估。`, text: sentences.join(' '), sentences,
-    metrics, future, observation, sources, netSupplyStatus: 'unverified', policyVerifiedOn: project.supply_forecast?.verified_on || null};
+    metrics, annualBurn, future, observation, sources, netSupplyStatus: 'unverified', policyVerifiedOn: project.supply_forecast?.verified_on || null};
 }

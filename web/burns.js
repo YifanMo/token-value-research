@@ -143,6 +143,111 @@ export function burnStats(project, start, end) {
     note: '仅合计已核季度记录，未覆盖全部历史季度、实时Gas销毁或其他供应变动；未年化，销毁日估值不是回购支出。'};
 }
 
+const quarterProofKinds = new Set(['successful_native_transfer_to_burn_address', 'successful_original_bnb_erc20_burn_event']);
+const executedQuarter = record => record && !['projected','after_cutoff','estimated'].includes(record.status)
+  && Number.isInteger(record.rank) && record.rank > 0;
+const transactionIdentity = record => {
+  const value = record?.transaction_hash || record?.tx_url || record?.transaction_url || record?.reported_transaction_url;
+  const hash = typeof value === 'string' && value.match(/(?:^|\/tx\/)(?:0x)?([0-9a-f]{64})(?:$|[?#])/i)?.[1];
+  return hash ? '0x'+hash.toLowerCase() : null;
+};
+const snapshotDate = value => typeof value === 'string' && Number.isFinite(Date.parse(value))
+  && validDate(value.slice(0,10)) ? value.slice(0,10) : null;
+
+// Quarterly Auto-Burn is lumpy, so the annual reference always uses 365 complete
+// UTC days ending at the selected end date. Completeness is limited to the
+// archived quarterly register, not all BNB destruction or a future forecast.
+// Native units are valued at today's price; execution-day USD stays separate.
+export function bnbAnnualBurnStats(project, end, options = {}) {
+  if (!validDate(end)) throw new RangeError('BNB年度统计需要有效的UTC结束日期。');
+  const start = new Date(Date.parse(end+'T00:00:00Z')-364*DAY).toISOString().slice(0,10);
+  const burns = project.burns || {}, sources = bnbSources(project);
+  const register = burns.quarterly_history_coverage;
+  const indexSource = sources.find(source => source.kind==='burns' && source.source_key===register?.index_source_key);
+  const indexDate = snapshotDate(indexSource?.retrieved_at), cutoff = burns.cutoff_utc || project.flow_end;
+  const snapshotThrough = validDate(cutoff) && indexDate ? [cutoff,indexDate].sort()[0] : null;
+  const rawRecords = Array.isArray(burns.quarterly_records) ? burns.quarterly_records : [];
+  const reportedRanks = Array.isArray(register?.reported_ranks) ? [...new Set(register.reported_ranks)].sort((a,b)=>a-b) : [];
+  const clearlyAfterCutoff = record => {
+    const dates = [record.date,record.indexed_date,record.reported_date].filter(date=>date!==null && date!==undefined && date!=='');
+    return record.status==='after_cutoff' && validDate(cutoff) && dates.length>0
+      && dates.every(date=>validDate(date) && date>cutoff);
+  };
+  // The live index can already include today's burn while the study ends at
+  // yesterday's complete UTC day. Defer its rank only when every observation
+  // of that rank consistently places it after the study cutoff.
+  const deferredRanks = reportedRanks.filter(rank=>{
+    const rows=rawRecords.filter(record=>record?.rank===rank);
+    return rows.length>0 && rows.every(clearlyAfterCutoff);
+  });
+  const unresolvedAfterCutoffRanks = reportedRanks.filter(rank=>!deferredRanks.includes(rank)
+    && rawRecords.some(record=>record?.rank===rank && record.status==='after_cutoff'));
+  const declaredRanks = reportedRanks.filter(rank=>!deferredRanks.includes(rank));
+  const indexContiguous = declaredRanks.length > 0 && declaredRanks.every((rank,index)=>Number.isInteger(rank) && rank===index+1)
+    && Array.isArray(register?.missing_reported_ranks) && register.missing_reported_ranks.length===0;
+  const registered = rawRecords.filter(record=>executedQuarter(record)
+    && (!validDate(cutoff) || !validDate(record.date || record.indexed_date || record.reported_date)
+      || (record.date || record.indexed_date || record.reported_date)<=cutoff));
+  const ledger = historicalLedger({...project,burns:{...burns,quarterly_records:registered}});
+  const presentRanks = new Set(ledger.rows.map(row=>row.rank));
+  const rankCoverage = indexContiguous && declaredRanks.every(rank=>presentRanks.has(rank));
+  const registeredRanks = new Set(registered.filter(record=>validDate(record.date || record.indexed_date || record.reported_date)
+    && transactionIdentity(record)).map(record=>record.rank));
+  const registerMatches = rankCoverage && declaredRanks.every(rank=>registeredRanks.has(rank))
+    && [...registeredRanks].every(rank=>declaredRanks.includes(rank));
+  const archiveKnown = indexSource?.role==='official_linked_indexer' && Boolean(indexSource.response_path)
+    && typeof (indexSource.stored_sha256 || indexSource.sha256)==='string'
+    && /^[a-f0-9]{64}$/i.test(indexSource.stored_sha256 || indexSource.sha256)
+    && register?.amounts_not_combined_across_evidence_levels===true;
+  const inRange = ledger.rows.filter(row=>validDate(row.date) && row.date>=start && row.date<=end);
+  const validProof = record => record.verified===true && record.status==='verified' && quarterProofKinds.has(record.evidence)
+    && validDate(record.date) && nonnegative(record.tokens) && Boolean(transactionIdentity(record))
+    && Array.isArray(record.proof_source_keys) && record.proof_source_keys.length>0
+    && record.proof_source_keys.every(key=>sources.some(source=>source.source_key===key && source.kind==='burn_proof' && source.role==='rpc_proof'));
+  const records = inRange.flatMap(row => {
+    if (!row.chainVerified || row.chainConflict) return [];
+    const proof = registered.find(record=>record.rank===row.rank && validProof(record)
+      && record.date===row.date && record.tokens===row.chainTokens && transactionIdentity(record)===transactionIdentity({tx_url:row.txUrl}));
+    return proof ? [proof] : [];
+  }).sort((a,b)=>a.date.localeCompare(b.date));
+  const deduped = [...new Map(records.map(record=>[transactionIdentity(record),record])).values()];
+  const knownRangeRanks = new Set(deduped.map(record=>record.rank));
+  const rawRangeRanks = new Set(registered.filter(record=>validDate(record.date) && record.date>=start && record.date<=end).map(record=>record.rank));
+  const unverifiedRanks = [...new Set([...inRange.filter(row=>!knownRangeRanks.has(row.rank)).map(row=>row.rank),
+    ...[...rawRangeRanks].filter(rank=>!knownRangeRanks.has(rank)),...unresolvedAfterCutoffRanks])].sort((a,b)=>a-b);
+  const withinSnapshot = snapshotThrough!==null && end<=snapshotThrough;
+  const startsWithinArchive = validDate(register?.earliest_reported_date) && start>=register.earliest_reported_date;
+  const quarterlyComplete = archiveKnown && registerMatches && withinSnapshot && startsWithinArchive
+    && unverifiedRanks.length===0;
+  const sum = field => deduped.length && deduped.every(record=>nonnegative(record[field]))
+    ? deduped.reduce((total,record)=>total+record[field],0) : null;
+  const observedTokens = sum('tokens'), observedHistoricalUsd = sum('usd');
+  const tokens = quarterlyComplete ? observedTokens ?? 0 : null;
+  const historicalUsd = quarterlyComplete && (deduped.length===0 || observedHistoricalUsd!==null) ? observedHistoricalUsd ?? 0 : null;
+  const market = project.market || {}, price = known(market.current_price) && market.current_price>0 ? market.current_price : null;
+  const basis = typeof options==='string' ? options : options.basis || 'reported';
+  const fdv = typeof options==='object' && Object.hasOwn(options,'fdv') ? options.fdv
+    : basis==='original' ? market.original_cap_fdv : basis==='remaining' ? market.remaining_supply_fdv : market.fully_diluted_valuation;
+  const annualUsd = tokens!==null && price!==null ? tokens*price : null;
+  const observedAnnualUsd = observedTokens!==null && price!==null ? observedTokens*price : null;
+  const marketCap = market.market_cap;
+  const valuationKnown = known(marketCap) && marketCap>0 && known(fdv) && fdv>0;
+  const status = !withinSnapshot ? 'outside_snapshot' : !quarterlyComplete ? 'partial'
+    : price===null ? 'missing_price' : !valuationKnown ? 'missing_valuation' : 'complete';
+  const sourceKeys = [...new Set([register?.index_source_key,...deduped.flatMap(record=>record.proof_source_keys || [])].filter(Boolean))];
+  const sourceUrls = [...new Set([...sources.filter(source=>sourceKeys.includes(source.source_key)).map(source=>source.url),
+    ...inRange.map(row=>row.announcementUrl),...deduped.map(record=>record.tx_url || record.transaction_url)].filter(Boolean))];
+  return {start,end,days:365,tokens,annualUsd,historicalUsd,observedTokens,observedAnnualUsd,observedHistoricalUsd,
+    price,marketCap,fdv,yieldMc:ratio(annualUsd,marketCap),yieldFdv:ratio(annualUsd,fdv),
+    multipleMc:ratio(marketCap,annualUsd),multipleFdv:ratio(fdv,annualUsd),status,complete:status==='complete',quarterlyComplete,
+    records:deduped,count:deduped.length,cashBuybackUsd:null,
+    coverage:{scope:'registered_quarterly_native_transfers',snapshotThrough,indexRetrievedAt:indexSource?.retrieved_at || null,
+      indexSourceKey:register?.index_source_key || null,sourceKeys,sourceUrls,archiveKnown,indexContiguous,registerMatches,startsWithinArchive,
+      withinSnapshot,deferredRanks,unresolvedAfterCutoffRanks,unverifiedRanks,unverifiedCount:unverifiedRanks.length,totalBnbBurnComplete:false,
+      gasBurnIncluded:false,stakingOrConversionIncomeIncluded:false},
+    note:'过去365个完整UTC日的已核季度实际销毁枚数×当前BNB价格；销毁日历史估值另列。仅覆盖快照登记的季度转账，不包含Gas模型、Pioneer重复统计或asBNB等参与收益；不是现金回购、项目利润、到手利息或未来保证。'};
+}
+
 // The latest executed burn belongs to the research snapshot, independently of
 // the selected fee window. A forecast or a future-dated row cannot replace it.
 export function latestQuarterBurn(project) {
@@ -351,11 +456,38 @@ export function burnObservationsMarkup(project) {
     ${realtime?`<h4>BEP-95实时Gas销毁观察</h4><div class="mini-stats"><div><span>供应商最近滚动7天销毁</span><strong>${quantity(realtime.last7_days_tokens)} ${esc(project.ticker)}</strong></div><div><span>累计Gas销毁观察量</span><strong>${quantity(realtime.cumulative_tokens)} ${esc(project.ticker)}</strong></div></div><p>${esc(realtime.note)}</p><p class="footnote">最新区块时间 ${esc(realtime.latest_block_at || '未知')}；抓取 ${esc(realtime.retrieved_at || '未知')}。滚动7天和累计值独立于上方日期筛选，不能加进所选期间季度合计；缺历史日级台账时无法算同窗Gas销毁增量。${link('在线来源',realtime.url)} ${link('本次JSON',realtime.response_path)}</p>`:''}</article>`;
 }
 
-export function burnFinancialMarkup(project, range, legacyEnd) {
+export function bnbAnnualBurnMarkup(project, end, options = {}) {
+  const stats=bnbAnnualBurnStats(project,end,options), sources=bnbSources(project);
+  const sourceRows=sources.filter(source=>stats.coverage.sourceKeys.includes(source.source_key));
+  const extraUrls=stats.coverage.sourceUrls.filter(url=>!sourceRows.some(source=>source.url===url));
+  const multiple=value=>known(value) ? value.toFixed(2)+'倍' : '未知';
+  const currentPrice=known(stats.price) ? '$'+stats.price.toLocaleString('en-US',{maximumFractionDigits:6}) : '未知';
+  const statusText={complete:'已核季度记录',partial:'季度核验未完整',outside_snapshot:'日期超出已取得快照',
+    missing_price:'缺当前价格',missing_valuation:'缺估值分母'};
+  return `<article class="card bnb-annual-burn" aria-labelledby="bnb-annual-burn-title">
+    <h3 id="bnb-annual-burn-title">近365天季度销毁 · 历史年化</h3>
+    <p class="footnote">${esc(stats.start)} → ${esc(stats.end)} · ${esc(statusText[stats.status])}</p>
+    <div class="mini-stats"><div><span>年度实际销毁</span><strong>${quantity(stats.tokens)} BNB</strong></div>
+    <div><span>按当前价格折算</span><strong>${dollars(stats.annualUsd)}</strong></div>
+    <div><span>年化销毁收益率</span><strong>${percent(stats.yieldMc)}</strong><span class="number-sub">流通市值口径</span><strong>${percent(stats.yieldFdv)}</strong><span class="number-sub">FDV口径</span></div>
+    <div><span>销毁回报倍数</span><strong>${multiple(stats.multipleMc)}</strong><span class="number-sub">流通市值口径</span><strong>${multiple(stats.multipleFdv)}</strong><span class="number-sub">FDV口径</span></div></div>
+    ${!stats.quarterlyComplete ? `<p class="footnote">已核执行小计${quantity(stats.observedTokens)} BNB，按当前价格${dollars(stats.observedAnnualUsd)}；完整年度值待核。${stats.coverage.unverifiedCount ? `期间还有${stats.coverage.unverifiedCount}期未完成独立交易核验。` : ''}</p>` : ''}
+    <details class="source-detail"><summary>展开算式与证据</summary>
+    <p>年度区间取所选结束日往前365个完整UTC日，共${stats.count}笔已核执行。季度事件不按最近7／30／90天放大；这是一年实际记录的历史参考，不是下一年销毁预测。</p>
+    <p>年度销毁估值 = ${quantity(stats.tokens)} BNB × 当前价格${currentPrice} = ${dollars(stats.annualUsd)}。流通市值${dollars(stats.marketCap)}，FDV ${dollars(stats.fdv)}；收益率 = 年度销毁估值 ÷ 对应估值，回报倍数为同一比例的倒数。</p>
+    <p>价格与估值更新时间：${esc(project.market?.last_updated || '未知')}。${link('市场数据来源',project.market?.source)} ${link('本次市场快照JSON','../data/dashboard-lite.json')}</p>
+    <p>执行日历史价格估值合计${dollars(stats.historicalUsd)}，与当前价格折算分别保存。两者均为销毁枚数的美元估值，不是现金回购支出；原币持有人不会收到该金额的现金或利息。</p>
+    <p>${esc(stats.note)}</p><p>季度索引快照覆盖至${esc(stats.coverage.snapshotThrough || '未知')}，抓取${esc(stats.coverage.indexRetrievedAt || '未知')}。完整状态仅针对快照登记的季度实际转账；全量BNB销毁与净流通供应仍需其他台账。</p>
+    <div class="sources">${sourceRows.map(source=>sourceLinks(source)).join(' ')} ${extraUrls.map((url,index)=>link('官文／交易证据 '+(index+1),url)).join(' ')}</div>
+    </details></article>`;
+}
+
+export function burnFinancialMarkup(project, range, legacyEnd, options = {}) {
   const {start,end}=range && typeof range==='object' ? range : {start:range,end:legacyEnd};
+  const annualOptions=range && typeof range==='object' && legacyEnd && typeof legacyEnd==='object' ? legacyEnd : options;
   const sources=bnbSources(project);
   const names={burns:'季度销毁记录与拆分',burn_proof:'已核季度交易与执行区块',gas_burn:'滚动Gas销毁摘要',gas_burn_snapshot:'滚动Gas销毁摘要',supply:'原生供应索引观察',chain_fees:'BSC日手续费',gas_burn_policy_estimate:'Gas销毁估算 · 供应商10%模型',policy_block:'参数核验所用BSC区块',gas_burn_policy:'当前区块Gas销毁参数'};
   const status={fresh:'已更新',cached:'复用缓存','offline-cache':'离线缓存',missing:'未取得',unknown:'未知'};
   const proof=sources.length?`<section class="source-policy"><h3>BNB数据来源与保存响应</h3><div class="financial-data-sources">${sources.map(source=>`<article><strong>${esc(names[source.kind] || source.kind || '销毁数据')}</strong><span class="number-sub">抓取 ${esc(source.retrieved_at || '未知')} · ${esc(status[source.status] || source.status || '未知')}</span><div class="source-links">${sourceLinks(source)}</div><p>保存文件 SHA-256：<code>${esc(source.stored_sha256 || source.sha256 || '未知')}</code></p>${source.refresh_error?`<p class="footnote">本次抓取情况：${esc(source.refresh_error)}</p>`:''}</article>`).join('')}</div><p class="source-explanation">链手续费是交易费用索引，日Gas销毁是10%政策模型，当前参数是独立区块观察，季度销毁使用已核执行交易。保存响应便于复算，不表示完整供应台账已经取得。</p></section>`:'';
-  return `${quarterlyPlanMarkup(project)}${quarterHistoryMarkup(project)}${burnRecordsMarkup(project,start,end)}<div class="source-meaning"><h3>BNB 的销毁与收入回购分别研究</h3><p>Auto-Burn 是按规则处理的季度储备销毁；BEP-95 是链上交易费中的实时销毁。不能把两者合称为“企业净利润用于回购”，也不能用季度销毁估值填入营业收入或净利润。</p><p>本行 P/S、持币者回报倍数和年化回购收益率均不适用。季度记录的供应效果仍须与其他供应变动对账，不能据此断言自由流通净通缩。</p></div>${bnbChainMarkup(project,start,end)}${burnObservationsMarkup(project)}${proof}<div class="sources">${(project.sources || []).map(source => link(source.title, source.url)).join(' ')}</div>`;
+  return `${bnbAnnualBurnMarkup(project,end,annualOptions)}${quarterlyPlanMarkup(project)}${quarterHistoryMarkup(project)}${burnRecordsMarkup(project,start,end)}<div class="source-meaning"><h3>BNB 的销毁与收入回购分别研究</h3><p>Auto-Burn 是按规则处理的季度储备销毁；BEP-95 是链上交易费中的实时销毁。不能把两者合称为“企业净利润用于回购”，也不能用季度销毁估值填入营业收入或净利润。</p><p>收入 P/S、经营净利润 P/E 不适用。季度销毁的历史年化估值、比例及倒数倍数可以展示；供应效果仍须与其他供应变动对账，不能据此断言自由流通净通缩。</p></div>${bnbChainMarkup(project,start,end)}${burnObservationsMarkup(project)}${proof}<div class="sources">${(project.sources || []).map(source => link(source.title, source.url)).join(' ')}</div>`;
 }

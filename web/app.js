@@ -7,7 +7,7 @@ import {validateDateRange} from './periods.js';
 import {selectedChartData} from './charts.js';
 import {HistoryLoader} from './data-loader.js';
 import {isReserveBurn, statisticLabel, isHypeFeeReconciliation, captureBadge, HOLDER_RETURN_RULE} from './models.js';
-import {burnFinancialMarkup, burnStats} from './burns.js';
+import {burnFinancialMarkup, burnStats, bnbAnnualBurnStats} from './burns.js';
 import {feeReconciliationMarkup} from './fee-view.js';
 import {sortProjects} from './comparison-sort.js';
 
@@ -152,7 +152,10 @@ function toggleCustomRange(open) {
 
 function financialCells(project,m) {
   const ticker=esc(project.ticker);
-  if (isReserveBurn(project)) return ['收入倍数','持币者回报倍数'].map(label=>`<td class="financial-value"><button class="metric-button muted" data-financial="${ticker}" aria-label="${ticker} ${label}为什么不适用">不适用</button></td>`).join('');
+  if (isReserveBurn(project)) {
+    const annual=bnbAnnualBurnStats(project,state.end,{fdv:m.fdv});
+    return `<td class="financial-value"><button class="metric-button muted" data-financial="${ticker}" aria-label="${ticker} 收入倍数为什么不适用">不适用</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 季度销毁估值倍数计算口径">${valuationPair(annual.multipleMc,annual.multipleFdv)}<span class="cell-tag">近365天 · 销毁估值</span></button></td>`;
+  }
   const ref=calculateReferenceMultiples(project,state.days,valuationBasis);
   const holderPe=`${holderMultipleMarkup(ref)}${ref.containsOneoff?'<span class="cell-tag">库存事件待核</span>':''}`;
   const ps=`${valuationPair(ref.psMc,ref.psFdv)}${ref.revenueStatus==='valuation_only'?'<span class="cell-tag">兑换估值</span>':''}`;
@@ -182,17 +185,17 @@ function render() {
 
 
 function orderedProjects() {
-  return sortProjects(snapshot.projects,state.sort,{days:state.days,valuationBasis,asOf:snapshot.as_of});
+  return sortProjects(snapshot.projects,state.sort,{days:state.days,end:state.end,valuationBasis,asOf:snapshot.as_of});
 }
 
 function renderComparison() {
   $('#comparison-body').innerHTML = orderedProjects().map(project => {
     const m = calculate(project,state.days,valuationBasis);
     const ticker=esc(project.ticker),selected=state.detailOpen&&state.ticker===project.ticker;
-    const burn=isReserveBurn(project)?burnStats(project,state.start,state.end):null;
+    const annual=isReserveBurn(project)?bnbAnnualBurnStats(project,state.end,{fdv:m.fdv}):null;
     const income=isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核':amount(m.revenue,true);
     const incomeTags=[m.revenueStatus==='valuation_only'?'独立收入待核':'',!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`覆盖${m.coverage.revenue.coverage_days}/${state.days}天`:'',project.ticker==='JUP'?'待去重':''].filter(Boolean);
-    const yieldMarkup=burn?`<button class="metric-button" data-quarter-plan="${ticker}" aria-label="${ticker} 查看季度销毁计划">${burn.count?amount(burn.tokens)+' BNB':'季度销毁'}<span class="cell-tag">${burn.count?'未年化':'无已核事件'}</span></button>`:m.holderScope?.eligible===false?`<button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 查看持币收益范围"><span class="cell-tag">${holderScopeLabel(m.holderScope)}</span></button>`:`<button class="metric-button" data-source="${ticker}" aria-label="${ticker} 查看年化回购销毁收益率来源">${metricPair(m.grossYieldMc,m.grossYieldFdv)}${!known(m.holder)&&m.incomeLinkedCapture?'<span class="cell-tag">年化待核</span>':''}</button>`;
+    const yieldMarkup=annual?`<button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 查看近365天季度销毁收益率" title="${esc(annual.start)} — ${esc(annual.end)} · 当前价估值">${metricPair(annual.yieldMc,annual.yieldFdv)}<span class="cell-tag">近365天 · 季度销毁${annual.quarterlyComplete?'':'待核'}</span></button>`:m.holderScope?.eligible===false?`<button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 查看持币收益范围"><span class="cell-tag">${holderScopeLabel(m.holderScope)}</span></button>`:`<button class="metric-button" data-source="${ticker}" aria-label="${ticker} 查看年化回购销毁收益率来源">${metricPair(m.grossYieldMc,m.grossYieldFdv)}${!known(m.holder)&&m.incomeLinkedCapture?'<span class="cell-tag">年化待核</span>':''}</button>`;
     return `<tr class="${selected?'selected':''}">
       <td><button class="token-select" data-token="${ticker}" aria-pressed="${selected}" title="查看 ${ticker} 详情"><strong>${ticker}<span class="token-arrow" aria-hidden="true">↗</span></strong><span title="${esc(project.name)}">${esc(project.name)}</span></button></td>
       <td><button class="metric-button market-value" data-financial="${ticker}" aria-label="${ticker} 查看流通市值">${amount(project.market.market_cap,true)}</button></td>
@@ -406,8 +409,9 @@ function renderDetail() {
   const project = snapshot.projects.find(p=>p.ticker===state.ticker);
   const m = calculate(project,state.days,valuationBasis);
   const burn=isReserveBurn(project)?burnStats(project,state.start,state.end):null;
+  const annual=burn?bnbAnnualBurnStats(project,state.end,{fdv:m.fdv}):null;
   $('#detail').innerHTML = `<div class="detail-head"><div><span class="eyebrow">${esc(project.sector)}</span><h2>${esc(project.ticker)} / ${esc(project.name)}</h2></div><span class="badge">${esc(captureBadge(project))}</span></div>
-  <div class="mini-stats"><div><span>当前价格</span><strong>${price(project.market.current_price)}</strong></div><div><span>${burn?'已核季度销毁枚数':'回购／销毁占收入'}</span><strong>${burn?amount(burn.tokens):pct(m.holderCapture)}</strong></div><div><span>${burn?'季度销毁估值／市值 · 未年化':'回购／销毁占手续费'}</span><strong>${burn?pct(burn.shareMc):pct(m.feeCapture)}</strong></div><div><span>流通占总量</span><strong>${pct(m.floatRatio)}</strong></div></div>
+  <div class="mini-stats"><div><span>当前价格</span><strong>${price(project.market.current_price)}</strong></div><div><span>${annual?'近365天季度销毁枚数':'回购／销毁占收入'}</span><strong>${annual?amount(annual.tokens):pct(m.holderCapture)}</strong></div><div><span>${annual?'近365天销毁收益率 · 流通市值':'回购／销毁占手续费'}</span><strong>${annual?pct(annual.yieldMc):pct(m.feeCapture)}</strong></div><div><span>流通占总量</span><strong>${pct(m.floatRatio)}</strong></div></div>
   <div class="detail-tabs" role="tablist" aria-label="代币详情内容">${[['flow','收入流向'],['supply','供应与解锁'],['history','历史与政策'],['sources','数据来源'],['conclusion','分析结论']].map(([id,label])=>`<button id="tab-${id}" role="tab" data-detail-tab="${id}" aria-controls="panel-${id}" aria-selected="${state.detailTab===id}">${label}</button>`).join('')}</div>
   <section id="panel-flow" data-detail-panel="flow" role="tabpanel" aria-labelledby="tab-flow" hidden>
   ${moneyFlowMarkup(project,state.days)}
@@ -552,9 +556,9 @@ $('#metric-help').addEventListener('click',()=>{
     <div><dt>P/S</dt><dd>估值 ÷ 年化收入统计。UNI的兑换估值单独标记，不视为独立营业收入。</dd></div>
     <div><dt>持币者回报倍数</dt><dd>参考P/E：估值 ÷ 年化回购／销毁统计。它衡量代币价值捕获，不是项目净利润P/E。</dd></div>
     <div><dt>年化回购／销毁收益率</dt><dd>年化回购／销毁统计金额 ÷ 估值。统计可能来自费用分配、回购额度或销毁估值；具体方法见每行来源，不表示持币人的现金收益或币价增幅。</dd></div>
-    <div><dt>年化与时间</dt><dd>年化金额 = 所选窗口金额 × 365 ÷ 天数。窗口按完整UTC日计算；市值、供应和未来排期仍采用当前快照。库存事件不强行当作持续回购能力，更早的图表数据按需加载。</dd></div>
+    <div><dt>年化与时间</dt><dd>通常为所选窗口金额 × 365 ÷ 天数。BNB季度执行不均匀，固定从所选结束日回看365天，以已核季度销毁枚数 × 当前价格计算，单独标注“近365天”。窗口按完整UTC日计算；市值、供应和未来排期采用当前快照。库存事件不强行当作持续回购能力，更早的图表数据按需加载。</dd></div>
     <div><dt>未来365天释放</dt><dd>从研究快照日期起算，以对应代币枚数展示一个主要释放项目。估算、部分计划与权限上限分别标记，不代表完整未来流通增量，也不能直接得出净通缩结论。</dd></div>
-    <div><dt>排序与缺失</dt><dd>点击表头排序，再次点击反向；收益率和倍数主表头按流通市值，“按FDV”单独排序。缺数据或不适用始终置后。“—”不等于零。BNB季度储备销毁另列、不年化。</dd></div>
+    <div><dt>排序与缺失</dt><dd>点击表头排序，再次点击反向；收益率和倍数主表头按流通市值，“按FDV”单独排序。BNB按标注的近365天季度销毁指标参与排序。缺数据或不适用始终置后。“—”不等于零。</dd></div>
   </dl><div class="sources">${link({title:'完整计算口径 ↗',url:'../research/framework.md'})}</div>`;
   if(!$('#source-dialog').open) $('#source-dialog').showModal();
   $('#source-dialog').scrollTop=0;
@@ -604,12 +608,14 @@ try {
 
 function viewSummary() {
   return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,detail_open:state.detailOpen,detail_tab:state.detailTab,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple'],comparison_sort:{...state.sort},
-    rows:orderedProjects().map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis);return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
+    rows:orderedProjects().map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis),annual=isReserveBurn(p)?bnbAnnualBurnStats(p,state.end,{fdv:m.fdv}):null;return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
       gross_proxy_yield_fdv:m.grossYieldFdv,
       ps_revenue_mc:m.psRevenueMc,ps_revenue_fdv:m.psRevenueFdv,pe_mc:m.peMc,pe_fdv:m.peFdv,net_income_status:m.netIncomeStatus,revenue_status:m.revenueStatus,reported_api_revenue_usd:m.reportedRevenue,protocol_revenue_share:m.revenueShare,buyback_burn_share_of_revenue:m.holderCapture,
       reference_pe_mc:ref.peMc,reference_pe_fdv:ref.peFdv,reference_ps_mc:ref.psMc,reference_ps_fdv:ref.psFdv,reference_revenue_status:ref.revenueStatus,reference_contains_oneoff:ref.containsOneoff,
       supply_ledger_complete:p.supply_ledger?.complete,
       economic_model:p.flow?.mode,burn_records:isReserveBurn(p)?burnStats(p,state.start,state.end):null,
+      annual_quarterly_burn:annual,display_yield_mc:annual?annual.yieldMc:m.grossYieldMc,display_yield_fdv:annual?annual.yieldFdv:m.grossYieldFdv,
+      display_holder_multiple_mc:annual?annual.multipleMc:ref.peMc,display_holder_multiple_fdv:annual?annual.multipleFdv:ref.peFdv,
       future_supply_components:(p.supply_forecast?.components||[]).map(c=>({id:c.id,label:c.label,evidence:c.evidence,effect:c.effect_label,days30:componentAmount(c,snapshot.as_of,30),days90:componentAmount(c,snapshot.as_of,90),days365:componentAmount(c,snapshot.as_of,365),window365:componentWindowSummary(c,snapshot.as_of,365)}))};}),
     limitations:'Statistic definitions differ by project; reserve burns are separate from income-funded buybacks. Future supply ledgers remain incomplete. No trading or cash dividend claim.'};
 }

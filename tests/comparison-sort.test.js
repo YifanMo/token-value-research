@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {calculate, calculateReferenceMultiples} from '../web/core.js';
 import {isReserveBurn} from '../web/models.js';
+import {bnbAnnualBurnStats} from '../web/burns.js';
 import {COMPARISON_SORT_KEYS, comparisonSortValue, sortProjects} from '../web/comparison-sort.js';
 
 const fixture=(ticker, {marketCap=1000, fdv=2000, revenue=100, holders=20, fees=200, ...extra}={})=>({
@@ -63,7 +64,7 @@ test('sort calculations honor the active window and FDV basis',()=>{
   assert.deepEqual(tickers(sortProjects([a,b],{key:'revenue',direction:'desc'},{...context,days:90})),['A','B']);
 });
 
-test('reserve burns are not sortable as income, yields or multiples, and redemption valuations are not revenue',()=>{
+test('reserve burns without verified annual history stay unknown, and redemption valuations are not revenue',()=>{
   const reserve=fixture('BNB',{revenue:1e9,holders:1e9,flow:{mode:'reserve_and_gas_burn'}});
   const redemption=fixture('REDEMPTION',{revenue:1e9,flow:{revenue_is_income:false}});
   const ordinary=fixture('ORDINARY',{revenue:0,holders:0});
@@ -109,13 +110,14 @@ test('project P/E requires verified positive net income; losses, zero and incomp
 test('real dashboard sort values match the comparison table for every numeric column and observation window',()=>{
   const data=JSON.parse(fs.readFileSync(new URL('../data/dashboard.json',import.meta.url)));
   for (const days of [30,365]) for (const project of data.projects) {
-    const ctx={days,valuationBasis:'reported',asOf:data.as_of};
+    const ctx={days,end:data.completed_day_cutoff_utc,valuationBasis:'reported',asOf:data.as_of};
     const m=calculate(project,days,'reported'), ref=calculateReferenceMultiples(project,days,'reported');
     const financial=isReserveBurn(project)?null:true;
+    const annual=isReserveBurn(project)?bnbAnnualBurnStats(project,ctx.end,{fdv:m.fdv}):null;
     const expected={marketCap:project.market.market_cap,fdv:m.fdv,
-      revenue:financial&&m.revenue, yieldMc:financial&&m.grossYieldMc, yieldFdv:financial&&m.grossYieldFdv,
+      revenue:financial&&m.revenue, yieldMc:annual?annual.yieldMc:financial&&m.grossYieldMc, yieldFdv:annual?annual.yieldFdv:financial&&m.grossYieldFdv,
       psMc:financial&&ref.psMc, psFdv:financial&&ref.psFdv,
-      holderPeMc:financial&&ref.peMc, holderPeFdv:financial&&ref.peFdv,
+      holderPeMc:annual?annual.multipleMc:financial&&ref.peMc, holderPeFdv:annual?annual.multipleFdv:financial&&ref.peFdv,
       projectPeMc:financial&&m.netIncomeStatus==='positive'?m.peMc:null,
       projectPeFdv:financial&&m.netIncomeStatus==='positive'?m.peFdv:null,
       revenueShare:financial&&m.revenueShare, holderCapture:financial&&m.holderCapture};
@@ -136,4 +138,23 @@ test('real dashboard sort values match the comparison table for every numeric co
         `${key} ${direction} monotonic`);
     }
   }
+});
+
+test('BNB sorting follows the selected trailing-year end, independent of short window, and never fills income',()=>{
+  const data=JSON.parse(fs.readFileSync(new URL('../data/dashboard.json',import.meta.url)));
+  const p=data.projects.find(project=>project.ticker==='BNB');
+  const end=data.completed_day_cutoff_utc;
+  const annual=bnbAnnualBurnStats(p,end);
+  assert.equal(annual.complete,true);
+  for(const days of [7,30,90,365]) {
+    assert.equal(comparisonSortValue(p,'yieldMc',{...context,days,end}),annual.yieldMc);
+    assert.equal(comparisonSortValue(p,'holderPeFdv',{...context,days,end}),annual.multipleFdv);
+  }
+  assert.equal(comparisonSortValue(p,'revenue',{...context,end}),null);
+  assert.equal(comparisonSortValue(p,'psMc',{...context,end}),null);
+  assert.equal(comparisonSortValue(p,'projectPeMc',{...context,end}),null);
+  const historical=bnbAnnualBurnStats(p,'2026-07-14');
+  assert.notEqual(historical.yieldMc,annual.yieldMc);
+  assert.equal(comparisonSortValue(p,'yieldMc',{...context,end:'2026-07-14'}),historical.yieldMc);
+  assert.equal(comparisonSortValue(p,'yieldMc',{...context,end:'2026-10-04'}),null);
 });
