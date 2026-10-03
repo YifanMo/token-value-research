@@ -9,9 +9,10 @@ import {HistoryLoader} from './data-loader.js';
 import {isReserveBurn, statisticLabel, isHypeFeeReconciliation, captureBadge} from './models.js';
 import {burnFinancialMarkup, burnStats, quarterComparisonMarkup} from './burns.js';
 import {feeReconciliationMarkup} from './fee-view.js';
+import {sortProjects} from './comparison-sort.js';
 
 const valuationBasis = 'reported';
-const state = {days:30, ticker:'HYPE', event:null, preset:30, start:null, end:null};
+const state = {days:30, ticker:'HYPE', event:null, preset:30, start:null, end:null, sort:{key:null,direction:'desc'}};
 let snapshot;
 let baseSnapshot;
 let historyLoader;
@@ -105,7 +106,7 @@ function calculateRangeInWorker(start,end,id) {
 
 function setRangeBusy(busy) {
   $('#research-controls').setAttribute('aria-busy',busy);
-  document.querySelectorAll('.period button,#custom-range-form button,#custom-range-form input').forEach(control=>control.disabled=busy);
+  document.querySelectorAll('.period button,#custom-range-form button,#custom-range-form input,.sort-header,.sort-alternate,#reset-sort').forEach(control=>control.disabled=busy);
   if (busy) $('#range-error').textContent='正在加载并核对所选时间段，请稍候…';
 }
 
@@ -164,25 +165,56 @@ function render() {
   $('#custom-range-toggle').setAttribute('aria-pressed',state.preset===null);
   if($('#custom-range-form').hidden) {$('#range-start').value=state.start;$('#range-end').value=state.end;}
   $('#range-context').textContent=`${state.start} → ${state.end} · ${state.days}个UTC日（含首尾）；市值、供应和未来排期仍采用当前快照。`;
-  $('#comparison-body').innerHTML = snapshot.projects.map(project => {
-    const m = calculate(project,state.days,valuationBasis);
-    const source=buybackSource(project);
-    return `<tr class="${state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.ticker===project.ticker}"><strong>${esc(project.ticker)} <span class="number-sub">${esc(project.name)}</span></strong><span>${esc(project.capture.label)}</span></button></td><td>${amount(project.market.market_cap,true)}</td><td>${amount(m.fdv,true)}</td><td>${isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核收入':amount(m.revenue,true)}<span class="number-sub">${isReserveBurn(project)?'BSC链手续费 '+amount(m.fees,true)+' · '+state.days+'天':m.revenueStatus==='valuation_only'?statisticLabel(project)+' '+amount(m.reportedRevenue,true):`${state.days}天 / ${esc(state.end)}`}</span>${!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`<span class="stat-method">仅覆盖${m.coverage.revenue.coverage_days}/${state.days}天</span>`:''}${project.ticker==='JUP'?'<span class="number-sub">含覆盖重叠，待去重</span>':''}${project.flow_normalizations?'<span class="number-sub">已剔除已核重复项</span>':''}</td><td>${isReserveBurn(project)?quarterComparisonMarkup(project,state.start,state.end):metricPair(m.grossYieldMc,m.grossYieldFdv)}${isReserveBurn(project)?'':`<span class="stat-method">${esc(project.capture.stat_label)}</span>`}</td><td class="accent">${supplyReference(project)}</td>${financialCells(project,m)}<td class="source-cell"><span class="source-provider">${esc(project.ticker)} · ${esc(source?.provider || (isReserveBurn(project)?'链上核验记录':'DefiLlama'))}</span><button class="source-open" data-source="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看本次 API 返回">${isReserveBurn(project)?'查看已核销毁记录':'查看本次 API 返回'}</button>${source?link({title:'在线 API ↗',url:source.url}):isReserveBurn(project)?link({title:'季度记录在线 API ↗',url:project.burns?.quarterly_records?.find(record=>record.verified)?.source_url}):'<span class="muted">来源缺失</span>'}</td></tr>`;
-  }).join('');
+  renderComparison();
   const missing = Object.entries(snapshot.source_status).filter(([,value])=>value.status==='missing');
   const stale = snapshot.projects.filter(p=>(!isReserveBurn(p)&&p.flow_lag_days>0) || p.market_lag_days>0);
   const failed = Object.entries(snapshot.source_status).filter(([,value])=>value.refresh_error && value.status!=='missing').map(([key,value])=>sourceIssueSummary(key,value,snapshot.projects));
   $('#errors').innerHTML = (missing.length ? `<p class="alert">${missing.length}个来源暂缺，相应价格、基准或链上供应字段显示缺数据；不会推定为0。</p>` : '')+(stale.length ? `<p class="alert">${stale.map(p=>esc(p.ticker)).join('、')}有滞后数据，查看项目来源时间；不能作为实时估值。</p>` : '')+(failed.length ? `<div class="alert">${failed.map(issue=>`<p><strong>${esc(issue.name)}更新未成功：${esc(issue.cause)}</strong><br>${esc(issue.impact)} 上次成功抓取：${esc(issue.lastSuccess || '未知')}。 ${link({title:'查看接口 ↗',url:issue.url})}</p>`).join('')}</div>` : '')+(snapshot!==baseSnapshot&&historyReadErrors.length?`<details class="alert"><summary>${historyReadErrors.length}份历史归档未通过读取或哈希核对，相应金额显示缺数据</summary><p>${historyReadErrors.map(esc).join('<br>')}</p></details>`:'');
   renderSupplyOverview();
-  document.querySelectorAll('[data-source]').forEach(button=>button.addEventListener('click',()=>openSource(button.dataset.source)));
-  document.querySelectorAll('[data-supply]').forEach(button=>button.addEventListener('click',()=>openSupply(button.dataset.supply)));
-  document.querySelectorAll('[data-financial]').forEach(button=>button.addEventListener('click',()=>openFinancial(button.dataset.financial)));
-  document.querySelectorAll('[data-token]').forEach(button => button.addEventListener('click',()=>selectToken(button.dataset.token,true)));
-  document.querySelectorAll('[data-quarter-plan]').forEach(button=>button.addEventListener('click',()=>{
+  bindTableActions($('#supply-overview'));
+  renderDetail();
+}
+
+
+function orderedProjects() {
+  return sortProjects(snapshot.projects,state.sort,{days:state.days,valuationBasis,asOf:snapshot.as_of});
+}
+
+function renderComparison() {
+  $('#comparison-body').innerHTML = orderedProjects().map(project => {
+    const m = calculate(project,state.days,valuationBasis);
+    const source=buybackSource(project);
+    return `<tr class="${state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.ticker===project.ticker}"><strong>${esc(project.ticker)} <span class="number-sub">${esc(project.name)}</span></strong><span>${esc(project.capture.label)}</span></button></td><td>${amount(project.market.market_cap,true)}</td><td>${amount(m.fdv,true)}</td><td>${isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核收入':amount(m.revenue,true)}<span class="number-sub">${isReserveBurn(project)?'BSC链手续费 '+amount(m.fees,true)+' · '+state.days+'天':m.revenueStatus==='valuation_only'?statisticLabel(project)+' '+amount(m.reportedRevenue,true):`${state.days}天 / ${esc(state.end)}`}</span>${!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`<span class="stat-method">仅覆盖${m.coverage.revenue.coverage_days}/${state.days}天</span>`:''}${project.ticker==='JUP'?'<span class="number-sub">含覆盖重叠，待去重</span>':''}${project.flow_normalizations?'<span class="number-sub">已剔除已核重复项</span>':''}</td><td>${isReserveBurn(project)?quarterComparisonMarkup(project,state.start,state.end):metricPair(m.grossYieldMc,m.grossYieldFdv)}${isReserveBurn(project)?'':`<span class="stat-method">${esc(project.capture.stat_label)}</span>`}</td><td class="accent">${supplyReference(project)}</td>${financialCells(project,m)}<td class="source-cell"><span class="source-provider">${esc(project.ticker)} · ${esc(source?.provider || (isReserveBurn(project)?'链上核验记录':'DefiLlama'))}</span><button class="source-open" data-source="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看本次 API 返回">${isReserveBurn(project)?'查看已核销毁记录':'查看本次 API 返回'}</button>${source?link({title:'在线 API ↗',url:source.url}):isReserveBurn(project)?link({title:'季度记录在线 API ↗',url:project.burns?.quarterly_records?.find(record=>record.verified)?.source_url}):'<span class="muted">来源缺失</span>'}</td></tr>`;
+  }).join('');
+  updateSortIndicators();
+  bindTableActions($('#comparison-body'));
+}
+
+function bindTableActions(container) {
+  container.querySelectorAll('[data-source]').forEach(button=>button.addEventListener('click',()=>openSource(button.dataset.source)));
+  container.querySelectorAll('[data-supply]').forEach(button=>button.addEventListener('click',()=>openSupply(button.dataset.supply)));
+  container.querySelectorAll('[data-financial]').forEach(button=>button.addEventListener('click',()=>openFinancial(button.dataset.financial)));
+  container.querySelectorAll('[data-token]').forEach(button => button.addEventListener('click',()=>selectToken(button.dataset.token,true)));
+  container.querySelectorAll('[data-quarter-plan]').forEach(button=>button.addEventListener('click',()=>{
     selectToken(button.dataset.quarterPlan);
     $('#bnb-quarterly-plan')?.scrollIntoView({behavior:'smooth',block:'start'});
   }));
-  renderDetail();
+}
+
+function updateSortIndicators() {
+  document.querySelectorAll('.comparison th').forEach(header=>{
+    const active=[...header.querySelectorAll('[data-sort]')].some(button=>button.dataset.sort===state.sort.key);
+    header.setAttribute('aria-sort',active ? (state.sort.direction==='asc' ? 'ascending' : 'descending') : 'none');
+  });
+  document.querySelectorAll('[data-sort]').forEach(button=>{
+    const active=button.dataset.sort===state.sort.key;
+    button.setAttribute('aria-pressed',active);
+    button.querySelector('.sort-direction').textContent=active ? (state.sort.direction==='asc' ? '↑' : '↓') : '↕';
+  });
+  const active=document.querySelector('[data-sort="'+state.sort.key+'"]');
+  const textKey=['ticker','name'].includes(state.sort.key);
+  $('#sort-status').textContent=active ? active.dataset.sortLabel+' · '+(textKey ? (state.sort.direction==='asc' ? 'A → Z' : 'Z → A') : (state.sort.direction==='asc' ? '从低到高' : '从高到低'))+'；缺失或不适用置后。' : '点击表头排序；缺失或不适用置后。';
+  $('#reset-sort').hidden=!state.sort.key;
 }
 
 function selectToken(ticker,scrollToDetail=false) {
@@ -444,6 +476,17 @@ $('#custom-range-form').addEventListener('submit',async event=>{
   if(await applyRange($('#range-start').value,$('#range-end').value)) toggleCustomRange(false);
 });
 $('#token-selector').addEventListener('change',event=>selectToken(event.target.value));
+document.querySelectorAll('[data-sort]').forEach(button=>button.addEventListener('click',()=>{
+  if (!snapshot) return;
+  const key=button.dataset.sort;
+  const direction=state.sort.key===key ? (state.sort.direction==='desc' ? 'asc' : 'desc') : (['ticker','name'].includes(key) ? 'asc' : 'desc');
+  state.sort={key,direction};
+  renderComparison();
+}));
+$('#reset-sort').addEventListener('click',()=>{
+  state.sort={key:null,direction:'desc'};
+  renderComparison();
+});
 const controlsObserver=new ResizeObserver(()=>{
   const timeHeight=$('#research-controls').getBoundingClientRect().height;
   const tokenHeight=$('#token-controls').getBoundingClientRect().height;
@@ -484,8 +527,8 @@ try {
 }
 
 function viewSummary() {
-  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple','project_net_income_pe'],
-    rows:snapshot.projects.map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis);return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
+  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple','project_net_income_pe'],comparison_sort:{...state.sort},
+    rows:orderedProjects().map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis);return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
       gross_proxy_yield_fdv:m.grossYieldFdv,
       ps_revenue_mc:m.psRevenueMc,ps_revenue_fdv:m.psRevenueFdv,pe_mc:m.peMc,pe_fdv:m.peFdv,net_income_status:m.netIncomeStatus,revenue_status:m.revenueStatus,reported_api_revenue_usd:m.reportedRevenue,protocol_revenue_share:m.revenueShare,buyback_burn_share_of_revenue:m.holderCapture,
       reference_pe_mc:ref.peMc,reference_pe_fdv:ref.peFdv,reference_ps_mc:ref.psMc,reference_ps_fdv:ref.psFdv,reference_revenue_status:ref.revenueStatus,reference_contains_oneoff:ref.containsOneoff,
