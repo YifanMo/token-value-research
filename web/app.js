@@ -444,8 +444,14 @@ $('#custom-range-form').addEventListener('submit',async event=>{
   if(await applyRange($('#range-start').value,$('#range-end').value)) toggleCustomRange(false);
 });
 $('#token-selector').addEventListener('change',event=>selectToken(event.target.value));
-const controlsObserver=new ResizeObserver(()=>document.documentElement.style.setProperty('--detail-controls-height',`${$('#research-controls').getBoundingClientRect().height}px`));
+const controlsObserver=new ResizeObserver(()=>{
+  const timeHeight=$('#research-controls').getBoundingClientRect().height;
+  const tokenHeight=$('#token-controls').getBoundingClientRect().height;
+  document.documentElement.style.setProperty('--research-controls-height',`${timeHeight}px`);
+  document.documentElement.style.setProperty('--detail-controls-height',`${timeHeight+tokenHeight}px`);
+});
 controlsObserver.observe($('#research-controls'));
+controlsObserver.observe($('#token-controls'));
 $('#show-business').addEventListener('click',()=>$('#comparison-scroll').scrollTo({left:0,behavior:'auto'}));
 $('#show-financial').addEventListener('click',()=>{
   const table=$('#comparison-scroll'), target=$('#financial-start');

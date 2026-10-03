@@ -6,7 +6,7 @@
   <meta name="description" content="协议收入、回购去向、供应稀释与政策变更的本地研究框架。">
   <title>协议收入与代币价值 · 研究框架</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101b2c'/%3E%3Cpath d='M6 23h20M8 18v-5m8 5V7m8 11v-9' stroke='%23edc66d' stroke-width='3'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css?v=27">
+  <link rel="stylesheet" href="./styles.css?v=28">
 </head>
 <body>
   <main>
@@ -15,6 +15,13 @@
       <nav aria-label="研究文档"><a href="../research/report.md">研究报告</a><a href="../research/framework.md">计算口径</a></nav>
     </header>
     <div id="errors" role="status"></div>
+    <section id="research-controls" aria-label="全页观察窗口" class="controls">
+      <div class="control-main"><div class="period" role="group" aria-label="观察窗口"><span>观察窗口</span><button data-days="7">7天</button><button data-days="30" aria-pressed="true">30天</button><button data-days="90">90天</button><button id="more-history-toggle" aria-expanded="false" aria-controls="extended-periods">更多时间段</button><span id="extended-periods" hidden><button data-days="365">1年</button><button data-days="1095">3年</button><button data-days="1825">5年</button></span><button id="custom-range-toggle" aria-expanded="false" aria-controls="custom-range-form">自定义</button></div></div>
+      <form id="custom-range-form" hidden><label>起始日期 <input id="range-start" name="start" type="date" required></label><label>结束日期 <input id="range-end" name="end" type="date" required></label><button type="submit">应用</button><button id="custom-range-cancel" type="button">收起</button></form>
+      <p id="range-error" role="status"></p>
+      <p id="range-context" class="range-context"></p>
+      <p class="range-context">时间筛选同时应用于总结表和代币详情。默认展示近30天；更早的图表数据按需加载。</p>
+    </section>
     <section class="comparison" aria-labelledby="compare-heading">
       <div class="section-title"><h2 id="compare-heading">协议收入、代币回购与估值对比 <span id="token-count"></span></h2><span id="period-note"></span></div>
       <p class="notice">回购 / 销毁金额可能来自费用分配或代币估值，具体标在每行。点击指标查看算式与来源。</p>
@@ -24,13 +31,8 @@
       <p class="footnote">年化 = 所选窗口金额 × 365 / 天数；收益率表示统计金额相对估值的比例，不是持币人的现金收益或币价增幅；含库存事件的历史倍数保留提示，收益率仅用可年化部分。“—”表示缺数据或口径待核。</p>
     </section>
     <details class="supply-comparison"><summary>查看全部代币的未来供应对比</summary><section id="supply-overview" aria-labelledby="supply-heading"></section></details>
-    <section id="research-controls" aria-label="代币与观察窗口" class="controls">
-      <div class="control-main"><div class="period" role="group" aria-label="观察窗口"><span>观察窗口</span><button data-days="7">7天</button><button data-days="30" aria-pressed="true">30天</button><button data-days="90">90天</button><button id="more-history-toggle" aria-expanded="false" aria-controls="extended-periods">更多时间段</button><span id="extended-periods" hidden><button data-days="365">1年</button><button data-days="1095">3年</button><button data-days="1825">5年</button></span><button id="custom-range-toggle" aria-expanded="false" aria-controls="custom-range-form">自定义</button></div>
-      <label for="token-selector">查看代币 <select id="token-selector" disabled><option>读取代币…</option></select></label></div>
-      <form id="custom-range-form" hidden><label>起始日期 <input id="range-start" name="start" type="date" required></label><label>结束日期 <input id="range-end" name="end" type="date" required></label><button type="submit">应用</button><button id="custom-range-cancel" type="button">收起</button></form>
-      <p id="range-error" role="status"></p>
-      <p id="range-context" class="range-context"></p>
-      <p class="range-context">默认展示近30天；更早的图表数据在选择时间段或代币后加载。</p>
+    <section id="token-controls" aria-label="选择详情代币" class="controls token-controls">
+      <label for="token-selector">查看代币 <select id="token-selector" disabled><option>读取代币…</option></select></label>
     </section>
     <section id="detail" aria-live="polite"></section>
     <footer>所有金额为 USD。研究快照与供应商口径可复核；缺失不填零。</footer>
@@ -39,6 +41,6 @@
     <div class="source-head"><div><span class="eyebrow">数据来源与计算过程</span><h2 id="source-title"></h2></div><button id="source-close" aria-label="关闭数据来源">关闭</button></div>
     <div id="source-content" aria-live="polite"></div>
   </dialog>
-  <script type="module" src="./app.js?v=28"></script>
+  <script type="module" src="./app.js?v=29"></script>
 </body>
 </html>
