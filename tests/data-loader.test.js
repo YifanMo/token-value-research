@@ -5,6 +5,7 @@ import {HistoryLoader, createVerifiedReader} from '../web/data-loader.js';
 import {createRangeEngine} from '../web/range-engine.js';
 import {selectedChartData} from '../web/charts.js';
 import {createRangeProject} from '../web/periods.js';
+import {historicalLedger} from '../web/burns.js';
 
 const webRoot = new URL('../web/', import.meta.url);
 const full = JSON.parse(fs.readFileSync(new URL('../data/dashboard.json', import.meta.url)));
@@ -56,6 +57,17 @@ test('one-year selection downloads only selected-token intersecting years and re
   await loader.load('UNI', start, end);
   assert.equal(reads.length, 2);
   assert.equal(loader.ready('RAY', start, end), false);
+});
+
+test('initial BNB ledger preserves every burn and source hash while omitting its identical legacy copy', () => {
+  const original = full.projects.find(project => project.ticker === 'BNB');
+  const project = lite.projects.find(project => project.ticker === 'BNB');
+  assert.deepEqual(original.burns.burn_records, original.burns.quarterly_records);
+  assert.equal(Object.hasOwn(project.burns, 'burn_records'), false);
+  assert.deepEqual(project.burns.quarterly_records, original.burns.quarterly_records);
+  assert.deepEqual(project.burns.official_history, original.burns.official_history);
+  assert.deepEqual(project.data_sources, original.data_sources);
+  assert.deepEqual(historicalLedger(project), historicalLedger(original));
 });
 
 test('cross-year custom range loads two chunks, preserving dates and full provenance', async () => {

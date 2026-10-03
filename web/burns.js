@@ -5,7 +5,8 @@ const quantity = value => known(value) ? value.toLocaleString('en-US', {maximumF
 const dollars = value => known(value) ? '$' + value.toLocaleString('en-US', {maximumFractionDigits: 0}) : '未知';
 const percent = value => known(value) ? (value * 100).toFixed(2) + '%' : '未知';
 const link = (title, url) => url ? `<a href="${esc(url)}" target="_blank" rel="noreferrer">${esc(title)}</a>` : '';
-const usdBasis = record => record.usd_basis === 'executed_native_tokens_times_same_utc_date_price; not_cash_cost'
+const usdBasis = record => ['executed_native_tokens_times_same_utc_date_price; not_cash_cost',
+  'executed_bnb_tokens_times_same_utc_date_price; not_cash_cost'].includes(record.usd_basis)
   ? '执行日UTC采样价 × 实际销毁枚数；非现金支出' : record.usd_basis || '销毁日历史价格估值，非成交支出';
 const publicNote = value => String(value ?? '').replace(/successful receipt/g,'执行成功的交易回执').replace(/dead地址/g,'销毁地址')
   .replace(/chainId/g,'链标识').replace(/block/g,'执行区块').replace(/BSC native转账/g,'BSC原生BNB转账').replace(/native transfer/g,'原生BNB转账');
@@ -14,6 +15,9 @@ const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.te
 const DAY = 86400000;
 const burnSourceKinds = new Set(['burns','burn_proof','gas_burn','gas_burn_snapshot','supply','chain_fees','gas_burn_policy_estimate','policy_block','gas_burn_policy']);
 const nonnegative = value => known(value) && value >= 0;
+const ledgerNumber = value => nonnegative(value) ? value : typeof value === 'string' && /^\d+(?:\.\d+)?$/.test(value)
+  && Number.isFinite(Number(value)) ? Number(value) : null;
+const ledgerQuantity = value => nonnegative(value) ? value.toLocaleString('en-US', {maximumFractionDigits: 8}) : '未知';
 
 function rangeDays(start, end) {
   if (!validDate(start) || !validDate(end) || start > end) throw new RangeError('BNB统计需要有效的UTC起止日期。');
@@ -151,6 +155,151 @@ export function latestQuarterBurn(project) {
 const quarterAnnouncement = (project, record) => record && (project.events || []).find(event =>
   event.date === record.date && event.title?.includes(`第${record.rank}次`))?.source;
 
+// A tracker row, a read announcement and a verified chain transaction are three
+// separate observations. Combining their identifiers must not upgrade evidence
+// or turn an absent Pioneer split, price or chain proof into zero.
+export function historicalLedger(project) {
+  const registry = project.burns?.official_history;
+  const registrySources = Array.isArray(registry?.sources) ? registry.sources : [];
+  const officialRows = Array.isArray(registry?.quarters) ? registry.quarters : [];
+  const records = Array.isArray(project.burns?.quarterly_records) ? project.burns.quarterly_records : [];
+  const cutoff = project.burns?.cutoff_utc || project.flow_end;
+  const groups = new Set(), aliases = new Map(), sourceMap = new Map(registrySources.map(source => [source.id,source]));
+  const keysFor = row => {
+    const keys = [];
+    const rank = Number(row.rank);
+    if (Number.isInteger(rank) && rank > 0) keys.push('rank:'+rank);
+    const tx = row.transaction_hash || row.tx_url || row.transaction_url || row.reported_transaction_url;
+    const hash = typeof tx === 'string' && tx.match(/(?:^|\/tx\/)(?:0x)?([0-9a-f]{64})(?:$|[?#])/i)?.[1];
+    if (tx) keys.push('tx:'+(hash ? '0x'+hash.toLowerCase() : String(tx).toLowerCase()));
+    return keys;
+  };
+  const eligible = (row, official) => {
+    if (!row || ['projected','after_cutoff'].includes(row.status)) return false;
+    const date = official ? row.execution_date || row.announcement_date : row.date || row.indexed_date || row.reported_date;
+    return validDate(date) && (!validDate(cutoff) || date <= cutoff);
+  };
+  for (const [rows,kind] of [[records,'records'],[officialRows,'official']]) {
+    for (const row of rows) {
+      if (!eligible(row,kind==='official')) continue;
+      const keys = keysFor(row);
+      if (!keys.length) continue;
+      const matches = [...new Set(keys.map(key=>aliases.get(key)).filter(Boolean))];
+      const group = matches[0] || {records:[],official:[]};
+      groups.add(group);
+      for (const extra of matches.slice(1)) {
+        group.records.push(...extra.records);group.official.push(...extra.official);groups.delete(extra);
+        for (const [alias,owner] of aliases) if (owner===extra) aliases.set(alias,group);
+      }
+      for (const key of keys) aliases.set(key,group);
+      group[kind].push(row);
+    }
+  }
+  const rows = [...groups].map(group => {
+    const official = group.official.find(row=>row.amount_status==='official_announcement_verified') || group.official[0];
+    const officialSources = Array.isArray(official?.source_ids) ? official.source_ids.map(id=>sourceMap.get(id)).filter(Boolean) : [];
+    const officialReviewed = official?.amount_status === 'official_announcement_verified'
+      && ledgerNumber(official.reported_total_tokens) !== null && officialSources.length > 0;
+    const proofs = group.records.filter(record=>record.verified===true && validDate(record.date) && nonnegative(record.tokens)
+      && (record.transaction_hash || record.tx_url || record.transaction_url));
+    const proofIdentity = record => keysFor(record).find(key=>key.startsWith('tx:'));
+    const distinctProofs = new Map(proofs.map(record=>[proofIdentity(record),record]));
+    const officialTxIdentity = official && keysFor(official).find(key=>key.startsWith('tx:'));
+    const announcementTxMismatch = Boolean(officialTxIdentity && proofs.some(record=>proofIdentity(record)!==officialTxIdentity));
+    const chainConflict = announcementTxMismatch || distinctProofs.size > 1 || proofs.some(record=>
+      proofs.some(other=>proofIdentity(other)===proofIdentity(record) && (other.tokens!==record.tokens || other.date!==record.date)));
+    const proof = !chainConflict ? proofs[0] : null;
+    const tracker = group.records.find(record=>record.verified===true) || group.records[0];
+    const indexed = group.records.find(record=>record.status==='indexed_verified' && record.evidence==='indexed_beacon_burn_transaction'
+      && validDate(record.indexed_date) && nonnegative(record.indexed_tokens) && record.indexed_source_key
+      && bnbSources(project).some(source=>source.source_key===record.indexed_source_key
+        && source.kind==='burn_proof' && source.role==='official_explorer_indexer'));
+    const date = proof?.date || indexed?.indexed_date || official?.execution_date || official?.announcement_date || tracker?.date || tracker?.reported_date;
+    const dateBasis = proof ? '链上UTC执行日' : indexed ? '官方浏览器索引UTC日' : official?.execution_date ? '官文所列执行日，未独立核验'
+      : official?.announcement_date ? '官方公告日；执行日待核' : '跟踪器日期；执行日待核';
+    const rank = Number(official?.rank ?? tracker?.rank);
+    const reportedTokens = officialReviewed ? ledgerNumber(official.reported_total_tokens) : null;
+    const pioneerTokens = officialReviewed ? ledgerNumber(official.pioneer_tokens) : null;
+    const officialActualTokens = officialReviewed ? ledgerNumber(official.actual_tokens) : null;
+    const trackerTokens = ledgerNumber(tracker?.reported_amount);
+    const chainTokens = proof?.tokens ?? null;
+    const notes = [];
+    if (announcementTxMismatch) notes.push('官方公告所列交易与跟踪器已核交易不一致，暂不认定它们属于同一期执行。');
+    else if (chainConflict) notes.push('同一期有相互冲突的已核交易，暂不认定本期实际枚数。');
+    if (official?.evidence_notes) notes.push(...(Array.isArray(official.evidence_notes) ? official.evidence_notes : [official.evidence_notes]));
+    if (official?.tracker_discrepancies) notes.push(...(Array.isArray(official.tracker_discrepancies) ? official.tracker_discrepancies : [official.tracker_discrepancies]));
+    if (proof?.reported_date && proof.reported_date !== proof.date) notes.push(`跟踪器日期${proof.reported_date}与链上UTC日期不同。`);
+    if (nonnegative(chainTokens) && nonnegative(officialActualTokens) && Math.abs(chainTokens-officialActualTokens)>0.000001)
+      notes.push('官文实际销毁枚数与已核交易数值不一致，仍分别保留。');
+    if (!proof && tracker?.verification_error) notes.push(`链上核验未完成：${publicNote(tracker.verification_error)}。`);
+    const txUrl = proof?.tx_url || proof?.transaction_url || official?.tx_url || tracker?.tx_url || tracker?.transaction_url || tracker?.reported_transaction_url;
+    const proofKeys = proof?.proof_source_keys || proof?.source_keys;
+    const savedProofSources = proof ? bnbSources(project).filter(source=>source.kind==='burn_proof'
+      && (!Array.isArray(proofKeys) || proofKeys.includes(source.source_key))) : [];
+    const savedTracker = bnbSources(project).find(source=>source.source_key===tracker?.source_key)
+      || bnbSources(project).find(source=>source.kind==='burns' && source.url?.includes('getQuarterBurns'));
+    const savedIndex = indexed ? bnbSources(project).find(source=>source.source_key===indexed.indexed_source_key) : null;
+    return {rank:Number.isInteger(rank)&&rank>0 ? rank : null,quarter:official?.quarter || tracker?.quarter,
+      date,dateBasis,announcementDate:official?.announcement_date || null,trackerDate:tracker?.reported_date || null,
+      reportedTokens,trackerTokens,pioneerTokens,pioneerStatus:official?.pioneer_status,officialActualTokens,actualTokensMethod:official?.actual_tokens_method,
+      chainTokens,chainVerified:Boolean(proof),chainConflict,officialReviewed,
+      indexedTokens:indexed?.indexed_tokens ?? null,indexVerified:Boolean(indexed),savedIndex,
+      chain:proof?.chain || official?.chain || (txUrl?.includes('etherscan.io') ? 'Ethereum' : txUrl?.includes('explorer.binance.org') ? 'Beacon Chain' : txUrl?.includes('bsc') ? 'BSC' : null),
+      announcementUrl:official?.announcement_url || quarterAnnouncement(project,proof),txUrl,
+      trackerUrl:tracker?.source_url || savedTracker?.url,officialSources,savedProofSources,savedTracker,
+      usd:proof && nonnegative(proof.usd) ? proof.usd : null,notes:[...new Set(notes.map(String))]};
+  }).sort((a,b)=>(b.rank ?? 0)-(a.rank ?? 0) || b.date.localeCompare(a.date));
+  const ranks = new Set(rows.map(row=>row.rank).filter(rank=>rank!==null));
+  const highest = ranks.size ? Math.max(...ranks) : 0;
+  const missingRanks = [];
+  for (let rank=1;rank<=highest;rank++) if (!ranks.has(rank)) missingRanks.push(rank);
+  return {rows,totalCount:rows.length,chainVerifiedCount:rows.filter(row=>row.chainVerified).length,
+    indexVerifiedCount:rows.filter(row=>row.indexVerified && !row.chainVerified).length,
+    officialReviewedCount:rows.filter(row=>row.officialReviewed).length,
+    unverifiedCount:rows.filter(row=>!row.chainVerified).length,missingRanks,
+    reviewedAt:registry?.reviewed_at_utc || null,
+    earliest:rows.length ? rows.map(row=>row.date).sort()[0] : null,
+    latest:rows.length ? rows.map(row=>row.date).sort().at(-1) : null};
+}
+
+const savedLedgerLink = (title, source) => source?.response_path ? link(title,source.response_path) : '';
+
+export function quarterHistoryMarkup(project) {
+  const ledger = historicalLedger(project);
+  const tableRows = ledger.rows.map(row => {
+    const reported = row.officialReviewed ? `<strong>${ledgerQuantity(row.reportedTokens)}</strong><span class="number-sub">已核官方公告总量</span>`
+      : nonnegative(row.trackerTokens) ? `<strong>${ledgerQuantity(row.trackerTokens)}</strong><span class="number-sub">跟踪器记录，官文金额待核</span>` : '未知';
+    const actual = row.chainVerified ? `<strong>${ledgerQuantity(row.chainTokens)}</strong><span class="number-sub">${esc(row.chain || '对应链')}交易已独立核验</span>`
+      : row.indexVerified ? `<strong>${ledgerQuantity(row.indexedTokens)}</strong><span class="number-sub">官方浏览器索引；非独立RPC核验</span>`
+      : `未核验${row.chain ? `<span class="number-sub">${esc(row.chain)}</span>` : ''}`;
+    const pioneer = row.pioneerStatus==='not_applicable' ? '不适用（机制尚未启动）' : ledgerQuantity(row.pioneerTokens);
+    const split = row.officialReviewed ? `Pioneer：${pioneer}<span class="number-sub">官文实际销毁：${ledgerQuantity(row.officialActualTokens)}${row.actualTokensMethod==='total_minus_pioneer' ? '（总量减Pioneer）' : row.actualTokensMethod==='explicitly_reported' ? '（官文列值）' : ''}</span>` : '拆分待核';
+    const sources = [link('官方公告',row.announcementUrl),link('跟踪器JSON',row.trackerUrl),link('交易记录',row.txUrl),
+      savedLedgerLink('保存跟踪器响应',row.savedTracker),
+      link('官方浏览器API',row.savedIndex?.url),savedLedgerLink('保存浏览器响应',row.savedIndex),
+      ...row.officialSources.map((source,index)=>savedLedgerLink(row.officialSources.length>1 ? `保存官文${index+1}` : '保存官文',source)),
+      ...row.savedProofSources.map((source,index)=>savedLedgerLink(row.savedProofSources.length>1 ? `保存链上响应${index+1}` : '保存链上响应',source))].filter(Boolean).join(' ');
+    const statuses = [row.chainVerified ? '链上已独立核验' : row.indexVerified ? '官方浏览器索引确认' : '链上待核',row.officialReviewed ? '官文金额已核' : '官文金额待核'];
+    return `<tr><td>第${esc(row.rank || '未知')}次<span class="number-sub">${esc(row.quarter || '季度销毁')}</span></td>
+      <td>${esc(row.date)}<span class="number-sub">${esc(row.dateBasis)}</span>${row.announcementDate&&row.announcementDate!==row.date ? `<span class="number-sub">公告 ${esc(row.announcementDate)}</span>` : ''}</td>
+      <td>${reported}</td><td>${actual}</td><td>${split}</td>
+      <td>${esc(statuses.join(' · '))}${row.notes.length ? `<details><summary>核验说明</summary><p>${esc(row.notes.join(' '))}</p></details>` : ''}</td>
+      <td><div class="sources">${sources || '来源尚未登记'}</div></td></tr>`;
+  }).join('');
+  return `<article class="card quarter-history" id="bnb-quarterly-history" aria-labelledby="quarter-history-title">
+    <h3 id="quarter-history-title">全部季度销毁历史</h3>
+    <p>独立于上方观察窗口，按期数展示已取得的历史记录；未来预测不列作已执行销毁。</p>
+    <div class="mini-stats"><div><span>已取得历史记录</span><strong>${ledger.totalCount}期</strong></div>
+    <div><span>链上交易独立核验</span><strong>${ledger.chainVerifiedCount}期</strong></div>
+    <div><span>官方浏览器索引确认</span><strong>${ledger.indexVerifiedCount}期</strong></div>
+    <div><span>官方公告金额已核</span><strong>${ledger.officialReviewedCount}期</strong></div></div>
+    <p class="footnote">公告总量可能含Pioneer补偿统计，不应再次加到本次交易实际销毁上。未知拆分保留未知；官方浏览器索引与独立RPC核验分开计数。</p>
+    ${tableRows ? `<div class="table-wrap quarter-history-table" tabindex="0" aria-label="全部季度销毁历史，可滚动查看早期记录"><table><thead><tr><th>期数</th><th>日期及依据</th><th>公告／跟踪器总量 · BNB</th><th>执行交易枚数 · BNB</th><th>Pioneer拆分 · BNB</th><th>证据状态</th><th>来源与保存响应</th></tr></thead><tbody>${tableRows}</tbody></table></div>` : '<p>尚未取得可列示的历史季度记录。</p>'}
+    ${ledger.missingRanks.length ? `<p class="footnote">已取得期数之间仍缺第${esc(ledger.missingRanks.join('、'))}次记录。</p>` : ''}
+    <p class="footnote">${ledger.earliest ? `已取得记录日期${esc(ledger.earliest)} → ${esc(ledger.latest)}。` : ''}${ledger.reviewedAt ? `官文复核${esc(ledger.reviewedAt)}。` : ''}只有核验成功的执行交易进入所选窗口统计；未取得历史价格的早期记录没有套用当前价格估值。</p>
+  </article>`;
+}
+
 export function quarterlyPlanMarkup(project) {
   const plan = project.quarterly_burn_plan;
   if (!plan) return '';
@@ -206,5 +355,5 @@ export function burnFinancialMarkup(project, range, legacyEnd) {
   const names={burns:'季度销毁记录与拆分',burn_proof:'已核季度交易与执行区块',gas_burn:'滚动Gas销毁摘要',gas_burn_snapshot:'滚动Gas销毁摘要',supply:'原生供应索引观察',chain_fees:'BSC日手续费',gas_burn_policy_estimate:'Gas销毁估算 · 供应商10%模型',policy_block:'参数核验所用BSC区块',gas_burn_policy:'当前区块Gas销毁参数'};
   const status={fresh:'已更新',cached:'复用缓存','offline-cache':'离线缓存',missing:'未取得',unknown:'未知'};
   const proof=sources.length?`<section class="source-policy"><h3>BNB数据来源与保存响应</h3><div class="financial-data-sources">${sources.map(source=>`<article><strong>${esc(names[source.kind] || source.kind || '销毁数据')}</strong><span class="number-sub">抓取 ${esc(source.retrieved_at || '未知')} · ${esc(status[source.status] || source.status || '未知')}</span><div class="source-links">${sourceLinks(source)}</div><p>保存文件 SHA-256：<code>${esc(source.stored_sha256 || source.sha256 || '未知')}</code></p>${source.refresh_error?`<p class="footnote">本次抓取情况：${esc(source.refresh_error)}</p>`:''}</article>`).join('')}</div><p class="source-explanation">链手续费是交易费用索引，日Gas销毁是10%政策模型，当前参数是独立区块观察，季度销毁使用已核执行交易。保存响应便于复算，不表示完整供应台账已经取得。</p></section>`:'';
-  return `${quarterlyPlanMarkup(project)}${burnRecordsMarkup(project,start,end)}<div class="source-meaning"><h3>BNB 的销毁与收入回购分别研究</h3><p>Auto-Burn 是按规则处理的季度储备销毁；BEP-95 是链上交易费中的实时销毁。不能把两者合称为“企业净利润用于回购”，也不能用季度销毁估值填入营业收入或净利润。</p><p>本行 P/S、持币者回报倍数、项目净利润 P/E 和年化回购收益率均不适用。季度记录的供应效果仍须与其他供应变动对账，不能据此断言自由流通净通缩。</p></div>${bnbChainMarkup(project,start,end)}${burnObservationsMarkup(project)}${proof}<div class="sources">${(project.sources || []).map(source => link(source.title, source.url)).join(' ')}</div>`;
+  return `${quarterlyPlanMarkup(project)}${quarterHistoryMarkup(project)}${burnRecordsMarkup(project,start,end)}<div class="source-meaning"><h3>BNB 的销毁与收入回购分别研究</h3><p>Auto-Burn 是按规则处理的季度储备销毁；BEP-95 是链上交易费中的实时销毁。不能把两者合称为“企业净利润用于回购”，也不能用季度销毁估值填入营业收入或净利润。</p><p>本行 P/S、持币者回报倍数、项目净利润 P/E 和年化回购收益率均不适用。季度记录的供应效果仍须与其他供应变动对账，不能据此断言自由流通净通缩。</p></div>${bnbChainMarkup(project,start,end)}${burnObservationsMarkup(project)}${proof}<div class="sources">${(project.sources || []).map(source => link(source.title, source.url)).join(' ')}</div>`;
 }

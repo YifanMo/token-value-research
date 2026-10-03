@@ -51,6 +51,165 @@ def parameter_raw(number="0x10", ratio=1000, scale=10000):
         {"id": "ratio-scale-" + number, "result": "0x" + format(scale, "064x")}]}
 
 
+ETH_TX = "0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463"
+ETH_SENDER = "0x" + "a" * 40
+BEACON_TX = "0x" + "c" * 64
+
+
+def ethereum_raw():
+    units = 986000 * 10 ** 18
+    abi = "0x" + format(units, "064x")
+    tx = {"hash": ETH_TX, "to": bnb.ETH_BNB_CONTRACT, "from": ETH_SENDER,
+          "chainId": "0x1", "input": bnb.ETH_BURN_SELECTOR + abi[2:], "value": "0x0",
+          "blockHash": BLOCK, "blockNumber": "0x1234"}
+    log = {"address": bnb.ETH_BNB_CONTRACT, "topics": [bnb.ETH_BURN_TOPIC, "0x" + "0" * 24 + ETH_SENDER[2:]],
+           "data": abi, "transactionHash": ETH_TX, "blockHash": BLOCK, "blockNumber": "0x1234",
+           "logIndex": "0x1", "removed": False}
+    receipt = {"transactionHash": ETH_TX, "to": bnb.ETH_BNB_CONTRACT, "status": "0x1",
+               "blockHash": BLOCK, "blockNumber": "0x1234", "logs": [log]}
+    timestamp = int(dt.datetime(2017, 10, 18, 9, 0, tzinfo=UTC).timestamp())
+    return {bnb.QUARTERS_KEY: {"quarters": [{"rank": 1, "name": "Q3 2017", "amount": "986000",
+            "burnDate": "2017-10-18", "txLink": "https://etherscan.io/tx/" + ETH_TX}]},
+            bnb.ETH_TRANSACTIONS_KEY: [{"id": "chain-id", "result": "0x1"},
+                {"id": "tx-" + ETH_TX, "result": tx}, {"id": "receipt-" + ETH_TX, "result": receipt}],
+            bnb.ETH_BLOCKS_KEY: [{"id": "chain-id", "result": "0x1"},
+                {"id": "block-" + BLOCK, "result": {"hash": BLOCK, "number": "0x1234", "timestamp": hex(timestamp)}}]}
+
+
+def beacon_raw():
+    key = bnb.BEACON_TRANSACTION_PREFIX + BEACON_TX[2:]
+    return {bnb.QUARTERS_KEY: {"quarters": [{"rank": 26, "name": "Q4 2023", "amount": "2141487",
+            "burnDate": "2024-01-17", "pioneer": "1542.15",
+            "txLink": "https://explorer.binance.org/tx/" + BEACON_TX[2:].upper()}]},
+            key: {"txHash": BEACON_TX[2:].upper(), "blockHeight": 363201898,
+                  "txType": "BURN_TOKEN", "timeStamp": 1705501419379, "value": 2139945.12,
+                  "txAsset": "BNB", "hasChildren": 0, "code": 0}}
+
+
+class HistoricalChainProofs(unittest.TestCase):
+    def test_history_refresh_rejects_empty_or_truncated_indexes_but_accepts_new_quarters(self):
+        old = sample_raw()[bnb.QUARTERS_KEY]
+        self.assertTrue(bnb.valid_history_response(bnb.QUARTERS_KEY, old))
+        for invalid in [{}, {"quarters": []}, {"quarters": [old["quarters"][0]]}]:
+            self.assertFalse(bnb.valid_history_response(bnb.QUARTERS_KEY, invalid, old))
+        larger = copy.deepcopy(old)
+        larger["quarters"].append({"rank":35,"burnDate":"2026-04-15","amount":"10","txLink":"https://bscscan.com/tx/"+TX})
+        self.assertTrue(bnb.valid_history_response(bnb.QUARTERS_KEY, larger, old))
+        shortened = copy.deepcopy(larger)
+        shortened["quarters"] = old["quarters"]
+        self.assertFalse(bnb.valid_history_response(bnb.QUARTERS_KEY, shortened, larger))
+
+    def test_only_confirmed_matching_beacon_burns_are_final_cache_entries(self):
+        raw = beacon_raw()
+        key = bnb.BEACON_TRANSACTION_PREFIX + BEACON_TX[2:]
+        self.assertTrue(bnb.valid_history_response(key, raw[key]))
+        for invalid in [{}, {**raw[key],"code":1}, {**raw[key],"txType":"TRANSFER"}, {**raw[key],"txHash":TX[2:]}]:
+            self.assertFalse(bnb.valid_history_response(key, invalid))
+
+    def compile(self, raw):
+        return bnb.compile_bnb(raw, "2026-10-02", {"2017-10-18": 1})
+
+    def test_ethereum_original_burn_event_not_eth_value_is_proved(self):
+        raw = ethereum_raw()
+        record = self.compile(raw)["quarterly_records"][0]
+        self.assertTrue(record["verified"])
+        self.assertEqual(record["chain"], "ethereum")
+        self.assertEqual(record["exact_tokens"], "986000")
+        self.assertEqual(record["date"], "2017-10-18")
+        self.assertEqual(record["usd"], 986000)
+        self.assertEqual(record["proof_source_keys"], [bnb.ETH_TRANSACTIONS_KEY, bnb.ETH_BLOCKS_KEY])
+        self.assertEqual(record["evidence"], "successful_original_bnb_erc20_burn_event")
+        # Old pre-EIP-155 transaction RPC can omit its own chainId; both RPC
+        # stages have an explicit Ethereum chain-id observation.
+        raw[bnb.ETH_TRANSACTIONS_KEY][1]["result"].pop("chainId")
+        self.assertTrue(self.compile(raw)["quarterly_records"][0]["verified"])
+
+    def test_ethereum_wrong_contract_chain_log_amount_and_sender_are_rejected(self):
+        cases = [
+            ("tx", "to", bnb.DEAD_ADDRESS), ("tx", "chainId", "0x38"),
+            ("tx", "input", "0xa9059cbb" + "0" * 64),
+            ("receipt", "status", "0x0"),
+            ("log", "address", bnb.DEAD_ADDRESS), ("log", "data", "0x" + "0" * 64),
+            ("log", "topics", [bnb.ETH_BURN_TOPIC, "0x" + "0" * 64]),
+            ("log", "removed", True), ("log", "transactionHash", TX),
+            ("log", "blockHash", TX), ("log", "blockNumber", "0x1"),
+        ]
+        for target, field, value in cases:
+            with self.subTest(target=target, field=field):
+                raw = ethereum_raw()
+                tx = raw[bnb.ETH_TRANSACTIONS_KEY][1]["result"]
+                receipt = raw[bnb.ETH_TRANSACTIONS_KEY][2]["result"]
+                {"tx": tx, "receipt": receipt, "log": receipt["logs"][0]}[target][field] = value
+                self.assertFalse(self.compile(raw)["quarterly_records"][0]["verified"])
+        for source in [bnb.ETH_TRANSACTIONS_KEY, bnb.ETH_BLOCKS_KEY]:
+            raw = ethereum_raw()
+            raw[source][0]["result"] = "0x38"
+            self.assertFalse(self.compile(raw)["quarterly_records"][0]["verified"])
+
+    def test_duplicate_burn_logs_and_post_migration_burns_are_rejected(self):
+        raw = ethereum_raw()
+        raw[bnb.ETH_TRANSACTIONS_KEY][2]["result"]["logs"] *= 2
+        self.assertFalse(self.compile(raw)["quarterly_records"][0]["verified"])
+        raw = ethereum_raw()
+        raw[bnb.ETH_BLOCKS_KEY][1]["result"]["timestamp"] = hex(int(dt.datetime(2019, 4, 23, tzinfo=UTC).timestamp()))
+        record = self.compile(raw)["quarterly_records"][0]
+        self.assertEqual(record["verification_error"], "erc20_migration_or_post_quarterly_era")
+        # Unlisted migration transactions are not discovered from ERC20 logs.
+        raw[bnb.QUARTERS_KEY]["quarters"] = []
+        self.assertEqual(self.compile(raw)["quarterly_records"], [])
+
+    def test_beacon_indexed_actual_is_separate_from_tracker_total_and_rpc_total(self):
+        raw = beacon_raw()
+        compiled = self.compile(raw)
+        record = compiled["quarterly_records"][0]
+        self.assertEqual(record["status"], "indexed_verified")
+        self.assertFalse(record["verified"])
+        self.assertEqual(record["reported_amount"], "2141487")
+        self.assertEqual(record["reported_pioneer"], "1542.15")
+        self.assertEqual(record["indexed_tokens"], 2139945.12)
+        self.assertNotIn("tokens", record)
+        self.assertNotIn("date", record)
+        self.assertEqual(compiled["burn_history"], {})
+        window = bnb.quarterly_window(compiled["quarterly_records"], "2024-01-17", 1, {})
+        self.assertIsNone(window["tokens"])
+        self.assertEqual(window["unverified_events"], 1)
+        source = next(s for s in compiled["data_sources"] if s["source_key"] == record["indexed_source_key"])
+        self.assertEqual(source["role"], "official_explorer_indexer")
+        self.assertFalse(source["independent_rpc_verified"])
+        self.assertEqual(compiled["quarterly_history_coverage"]["official_explorer_confirmed_records"], 1)
+
+    def test_beacon_failed_wrong_asset_transfer_hash_or_invalid_amount_is_rejected(self):
+        for field, value in [("txHash", "f" * 64), ("code", 1), ("code", False),
+                             ("txType", "TRANSFER"), ("txAsset", "BNB-123"), ("value", -1),
+                             ("value", 1.123456789), ("timeStamp", True), ("hasChildren", 1)]:
+            with self.subTest(field=field):
+                raw = beacon_raw()
+                raw[bnb.BEACON_TRANSACTION_PREFIX + BEACON_TX[2:]][field] = value
+                record = self.compile(raw)["quarterly_records"][0]
+                self.assertEqual(record["status"], "unverified")
+                self.assertNotIn("indexed_tokens", record)
+
+    def test_new_jobs_sources_and_rpc_health_validation(self):
+        raw = ethereum_raw()
+        tx_jobs = bnb.bnb_rpc_jobs(raw)
+        self.assertEqual(tx_jobs[0][0], bnb.ETH_TRANSACTIONS_KEY)
+        self.assertTrue(bnb.valid_rpc_response(tx_jobs[0][0], raw[bnb.ETH_TRANSACTIONS_KEY], tx_jobs[0][2]))
+        duplicate = raw[bnb.ETH_TRANSACTIONS_KEY] + [copy.deepcopy(raw[bnb.ETH_TRANSACTIONS_KEY][1])]
+        self.assertFalse(bnb.valid_rpc_response(tx_jobs[0][0], duplicate, tx_jobs[0][2]))
+        null = copy.deepcopy(raw[bnb.ETH_TRANSACTIONS_KEY])
+        null[2]["result"] = None
+        self.assertFalse(bnb.valid_rpc_response(tx_jobs[0][0], null, tx_jobs[0][2]))
+        self.assertIn(bnb.ETH_BLOCKS_KEY, bnb.proof_keys(raw))
+        self.assertGreaterEqual(len(bnb.rpc_endpoints(bnb.ETH_TRANSACTIONS_KEY)), 2)
+        self.assertGreaterEqual(len(bnb.rpc_endpoints(bnb.TRANSACTIONS_KEY)), 2)
+        beacon = beacon_raw()
+        job = bnb.bnb_beacon_jobs(beacon)[0]
+        self.assertEqual(len(job), 2)
+        self.assertEqual(job[0], bnb.BEACON_TRANSACTION_PREFIX + BEACON_TX[2:])
+        self.assertEqual(job[1], bnb.BEACON_API + BEACON_TX[2:].upper())
+        self.assertIn(job[0], bnb.proof_keys(beacon))
+
+
 class QuarterlyBurnProof(unittest.TestCase):
     def compile(self, raw=None, cutoff="2026-10-01", prices=None):
         return bnb.compile_bnb_data(raw or sample_raw(), cutoff,

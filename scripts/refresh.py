@@ -12,9 +12,11 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import threading
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 
 try:
     from scripts.web_assets import generate_web_assets
@@ -95,45 +97,96 @@ def retry_after_delay(value, now=None):
     return max(0.0, min(120.0, delay))
 
 
+class RequestGate:
+    """One vendor queue shared by worker threads, including 429 cooldowns."""
+    def __init__(self, gap=4.0):
+        self.gap, self.next_allowed, self.lock = gap, 0.0, threading.Lock()
+
+    def wait(self):
+        with self.lock:
+            delay = max(0.0, self.next_allowed - time.monotonic())
+            if delay:
+                time.sleep(delay)
+            self.next_allowed = time.monotonic() + self.gap
+
+    def defer(self, delay):
+        with self.lock:
+            self.next_allowed = max(self.next_allowed, time.monotonic() + delay)
+
+
+COINGECKO_GATE = RequestGate()
+
+
+def wait_for_vendor_slot(url):
+    if urlparse(url).hostname == "api.coingecko.com":
+        COINGECKO_GATE.wait()
+
+
+def defer_vendor_requests(url, delay):
+    if urlparse(url).hostname == "api.coingecko.com":
+        COINGECKO_GATE.defer(delay)
+
+
 def request(item):
     key, url, *post = item
     path = RAW / (key + ".json")
+    payload = post[0] if post else None
+    endpoints = list(dict.fromkeys([url, *bnb_data.rpc_endpoints(key)]))
+    attempts = []
     try:
-        payload = post[0] if post else None
-        req = urllib.request.Request(url, data=json.dumps(payload).encode() if payload else None,
-                                     headers={"User-Agent": "LocalTokenResearch/1.0", **({"Content-Type":"application/json"} if payload else {})})
-        for attempt in range(2):
+        body, used_url = None, None
+        for candidate in endpoints:
             try:
-                with urllib.request.urlopen(req, timeout=35) as response:
-                    body = response.read()
+                req = urllib.request.Request(candidate, data=json.dumps(payload).encode() if payload else None,
+                                             headers={"User-Agent": "LocalTokenResearch/1.0", **({"Content-Type":"application/json"} if payload else {})})
+                for attempt in range(2):
+                    wait_for_vendor_slot(candidate)
+                    try:
+                        with urllib.request.urlopen(req, timeout=35) as response:
+                            candidate_body = response.read()
+                        break
+                    except urllib.error.HTTPError as error:
+                        if error.code != 429 or attempt == 1:
+                            raise
+                        delay = retry_after_delay(error.headers.get("Retry-After") if error.headers else None)
+                        defer_vendor_requests(candidate, delay)
+                        time.sleep(delay)
+                data = json.loads(candidate_body)
+                api_status = data.get("status") if isinstance(data, dict) else None
+                if isinstance(data, dict) and (data.get("error") or isinstance(api_status, dict) and api_status.get("error_code")):
+                    raise ValueError(str(data)[:200])
+                if isinstance(data, list) and any(isinstance(row, dict) and row.get("error") for row in data):
+                    raise ValueError("RPC batch contains failed results")
+                if bnb_data.rpc_endpoints(key) and not bnb_data.valid_rpc_response(key, data, payload):
+                    raise ValueError("RPC响应缺少完整结果或链标识不符")
+                if not bnb_data.valid_history_response(key, data, load(path)):
+                    raise ValueError("BNB历史响应不完整、交易尚未确认或缺少已有季度；保留上次成功记录")
+                if key.startswith("llama-") and not isinstance(data.get("totalDataChart"), list):
+                    raise ValueError("Missing totalDataChart; incompatible response")
+                if key.startswith(SUPPLEMENTAL_PRICE_KEY) and not isinstance(data.get("coins"), dict):
+                    raise ValueError("Missing coins; incompatible historical price response")
+                body, used_url = candidate_body, candidate
                 break
-            except urllib.error.HTTPError as error:
-                if error.code != 429 or attempt == 1:
-                    raise
-                time.sleep(retry_after_delay(error.headers.get("Retry-After") if error.headers else None))
-        data = json.loads(body)
-        api_status = data.get("status") if isinstance(data, dict) else None
-        if isinstance(data, dict) and (data.get("error") or isinstance(api_status, dict) and api_status.get("error_code")):
-            raise ValueError(str(data)[:200])
-        if isinstance(data, list) and any(isinstance(row, dict) and row.get("error") for row in data):
-            raise ValueError("RPC batch contains failed results")
-        if key.startswith("llama-") and not isinstance(data.get("totalDataChart"), list):
-            raise ValueError("Missing totalDataChart; incompatible response")
-        if key.startswith(SUPPLEMENTAL_PRICE_KEY) and not isinstance(data.get("coins"), dict):
-            raise ValueError("Missing coins; incompatible historical price response")
+            except Exception as error:
+                attempts.append({"url": candidate, "error": str(error), "attempted_at": dt.datetime.now(UTC).isoformat()})
+        if body is None:
+            raise ValueError(attempts[-1]["error"] if attempts else "未取得响应")
         temp = path.with_suffix(".json.tmp")
         temp.write_bytes(body)
         temp.replace(path)
-        meta = {"url": url, "retrieved_at": dt.datetime.now(UTC).isoformat(),
+        meta = {"url": used_url, "retrieved_at": dt.datetime.now(UTC).isoformat(),
                 "sha256": hashlib.sha256(body).hexdigest(), "status": "fresh"}
+        if used_url != url or attempts:
+            meta.update(requested_url=url, fallback_used=used_url != url, request_attempts=attempts)
         if payload:
             meta["request"] = payload
         dump(RAW / (key + ".meta.json"), meta)
         return key, meta
     except Exception as error:
         previous = load(RAW / (key + ".meta.json"), {})
-        return key, {**previous, "url": url, "status": "cached" if path.exists() else "missing",
-                     "refresh_error": str(error)}
+        return key, {**previous, "url": previous.get("url", url) if path.exists() else url,
+                     "requested_url": url, "status": "cached" if path.exists() else "missing",
+                     "refresh_error": str(error), "attempted_at": dt.datetime.now(UTC).isoformat(), "request_attempts": attempts}
 
 
 def series(data, cutoff):
@@ -449,25 +502,29 @@ def update_supplemental_sources(manifest, status, offline=False):
 
 
 def bnb_responses():
-    keys = [job[0] for job in bnb_data.bnb_jobs()] + [bnb_data.TRANSACTIONS_KEY, bnb_data.BLOCKS_KEY,
-                                                                  bnb_data.VALIDATOR_PARAMETERS_KEY]
+    index = {bnb_data.QUARTERS_KEY: load(RAW / (bnb_data.QUARTERS_KEY + ".json"), {})}
+    keys = [job[0] for job in bnb_data.bnb_jobs()] + bnb_data.proof_keys(index)
     return {key: load(RAW / (key + ".json"), {}) for key in keys}
 
 
 def update_bnb_proofs(status, cutoff, offline=False):
     """Transaction/receipt discovery precedes block proofs; never parallelize stages."""
-    for builder in [bnb_data.bnb_rpc_jobs, bnb_data.bnb_block_jobs]:
+    for builder in [bnb_data.bnb_rpc_jobs, bnb_data.bnb_block_jobs, bnb_data.bnb_beacon_jobs]:
         jobs = builder(bnb_responses(), cutoff)
         if offline:
-            for key, url, payload in jobs:
+            for key, url, *post in jobs:
                 meta = load(RAW / (key + ".meta.json"), {})
                 status[key] = {**meta, "url": url, "status": "offline-cache" if (RAW / (key + ".json")).exists() else "missing"}
         else:
             for job in jobs:
-                key, url, payload = job
+                key, url, *post = job
+                payload = post[0] if post else None
                 path = RAW / (key + ".json")
                 meta = load(RAW / (key + ".meta.json"), {})
-                if path.exists() and meta.get("url") == url and meta.get("request") == payload and meta.get("sha256") == hashlib.sha256(path.read_bytes()).hexdigest():
+                approved_urls = [url, *bnb_data.rpc_endpoints(key)]
+                valid_cached_rpc = not bnb_data.rpc_endpoints(key) or bnb_data.valid_rpc_response(key, load(path), payload)
+                valid_cached_history = bnb_data.valid_history_response(key, load(path))
+                if path.exists() and meta.get("url") in approved_urls and meta.get("request") == payload and meta.get("sha256") == hashlib.sha256(path.read_bytes()).hexdigest() and valid_cached_rpc and valid_cached_history:
                     status[key] = {**meta, "status": "cached", "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"}
                 else:
                     _, status[key] = request(job)
@@ -479,7 +536,15 @@ def compile_bnb_sources(cutoff, prices, fetch_meta):
     for key in raw:
         meta = {**load(RAW / (key + ".meta.json"), {}), **fetch_meta.get(key, {})}
         metadata[key] = {**meta, **archive_response(key, meta)}
-    return bnb_data.compile_bnb_data(raw, cutoff, prices, metadata)
+    compiled = bnb_data.compile_bnb_data(raw, cutoff, prices, metadata)
+    official_path = ROOT / "data" / "bnb-quarterly-history.json"
+    if official_path.exists():
+        registry = load(official_path)
+        review_date = registry.get("reviewed_at_utc", "")[:10]
+        if review_date and review_date > (cutoff + dt.timedelta(days=1)).isoformat():
+            raise ValueError("季度公告清单复核日晚于研究快照，不用于历史回测。")
+        compiled["official_history"] = {**registry, **archive_file(official_path, {}, "BNB季度公告历史")}
+    return compiled
 
 
 def compile_snapshot(as_of, fetch_meta, now=None):

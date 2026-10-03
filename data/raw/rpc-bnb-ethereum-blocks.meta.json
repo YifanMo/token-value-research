@@ -1,0 +1,77 @@
+{
+  "url": "https://eth-mainnet.public.blastapi.io",
+  "retrieved_at": "2026-10-03T12:36:02.964895+00:00",
+  "sha256": "fc62a219dc50b7f72c7d9d87633c8e3c875d622cd140ba99087968708fc78159",
+  "status": "fresh",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": "chain-id",
+      "method": "eth_chainId",
+      "params": []
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x08bba1be81d0ad34b3ef9f4706104b297639f12c51c69519d703927000004489",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x08bba1be81d0ad34b3ef9f4706104b297639f12c51c69519d703927000004489",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x20bd51be21a4d28a39decf1fcb3ef45b589573b4a617657f942155e8bdd1be25",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x20bd51be21a4d28a39decf1fcb3ef45b589573b4a617657f942155e8bdd1be25",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x28812739aa7f31e1ac8673e69a41b853711a5008c6f72de7c79e657d0610859f",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x28812739aa7f31e1ac8673e69a41b853711a5008c6f72de7c79e657d0610859f",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0x8e1b045b954a06c264ee8671316ee66632f943eb9c1ba77b45ec91c3bed73feb",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0x8e1b045b954a06c264ee8671316ee66632f943eb9c1ba77b45ec91c3bed73feb",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xa438ee89e994aa136536aed9527ce80d4d7f1789d17124fea77fecc06b64e96c",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xa438ee89e994aa136536aed9527ce80d4d7f1789d17124fea77fecc06b64e96c",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xa8c5de5c9af454f423997f29c8f98e23fb98787e4f23a8b34056d4859c87f059",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xa8c5de5c9af454f423997f29c8f98e23fb98787e4f23a8b34056d4859c87f059",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "block-0xf18a86e2eeae8e35f1566df911b3e90cb446905dd47be07edcb46c54fe7a7065",
+      "method": "eth_getBlockByHash",
+      "params": [
+        "0xf18a86e2eeae8e35f1566df911b3e90cb446905dd47be07edcb46c54fe7a7065",
+        false
+      ]
+    }
+  ]
+}

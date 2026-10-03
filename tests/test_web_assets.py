@@ -154,6 +154,31 @@ class WebAssetDelivery(unittest.TestCase):
         for path, body in original_bytes.items():
             self.assertEqual(self.local_path(path).read_bytes(), body)
 
+    def test_duplicate_burn_records_are_delivered_once_without_losing_evidence(self):
+        records = [{'rank': 1, 'tokens': 986000, 'verified': True,
+                    'exact_tokens': '986000', 'proof_source_keys': ['ethereum-receipts'],
+                    'transaction_url': 'https://etherscan.io/tx/' + '0x' + 'a' * 64}]
+        official = {'quarters': [{'rank': 1, 'source_ids': ['announcement-1']}],
+                    'sources': [{'id': 'announcement-1', 'response_path': '../data/responses/pinned.json',
+                                 'sha256': 'b' * 64}]}
+        self.snapshot['projects'][0]['burns'] = {
+            'burn_records': copy.deepcopy(records), 'quarterly_records': records,
+            'official_history': official}
+        before = copy.deepcopy(self.snapshot)
+        web_assets.generate_web_assets(self.snapshot, self.root)
+        burns = self.lite()['projects'][0]['burns']
+        self.assertNotIn('burn_records', burns)
+        self.assertEqual(burns['quarterly_records'], records)
+        self.assertEqual(burns['official_history'], official)
+        self.assertEqual(self.snapshot, before)
+
+        # A future collector may add a separate gas-burn event to the legacy
+        # field. It must remain available rather than silently be discarded.
+        self.snapshot['projects'][0]['burns']['burn_records'].append({'kind': 'gas_burn', 'tokens': 12})
+        web_assets.generate_web_assets(self.snapshot, self.root)
+        self.assertEqual(self.lite()['projects'][0]['burns']['burn_records'],
+                         self.snapshot['projects'][0]['burns']['burn_records'])
+
     def test_corrupt_existing_asset_is_rejected_without_replacing_manifest(self):
         web_assets.generate_web_assets(self.snapshot, self.root)
         path = self.root / 'data' / 'dashboard-lite.json'

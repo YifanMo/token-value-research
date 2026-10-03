@@ -1,0 +1,104 @@
+{
+  "reviewed_at": "2026-10-03T12:31:50.409164+00:00",
+  "purpose": "Ethereum original BNB quarterly burns verified via public read-only JSON RPC; root owns final raw cache/archive.",
+  "ethereum_source_url": "https://eth-mainnet.public.blastapi.io",
+  "ethereum_records": [
+    {
+      "rank": 1,
+      "status": "verified",
+      "date": "2017-10-18",
+      "exact_tokens": "986000",
+      "reported_date": "2017-10-18",
+      "reported_amount": "986000",
+      "transaction_hash": "0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463",
+      "block_number": 4381896,
+      "block_hash": "0x08bba1be81d0ad34b3ef9f4706104b297639f12c51c69519d703927000004489",
+      "verification_error": null
+    },
+    {
+      "rank": 2,
+      "status": "verified",
+      "date": "2018-01-15",
+      "exact_tokens": "1821586",
+      "reported_date": "2018-01-15",
+      "reported_amount": "1821586",
+      "transaction_hash": "0x3ebe8fa51909536be4ecae47b0877fa72ec5fd2afda7ae2d829064847757282b",
+      "block_number": 4912123,
+      "block_hash": "0xf18a86e2eeae8e35f1566df911b3e90cb446905dd47be07edcb46c54fe7a7065",
+      "verification_error": null
+    },
+    {
+      "rank": 3,
+      "status": "verified",
+      "date": "2018-04-15",
+      "exact_tokens": "2220314",
+      "reported_date": "2018-04-15",
+      "reported_amount": "2220314",
+      "transaction_hash": "0x15132c07b4fdee0d4c77c2993588270914c1451953f5fa9ee20aa5450f399031",
+      "block_number": 5444201,
+      "block_hash": "0xa8c5de5c9af454f423997f29c8f98e23fb98787e4f23a8b34056d4859c87f059",
+      "verification_error": null
+    },
+    {
+      "rank": 4,
+      "status": "verified",
+      "date": "2018-07-18",
+      "exact_tokens": "2528767",
+      "reported_date": "2018-07-18",
+      "reported_amount": "2528767",
+      "transaction_hash": "0x7a07faca141707c9d6aa92b1f2e5e8e9420f2b43d36ced1126d061582e3ae9fa",
+      "block_number": 5986067,
+      "block_hash": "0x28812739aa7f31e1ac8673e69a41b853711a5008c6f72de7c79e657d0610859f",
+      "verification_error": null
+    },
+    {
+      "rank": 5,
+      "status": "verified",
+      "date": "2018-10-17",
+      "exact_tokens": "1643985.999999999999999999",
+      "reported_date": "2018-10-17",
+      "reported_amount": "1643986",
+      "transaction_hash": "0xc0fcb8186fc0bb4a37dda7960a7cd33b4d8b93ba6bfbac3ae6d7b50c7282b4ad",
+      "block_number": 6530285,
+      "block_hash": "0x20bd51be21a4d28a39decf1fcb3ef45b589573b4a617657f942155e8bdd1be25",
+      "verification_error": null
+    },
+    {
+      "rank": 6,
+      "status": "verified",
+      "date": "2019-01-16",
+      "exact_tokens": "1623818",
+      "reported_date": "2019-01-16",
+      "reported_amount": "1623818",
+      "transaction_hash": "0xbf97244cf0c5709e0dd36e37bacb994f95c245aaf20a279595b5371ff592f4b0",
+      "block_number": 7073961,
+      "block_hash": "0xa438ee89e994aa136536aed9527ce80d4d7f1789d17124fea77fecc06b64e96c",
+      "verification_error": null
+    },
+    {
+      "rank": 7,
+      "status": "verified",
+      "date": "2019-04-16",
+      "exact_tokens": "829888",
+      "reported_date": "2019-04-16",
+      "reported_amount": "829888",
+      "transaction_hash": "0xfb51618892938f115aaeaa351ba2c8d6cb9205bdac020c8328fac1f1b57c28a2",
+      "block_number": 7576417,
+      "block_hash": "0x8e1b045b954a06c264ee8671316ee66632f943eb9c1ba77b45ec91c3bed73feb",
+      "verification_error": null
+    }
+  ],
+  "methods": [
+    "eth_chainId",
+    "eth_getTransactionByHash",
+    "eth_getTransactionReceipt",
+    "eth_getBlockByHash"
+  ],
+  "contract": "0xb8c77482e45f1f44de1745f52c74426c631bdd52",
+  "burn_event_topic": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5",
+  "contract_source": "https://etherscan.io/address/0xb8c77482e45f1f44de1745f52c74426c631bdd52#code",
+  "beacon_documentation": "https://docs.bnbchain.org/bc-fusion/post-fusion/faq/",
+  "beacon_live_json_example": "https://explorer.bnbchain.org/api/v1/tx?txHash=D1888295E904D5372E75D7E7FF9A901BD003075F712DF8E173ABBA2850E7E00B",
+  "beacon_limit": "Official explorer index is not independent raw chain proof; original Beacon RPC dataseed1.bnbchain.org tx/block returned HTTP502 during review.",
+  "stable_update_strategy": "Discover finalized quarterly execution via BNBBurn API, freeze accepted tx/receipt/block proofs and immutable hashes; use public RPC endpoint fallbacks on JSONRPC error/null/missing IDs; retain evidence date for cached proofs. Do not discover migration burn events as economic quarterly burns."
+}

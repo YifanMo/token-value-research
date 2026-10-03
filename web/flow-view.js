@@ -1,7 +1,7 @@
 import {known} from './core.js';
 import {buildFlow} from './flows.js';
 import {isReserveBurn, statisticLabel} from './models.js';
-import {quarterlyPlanMarkup, burnRecordsMarkup, burnObservationsMarkup, bnbChainMarkup} from './burns.js';
+import {quarterlyPlanMarkup, quarterHistoryMarkup, burnRecordsMarkup, burnObservationsMarkup, bnbChainMarkup} from './burns.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=value=>!known(value)?'金额待核':Math.abs(value)>=1e8?`${(value/1e8).toFixed(2)}亿美元`:Math.abs(value)>=1e4?`${(value/1e4).toLocaleString('zh-CN',{maximumFractionDigits:1})}万美元`:`${value.toLocaleString('en-US',{maximumFractionDigits:2})}美元`;
@@ -35,7 +35,7 @@ export function moneyFlowMarkup(project,days) {
   const window=project.windows?.[String(days)] || {};
   const sources=[...(project.data_sources || []),...(window.flow_distributions?.sources||[])];
   const normalizations={...(project.fee_normalization?{fees:project.fee_normalization}:{}),...project.flow_normalizations};
-  return `${isReserveBurn(project)?quarterlyPlanMarkup(project)+burnRecordsMarkup(project,model.start,model.end):''}<article class="card money-flow-section" id="money-flow-section" aria-labelledby="money-flow-title">
+  return `${isReserveBurn(project)?quarterlyPlanMarkup(project)+quarterHistoryMarkup(project)+burnRecordsMarkup(project,model.start,model.end):''}<article class="card money-flow-section" id="money-flow-section" aria-labelledby="money-flow-title">
     <div class="section-title"><h3 id="money-flow-title">${esc(project.ticker)} · ${isReserveBurn(project)?'两条销毁路径':'钱从哪里来，又去了哪里'}</h3><span>${esc(model.start)} → ${esc(model.end)} · ${days}天${isReserveBurn(project)?'':' · USD'}</span></div>
     <p class="flow-origins"><strong>${isReserveBurn(project)?'链上业务：':'收费业务：'}</strong>${esc(rule.origins)}</p>
     ${rule.direct_path_note?`<p class="flow-bypass">${esc(rule.direct_path_note)}</p>`:''}

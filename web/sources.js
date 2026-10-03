@@ -2,6 +2,32 @@ import {known} from './core.js';
 
 export const buybackSource = project => project.data_sources?.find(source => source.kind === 'holders');
 
+export function sourceIssueSummary(key, meta, projects=[]) {
+  const priceProject = projects.find(project => project.price_source?.url === meta.url);
+  const dataProject = projects.find(project => (project.data_sources || []).some(source => source.source_key === key || source.url === meta.url));
+  const project = priceProject || dataProject;
+  const source = (dataProject?.data_sources || []).find(source => source.source_key === key || source.url === meta.url);
+  const kinds = {fees:'手续费',revenue:'协议收入',holders:'回购／销毁',burns:'季度销毁记录',
+    burn_proof:'季度交易核验',burn_proof_ethereum:'以太坊季度交易核验',burn_proof_beacon:'Beacon历史交易',
+    chain_fees:'BSC手续费',gas_burn_policy_estimate:'Gas销毁模型',supply:'供应快照'};
+  const kind = priceProject || key.startsWith('price-') ? '历史价格' : kinds[source?.kind] || '数据接口';
+  let provider = source?.provider || priceProject?.price_source?.provider || '';
+  try {
+    const host = new URL(meta.url).hostname;
+    if (/coingecko\.com$/.test(host)) provider = 'CoinGecko';
+    else if (/llama\.fi$/.test(host)) provider = 'DefiLlama';
+    else if (!provider) provider = host;
+  } catch {}
+  const error = String(meta.refresh_error || '接口没有可用响应');
+  const cause = /\b429\b|too many requests/i.test(error) ? '接口限流（429：请求过多）'
+    : /timeout|timed out/i.test(error) ? '请求超时' : error;
+  const cached = meta.status !== 'missing';
+  return {key,ticker:project?.ticker || (key.includes('bnb') ? 'BNB' : null),
+    name:[project?.ticker || (key.includes('bnb') ? 'BNB' : ''),kind,provider].filter(Boolean).join(' · '),
+    cause,impact:cached ? `${kind}继续使用上次成功的数据；此次未取得该接口的新响应。` : `${kind}未取得，相应指标保留缺数据。`,
+    cached,lastSuccess:meta.retrieved_at || null,attemptedAt:meta.attempted_at || null,url:meta.url};
+}
+
 const close = (a,b,tolerance=1e-6) => known(a) && known(b) && Math.abs(a-b) <= Math.max(tolerance,Math.abs(b)*1e-10);
 
 function normalizeFeeRow(row, breakdown, rule) {

@@ -1,6 +1,6 @@
 {
   "url": "https://api.coingecko.com/api/v3/coins/aave/market_chart?vs_currency=usd&days=365&interval=daily",
-  "retrieved_at": "2026-10-03T08:21:28.915114+00:00",
-  "sha256": "f83c97d30e1eaa48a03f650f79bacd4e5d8ae9a64d4379c01742561af1bd7114",
+  "retrieved_at": "2026-10-03T12:35:59.825295+00:00",
+  "sha256": "a417f3588ec4648be0fe8ea6b6eb85a571a6892d69564b454bba59ead450de9f",
   "status": "fresh"
 }

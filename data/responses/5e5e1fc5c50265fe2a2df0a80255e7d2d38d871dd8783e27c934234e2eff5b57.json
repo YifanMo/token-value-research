@@ -1,0 +1,1454 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-03T12:33:51.051366+00:00",
+  "scope": "第1至36次已发生季度销毁；第37/38次追踪器预测不计入历史执行清单。",
+  "method_notes": [
+    "reported_total_tokens来自逐期官方公告，可能包括Pioneer有效销毁及其他附加项。",
+    "actual_tokens是官文明示数量或reported total减已披露Pioneer的算术结果，不代表本项目完成链上独立验证；后者由单独的verified交易记录提供。",
+    "announcement_date是官方CMS publishDate UTC日期或BNB Chain文章发布日期；execution_date保留null，需由链上区块时间另行填入。",
+    "空Pioneer字段不等于0；早于Pioneer机制发布的第1至12次标为not_applicable，明确披露Nil的事件记0。",
+    "官文总额与追踪器或链上转账不相等时保留冲突，不覆盖原始响应。"
+  ],
+  "sources": [
+    {
+      "id": "quarter_1_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/115002205552",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=115002205552",
+      "fetched_at_utc": "2026-10-03T12:31:23.018056+00:00",
+      "response_path": "../data/responses/f8078aa5c2eae234f543616ad4dc992bc41bb910448f52cffdf6c3298f59c277.json",
+      "sha256": "f8078aa5c2eae234f543616ad4dc992bc41bb910448f52cffdf6c3298f59c277",
+      "format": "json",
+      "title": "Binance 1st Quarter BNB Burn Event",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_2_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360000012892",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360000012892",
+      "fetched_at_utc": "2026-10-03T12:31:23.006585+00:00",
+      "response_path": "../data/responses/7949cbf22e70661dee8d2fb4ffb1e12bc298aa9e639084136f69bb9e781c0a85.json",
+      "sha256": "7949cbf22e70661dee8d2fb4ffb1e12bc298aa9e639084136f69bb9e781c0a85",
+      "format": "json",
+      "title": "Binance Coin Burn in 2018 Winter",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_3_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360002684252",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360002684252",
+      "fetched_at_utc": "2026-10-03T12:31:22.822699+00:00",
+      "response_path": "../data/responses/f2261a19b74d862d842fee928a2e5a6cb9667b1ae9b981f5fd868048a9358206.json",
+      "sha256": "f2261a19b74d862d842fee928a2e5a6cb9667b1ae9b981f5fd868048a9358206",
+      "format": "json",
+      "title": "Binance 3rd Quarterly Token Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_4_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360007534151",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360007534151",
+      "fetched_at_utc": "2026-10-03T12:31:24.194955+00:00",
+      "response_path": "../data/responses/0a15b305c192a562e867ba5596aa25a3429265c076bc484bdfb465919bfb96f7.json",
+      "sha256": "0a15b305c192a562e867ba5596aa25a3429265c076bc484bdfb465919bfb96f7",
+      "format": "json",
+      "title": "Binance Completes 4th Quarter Token Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_5_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360018044252",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360018044252",
+      "fetched_at_utc": "2026-10-03T12:31:23.119724+00:00",
+      "response_path": "../data/responses/71c3b1ab03ec5bd25c8b36213f1574c5612d11e5993e72ac8149c6770b1b77e6.json",
+      "sha256": "71c3b1ab03ec5bd25c8b36213f1574c5612d11e5993e72ac8149c6770b1b77e6",
+      "format": "json",
+      "title": "Binance Completes 5th Quarter Token Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_6_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360021824592",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360021824592",
+      "fetched_at_utc": "2026-10-03T12:31:23.878651+00:00",
+      "response_path": "../data/responses/cc281d1f7726942e93e68e10f83521042e26f43e0bbb3a8f8162cc86c9c0c21c.json",
+      "sha256": "cc281d1f7726942e93e68e10f83521042e26f43e0bbb3a8f8162cc86c9c0c21c",
+      "format": "json",
+      "title": "Binance Completes 6th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_7_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360026706152",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360026706152",
+      "fetched_at_utc": "2026-10-03T12:31:24.167047+00:00",
+      "response_path": "../data/responses/7b7efbcc2ccfe581764954acc1b39949c66aeb9a431e67d928807141a853ae75.json",
+      "sha256": "7b7efbcc2ccfe581764954acc1b39949c66aeb9a431e67d928807141a853ae75",
+      "format": "json",
+      "title": "Binance Completes 7th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_8_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360030566712",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360030566712",
+      "fetched_at_utc": "2026-10-03T12:28:38.718044+00:00",
+      "response_path": "../data/responses/7b6aedce51b4b8090b7455f5aeccffeea238a50be19970854c65ce3d65c4f99d.json",
+      "sha256": "7b6aedce51b4b8090b7455f5aeccffeea238a50be19970854c65ce3d65c4f99d",
+      "format": "json",
+      "title": "Binance Completes 8th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_9_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360034907372",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360034907372",
+      "fetched_at_utc": "2026-10-03T12:28:38.704099+00:00",
+      "response_path": "../data/responses/1fbb444c7f4065793b1ffe1c370d1550ab22808f113c81906eca04b6ae32c612.json",
+      "sha256": "1fbb444c7f4065793b1ffe1c370d1550ab22808f113c81906eca04b6ae32c612",
+      "format": "json",
+      "title": "Binance Completes 9th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_10_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360038574712",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360038574712",
+      "fetched_at_utc": "2026-10-03T12:28:38.724865+00:00",
+      "response_path": "../data/responses/4f7b21c390c5cf9fdfae45c850f2c9a59333383512b5c94887047225213a8658.json",
+      "sha256": "4f7b21c390c5cf9fdfae45c850f2c9a59333383512b5c94887047225213a8658",
+      "format": "json",
+      "title": "Binance Completes 10th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_11_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/360042470611",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360042470611",
+      "fetched_at_utc": "2026-10-03T12:31:24.038723+00:00",
+      "response_path": "../data/responses/8acf80eb9029c315c93abf4a179b508faaa6a43bbac82aad46ffc0e10431292b.json",
+      "sha256": "8acf80eb9029c315c93abf4a179b508faaa6a43bbac82aad46ffc0e10431292b",
+      "format": "json",
+      "title": "Binance Completes 11th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_12_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/44d873922bf24317ac314d9f0665729b",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=44d873922bf24317ac314d9f0665729b",
+      "fetched_at_utc": "2026-10-03T12:28:38.524467+00:00",
+      "response_path": "../data/responses/8cfcc820b96842e4b5c38f1b38d4c6ea0aa587166906cd7e5eed575e443e224f.json",
+      "sha256": "8cfcc820b96842e4b5c38f1b38d4c6ea0aa587166906cd7e5eed575e443e224f",
+      "format": "json",
+      "title": "Binance Completes 12th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_13_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/4db101d45b204c3a9206c057f0f6856a",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=4db101d45b204c3a9206c057f0f6856a",
+      "fetched_at_utc": "2026-10-03T12:28:38.693063+00:00",
+      "response_path": "../data/responses/7bfdbb6fc536ef384539aeddc0c05b1c8bce950f67b7ef39025bb2541927ae66.json",
+      "sha256": "7bfdbb6fc536ef384539aeddc0c05b1c8bce950f67b7ef39025bb2541927ae66",
+      "format": "json",
+      "title": "Binance Completes 13th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_14_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/06e91e06eb904b96a7b19a378bb09aef",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=06e91e06eb904b96a7b19a378bb09aef",
+      "fetched_at_utc": "2026-10-03T12:31:24.171637+00:00",
+      "response_path": "../data/responses/d585c25567efa83fbc02b4f8282ba2cc39990ce7d9b50061c4c233fe96ed22aa.json",
+      "sha256": "d585c25567efa83fbc02b4f8282ba2cc39990ce7d9b50061c4c233fe96ed22aa",
+      "format": "json",
+      "title": "Binance Completes 14th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_15_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/f32506708c0240f783250cde0bb79e1b",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=f32506708c0240f783250cde0bb79e1b",
+      "fetched_at_utc": "2026-10-03T12:28:39.399149+00:00",
+      "response_path": "../data/responses/a3cb42367b023b00a2c3316b044291f88b2689c057dbf7935e70d96ba286d21a.json",
+      "sha256": "a3cb42367b023b00a2c3316b044291f88b2689c057dbf7935e70d96ba286d21a",
+      "format": "json",
+      "title": "Binance Completes 15th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_16_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/901a3d8dec1c42bba6e0931a7e68ceba",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=901a3d8dec1c42bba6e0931a7e68ceba",
+      "fetched_at_utc": "2026-10-03T12:28:39.546509+00:00",
+      "response_path": "../data/responses/a1d4ca28a8f55e7e4645b697f3547ec0fa5c0d59ed9d03f7aa536a5b5b1dbea4.json",
+      "sha256": "a1d4ca28a8f55e7e4645b697f3547ec0fa5c0d59ed9d03f7aa536a5b5b1dbea4",
+      "format": "json",
+      "title": "Binance Completes 16th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_17_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/39e8f691d64d468fbab1591fdf2aa343",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=39e8f691d64d468fbab1591fdf2aa343",
+      "fetched_at_utc": "2026-10-03T12:28:39.588262+00:00",
+      "response_path": "../data/responses/38ab0d628ff458d8756cbabfdf0236bfca4b18c11b18baef2928f2b9857772d0.json",
+      "sha256": "38ab0d628ff458d8756cbabfdf0236bfca4b18c11b18baef2928f2b9857772d0",
+      "format": "json",
+      "title": "Binance Completes 17th Quarterly BNB Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_18_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/850e3e4a49094b798f4b96a9cc1884e8",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=850e3e4a49094b798f4b96a9cc1884e8",
+      "fetched_at_utc": "2026-10-03T12:31:24.999401+00:00",
+      "response_path": "../data/responses/cf78f11edc3e0c02e941ad4a54b197678b189e6ca8f0a3f68eff2bec99c1d8ae.json",
+      "sha256": "cf78f11edc3e0c02e941ad4a54b197678b189e6ca8f0a3f68eff2bec99c1d8ae",
+      "format": "json",
+      "title": "The 18th Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_19_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/57641123c21f4aa9ba6e3f0f20f6735b",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=57641123c21f4aa9ba6e3f0f20f6735b",
+      "fetched_at_utc": "2026-10-03T12:28:39.764996+00:00",
+      "response_path": "../data/responses/d05c24f980bf5af4ccc16d0c0d9b3a6362c80c403726a7ada38ec4c4c1ce21e7.json",
+      "sha256": "d05c24f980bf5af4ccc16d0c0d9b3a6362c80c403726a7ada38ec4c4c1ce21e7",
+      "format": "json",
+      "title": "The 19th Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_20_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/780991cc032d4c878d87396c0f57de0f",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=780991cc032d4c878d87396c0f57de0f",
+      "fetched_at_utc": "2026-10-03T12:28:40.121156+00:00",
+      "response_path": "../data/responses/3a63788ce3ad5f3f725b445b1bdfb6f9e998d0de8e02d2db43062dea847febd3.json",
+      "sha256": "3a63788ce3ad5f3f725b445b1bdfb6f9e998d0de8e02d2db43062dea847febd3",
+      "format": "json",
+      "title": "The 20th Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_21_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/7edce2f958ae4c109433c82f3ecc5b05",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=7edce2f958ae4c109433c82f3ecc5b05",
+      "fetched_at_utc": "2026-10-03T12:28:40.316098+00:00",
+      "response_path": "../data/responses/79126e8ac5725deeb9a0310a7191c1e84d7c69cb0769d5c9a74f075f7b9cf993.json",
+      "sha256": "79126e8ac5725deeb9a0310a7191c1e84d7c69cb0769d5c9a74f075f7b9cf993",
+      "format": "json",
+      "title": "The 21st Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_22_announcement",
+      "url": "https://www.bnbchain.org/en/blog/22nd-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:42.478104+00:00",
+      "response_path": "../data/responses/95867768870ba46480253c37b6450de5fd17cda1d4b59128293c77fd84fc2749.html",
+      "sha256": "95867768870ba46480253c37b6450de5fd17cda1d4b59128293c77fd84fc2749",
+      "format": "html",
+      "title": "22nd BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_23_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/485c2917fb0e464e9614ea0cdd389436",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=485c2917fb0e464e9614ea0cdd389436",
+      "fetched_at_utc": "2026-10-03T12:28:40.604586+00:00",
+      "response_path": "../data/responses/156008fd7014949b4179bde9536190ff4571e7b45760922cfcee9b3a279e321b.json",
+      "sha256": "156008fd7014949b4179bde9536190ff4571e7b45760922cfcee9b3a279e321b",
+      "format": "json",
+      "title": "The 23rd Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_24_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/11cb4b1ea3d84a209bc90e4132312ff5",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=11cb4b1ea3d84a209bc90e4132312ff5",
+      "fetched_at_utc": "2026-10-03T12:31:25.216977+00:00",
+      "response_path": "../data/responses/5d10ad5e6cb1ba8b9507215329e5749855973e19cacd263cfef642579fb0919b.json",
+      "sha256": "5d10ad5e6cb1ba8b9507215329e5749855973e19cacd263cfef642579fb0919b",
+      "format": "json",
+      "title": "The 24th Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_25_announcement",
+      "url": "https://www.binance.com/en/support/announcement/detail/11e9ae53ee4345eca629cd30daf7a72c",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=11e9ae53ee4345eca629cd30daf7a72c",
+      "fetched_at_utc": "2026-10-03T12:31:25.216756+00:00",
+      "response_path": "../data/responses/17c4b9a058cd690a38818f0ca717bd48d981eb692efefd9ab2a0f603bb0939af.json",
+      "sha256": "17c4b9a058cd690a38818f0ca717bd48d981eb692efefd9ab2a0f603bb0939af",
+      "format": "json",
+      "title": "The 25th Quarterly BNB Burn Completed via BNB Auto-Burn",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_26_announcement",
+      "url": "https://www.bnbchain.org/en/blog/26th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:42.580696+00:00",
+      "response_path": "../data/responses/b374711741ed4e5a93065ff009ee833670ce5a8f24881f3d358086237fa1ef84.html",
+      "sha256": "b374711741ed4e5a93065ff009ee833670ce5a8f24881f3d358086237fa1ef84",
+      "format": "html",
+      "title": "26th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_27_announcement",
+      "url": "https://www.bnbchain.org/en/blog/27th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:44.275675+00:00",
+      "response_path": "../data/responses/6061cf459afa3d66822b6a2675be3eee36e1bd713ba4985362fb0a3fb4cefc05.html",
+      "sha256": "6061cf459afa3d66822b6a2675be3eee36e1bd713ba4985362fb0a3fb4cefc05",
+      "format": "html",
+      "title": "27th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_28_announcement",
+      "url": "https://www.bnbchain.org/en/blog/28th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:44.275057+00:00",
+      "response_path": "../data/responses/8cea8d2512a14fe384d7863b4e27b494919dbd5e71fb38ba05fc0c7725d88bf3.html",
+      "sha256": "8cea8d2512a14fe384d7863b4e27b494919dbd5e71fb38ba05fc0c7725d88bf3",
+      "format": "html",
+      "title": "28th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_29_announcement",
+      "url": "https://www.bnbchain.org/en/blog/29th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:44.127972+00:00",
+      "response_path": "../data/responses/e5b678cd64d1404d0356479867fed41aa3b3c8e87043cb1ed87d5143eb61fca0.html",
+      "sha256": "e5b678cd64d1404d0356479867fed41aa3b3c8e87043cb1ed87d5143eb61fca0",
+      "format": "html",
+      "title": "29th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_30_announcement",
+      "url": "https://www.bnbchain.org/en/blog/30th-bnb-burn-2",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:32:24.538490+00:00",
+      "response_path": "../data/responses/56a01a195ec2e646bad10df786cd8682546bdf218e067d39d1f6c401f313b9f4.html",
+      "sha256": "56a01a195ec2e646bad10df786cd8682546bdf218e067d39d1f6c401f313b9f4",
+      "format": "html",
+      "title": "30th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_31_announcement",
+      "url": "https://www.bnbchain.org/en/blog/31st-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:44.784910+00:00",
+      "response_path": "../data/responses/3b9c44af8b5268f62982e5691834dd5e0ef2f098e3e5f4748f3a18785bfc7bfc.html",
+      "sha256": "3b9c44af8b5268f62982e5691834dd5e0ef2f098e3e5f4748f3a18785bfc7bfc",
+      "format": "html",
+      "title": "31st BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_32_announcement",
+      "url": "https://www.bnbchain.org/en/blog/32nd-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:31:26.847974+00:00",
+      "response_path": "../data/responses/18f84f49108647b2e4ee24422a892c78f2efbf15e7673dcfc76a6d0d89f645a0.html",
+      "sha256": "18f84f49108647b2e4ee24422a892c78f2efbf15e7673dcfc76a6d0d89f645a0",
+      "format": "html",
+      "title": "32nd  BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_33_announcement",
+      "url": "https://www.bnbchain.org/en/blog/33rd-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:46.759330+00:00",
+      "response_path": "../data/responses/d1020eae4269eff1146f849fcd98b9e4c810b51c7585548b7232795910eac5e9.html",
+      "sha256": "d1020eae4269eff1146f849fcd98b9e4c810b51c7585548b7232795910eac5e9",
+      "format": "html",
+      "title": "33rd BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_34_announcement",
+      "url": "https://www.bnbchain.org/en/blog/34th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:46.038521+00:00",
+      "response_path": "../data/responses/8f95dabe0b9d3b2afca2c929f869b33b69fa72e270f6dbd9dfb04fa9aac1875e.html",
+      "sha256": "8f95dabe0b9d3b2afca2c929f869b33b69fa72e270f6dbd9dfb04fa9aac1875e",
+      "format": "html",
+      "title": "34th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_35_announcement",
+      "url": "https://www.bnbchain.org/en/blog/35th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:46.558272+00:00",
+      "response_path": "../data/responses/df722be509e0b093cea1c0a093999e1125df2f4b1f68d50b61e290b0a692d934.html",
+      "sha256": "df722be509e0b093cea1c0a093999e1125df2f4b1f68d50b61e290b0a692d934",
+      "format": "html",
+      "title": "35th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "quarter_36_announcement",
+      "url": "https://www.bnbchain.org/en/blog/36th-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:28:47.054915+00:00",
+      "response_path": "../data/responses/e300100ff8804d1462d88ce1b82bf685e0c5f0d927f515db302b27b069bc45b6.html",
+      "sha256": "e300100ff8804d1462d88ce1b82bf685e0c5f0d927f515db302b27b069bc45b6",
+      "format": "html",
+      "title": "36th BNB Burn",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "pioneer_intro",
+      "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=7bcf4da5671d44a0a5118c2277773bb4",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=7bcf4da5671d44a0a5118c2277773bb4",
+      "fetched_at_utc": "2026-10-03T12:33:50.525549+00:00",
+      "response_path": "../data/responses/f43ada26e92f34fff1f7523aca9739f59bacf080ad7daaa0dc3ac34f198347f3.json",
+      "sha256": "f43ada26e92f34fff1f7523aca9739f59bacf080ad7daaa0dc3ac34f198347f3",
+      "format": "json",
+      "publisher": "Binance",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "official_tracking_recommendation",
+      "url": "https://www.bnbchain.org/en/blog/tracking-bnb-burn",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:33:51.028675+00:00",
+      "response_path": "../data/responses/54dc569b43c927372894382fa13c33cfae4e027baae0c2a1b9b8d3b9ecd8ee70.html",
+      "sha256": "54dc569b43c927372894382fa13c33cfae4e027baae0c2a1b9b8d3b9ecd8ee70",
+      "format": "html",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "beacon_fusion_faq",
+      "url": "https://docs.bnbchain.org/bc-fusion/post-fusion/faq/",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:33:50.496693+00:00",
+      "response_path": "../data/responses/f3d8ea6ac0c278ff8df92ec36a45aeaec4005377f3a701a1b7070df656150b13.html",
+      "sha256": "f3d8ea6ac0c278ff8df92ec36a45aeaec4005377f3a701a1b7070df656150b13",
+      "format": "html",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    },
+    {
+      "id": "beacon_fusion_overview",
+      "url": "https://docs.bnbchain.org/bc-fusion/overview/",
+      "api_url": null,
+      "fetched_at_utc": "2026-10-03T12:33:50.330602+00:00",
+      "response_path": "../data/responses/d998fbcdbc2cfb3fc705dda08181d580d1ec262dcfac2fc4fa19a8b9c06b6d84.html",
+      "sha256": "d998fbcdbc2cfb3fc705dda08181d580d1ec262dcfac2fc4fa19a8b9c06b6d84",
+      "format": "html",
+      "publisher": "BNB Chain",
+      "evidence_type": "official_http_response"
+    }
+  ],
+  "quarters": [
+    {
+      "rank": 1,
+      "quarter": "Q3 2017",
+      "announcement_date": "2017-10-18",
+      "execution_date": null,
+      "reported_total_tokens": "986000",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "986000",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/115002205552",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=115002205552",
+      "tx_url": "https://etherscan.io/tx/0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463",
+      "tx_in_announcement": true,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_1_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 2,
+      "quarter": "Q4 2017",
+      "announcement_date": "2018-01-15",
+      "execution_date": null,
+      "reported_total_tokens": "1821586",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "1821586",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360000012892",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360000012892",
+      "tx_url": "https://etherscan.io/tx/0x3ebe8fa51909536be4ecae47b0877fa72ec5fd2afda7ae2d829064847757282b",
+      "tx_in_announcement": false,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_2_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。",
+        "本次官文未提供TX链接，当前TX地址沿用追踪器索引；它不作为官文已核TX证据。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 3,
+      "quarter": "Q1 2018",
+      "announcement_date": "2018-04-15",
+      "execution_date": null,
+      "reported_total_tokens": "2220314",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "2220314",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360002684252",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360002684252",
+      "tx_url": "https://etherscan.io/tx/0x15132c07b4fdee0d4c77c2993588270914c1451953f5fa9ee20aa5450f399031",
+      "tx_in_announcement": true,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_3_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 4,
+      "quarter": "Q2 2018",
+      "announcement_date": "2018-07-18",
+      "execution_date": null,
+      "reported_total_tokens": "2528767",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "2528767",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360007534151",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360007534151",
+      "tx_url": "https://etherscan.io/tx/0x7a07faca141707c9d6aa92b1f2e5e8e9420f2b43d36ced1126d061582e3ae9fa",
+      "tx_in_announcement": true,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_4_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 5,
+      "quarter": "Q3 2018",
+      "announcement_date": "2018-10-17",
+      "execution_date": null,
+      "reported_total_tokens": "1643986",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "1643986",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360018044252",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360018044252",
+      "tx_url": "https://etherscan.io/tx/0xc0fcb8186fc0bb4a37dda7960a7cd33b4d8b93ba6bfbac3ae6d7b50c7282b4ad",
+      "tx_in_announcement": true,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_5_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 6,
+      "quarter": "Q4 2018",
+      "announcement_date": "2019-01-16",
+      "execution_date": null,
+      "reported_total_tokens": "1623818",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "1623818",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360021824592",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360021824592",
+      "tx_url": "https://etherscan.io/tx/0xbf97244cf0c5709e0dd36e37bacb994f95c245aaf20a279595b5371ff592f4b0",
+      "tx_in_announcement": true,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_6_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 7,
+      "quarter": "Q1 2019",
+      "announcement_date": "2019-04-16",
+      "execution_date": null,
+      "reported_total_tokens": "829888",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "829888",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360026706152",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360026706152",
+      "tx_url": "https://etherscan.io/tx/0xfb51618892938f115aaeaa351ba2c8d6cb9205bdac020c8328fac1f1b57c28a2",
+      "tx_in_announcement": true,
+      "chain": "ethereum",
+      "source_ids": [
+        "quarter_7_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 8,
+      "quarter": "Q2 2019",
+      "announcement_date": "2019-07-12",
+      "execution_date": null,
+      "reported_total_tokens": "808888",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "808888",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360030566712",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360030566712",
+      "tx_url": "https://explorer.binance.org/tx/9B29E778EEC20E6AB0676A11E88C7CD00DFAB2849C34B6C6A3EAEE6B4E6A8C6D",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_8_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 9,
+      "quarter": "Q3 2019",
+      "announcement_date": "2019-10-17",
+      "execution_date": null,
+      "reported_total_tokens": "2061888",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "2061888",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360034907372",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360034907372",
+      "tx_url": "https://explorer.binance.org/tx/D3ED9EFA4A242BD06E667A1F5DF102BC190C9EE76F7DB8005A5633FD7D46732A",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_9_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 10,
+      "quarter": "Q4 2019",
+      "announcement_date": "2020-01-18",
+      "execution_date": null,
+      "reported_total_tokens": "2216888",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "2216888",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360038574712",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360038574712",
+      "tx_url": "https://explorer.binance.org/tx/6047184045F3F761C4E91D81E530A10AAC2887B20E26CBB41A12A0DBAD5BDC3B",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_10_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 11,
+      "quarter": "Q1 2020",
+      "announcement_date": "2020-04-18",
+      "execution_date": null,
+      "reported_total_tokens": "3373988",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "3373988",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/360042470611",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=360042470611",
+      "tx_url": "https://explorer.binance.org/tx/5B824CC8C9DC7A838E2F02D28F68029B85BCBF02326D4AF907795B4B8844405A",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_11_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 12,
+      "quarter": "Q2 2020",
+      "announcement_date": "2020-07-18",
+      "execution_date": null,
+      "reported_total_tokens": "3477388",
+      "pioneer_tokens": "0",
+      "pioneer_status": "not_applicable",
+      "actual_tokens": "3477388",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/44d873922bf24317ac314d9f0665729b",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=44d873922bf24317ac314d9f0665729b",
+      "tx_url": "https://explorer.binance.org/tx/A08063428AB6140E31333A9793A2DD462E17D6C071F5ABF4CDCE75B4ACD38188",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_12_announcement",
+        "pioneer_intro"
+      ],
+      "evidence_notes": [
+        "本次早于2020-09-18 Pioneer Burn Program发布；公告直接报告销毁数量，Pioneer拆分不适用。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=0（not_applicable）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 13,
+      "quarter": "Q3 2020",
+      "announcement_date": "2020-10-17",
+      "execution_date": null,
+      "reported_total_tokens": "2253888",
+      "pioneer_tokens": "867",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "2253021",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/4db101d45b204c3a9206c057f0f6856a",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=4db101d45b204c3a9206c057f0f6856a",
+      "tx_url": "https://explorer.binance.org/tx/2E16FBFD0F2BA92BAFFC987F6C33918240141CA8E7E2B7D49AB88E341B8255CE",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_13_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=867（explicitly_reported）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 14,
+      "quarter": "Q4 2020",
+      "announcement_date": "2021-01-19",
+      "execution_date": null,
+      "reported_total_tokens": "3619888",
+      "pioneer_tokens": "10838",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "3609050",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/06e91e06eb904b96a7b19a378bb09aef",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=06e91e06eb904b96a7b19a378bb09aef",
+      "tx_url": "https://explorer.binance.org/tx/46DF9DE885375C582FA6FF785FEB80AB7A4F4461D563446367535885CDEEFEAA",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_14_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器Pioneer=空；官文Pioneer=10838（explicitly_reported）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 15,
+      "quarter": "Q1 2021",
+      "announcement_date": "2021-04-16",
+      "execution_date": null,
+      "reported_total_tokens": "1099888",
+      "pioneer_tokens": null,
+      "pioneer_status": "not_disclosed",
+      "actual_tokens": null,
+      "actual_tokens_method": "not_available",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/f32506708c0240f783250cde0bb79e1b",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=f32506708c0240f783250cde0bb79e1b",
+      "tx_url": "https://explorer.binance.org/tx/935071F4B3EA9BC0104C23DEAEF5919BD0C0B5AD9E780701FC0547E575E1D52E",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_15_announcement"
+      ],
+      "evidence_notes": [
+        "公告没有给出本次Pioneer拆分；实际转入销毁地址数量等待独立交易核验，不按空字段补0。"
+      ],
+      "tracker_discrepancies": [],
+      "components": []
+    },
+    {
+      "rank": 16,
+      "quarter": "Q2 2021",
+      "announcement_date": "2021-07-18",
+      "execution_date": null,
+      "reported_total_tokens": "1296728",
+      "pioneer_tokens": "5163",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1291565",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/901a3d8dec1c42bba6e0931a7e68ceba",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=901a3d8dec1c42bba6e0931a7e68ceba",
+      "tx_url": "https://explorer.binance.org/tx/53DAB77C7F10E626425F5542D97F5F20752F889025D01D0342BC1E7484372EEA",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_16_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [],
+      "components": []
+    },
+    {
+      "rank": 17,
+      "quarter": "Q3 2021",
+      "announcement_date": "2021-10-18",
+      "execution_date": null,
+      "reported_total_tokens": "1335888",
+      "pioneer_tokens": "17839",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1318049",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/39e8f691d64d468fbab1591fdf2aa343",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=39e8f691d64d468fbab1591fdf2aa343",
+      "tx_url": "https://explorer.binance.org/tx/C65EBACD22FB804DADABD0A4BDF4245D25F70B0B923A1A2064596F06E3BA54E3",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_17_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [],
+      "components": []
+    },
+    {
+      "rank": 18,
+      "quarter": "Q4 2021",
+      "announcement_date": "2022-01-17",
+      "execution_date": null,
+      "reported_total_tokens": "1684387.11",
+      "pioneer_tokens": "6296.305493",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1678090.804507",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/850e3e4a49094b798f4b96a9cc1884e8",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=850e3e4a49094b798f4b96a9cc1884e8",
+      "tx_url": "https://explorer.binance.org/tx/0BEEB3558FF12B1A99FA3C214E8E708B50A28E737AC8A45A0F1876526175FB35",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_18_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=1684387；官方公告total=1684387.11。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。",
+        "追踪器burnDate=2022-01-18；官方公告发布日期=2022-01-17。发布日期与交易执行日期分别保留，不能互相冒充。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 19,
+      "quarter": "Q1 2022",
+      "announcement_date": "2022-04-19",
+      "execution_date": null,
+      "reported_total_tokens": "1839786.26",
+      "pioneer_tokens": "9403.78",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1830382.48",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/57641123c21f4aa9ba6e3f0f20f6735b",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=57641123c21f4aa9ba6e3f0f20f6735b",
+      "tx_url": "https://explorer.binance.org/tx/7EA14BB56EF812C142242F360E938BF545E5E17446039DD7D9CB6C9D1EE09DB9",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_19_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=1839786；官方公告total=1839786.26。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 20,
+      "quarter": "Q2 2022",
+      "announcement_date": "2022-07-13",
+      "execution_date": null,
+      "reported_total_tokens": "1959595.29",
+      "pioneer_tokens": "4181.77",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1955413.52",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/780991cc032d4c878d87396c0f57de0f",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=780991cc032d4c878d87396c0f57de0f",
+      "tx_url": "https://explorer.bnbchain.org/tx/3D2C66376903F31F22B99B5FC463BF57FD58FBE238D5B5BBD34C953F90CE6B7B",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_20_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=1959595；官方公告total=1959595.29。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 21,
+      "quarter": "Q3 2022",
+      "announcement_date": "2022-10-13",
+      "execution_date": null,
+      "reported_total_tokens": "2065152.42",
+      "pioneer_tokens": "4833.25",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "2060319.17",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/7edce2f958ae4c109433c82f3ecc5b05",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=7edce2f958ae4c109433c82f3ecc5b05",
+      "tx_url": "https://explorer.bnbchain.org/tx/5C6C88892AB98D820173DF6F784F76DDABCA32A06546C132514E663E66699794",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_21_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=2065152；官方公告total=2065152.42。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 22,
+      "quarter": "Q4 2022",
+      "announcement_date": "2023-01-17",
+      "execution_date": null,
+      "reported_total_tokens": "2064494.32",
+      "pioneer_tokens": "7181.03",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "2057313.29",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/22nd-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://explorer.bnbchain.org/tx/34167E903B9F662A64817266D8A6CE4FE096868DAD0B883E4F838331E280EEFF",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_22_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=2064494；官方公告total=2064494.32。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 23,
+      "quarter": "Q1 2023",
+      "announcement_date": "2023-04-14",
+      "execution_date": null,
+      "reported_total_tokens": "2020132.25",
+      "pioneer_tokens": "656.0230123",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "2019476.2269877",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/485c2917fb0e464e9614ea0cdd389436",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=485c2917fb0e464e9614ea0cdd389436",
+      "tx_url": "https://explorer.bnbchain.org/tx/926B2A741628272FE9CC3883485CED145EADFE7EB3A900F3E5A45DD70AAEB25D",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_23_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=2020132；官方公告total=2020132.25。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 24,
+      "quarter": "Q2 2023",
+      "announcement_date": "2023-07-19",
+      "execution_date": null,
+      "reported_total_tokens": "1991854.33",
+      "pioneer_tokens": "747.51",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1991106.82",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/11cb4b1ea3d84a209bc90e4132312ff5",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=11cb4b1ea3d84a209bc90e4132312ff5",
+      "tx_url": "https://explorer.bnbchain.org/tx/DE23DB2FB61495A902A22E5DE72744AD587A78881FFC4E3136D2BD2C7E824E29",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_24_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=1991854；官方公告total=1991854.33。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 25,
+      "quarter": "Q3 2023",
+      "announcement_date": "2023-10-16",
+      "execution_date": null,
+      "reported_total_tokens": "2139182.98",
+      "pioneer_tokens": "314.69",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "2138868.29",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.binance.com/en/support/announcement/detail/11e9ae53ee4345eca629cd30daf7a72c",
+      "api_url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=11e9ae53ee4345eca629cd30daf7a72c",
+      "tx_url": "https://explorer.bnbchain.org/tx/F756A40911AC12732A8B2463F57FDC0E49B689D76BF7C53BA8B7A5CC8E5307F4",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_25_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=2139182；官方公告total=2139182.98。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 26,
+      "quarter": "Q4 2023",
+      "announcement_date": "2024-01-17",
+      "execution_date": null,
+      "reported_total_tokens": "2141487.27",
+      "pioneer_tokens": "1542.15",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "2139945.12",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/26th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://explorer.bnbchain.org/tx/D1888295E904D5372E75D7E7FF9A901BD003075F712DF8E173ABBA2850E7E00B",
+      "tx_in_announcement": true,
+      "chain": "bnb_beacon_chain",
+      "source_ids": [
+        "quarter_26_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=2141487；官方公告total=2141487.27。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 27,
+      "quarter": "Q1 2024",
+      "announcement_date": "2024-04-24",
+      "execution_date": null,
+      "reported_total_tokens": "1944452.51",
+      "pioneer_tokens": "0",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1944452.51",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/27th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0xcb7c733619b81875d1735a1ecc09d505d6881fbe722c65f5e8425b36237ea564",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_27_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=1944453；官方公告total=1944452.51。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 28,
+      "quarter": "Q2 2024",
+      "announcement_date": "2024-07-22",
+      "execution_date": null,
+      "reported_total_tokens": "1643698.8",
+      "pioneer_tokens": "0",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1643698.8",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/28th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0xd1c43cf12d721261f1e1ae2a50dc765eb9062322bc05cd53ada63700960fadde",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_28_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [],
+      "components": []
+    },
+    {
+      "rank": 29,
+      "quarter": "Q3 2024",
+      "announcement_date": "2024-11-01",
+      "execution_date": null,
+      "reported_total_tokens": "1772712.363",
+      "pioneer_tokens": "0",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1772712.363",
+      "actual_tokens_method": "total_minus_pioneer",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/29th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0x44df032bb1790ef26195d2b5a8a74b1ce03607ff627bbc02f096451b83250eae",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_29_announcement"
+      ],
+      "evidence_notes": [
+        "第29次官文total包含62,569.63 BNB的BToken补计销毁；追踪器amount只接近公式Auto-Burn项。Pioneer字段原文Nil，不能因此漏掉附加BToken项。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1710142.7329902356；官方公告total=1772712.363。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": [
+        {
+          "name": "formula_auto_burn",
+          "tokens": "1710142.733"
+        },
+        {
+          "name": "additional_btoken_burn",
+          "tokens": "62569.63"
+        }
+      ]
+    },
+    {
+      "rank": 30,
+      "quarter": "Q4 2024",
+      "announcement_date": "2025-01-23",
+      "execution_date": null,
+      "reported_total_tokens": "1634200.95",
+      "pioneer_tokens": "110000",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1524200.95",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/30th-bnb-burn-2",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0x6c36e62d0c2c62a963c2410bb8feec49c5ce562bdfdac1fb2dbfa3c190be374c",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_30_announcement"
+      ],
+      "evidence_notes": [
+        "第30次110,000 BNB为Beacon Chain不可恢复自质押，通过Pioneer计入季度总额；当前实际转账额1524200.95与季度报告总额1634200.95不同。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1634200.9531485476；官方公告total=1634200.95。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。",
+        "追踪器Pioneer=空；官文Pioneer=110000（explicitly_reported）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 31,
+      "quarter": "Q1 2025",
+      "announcement_date": "2025-04-16",
+      "execution_date": null,
+      "reported_total_tokens": "1579207.72",
+      "pioneer_tokens": null,
+      "pioneer_status": "not_disclosed",
+      "actual_tokens": null,
+      "actual_tokens_method": "not_available",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/31st-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0x9fbe14355cfa89ec524af1b4b8f3b9d3035f2fdabd6cd0db8a2f4c1b6b236bfc",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_31_announcement"
+      ],
+      "evidence_notes": [
+        "公告没有给出本次Pioneer拆分；实际转入销毁地址数量等待独立交易核验，不按空字段补0。",
+        "第31次官方公告total与追踪器/交易量存在约99.08 BNB差异；公告未解释拆分，保留冲突，禁止用公告总额替代已核交易金额。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1579108.637346294；官方公告total=1579207.72。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 32,
+      "quarter": "Q2 2025",
+      "announcement_date": "2025-07-10",
+      "execution_date": null,
+      "reported_total_tokens": "1595599.78",
+      "pioneer_tokens": "129.10",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1595470.69",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/32nd-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0x6e8b15a99eac623219c6439f95810a6cc8dccd8c15aea648ce17f45f57601065",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_32_announcement"
+      ],
+      "evidence_notes": [
+        "官文本身的舍入差异：actual 1595470.69 + Pioneer 129.10 不完全等于 total 1595599.78；保留原文值。",
+        "第32次官方说明Lorentz/Maxwell出块速度改变后，Auto-Burn公式参数已调整；不能沿用旧每区块参数无条件预测未来。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1595599.7844364308；官方公告total=1595599.78。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。",
+        "追踪器Pioneer=空；官文Pioneer=129.10（explicitly_reported）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 33,
+      "quarter": "Q3 2025",
+      "announcement_date": "2025-10-27",
+      "execution_date": null,
+      "reported_total_tokens": "1441281.413",
+      "pioneer_tokens": null,
+      "pioneer_status": "not_disclosed",
+      "actual_tokens": null,
+      "actual_tokens_method": "not_available",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/33rd-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bsctrace.com/tx/0x8c85b7c3be353083ba5994eceb15da64cb0bf0618e70bb4932e6ef6b3de10f07",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_33_announcement"
+      ],
+      "evidence_notes": [
+        "公告没有给出本次Pioneer拆分；实际转入销毁地址数量等待独立交易核验，不按空字段补0。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1441281.4127440567；官方公告total=1441281.413。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 34,
+      "quarter": "Q4 2025",
+      "announcement_date": "2026-01-15",
+      "execution_date": null,
+      "reported_total_tokens": "1371803.77",
+      "pioneer_tokens": "100.1",
+      "pioneer_status": "explicitly_reported",
+      "actual_tokens": "1371703.67",
+      "actual_tokens_method": "explicitly_reported",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/34th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_34_announcement"
+      ],
+      "evidence_notes": [],
+      "tracker_discrepancies": [
+        "追踪器amount=1371803.76520497；官方公告total=1371803.77。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。",
+        "追踪器Pioneer=100.0995；官文Pioneer=100.1（explicitly_reported）。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 35,
+      "quarter": "Q1 2026",
+      "announcement_date": "2026-04-15",
+      "execution_date": null,
+      "reported_total_tokens": "1569307.34",
+      "pioneer_tokens": null,
+      "pioneer_status": "not_disclosed",
+      "actual_tokens": null,
+      "actual_tokens_method": "not_available",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/35th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0xb70c9d7bb30bbe3407397b65d4297421796ecb7bfbc57ab271048e950d289a40",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_35_announcement"
+      ],
+      "evidence_notes": [
+        "公告没有给出本次Pioneer拆分；实际转入销毁地址数量等待独立交易核验，不按空字段补0。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1569307.3417108662；官方公告total=1569307.34。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。",
+        "追踪器burnDate=2026-04-24；官方公告发布日期=2026-04-15。发布日期与交易执行日期分别保留，不能互相冒充。"
+      ],
+      "components": []
+    },
+    {
+      "rank": 36,
+      "quarter": "Q2 2026",
+      "announcement_date": "2026-07-15",
+      "execution_date": null,
+      "reported_total_tokens": "1615827.795",
+      "pioneer_tokens": null,
+      "pioneer_status": "not_disclosed",
+      "actual_tokens": null,
+      "actual_tokens_method": "not_available",
+      "amount_status": "official_announcement_verified",
+      "announcement_url": "https://www.bnbchain.org/en/blog/36th-bnb-burn",
+      "api_url": null,
+      "tx_url": "https://bscscan.com/tx/0xa9c1d03773a2edd29d5fe24bef231fb404b0c193661941a41457f8317fc49fa7",
+      "tx_in_announcement": true,
+      "chain": "bnb_smart_chain",
+      "source_ids": [
+        "quarter_36_announcement"
+      ],
+      "evidence_notes": [
+        "公告没有给出本次Pioneer拆分；实际转入销毁地址数量等待独立交易核验，不按空字段补0。"
+      ],
+      "tracker_discrepancies": [
+        "追踪器amount=1615827.7950001028；官方公告total=1615827.795。追踪器可能截断/舍入或采用不同组成项，不能自动视作同一实际链上数量。",
+        "追踪器burnDate=2026-07-16；官方公告发布日期=2026-07-15。发布日期与交易执行日期分别保留，不能互相冒充。"
+      ],
+      "components": []
+    }
+  ]
+}

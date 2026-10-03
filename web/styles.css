@@ -99,3 +99,17 @@
 [hidden]{display:none!important}
 #extended-periods{display:inline-flex;flex-wrap:wrap;gap:6px;margin-right:0}
 .history-loading{min-height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.875rem}
+
+/* All quarter events are small; keep the complete ledger scrollable. */
+.quarter-history-table{max-height:560px;overflow:auto}
+.quarter-history-table thead th{position:sticky;top:0;z-index:1}
+.quarter-history-table td{vertical-align:top}
+.quarter-history-table table{white-space:normal;min-width:1100px;table-layout:fixed}
+.quarter-history-table th,.quarter-history-table td{padding:12px 10px}
+.quarter-history-table th:first-child{width:75px}
+.quarter-history-table th:nth-child(2){width:130px}
+.quarter-history-table th:last-child{width:195px}
+.quarter-history-table .sources{gap:7px 12px;font-size:.75rem;text-align:left}
+.quarter-history-table details{margin-top:6px;font-size:.75rem;text-align:left}
+.quarter-history-table details p{margin-top:6px}
+#bnb-quarterly-history{scroll-margin-top:var(--research-controls-height,140px)}

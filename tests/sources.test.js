@@ -2,10 +2,24 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-import {buybackSource,auditResponse} from '../web/sources.js';
+import {buybackSource,auditResponse,sourceIssueSummary} from '../web/sources.js';
 
 const second = date => Date.parse(date+'T00:00:00Z')/1000;
 const project = {windows:{'2':{holders:{start:'2026-09-30',end:'2026-10-01',usd:30}}}};
+
+test('failed historical price reports the affected asset and cache date, separately from BNB sources',()=>{
+  const url='https://api.coingecko.com/api/v3/coins/aave/market_chart?days=365';
+  const projects=[{ticker:'AAVE',price_source:{url,provider:'CoinGecko'}},
+    {ticker:'BNB',data_sources:[{source_key:'bnb-quarter-burns',kind:'burns',url:'https://www.bnbburn.info/api/getQuarterBurns'}]}];
+  const issue=sourceIssueSummary('price-aave',{url,status:'cached',refresh_error:'HTTP Error 429: Too Many Requests',
+    retrieved_at:'2026-10-03T08:21:28Z'},projects);
+  assert.equal(issue.ticker,'AAVE');assert.equal(issue.name,'AAVE · 历史价格 · CoinGecko');
+  assert.match(issue.cause,/接口限流/);assert.match(issue.impact,/上次成功/);
+  assert.equal(issue.lastSuccess,'2026-10-03T08:21:28Z');assert.equal(issue.attemptedAt,null);
+  const missing=sourceIssueSummary('bnb-quarter-burns',{url:projects[1].data_sources[0].url,status:'missing',refresh_error:'timed out'},projects);
+  assert.equal(missing.ticker,'BNB');assert.equal(missing.cached,false);
+  assert.match(missing.cause,/请求超时/);assert.match(missing.impact,/缺数据/);
+});
 
 test('source audit uses UTC completed days, last duplicate, and skips incompatible rows',()=>{
   const raw={totalDataChart:[[second('2026-09-30'),9],[second('2026-09-30'),10],

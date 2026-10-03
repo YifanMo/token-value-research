@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {bnbChainWindow, bnbChainMarkup, burnStats, burnFinancialMarkup, burnObservationsMarkup, latestQuarterBurn, quarterlyPlanMarkup, quarterComparisonMarkup} from '../web/burns.js';
+import {bnbChainWindow, bnbChainMarkup, burnStats, burnFinancialMarkup, burnObservationsMarkup, latestQuarterBurn, quarterlyPlanMarkup, quarterComparisonMarkup, historicalLedger, quarterHistoryMarkup} from '../web/burns.js';
 
 const fixture = () => ({ticker:'BNB',market:{market_cap:10000,fully_diluted_valuation:20000},
   history:[
@@ -155,4 +155,106 @@ test('latest executed quarter stays visible outside the selected window and excl
   assert.doesNotMatch(cell,/<strong>0/);
   p.burns.quarterly_records=[];
   assert.equal(latestQuarterBurn(p),null);assert.match(quarterlyPlanMarkup(p),/尚未取得/);
+});
+
+test('all historical quarters stay visible independently of selection without converting unverified or projected rows to actual burns',()=>{
+  const p=fixture();p.burns.cutoff_utc='2026-10-02';
+  p.burns.quarterly_records=Array.from({length:36},(_,index)=>({rank:index+1,quarter:'Historical quarter',
+    reported_date:index===35 ? '2026-07-16' : '2020-01-01',reported_amount:String(1000+index),
+    source_key:'quarter-index',source_url:'https://example.com/quarters',tx_url:'https://example.com/tx/'+index,
+    verified:false,status:'unverified_legacy'}));
+  Object.assign(p.burns.quarterly_records[35],{date:'2026-07-15',tokens:1035,transaction_hash:'known-36',verified:true});
+  p.burns.quarterly_records.push({rank:37,reported_date:null,reported_amount:'9999',status:'projected',verified:false});
+  const before=structuredClone(p), ledger=historicalLedger(p);
+  assert.equal(ledger.totalCount,36);assert.equal(ledger.chainVerifiedCount,1);assert.equal(ledger.unverifiedCount,35);
+  assert.equal(ledger.officialReviewedCount,0);assert.deepEqual(ledger.missingRanks,[]);
+  assert.equal(ledger.rows[0].rank,36);assert.equal(ledger.rows[0].date,'2026-07-15');
+  assert.equal(ledger.rows.at(-1).chainTokens,null);assert.equal(ledger.rows.at(-1).pioneerTokens,null);
+  assert.equal(burnStats(p,'2026-09-03','2026-10-02').count,0);
+  const html=burnFinancialMarkup(p,'2026-09-03','2026-10-02');
+  assert.match(html,/全部季度销毁历史/);assert.match(html,/36期/);assert.match(html,/第1次/);assert.match(html,/第36次/);
+  assert.doesNotMatch(html,/第37次|9,999/);assert.match(html,/官文金额待核/);
+  assert.deepEqual(p,before);
+});
+
+test('read announcements, their Pioneer splits and independent chain proofs retain separate evidence and saved responses',()=>{
+  const p=fixture();p.burns.cutoff_utc='2026-10-02';
+  p.burns.quarterly_records=[{rank:34,reported_date:'2026-01-16',reported_amount:'1100',reported_pioneer:'',
+    date:'2026-01-15',tokens:1000,transaction_hash:'known-34',verified:true,source_key:'quarter-index',
+    tx_url:'https://example.com/tx/34',proof_source_keys:['proof34']}];
+  p.burns.data_sources=[{kind:'burns',source_key:'quarter-index',url:'https://example.com/quarters',response_path:'../data/tracker.json'},
+    {kind:'burn_proof',source_key:'proof34',response_path:'../data/proof34.json'},
+    {kind:'burn_proof',source_key:'unrelated',response_path:'../data/unrelated.json'}];
+  p.burns.official_history={reviewed_at_utc:'2026-10-03T10:00:00Z',sources:[{id:'official34',
+    url:'https://example.com/announcement34',response_path:'../data/official34.html',sha256:'official-sha'}],quarters:[{
+    rank:34,announcement_date:'2026-01-15',reported_total_tokens:'1005',pioneer_tokens:'5',actual_tokens:'1000',
+    actual_tokens_method:'total_minus_pioneer',amount_status:'official_announcement_verified',
+    announcement_url:'https://example.com/announcement34',source_ids:['official34'],evidence_notes:['Read official statement.']}]} ;
+  let ledger=historicalLedger(p), row=ledger.rows[0];
+  assert.equal(ledger.totalCount,1);assert.equal(ledger.officialReviewedCount,1);assert.equal(ledger.chainVerifiedCount,1);
+  assert.equal(row.reportedTokens,1005);assert.equal(row.trackerTokens,1100);assert.equal(row.pioneerTokens,5);
+  assert.equal(row.officialActualTokens,1000);assert.equal(row.chainTokens,1000);assert.equal(row.usd,null);
+  const html=quarterHistoryMarkup(p);
+  for (const url of ['../data/official34.html','../data/tracker.json','../data/proof34.json','https://example.com/announcement34']) assert.ok(html.includes(url));
+  assert.doesNotMatch(html,/unrelated.json/);assert.match(html,/总量减Pioneer/);
+  assert.match(html,/未取得历史价格/);assert.match(html,/链上UTC执行日/);
+  p.burns.official_history.quarters[0].pioneer_tokens=null;
+  p.burns.official_history.quarters[0].actual_tokens=null;
+  ledger=historicalLedger(p);assert.equal(ledger.rows[0].pioneerTokens,null);assert.equal(ledger.rows[0].officialActualTokens,null);
+  assert.equal(ledger.rows[0].chainTokens,1000);
+  p.burns.official_history.quarters[0].amount_status='official_announcement_pending';
+  assert.equal(historicalLedger(p).officialReviewedCount,0);
+  assert.equal(historicalLedger(p).rows[0].reportedTokens,null);
+  p.burns.official_history.quarters[0].amount_status='official_announcement_verified';
+  p.burns.official_history.quarters[0].source_ids=['missing-source'];
+  assert.equal(historicalLedger(p).officialReviewedCount,0);
+});
+
+test('rankless transaction evidence joins its official rank, while conflicting proofs remain unverified',()=>{
+  const p=fixture(), hash='0x'+'a'.repeat(64);p.burns.cutoff_utc='2026-10-02';
+  p.burns.quarterly_records=[{date:'2018-01-15',tokens:1000,transaction_hash:hash,verified:true}];
+  p.burns.official_history={sources:[{id:'source',response_path:'../data/official.html'}],quarters:[
+    {rank:2,announcement_date:'2018-01-15',reported_total_tokens:'1000',pioneer_tokens:'0',actual_tokens:'1000',
+      amount_status:'official_announcement_verified',source_ids:['source'],tx_url:'https://etherscan.io/tx/'+hash}]};
+  let ledger=historicalLedger(p);
+  assert.equal(ledger.totalCount,1);assert.equal(ledger.rows[0].rank,2);assert.equal(ledger.rows[0].pioneerTokens,0);
+  assert.equal(ledger.chainVerifiedCount,1);assert.deepEqual(ledger.missingRanks,[1]);
+  p.burns.quarterly_records.push({rank:2,date:'2018-01-15',tokens:1001,tx_url:'https://etherscan.io/tx/'+hash,verified:true});
+  ledger=historicalLedger(p);assert.equal(ledger.totalCount,1);assert.equal(ledger.chainVerifiedCount,0);
+  assert.equal(ledger.rows[0].chainConflict,true);assert.equal(ledger.rows[0].chainTokens,null);
+  assert.match(quarterHistoryMarkup(p),/相互冲突的已核交易/);
+});
+
+test('official Beacon explorer observations display indexed amounts without becoming independent RPC evidence or window totals',()=>{
+  const p=fixture();p.burns.cutoff_utc='2026-10-02';
+  p.burns.data_sources=[{kind:'burn_proof',source_key:'beacon8',role:'official_explorer_indexer',
+    url:'https://example.com/explorer/tx8',response_path:'../data/beacon8.json'}];
+  p.burns.quarterly_records=[{rank:8,reported_date:'2019-07-12',reported_amount:'808888',verified:false,
+    status:'indexed_verified',evidence:'indexed_beacon_burn_transaction',indexed_tokens:808888,indexed_date:'2019-07-12',
+    indexed_source_key:'beacon8',tx_url:'https://explorer.binance.org/tx/8'}];
+  let ledger=historicalLedger(p), html=quarterHistoryMarkup(p);
+  assert.equal(ledger.totalCount,1);assert.equal(ledger.chainVerifiedCount,0);assert.equal(ledger.indexVerifiedCount,1);
+  assert.equal(ledger.unverifiedCount,1);assert.equal(ledger.rows[0].indexedTokens,808888);
+  assert.equal(ledger.rows[0].chainTokens,null);assert.equal(burnStats(p,'2019-07-01','2019-07-31').tokens,null);
+  assert.match(html,/808,888/);assert.match(html,/官方浏览器索引UTC日/);assert.match(html,/非独立RPC核验/);
+  assert.ok(html.includes('../data/beacon8.json'));assert.ok(html.includes('https://example.com/explorer/tx8'));
+  p.burns.data_sources=[];ledger=historicalLedger(p);assert.equal(ledger.indexVerifiedCount,0);
+  assert.equal(ledger.rows[0].indexedTokens,null);
+});
+
+test('announcement hash mismatches cannot upgrade a tracker transaction to that quarter, and early Pioneer is not applicable',()=>{
+  const p=fixture(), hash='0x'+'a'.repeat(64), other='0x'+'b'.repeat(64);
+  p.burns.cutoff_utc='2026-10-02';
+  p.burns.quarterly_records=[{rank:1,date:'2017-10-18',tokens:986000,verified:true,transaction_hash:hash}];
+  p.burns.official_history={sources:[{id:'official1',response_path:'../data/official1.html'}],quarters:[
+    {rank:1,announcement_date:'2017-10-18',reported_total_tokens:'986000',pioneer_tokens:null,
+      pioneer_status:'not_applicable',actual_tokens:'986000',amount_status:'official_announcement_verified',
+      source_ids:['official1'],tx_url:'https://etherscan.io/tx/'+other}]};
+  const ledger=historicalLedger(p), html=quarterHistoryMarkup(p);
+  assert.equal(ledger.chainVerifiedCount,0);
+  assert.equal(ledger.officialReviewedCount,1);
+  assert.match(html,/官方公告所列交易与跟踪器已核交易不一致/);
+  assert.match(html,/不适用（机制尚未启动）/);
+  p.burns.official_history.quarters[0].tx_url='https://etherscan.io/tx/'+hash;
+  assert.equal(historicalLedger(p).chainVerifiedCount,1);
 });

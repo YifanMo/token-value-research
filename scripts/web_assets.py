@@ -91,6 +91,13 @@ def generate_web_assets(snapshot, root=ROOT):
         if isinstance(project.get("burns"), dict):
             light_project["burns"] = {key: value for key, value in project["burns"].items()
                                       if key not in ("chain_fee_history", "gas_burn_estimate_history")}
+            # The collector retains its original burn_records field for
+            # research exports. The UI reads quarterly_records; serializing
+            # an identical legacy copy adds no observations or provenance.
+            # Preserve the legacy field if it contains any distinct records.
+            quarterly = light_project["burns"].get("quarterly_records")
+            if isinstance(quarterly, list) and light_project["burns"].get("burn_records") == quarterly:
+                light_project["burns"].pop("burn_records", None)
         lite["projects"].append(light_project)
     body = compact_bytes(lite)
     path = root / "data" / "dashboard-lite.json"

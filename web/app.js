@@ -1,6 +1,6 @@
 import {calculate, calculateReferenceMultiples, known, ratio} from './core.js';
 import {componentAmount, componentWindowSummary, nextEvent} from './supply.js';
-import {buybackSource, auditResponse} from './sources.js';
+import {buybackSource, auditResponse, sourceIssueSummary} from './sources.js';
 import {moneyFlowMarkup,connectMoneyFlow} from './flow-view.js';
 import {buildConclusion} from './conclusions.js';
 import {validateDateRange} from './periods.js';
@@ -171,8 +171,8 @@ function render() {
   }).join('');
   const missing = Object.entries(snapshot.source_status).filter(([,value])=>value.status==='missing');
   const stale = snapshot.projects.filter(p=>(!isReserveBurn(p)&&p.flow_lag_days>0) || p.market_lag_days>0);
-  const failed = Object.values(snapshot.source_status).filter(value=>value.refresh_error && value.status!=='missing');
-  $('#errors').innerHTML = (missing.length ? `<p class="alert">${missing.length}个来源暂缺，相应价格、基准或链上供应字段显示缺数据；不会推定为0。</p>` : '')+(stale.length ? `<p class="alert">${stale.map(p=>esc(p.ticker)).join('、')}有滞后数据，查看项目来源时间；不能作为实时估值。</p>` : '')+(failed.length ? `<p class="alert">${failed.length}个来源更新未成功，保留了缓存；抓取时间与错误见项目来源详情。</p>` : '')+(snapshot!==baseSnapshot&&historyReadErrors.length?`<details class="alert"><summary>${historyReadErrors.length}份历史归档未通过读取或哈希核对，相应金额显示缺数据</summary><p>${historyReadErrors.map(esc).join('<br>')}</p></details>`:'');
+  const failed = Object.entries(snapshot.source_status).filter(([,value])=>value.refresh_error && value.status!=='missing').map(([key,value])=>sourceIssueSummary(key,value,snapshot.projects));
+  $('#errors').innerHTML = (missing.length ? `<p class="alert">${missing.length}个来源暂缺，相应价格、基准或链上供应字段显示缺数据；不会推定为0。</p>` : '')+(stale.length ? `<p class="alert">${stale.map(p=>esc(p.ticker)).join('、')}有滞后数据，查看项目来源时间；不能作为实时估值。</p>` : '')+(failed.length ? `<div class="alert">${failed.map(issue=>`<p><strong>${esc(issue.name)}更新未成功：${esc(issue.cause)}</strong><br>${esc(issue.impact)} 上次成功抓取：${esc(issue.lastSuccess || '未知')}。 ${link({title:'查看接口 ↗',url:issue.url})}</p>`).join('')}</div>` : '')+(snapshot!==baseSnapshot&&historyReadErrors.length?`<details class="alert"><summary>${historyReadErrors.length}份历史归档未通过读取或哈希核对，相应金额显示缺数据</summary><p>${historyReadErrors.map(esc).join('<br>')}</p></details>`:'');
   renderSupplyOverview();
   document.querySelectorAll('[data-source]').forEach(button=>button.addEventListener('click',()=>openSource(button.dataset.source)));
   document.querySelectorAll('[data-supply]').forEach(button=>button.addEventListener('click',()=>openSupply(button.dataset.supply)));

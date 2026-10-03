@@ -175,10 +175,9 @@
   },
   "price-aave": {
     "url": "https://api.coingecko.com/api/v3/coins/aave/market_chart?vs_currency=usd&days=365&interval=daily",
-    "retrieved_at": "2026-10-03T08:21:28.915114+00:00",
-    "sha256": "f83c97d30e1eaa48a03f650f79bacd4e5d8ae9a64d4379c01742561af1bd7114",
-    "status": "cached",
-    "refresh_error": "HTTP Error 429: Too Many Requests"
+    "retrieved_at": "2026-10-03T12:35:59.825295+00:00",
+    "sha256": "a417f3588ec4648be0fe8ea6b6eb85a571a6892d69564b454bba59ead450de9f",
+    "status": "fresh"
   },
   "price-bitcoin": {
     "url": "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365&interval=daily",
@@ -778,7 +777,7 @@
   },
   "bnb-quarter-burns": {
     "url": "https://www.bnbburn.info/api/getQuarterBurns",
-    "retrieved_at": "2026-10-03T10:32:27.305638+00:00",
+    "retrieved_at": "2026-10-03T12:35:58.527417+00:00",
     "sha256": "dffd037abb4ef323a7e5a4182506fda9ae22b3e0d6bfcf69a8dca15ae66730fe",
     "status": "fresh"
   },
@@ -1107,7 +1106,7 @@
     "url": "https://bsc-dataseed.bnbchain.org",
     "retrieved_at": "2026-10-03T10:32:29.394113+00:00",
     "sha256": "86b2455e6ff738ca01c6cb7909aa87d7c153a6513153f6d4b957b203e93ff275",
-    "status": "fresh",
+    "status": "cached",
     "request": [
       {
         "jsonrpc": "2.0",
@@ -1133,6 +1132,345 @@
           "0x77a80f3"
         ]
       }
-    ]
+    ],
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "rpc-bnb-ethereum-transactions": {
+    "url": "https://eth-mainnet.public.blastapi.io",
+    "retrieved_at": "2026-10-03T12:36:01.514494+00:00",
+    "sha256": "23cdc5f27d3fd05c1bf902db8089f0255525a92fc8f9502a7450ead734b3f844",
+    "status": "cached",
+    "request": [
+      {
+        "jsonrpc": "2.0",
+        "id": "chain-id",
+        "method": "eth_chainId",
+        "params": []
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x15132c07b4fdee0d4c77c2993588270914c1451953f5fa9ee20aa5450f399031",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x15132c07b4fdee0d4c77c2993588270914c1451953f5fa9ee20aa5450f399031"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x15132c07b4fdee0d4c77c2993588270914c1451953f5fa9ee20aa5450f399031",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x15132c07b4fdee0d4c77c2993588270914c1451953f5fa9ee20aa5450f399031"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x3ebe8fa51909536be4ecae47b0877fa72ec5fd2afda7ae2d829064847757282b",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x3ebe8fa51909536be4ecae47b0877fa72ec5fd2afda7ae2d829064847757282b"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x3ebe8fa51909536be4ecae47b0877fa72ec5fd2afda7ae2d829064847757282b",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x3ebe8fa51909536be4ecae47b0877fa72ec5fd2afda7ae2d829064847757282b"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x5c2c458b4af0ed8d3ce822fbae71878de10b8a2405101344456c358e19045463"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0x7a07faca141707c9d6aa92b1f2e5e8e9420f2b43d36ced1126d061582e3ae9fa",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0x7a07faca141707c9d6aa92b1f2e5e8e9420f2b43d36ced1126d061582e3ae9fa"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0x7a07faca141707c9d6aa92b1f2e5e8e9420f2b43d36ced1126d061582e3ae9fa",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0x7a07faca141707c9d6aa92b1f2e5e8e9420f2b43d36ced1126d061582e3ae9fa"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xbf97244cf0c5709e0dd36e37bacb994f95c245aaf20a279595b5371ff592f4b0",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xbf97244cf0c5709e0dd36e37bacb994f95c245aaf20a279595b5371ff592f4b0"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xbf97244cf0c5709e0dd36e37bacb994f95c245aaf20a279595b5371ff592f4b0",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xbf97244cf0c5709e0dd36e37bacb994f95c245aaf20a279595b5371ff592f4b0"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xc0fcb8186fc0bb4a37dda7960a7cd33b4d8b93ba6bfbac3ae6d7b50c7282b4ad",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xc0fcb8186fc0bb4a37dda7960a7cd33b4d8b93ba6bfbac3ae6d7b50c7282b4ad"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xc0fcb8186fc0bb4a37dda7960a7cd33b4d8b93ba6bfbac3ae6d7b50c7282b4ad",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xc0fcb8186fc0bb4a37dda7960a7cd33b4d8b93ba6bfbac3ae6d7b50c7282b4ad"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "tx-0xfb51618892938f115aaeaa351ba2c8d6cb9205bdac020c8328fac1f1b57c28a2",
+        "method": "eth_getTransactionByHash",
+        "params": [
+          "0xfb51618892938f115aaeaa351ba2c8d6cb9205bdac020c8328fac1f1b57c28a2"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "receipt-0xfb51618892938f115aaeaa351ba2c8d6cb9205bdac020c8328fac1f1b57c28a2",
+        "method": "eth_getTransactionReceipt",
+        "params": [
+          "0xfb51618892938f115aaeaa351ba2c8d6cb9205bdac020c8328fac1f1b57c28a2"
+        ]
+      }
+    ],
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "rpc-bnb-ethereum-blocks": {
+    "url": "https://eth-mainnet.public.blastapi.io",
+    "retrieved_at": "2026-10-03T12:36:02.964895+00:00",
+    "sha256": "fc62a219dc50b7f72c7d9d87633c8e3c875d622cd140ba99087968708fc78159",
+    "status": "cached",
+    "request": [
+      {
+        "jsonrpc": "2.0",
+        "id": "chain-id",
+        "method": "eth_chainId",
+        "params": []
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x08bba1be81d0ad34b3ef9f4706104b297639f12c51c69519d703927000004489",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x08bba1be81d0ad34b3ef9f4706104b297639f12c51c69519d703927000004489",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x20bd51be21a4d28a39decf1fcb3ef45b589573b4a617657f942155e8bdd1be25",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x20bd51be21a4d28a39decf1fcb3ef45b589573b4a617657f942155e8bdd1be25",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x28812739aa7f31e1ac8673e69a41b853711a5008c6f72de7c79e657d0610859f",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x28812739aa7f31e1ac8673e69a41b853711a5008c6f72de7c79e657d0610859f",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0x8e1b045b954a06c264ee8671316ee66632f943eb9c1ba77b45ec91c3bed73feb",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0x8e1b045b954a06c264ee8671316ee66632f943eb9c1ba77b45ec91c3bed73feb",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xa438ee89e994aa136536aed9527ce80d4d7f1789d17124fea77fecc06b64e96c",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xa438ee89e994aa136536aed9527ce80d4d7f1789d17124fea77fecc06b64e96c",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xa8c5de5c9af454f423997f29c8f98e23fb98787e4f23a8b34056d4859c87f059",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xa8c5de5c9af454f423997f29c8f98e23fb98787e4f23a8b34056d4859c87f059",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "block-0xf18a86e2eeae8e35f1566df911b3e90cb446905dd47be07edcb46c54fe7a7065",
+        "method": "eth_getBlockByHash",
+        "params": [
+          "0xf18a86e2eeae8e35f1566df911b3e90cb446905dd47be07edcb46c54fe7a7065",
+          false
+        ]
+      }
+    ],
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-0beeb3558ff12b1a99fa3c214e8e708b50a28e737ac8a45a0f1876526175fb35": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=0BEEB3558FF12B1A99FA3C214E8E708B50A28E737AC8A45A0F1876526175FB35",
+    "retrieved_at": "2026-10-03T12:36:04.470773+00:00",
+    "sha256": "ca2511398a43ca622a2206ac11da2958ae25ce0149335db69954401cc1eb6019",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-2e16fbfd0f2ba92baffc987f6c33918240141ca8e7e2b7d49ab88e341b8255ce": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=2E16FBFD0F2BA92BAFFC987F6C33918240141CA8E7E2B7D49AB88E341B8255CE",
+    "retrieved_at": "2026-10-03T12:36:06.758126+00:00",
+    "sha256": "7788b16967f2a795467329a2e9e3d2c6425b9b4c1017d826f61c7f6b706ea170",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-34167e903b9f662a64817266d8a6ce4fe096868dad0b883e4f838331e280eeff": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=34167E903B9F662A64817266D8A6CE4FE096868DAD0B883E4F838331E280EEFF",
+    "retrieved_at": "2026-10-03T12:36:07.804316+00:00",
+    "sha256": "48ebe44f5ae24cc8350fd001e418f55eabb9ea1b70ac539b119ee6a21be558c8",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-3d2c66376903f31f22b99b5fc463bf57fd58fbe238d5b5bbd34c953f90ce6b7b": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=3D2C66376903F31F22B99B5FC463BF57FD58FBE238D5B5BBD34C953F90CE6B7B",
+    "retrieved_at": "2026-10-03T12:36:08.853635+00:00",
+    "sha256": "93db25b665a2a13d9cc0c0523478b240d7c83be08f58a0cbbaf7e942914cbd22",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-46df9de885375c582fa6ff785feb80ab7a4f4461d563446367535885cdeefeaa": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=46DF9DE885375C582FA6FF785FEB80AB7A4F4461D563446367535885CDEEFEAA",
+    "retrieved_at": "2026-10-03T12:36:09.779295+00:00",
+    "sha256": "3471e2c5a556be30bd54706a8dd4910d38832d94719e07afdb5505a33383dcfc",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-53dab77c7f10e626425f5542d97f5f20752f889025d01d0342bc1e7484372eea": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=53DAB77C7F10E626425F5542D97F5F20752F889025D01D0342BC1E7484372EEA",
+    "retrieved_at": "2026-10-03T12:36:10.696256+00:00",
+    "sha256": "61b3b346f8ac27f10b3b1acf72694c26d1228243469419c9411c3e599cdafd7c",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-5b824cc8c9dc7a838e2f02d28f68029b85bcbf02326d4af907795b4b8844405a": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=5B824CC8C9DC7A838E2F02D28F68029B85BCBF02326D4AF907795B4B8844405A",
+    "retrieved_at": "2026-10-03T12:36:11.727557+00:00",
+    "sha256": "632a99476336f62daa3f9d2a6f2573d18ad2eb174a291c7e720d169516406e55",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-5c6c88892ab98d820173df6f784f76ddabca32a06546c132514e663e66699794": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=5C6C88892AB98D820173DF6F784F76DDABCA32A06546C132514E663E66699794",
+    "retrieved_at": "2026-10-03T12:36:13.062012+00:00",
+    "sha256": "eb26529d9f5ae874d3f73ca984b51e69f3d9bf92fa71e79042067daf2c58f039",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-6047184045f3f761c4e91d81e530a10aac2887b20e26cbb41a12a0dbad5bdc3b": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=6047184045F3F761C4E91D81E530A10AAC2887B20E26CBB41A12A0DBAD5BDC3B",
+    "retrieved_at": "2026-10-03T12:36:14.523287+00:00",
+    "sha256": "2e4600dda0dd56e95d8fd8099b4731f42d5f3e20285a3d49f52b9bd254c922ed",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-7ea14bb56ef812c142242f360e938bf545e5e17446039dd7d9cb6c9d1ee09db9": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=7EA14BB56EF812C142242F360E938BF545E5E17446039DD7D9CB6C9D1EE09DB9",
+    "retrieved_at": "2026-10-03T12:36:15.552759+00:00",
+    "sha256": "55dd60d0b530fb33db43f2647c860a112818dfb733f982b56f0ee34b89ae535e",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-926b2a741628272fe9cc3883485ced145eadfe7eb3a900f3e5a45dd70aaeb25d": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=926B2A741628272FE9CC3883485CED145EADFE7EB3A900F3E5A45DD70AAEB25D",
+    "retrieved_at": "2026-10-03T12:36:16.602050+00:00",
+    "sha256": "d3c853fab0116b2cf73b6e026e95dd2d829ac2c4ef051644fc2a80003a50262d",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-935071f4b3ea9bc0104c23deaef5919bd0c0b5ad9e780701fc0547e575e1d52e": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=935071F4B3EA9BC0104C23DEAEF5919BD0C0B5AD9E780701FC0547E575E1D52E",
+    "retrieved_at": "2026-10-03T12:36:17.497392+00:00",
+    "sha256": "23a42eefd8b078c969e13b32fc20e2844c68479fadf53f199f2bc65868b95c85",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-9b29e778eec20e6ab0676a11e88c7cd00dfab2849c34b6c6a3eaee6b4e6a8c6d": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=9B29E778EEC20E6AB0676A11E88C7CD00DFAB2849C34B6C6A3EAEE6B4E6A8C6D",
+    "retrieved_at": "2026-10-03T12:36:18.597206+00:00",
+    "sha256": "774d91ace7de6e3e6b39de8241562c9c19e8b96d79dbf32e0e5c49575039aa3c",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-a08063428ab6140e31333a9793a2dd462e17d6c071f5abf4cdce75b4acd38188": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=A08063428AB6140E31333A9793A2DD462E17D6C071F5ABF4CDCE75B4ACD38188",
+    "retrieved_at": "2026-10-03T12:36:19.763027+00:00",
+    "sha256": "b4bbd4a8754ddfec1c7ba2c65210166e6d81664ed37bd4423f82cd42f13d7a29",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-c65ebacd22fb804dadabd0a4bdf4245d25f70b0b923a1a2064596f06e3ba54e3": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=C65EBACD22FB804DADABD0A4BDF4245D25F70B0B923A1A2064596F06E3BA54E3",
+    "retrieved_at": "2026-10-03T12:36:20.777179+00:00",
+    "sha256": "f7027bc079637a7cb3c174f26420dd734aea72ccd914dce8959d8a0acc1904b2",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-d1888295e904d5372e75d7e7ff9a901bd003075f712df8e173abba2850e7e00b": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=D1888295E904D5372E75D7E7FF9A901BD003075F712DF8E173ABBA2850E7E00B",
+    "retrieved_at": "2026-10-03T12:36:21.627264+00:00",
+    "sha256": "40fc40417ee083f71a0d768e2333c2f67b85dcdd5d80c911cf2c6d398d0513ac",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-d3ed9efa4a242bd06e667a1f5df102bc190c9ee76f7db8005a5633fd7d46732a": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=D3ED9EFA4A242BD06E667A1F5DF102BC190C9EE76F7DB8005A5633FD7D46732A",
+    "retrieved_at": "2026-10-03T12:36:22.530800+00:00",
+    "sha256": "c29bf7f2f19b9355aacdcf8c185fa7d7163a4df5914d234d61b3797470163758",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-de23db2fb61495a902a22e5de72744ad587a78881ffc4e3136d2bd2c7e824e29": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=DE23DB2FB61495A902A22E5DE72744AD587A78881FFC4E3136D2BD2C7E824E29",
+    "retrieved_at": "2026-10-03T12:36:23.446606+00:00",
+    "sha256": "9e896f0ce28f7b42bf3c408ddd516a93270b39493879f18e54d75d57f7f14f2f",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-beacon-transaction-f756a40911ac12732a8b2463f57fdc0e49b689d76bf7c53ba8b7a5cc8e5307f4": {
+    "url": "https://explorer.bnbchain.org/api/v1/tx?txHash=F756A40911AC12732A8B2463F57FDC0E49B689D76BF7C53BA8B7A5CC8E5307F4",
+    "retrieved_at": "2026-10-03T12:36:24.583358+00:00",
+    "sha256": "393da2c64af92a8de535822308883f69bc447005999456d8c787416b1ffd9fde",
+    "status": "cached",
+    "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
   }
 }

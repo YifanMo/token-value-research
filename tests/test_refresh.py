@@ -22,9 +22,60 @@ class RateLimitRetry(unittest.TestCase):
         self.addCleanup(context.stop)
         self.key = 'price-raydium'
         self.url = 'https://api.coingecko.com/api/v3/coins/raydium/market_chart?vs_currency=usd&days=365&interval=daily'
+        # These tests isolate HTTP retry waits; the shared gate has its own clock test.
+        for name in ('wait_for_vendor_slot', 'defer_vendor_requests'):
+            context = patch.object(refresh, name)
+            context.start()
+            self.addCleanup(context.stop)
 
     def http_error(self, code, headers=None):
         return refresh.urllib.error.HTTPError(self.url, code, 'Upstream error', headers or {}, None)
+
+    def test_pending_beacon_cache_is_retried_instead_of_permanently_reused(self):
+        key=refresh.bnb_data.BEACON_TRANSACTION_PREFIX+'a'*64
+        url=refresh.bnb_data.BEACON_API+'A'*64
+        body=b'{}'
+        (self.raw/(key+'.json')).write_bytes(body)
+        refresh.dump(self.raw/(key+'.meta.json'),{'url':url,'sha256':refresh.hashlib.sha256(body).hexdigest()})
+        status={}
+        with patch.object(refresh.bnb_data,'bnb_rpc_jobs',return_value=[]), \
+             patch.object(refresh.bnb_data,'bnb_block_jobs',return_value=[]), \
+             patch.object(refresh.bnb_data,'bnb_beacon_jobs',return_value=[(key,url)]), \
+             patch.object(refresh,'request',return_value=(key,{'url':url,'status':'fresh'})) as fetch:
+            refresh.update_bnb_proofs(status,dt.date(2026,10,2))
+        fetch.assert_called_once_with((key,url))
+        self.assertEqual(status[key]['status'],'fresh')
+
+    def test_shared_gate_spaces_requests_and_honors_vendor_cooldown(self):
+        clock, waits = [100.0], []
+        def fake_sleep(delay):
+            waits.append(delay)
+            clock[0] += delay
+        gate = refresh.RequestGate(gap=4)
+        with patch.object(refresh.time, 'monotonic', side_effect=lambda: clock[0]), \
+             patch.object(refresh.time, 'sleep', side_effect=fake_sleep):
+            gate.wait()
+            gate.wait()
+            gate.defer(60)
+            gate.wait()
+        self.assertEqual(waits, [4.0, 60.0])
+        self.assertEqual(gate.next_allowed, 168.0)
+
+    def test_rpc_fallback_rejects_incomplete_results_and_saves_actual_provider(self):
+        payload = [{'jsonrpc':'2.0','id':'proof','method':'eth_getTransactionReceipt','params':['hash']}]
+        primary, secondary = 'https://primary.example/rpc', 'https://secondary.example/rpc'
+        old_body, valid_body = b'[{"id":"proof","result":null}]', b'[{"id":"proof","result":{"status":"0x1"}}]'
+        with patch.object(refresh.bnb_data, 'rpc_endpoints', return_value=[primary,secondary]), \
+             patch.object(refresh.bnb_data, 'valid_rpc_response', side_effect=[False,True]), \
+             patch.object(refresh.urllib.request, 'urlopen', side_effect=[io.BytesIO(old_body),io.BytesIO(valid_body)]) as fetch:
+            _, meta=refresh.request(('rpc-bnb-burn-transactions',primary,payload))
+        self.assertEqual(fetch.call_count,2)
+        self.assertEqual(meta['url'],secondary)
+        self.assertEqual(meta['requested_url'],primary)
+        self.assertTrue(meta['fallback_used'])
+        self.assertEqual(meta['request'],payload)
+        self.assertEqual((self.raw/'rpc-bnb-burn-transactions.json').read_bytes(),valid_body)
+        self.assertNotIn('refresh_error',meta)
 
     def test_429_then_success_waits_once_and_records_final_actual_time(self):
         real_datetime = dt.datetime
