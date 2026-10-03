@@ -14,7 +14,8 @@
     "denominator": "季度销毁无可比营业收入分母；Gas路径只对应链上验证者收费，不能替代币安交易所收入",
     "annualization_note": "季度执行不平滑成每日回购。季度销毁与Gas销毁分开，当前只有Gas滚动7日及累计摘要，完整同窗总销毁未知。",
     "stat_label": "已核季度销毁的美元估值（不含Gas）",
-    "stat_note": "季度数量、日期用BSC转账和成功receipt及区块时间核验；不把预测行、原错误日期或Pioneer补偿统计再次相加。美元值按同UTC执行日价格估值，非实际购买成本。"
+    "stat_note": "季度数量、日期用BSC转账和成功receipt及区块时间核验；不把预测行、原错误日期或Pioneer补偿统计再次相加。美元值按同UTC执行日价格估值，非实际购买成本。",
+    "holder_requires_action": false
   },
   "business": "BNB是BSC、opBNB及Greenfield等生态的原生使用资产，并在交易平台提供功能。BSC用户Gas收费是验证者费用路径；季度Auto-Burn是独立于Binance CEX收入的供应机制，不能把销毁价值当作交易所收入或利润。",
   "sustainability": "Gas销毁依赖真实链上使用、收费水平与验证者治理比例；季度Auto-Burn取决于价格、区块数及可调整参数，并非营业收入回购。交易所功能、链上交易周期、竞争和治理会影响需求，供应变少本身不证明价格或收入改善。",

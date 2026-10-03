@@ -29,7 +29,8 @@
           "basis": "永续费先扣 builder、HIP-3 部署者分成和 maker rebates；现货费排除 Unit。HIP-1 竞价销毁另计。",
           "source_url": "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/helpers/hyperliquid.ts#L193",
           "threshold_utc": "2025-08-30 00:00 UTC"
-        }
+        },
+        "holder_requires_action": false
       },
       "business": "永续和现货撮合手续费、HIP-1 部署拍卖、优先订单等。HyperEVM gas 是独立链口径，当前 parent 数据未合并；HLP 交易盈亏不是代币现金收入。",
       "sustainability": "交易需求真实，但杠杆交易量、波动率和市场份额决定收入。HIP-3 与非加密资产扩展需求；熊市低波动、手续费竞争、做市深度下降都会压低回购。",
@@ -23179,7 +23180,8 @@
         "permanent_from": "2026-04-28",
         "pre_burn_kind": "treasury-or-unconfirmed",
         "stat_label": "已销毁代币的美元估值",
-        "stat_note": "按Solana SPL实际burn指令的数量，用当日代币价格估值；没有逐笔现金回购成本。跨2026-04-28存量销毁事件的窗口，API是否纳入及经常性部分尚未对账，不年化。"
+        "stat_note": "按Solana SPL实际burn指令的数量，用当日代币价格估值；没有逐笔现金回购成本。跨2026-04-28存量销毁事件的窗口，API是否纳入及经常性部分尚未对账，不年化。",
+        "holder_requires_action": false
       },
       "business": "Bonding curve发行交易费、毕业费用、PumpSwap及其他产品收入；扣创作者分成、LP、cashback，且全产品销毁在一个子适配器集中记录。",
       "sustainability": "真实链上收费，但五个项目中最直接依赖Meme发行、短线交易与投机热度。费率竞争、creator分成和cashback会改变净收入；产品扩张不自动降低同一市场周期风险。",
@@ -52170,7 +52172,8 @@
         "denominator": "已启用协议费；绝大多数总交易费仍属于LP",
         "annualization_note": "估值反映兑换／销毁统计速度，不能代替营业收入或实际买币成本；跨政策窗口仍保留未知。",
         "stat_label": "用于费用兑换的UNI估值",
-        "stat_note": "按Firepit释放日志及UNI阈值计算提交UNI数量，再用币价估值；API revenue复制同一估值，不是独立手续费收入或市场现金回购。跨链最终销毁和逐事件历史阈值仍需对账。"
+        "stat_note": "按Firepit释放日志及UNI阈值计算提交UNI数量，再用币价估值；API revenue复制同一估值，不是独立手续费收入或市场现金回购。跨链最终销毁和逐事件历史阈值仍需对账。",
+        "holder_requires_action": false
       },
       "business": "v2/v3及部分v4协议手续费。用户总swap fees不是UNI收入。Uniswap Labs历史前端收费不能自动归到UNI；Unichain等来源需要单独纳入和去重。",
       "sustainability": "基础换币需求比单一Meme发行更广，但仍依赖交易量、波动率和LP深度。fee switch提升捕获同时可能促使LP/路由流量转移；应追踪协议费增长与市场份额。",
@@ -139144,7 +139147,8 @@
         "denominator": "Jupiter自己的收入；Perps为总费25%，JUP回购份额为总费12.5%",
         "annualization_note": "年化金额表示按政策计算的回购额度；未来政策执行和到期处置须验证。 曾有Litterbox存量burn，但未核实未来新买入都自动burn，永久列0是本框架保守经常性口径。",
         "stat_label": "按收入比例计算的回购额度",
-        "stat_note": "多数产品按 Jupiter 自己所得收入的 50% 计算回购额度；不是买入成交记录，代币通常进入战略储备或锁仓。不同产品须按对应规则统计。"
+        "stat_note": "多数产品按 Jupiter 自己所得收入的 50% 计算回购额度；不是买入成交记录，代币通常进入战略储备或锁仓。不同产品须按对应规则统计。",
+        "holder_requires_action": false
       },
       "business": "Ultra聚合收费、Perps协议分成、DCA/Trigger、jupSOL管理费与借贷reserve收入。聚合交易量不能当收入，也不能把路由下游DEX费用再计一次。",
       "sustainability": "多产品需求有分散作用，永续和聚合仍随Solana交易周期。借贷和质押收费较稳定但部分由Fluid/LP分走；父级汇总仍须监控Trigger重复覆盖。",
@@ -183886,7 +183890,8 @@
         "denominator": "交易手续费；CLMM/CPMM回购占可留收入12/16=75%",
         "annualization_note": "AMM回购保留已核，LaunchLab25% burn标签缺实际销毁对账。父级永久销毁列未知，不能记0或全额burn；12%规则只适用于swap产品。",
         "stat_label": "按费用分配计算的回购额度",
-        "stat_note": "AMM 类按交易费 12%、LaunchLab 按协议收入 25% 计算回购额度；不是逐笔实际买入支出，LaunchLab 实际销毁仍待核对。"
+        "stat_note": "AMM 类按交易费 12%、LaunchLab 按协议收入 25% 计算回购额度；不是逐笔实际买入支出，LaunchLab 实际销毁仍待核对。",
+        "holder_requires_action": false
       },
       "business": "AMM/CLMM/CPMM交易费、LaunchLab发行 / 毕业等费用。长尾Meme币手续费按USD标价不一定能全部变现为实际回购资金。",
       "sustainability": "收入真实但高费率Meme交易贡献集中。项目2025Q4报告称Meme为swap收入87%、volume21%；同季度swap revenue环比-60%。量、费率和变现能力必须同时看。",
@@ -252094,7 +252099,11 @@
         "denominator": "各产品的交易费、协议收入或投入CAKE；不是统一收入回购比例",
         "annualization_note": "永久销毁是政策去向；年度额度统计不是已核销毁收益，尚缺完整同窗mint、回购成交及burn对账。",
         "stat_label": "按产品规则计算的回购 / 销毁额度",
-        "stat_note": "AMM、StableSwap、V3、Infinity、Prediction、Lottery子项按不同分配率计算并合并。Lottery包括用户直接支付CAKE的销毁，不能将合计全部称为市场回购现金；不读取完整最终销毁执行。"
+        "stat_note": "AMM、StableSwap、V3、Infinity、Prediction、Lottery子项按不同分配率计算并合并。Lottery包括用户直接支付CAKE的销毁，不能将合计全部称为市场回购现金；不读取完整最终销毁执行。",
+        "holder_requires_action": false,
+        "passive_scope_from": "2025-05-07",
+        "passive_scope_note": "2025-05-07前V3交易费含旧veCAKE收入分享，尚未按当时政策拆分；不将整项统计计入持有原代币的回报。",
+        "passive_scope_source": "https://blog.pancakeswap.finance/articles/implementation-of-cake-tokenomics-3-0-what-you-need-to-know"
       },
       "business": "AMM/V3/Infinity与StableSwap换币手续费，Prediction和Lottery等产品费用。父级回购统计包含交易费分配和直接支付CAKE的销毁；官方列出的永续、CAKE.PAD等收入不保证都在本次API覆盖内。",
       "sustainability": "实际换币与产品付费支持费用收入，但依赖交易量、费率、流动性和市场份额；多链和产品扩展并不使收入脱离牛熊周期。应比较真实收入与CAKE激励成本，不能把铸币后直接销毁包装成经营收益。",
@@ -326176,7 +326185,8 @@
         "denominator": "季度销毁无可比营业收入分母；Gas路径只对应链上验证者收费，不能替代币安交易所收入",
         "annualization_note": "季度执行不平滑成每日回购。BSC手续费日序列、10% Gas销毁模型、已核季度销毁和Gas滚动摘要分开展示；完整同窗实际总销毁仍未核。",
         "stat_label": "已核季度销毁的美元估值（不含Gas）",
-        "stat_note": "季度数量、日期用BSC转账和成功receipt及区块时间核验；不把预测行、原错误日期或Pioneer补偿统计再次相加。美元值按同UTC执行日价格估值，非实际购买成本。"
+        "stat_note": "季度数量、日期用BSC转账和成功receipt及区块时间核验；不把预测行、原错误日期或Pioneer补偿统计再次相加。美元值按同UTC执行日价格估值，非实际购买成本。",
+        "holder_requires_action": false
       },
       "business": "BNB是BSC、opBNB及Greenfield等生态的原生使用资产，并在交易平台提供功能。BSC用户Gas收费是验证者费用路径；季度Auto-Burn是独立于Binance CEX收入的供应机制，不能把销毁价值当作交易所收入或利润。",
       "sustainability": "Gas销毁依赖真实链上使用、收费水平与验证者治理比例；季度Auto-Burn取决于价格、区块数及可调整参数，并非营业收入回购。交易所功能、链上交易周期、竞争和治理会影响需求，供应变少本身不证明价格或收入改善。",
@@ -419408,7 +419418,8 @@
         "stat_label": "回购金库收到AAVE的估值",
         "stat_note": "V3适配器读取Ethereum指定回购金库收到AAVE的Transfer并排除一组地址，按代币价格估值；未逐笔核对每次资金来源、交易现金成本及未来重新释放。",
         "pause_from": "2026-04-19",
-        "pause_source": "https://governance.aave.com/t/arfc-pause-aave-buybacks/24686"
+        "pause_source": "https://governance.aave.com/t/arfc-pause-aave-buybacks/24686",
+        "holder_requires_action": false
       },
       "business": "借款人利息、flashloan与清算费用，GHO借款收益，以及V3的前端合作分成和Chainlink SVR。先区分出贷人所得与DAO所得；协议收入还未扣全部服务、激励、坏账与运营成本。",
       "sustainability": "借贷与稳定币需求比Meme发行更广，但资产规模、利用率、利率、竞争与信用/智能合约风险会改变收入。2026年桥接资产事故与回购暂停说明，收入增长并不保证持续向代币回流。",
@@ -419490,7 +419501,7 @@
         "parties": "存款出贷人、清算参与者及其他相关方；不同版本与费用项的分配不同。",
         "funding_label": "回购金库收到AAVE的估值",
         "funding_rule": "由治理拨款和AFC执行，并非固定收入百分比；2026-04-19起执行方披露暂停，后续恢复需核实。",
-        "funding_note": "数值来自指定金库AAVE流入的估值，不是按收入固定比例生成，也不等于对应交易实际花费；未计入所有质押奖励或其他现金回报。",
+        "funding_note": "数值来自指定回购金库AAVE流入的估值，不是固定收入比例或实际现金花费；质押奖励不在持有原代币的收益范围内。",
         "outcome_label": "Ecosystem Reserve可再支出",
         "outcome_note": "官方明确买回币用于治理批准的质押奖励、拨款和服务支付，未永久销毁。",
         "cautions": [

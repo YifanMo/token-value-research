@@ -1,4 +1,4 @@
-import {hasIncomeLinkedCapture, isReserveBurn} from './models.js';
+import {hasIncomeLinkedCapture, isReserveBurn, passiveHolderScope} from './models.js';
 
 // Research calculations. Null is unknown, never zero. All rates are decimal fractions.
 export const known = value => typeof value === 'number' && Number.isFinite(value);
@@ -10,7 +10,8 @@ export function calculate(project, days = 30, basis = 'remaining') {
   const m = project.market || {};
   const fdv = basis === 'original' ? m.original_cap_fdv : basis === 'reported' ? m.fully_diluted_valuation : m.remaining_supply_fdv;
   const incomeLinkedCapture = hasIncomeLinkedCapture(project);
-  const holder = incomeLinkedCapture ? w?.holders?.recurring_usd ?? (w?.holders?.oneoff_dates?.length ? null : w?.holders?.usd ?? null) : null;
+  const holderScope = passiveHolderScope(project, w);
+  const holder = incomeLinkedCapture && holderScope.eligible ? w?.holders?.recurring_usd ?? (w?.holders?.oneoff_dates?.length ? null : w?.holders?.usd ?? null) : null;
   const reportedRevenue = w?.revenue?.usd ?? null;
   // Some upstream "revenue" fields mirror token-redemption valuations. Keep
   // that observation, but do not turn it into sales or an income-based ratio.
@@ -19,7 +20,7 @@ export function calculate(project, days = 30, basis = 'remaining') {
   const fees = w?.fees?.usd ?? null;
   const holderAnnual = annual(holder, days);
   const crossesBurnPolicy = project.capture?.pre_burn_kind && w?.holders?.start < project.capture?.permanent_from;
-  const burnProxyAnnual = !incomeLinkedCapture ? null : project.capture?.permanent_burn_proxy === true ? crossesBurnPolicy ? null : holderAnnual : project.capture?.permanent_burn_proxy === false ? 0 : null;
+  const burnProxyAnnual = !incomeLinkedCapture || !holderScope.eligible ? null : project.capture?.permanent_burn_proxy === true ? crossesBurnPolicy ? null : holderAnnual : project.capture?.permanent_burn_proxy === false ? 0 : null;
   const earnings = project.financials?.net_income_windows?.[String(days)];
   // A revenue or buyback series cannot substitute for net income. A manually
   // reviewed profit record must match this window, currency and protocol scope.
@@ -33,7 +34,7 @@ export function calculate(project, days = 30, basis = 'remaining') {
   const netIncome = ['positive','zero','loss'].includes(netIncomeStatus) ? earnings.usd : null;
   const netIncomeAnnual = annual(netIncome,days);
   return {
-    holder, rawHolder: w?.holders?.usd ?? null, revenue, reportedRevenue, revenueStatus, fees, holderAnnual, burnProxyAnnual, fdv, crossesBurnPolicy, incomeLinkedCapture,
+    holder, rawHolder: w?.holders?.usd ?? null, holderScope, revenue, reportedRevenue, revenueStatus, fees, holderAnnual, burnProxyAnnual, fdv, crossesBurnPolicy, incomeLinkedCapture,
     grossYieldMc: ratio(holderAnnual, m.market_cap), grossYieldFdv: ratio(holderAnnual, fdv),
     permanentProxyYieldMc: ratio(burnProxyAnnual, m.market_cap),
     permanentProxyYieldFdv: ratio(burnProxyAnnual, fdv),
@@ -57,7 +58,9 @@ export function calculateReferenceMultiples(project, days = 30, basis = 'reporte
   const strict = calculate(project, days, basis);
   const w = strict.coverage;
   const reportedAmount = series => series?.complete !== false && known(series?.usd) ? series.usd : null;
-  const holderUsd = reportedAmount(w?.holders);
+  const holderScope = strict.holderScope;
+  const rawHolderUsd = reportedAmount(w?.holders);
+  const holderUsd = holderScope.eligible ? rawHolderUsd : null;
   const revenueUsd = reportedAmount(w?.revenue);
   const validDays = known(days) && days > 0;
   const annualStatistic = value => {
@@ -87,9 +90,12 @@ export function calculateReferenceMultiples(project, days = 30, basis = 'reporte
   if (isReserveBurn(project)) {
     notes.splice(0, notes.length, '季度储备销毁与Gas销毁单独记录，不作为收入回购现金、企业收入或净利润；不计算参考P/E、P/S和年化回购收益率。');
   }
-  if (w?.holders?.complete === false) notes.push('持有人统计未覆盖完整期间，参考PE未知。');
-  else if (!known(holderUsd)) notes.push('缺少有效的持有人统计金额，参考PE未知。');
-  else if (holderUsd <= 0) notes.push('持有人统计分母为零或负数，参考PE不适用；不能据此断言净利润为零或亏损。');
+  notes.push(holderScope.note);
+  if (holderScope.eligible) {
+    if (w?.holders?.complete === false) notes.push('持有人统计未覆盖完整期间，参考PE未知。');
+    else if (!known(holderUsd)) notes.push('缺少有效的持有人统计金额，参考PE未知。');
+    else if (holderUsd <= 0) notes.push('持有人统计分母为零或负数，参考PE不适用；不能据此断言净利润为零或亏损。');
+  }
   if (revenueStatus === 'incomplete') notes.push('收入统计缺日或归一化数据不完整，参考PS未知；未用原始金额或观察额回填。');
   else if (revenueStatus === 'missing') notes.push('缺少有效的API收入统计金额，参考PS未知。');
   else {
@@ -104,7 +110,7 @@ export function calculateReferenceMultiples(project, days = 30, basis = 'reporte
     peFdv:finiteMultiple(strict.fdv, holderAnnual),
     psMc:finiteMultiple(project.market?.market_cap, revenueAnnual),
     psFdv:finiteMultiple(strict.fdv, revenueAnnual),
-    holderUsd, holderAnnual, revenueUsd, revenueAnnual, revenueStatus,
+    holderUsd, rawHolderUsd, holderScope, holderAnnual, revenueUsd, revenueAnnual, revenueStatus,
     containsOneoff, crossesBurnPolicy, coverage:w, notes,
   };
 }

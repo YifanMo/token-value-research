@@ -32,10 +32,11 @@ export function buildFlow(project, days = 30) {
     const gas=modelValid?model:null;
     const remaining=known(gas) && fees>=gas ? fees-gas : null;
     const warnings=[...(config.cautions || []), '季度储备销毁与Gas销毁模型是两条独立路径；未将季度销毁公告估值填入收入或回购现金。', 'Gas美元金额按供应商10%规则估算，未核逐日实际销毁；当前区块的比例参数不能证明整个历史窗口的比例。', '实时Gas观察是抓取时点的数据，不是所选时间窗口的销毁总额。'];
+    if (!calculated.holderScope.eligible) warnings.push(calculated.holderScope.note);
     if (!known(fees)) warnings.push('BSC交易Gas费用未覆盖完整所选期间，金额未知。');
     if (!modelValid) warnings.push('Gas模型缺日、尚未生效、期间或计算规则未对平，所选期间估算金额未知。');
     if (known(gas) && fees<gas) warnings.push('Gas模型大于总费用，其余费用不填为负数或零。');
-    return {ticker:project.ticker, start, end, days, mode:'reserve_and_gas_burn', unallocatedUsd:null, unallocatedRecord:null,
+    return {ticker:project.ticker, start, end, days, mode:'reserve_and_gas_burn', holderScope:calculated.holderScope, holderUsd:null, unallocatedUsd:null, unallocatedRecord:null,
       chainFeesUsd:fees,gasBurnEstimateUsd:gas,remainingGasFeesEstimateUsd:remaining,warnings,
       nodes:[
         {id:'fees',label:config.fees_label || 'BSC链交易Gas费用',usd:fees,evidence:known(fees)?'api':'unknown',note:joinNotes(config.origins,'来自用户实际支付Gas的链上索引统计，仅覆盖BSC；不含交易所企业收入、opBNB或Greenfield费用。')},
@@ -70,9 +71,11 @@ export function buildFlow(project, days = 30) {
   const income = config.revenue_is_income === true && mode !== 'token_redemption_valuation';
   const fees = amounts.fees;
   const revenue = income ? amounts.revenue : null;
-  // Keep the raw window statistic, including any stock event, with a warning.
-  // calculate().holder is the recurring-only series and is deliberately unused.
-  const holder = amounts.holders;
+  // Keep stock events separate from recurring-only calculations, while still
+  // enforcing the original-token passive holder scope on displayed amounts.
+  const holderScope = calculated.holderScope;
+  const holder = holderScope.eligible ? amounts.holders : null;
+  if (!holderScope.eligible) warn(holderScope.note);
   const oneoffs = [...new Set([
     ...(Array.isArray(w.holders?.oneoff_dates) ? w.holders.oneoff_dates : []),
     ...(Array.isArray(project.holder_oneoff_dates) ? project.holder_oneoff_dates.filter(date =>
@@ -111,7 +114,7 @@ export function buildFlow(project, days = 30) {
   let unallocatedUsd = null;
   let unallocatedRecord = null;
   // The renderer presents funding_rule separately from this explanatory note.
-  let fundingNote = joinNotes(config.funding_note);
+  let fundingNote = joinNotes(config.funding_note, holderScope.eligible ? null : holderScope.note);
   if (mode === 'allocation') {
     fundingNote = joinNotes(fundingNote, '金额为原始窗口的代币持有人统计 / 分配额度，不是逐笔已成交回购现金。');
     if (known(revenue) && known(holder) && sameRevenueHolderPeriod && holder > revenue)
@@ -149,14 +152,14 @@ export function buildFlow(project, days = 30) {
       evidence:known(revenue) ? 'api' : 'unknown', ...(income ? {composition:w.revenue?.composition} : {})},
     {id:'other', label:labels.other, usd:other, note:otherNote, evidence:known(other)?otherEvidence:'unknown'},
     {id:'funding', label:labels.funding, usd:mode === 'allocation' ? holder : null, note:fundingNote,
-      evidence:'policy', ...(mode === 'allocation' ? {composition:w.holders?.composition} : {}),
+      evidence:'policy', ...(mode === 'allocation' && holderScope.eligible ? {composition:w.holders?.composition} : {}),
       ...(unallocatedRecord ? {record:unallocatedRecord} : {})},
     {id:'outcome', label:mode==='burn_valuation' && oneoffs.length?'历史回购／销毁统计（口径待核）':labels.outcome, usd:mode === 'allocation' ? null : holder,
-      note:joinNotes(mode==='burn_valuation' && oneoffs.length?null:config.outcome_note, mode === 'allocation'
+      note:joinNotes(holderScope.eligible ? null : holderScope.note, mode==='burn_valuation' && oneoffs.length?null:config.outcome_note, mode === 'allocation'
         ? '最终去向按政策标示；实际购入、持有或销毁数量仍需链上台账核实。'
         : mode==='burn_valuation' && oneoffs.length?'跨事件窗口保留API原始值；历史统计方法及库存事件尚未对账，不能一律视为销毁估值或现金支出。':'此处是代币的美元估值，不是现金支出。'),
       evidence:mode === 'allocation' ? 'policy' : mode==='burn_valuation' && oneoffs.length?'mixed':'valuation',
-      ...(mode === 'allocation' ? {} : {composition:w.holders?.composition})},
+      ...(mode === 'allocation' || !holderScope.eligible ? {} : {composition:w.holders?.composition})},
   ];
   const edges = [
     {from:'fees', to:'revenue', dashed:!income || !known(fees) || !known(revenue) || !sameFeesRevenuePeriod},
@@ -164,5 +167,5 @@ export function buildFlow(project, days = 30) {
     {from:'revenue', to:'funding', dashed:true},
     {from:'funding', to:'outcome', dashed:true},
   ];
-  return {ticker:project.ticker, start, end, days, mode, nodes, edges, warnings, unallocatedUsd, unallocatedRecord};
+  return {ticker:project.ticker, start, end, days, mode, holderScope, holderUsd:holder, nodes, edges, warnings, unallocatedUsd, unallocatedRecord};
 }

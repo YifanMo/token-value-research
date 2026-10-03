@@ -6,7 +6,7 @@ import {buildConclusion} from './conclusions.js';
 import {validateDateRange} from './periods.js';
 import {selectedChartData} from './charts.js';
 import {HistoryLoader} from './data-loader.js';
-import {isReserveBurn, statisticLabel, isHypeFeeReconciliation, captureBadge} from './models.js';
+import {isReserveBurn, statisticLabel, isHypeFeeReconciliation, captureBadge, HOLDER_RETURN_RULE} from './models.js';
 import {burnFinancialMarkup, burnStats} from './burns.js';
 import {feeReconciliationMarkup} from './fee-view.js';
 import {sortProjects} from './comparison-sort.js';
@@ -35,6 +35,9 @@ const signed = value => known(value) ? `${value>0?'+':''}${pct(value)}` : '缺�
 const metricPair = (a,b) => valuationPair(a,b,pct);
 const multiple = value => known(value) ? `${value.toFixed(2)}x` : '—';
 const valuationPair = (a,b,format=multiple) => `<span class="valuation-pair"><span class="valuation-row"><span class="valuation-label" title="按已经流通的代币估值">流通市值</span><span class="valuation-value">${format(a)}</span></span><span class="valuation-row"><span class="valuation-label" title="CoinGecko完全稀释估值，考虑尚未流通的供应">FDV</span><span class="valuation-value">${format(b)}</span></span></span>`;
+const holderScopeLabel = scope => scope?.status === 'requires_action' ? '额外参与收益已排除' : '旧分成待拆分';
+const holderMultipleMarkup = ref => ref.holderScope?.eligible === false
+  ? `<span class="cell-tag">${holderScopeLabel(ref.holderScope)}</span>` : valuationPair(ref.peMc,ref.peFdv);
 const link = source => `<a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.title)}</a>`;
 const evidenceNames = {official:'官方排期',contract:'原合约资格',tracker:'第三方模型',run_rate:'当前速度外推',scenario:'情景假设',reported_plan:'二级报道拟执行',approved_policy:'已通过政策',ended:'原排期已结束',authority:'权限上限',protocol_policy:'现行协议规则',unknown:'尚未核实'};
 const primaryComponent = project => project.supply_forecast?.components?.find(c=>c.id===project.supply_forecast.overview_component_id);
@@ -151,7 +154,7 @@ function financialCells(project,m) {
   const ticker=esc(project.ticker);
   if (isReserveBurn(project)) return ['收入倍数','持币者回报倍数'].map(label=>`<td class="financial-value"><button class="metric-button muted" data-financial="${ticker}" aria-label="${ticker} ${label}为什么不适用">不适用</button></td>`).join('');
   const ref=calculateReferenceMultiples(project,state.days,valuationBasis);
-  const holderPe=`${valuationPair(ref.peMc,ref.peFdv)}${ref.containsOneoff?'<span class="cell-tag">库存事件待核</span>':''}`;
+  const holderPe=`${holderMultipleMarkup(ref)}${ref.containsOneoff?'<span class="cell-tag">库存事件待核</span>':''}`;
   const ps=`${valuationPair(ref.psMc,ref.psFdv)}${ref.revenueStatus==='valuation_only'?'<span class="cell-tag">兑换估值</span>':''}`;
   return `<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} P/S计算口径">${ps}</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 持币者回报倍数计算口径">${holderPe}</button></td>`;
 }
@@ -189,7 +192,7 @@ function renderComparison() {
     const burn=isReserveBurn(project)?burnStats(project,state.start,state.end):null;
     const income=isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核':amount(m.revenue,true);
     const incomeTags=[m.revenueStatus==='valuation_only'?'独立收入待核':'',!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`覆盖${m.coverage.revenue.coverage_days}/${state.days}天`:'',project.ticker==='JUP'?'待去重':''].filter(Boolean);
-    const yieldMarkup=burn?`<button class="metric-button" data-quarter-plan="${ticker}" aria-label="${ticker} 查看季度销毁计划">${burn.count?amount(burn.tokens)+' BNB':'季度销毁'}<span class="cell-tag">${burn.count?'未年化':'无已核事件'}</span></button>`:`<button class="metric-button" data-source="${ticker}" aria-label="${ticker} 查看年化回购销毁收益率来源">${metricPair(m.grossYieldMc,m.grossYieldFdv)}${!known(m.holder)&&m.incomeLinkedCapture?'<span class="cell-tag">年化待核</span>':''}</button>`;
+    const yieldMarkup=burn?`<button class="metric-button" data-quarter-plan="${ticker}" aria-label="${ticker} 查看季度销毁计划">${burn.count?amount(burn.tokens)+' BNB':'季度销毁'}<span class="cell-tag">${burn.count?'未年化':'无已核事件'}</span></button>`:m.holderScope?.eligible===false?`<button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 查看持币收益范围"><span class="cell-tag">${holderScopeLabel(m.holderScope)}</span></button>`:`<button class="metric-button" data-source="${ticker}" aria-label="${ticker} 查看年化回购销毁收益率来源">${metricPair(m.grossYieldMc,m.grossYieldFdv)}${!known(m.holder)&&m.incomeLinkedCapture?'<span class="cell-tag">年化待核</span>':''}</button>`;
     return `<tr class="${selected?'selected':''}">
       <td><button class="token-select" data-token="${ticker}" aria-pressed="${selected}" title="查看 ${ticker} 详情"><strong>${ticker}<span class="token-arrow" aria-hidden="true">↗</span></strong><span title="${esc(project.name)}">${esc(project.name)}</span></button></td>
       <td><button class="metric-button market-value" data-financial="${ticker}" aria-label="${ticker} 查看流通市值">${amount(project.market.market_cap,true)}</button></td>
@@ -289,11 +292,12 @@ async function openFinancial(ticker) {
   sourceRequest?.abort();
   const request=new AbortController();sourceRequest=request;
   $('#source-title').textContent=`${ticker} · 财务指标与计算口径`;
-  $('#source-content').innerHTML=`<div class="financial-dialog-summary"><div><span>协议收入倍数 P/S</span>${valuationPair(ref.psMc,ref.psFdv)}</div><div><span>持币者回报倍数</span>${valuationPair(ref.peMc,ref.peFdv)}</div></div>
+  $('#source-content').innerHTML=`<div class="financial-dialog-summary"><div><span>协议收入倍数 P/S</span>${valuationPair(ref.psMc,ref.psFdv)}</div><div><span>持币者回报倍数</span>${holderMultipleMarkup(ref)}</div></div>
   <div class="financial-inputs"><div><span>年化收入统计</span><strong>${amount(ref.revenueAnnual,true)}</strong></div><div><span>年化回购／销毁统计</span><strong>${amount(ref.holderAnnual,true)}</strong></div><div><span>协议收入占手续费</span><strong>${pct(m.revenueShare)}</strong></div><div><span>回购／销毁占收入</span><strong>${pct(m.holderCapture)}</strong></div></div>
   <p>${esc(state.start)} — ${esc(state.end)} · ${days}天。分别以流通市值和FDV作为估值，除以同一份年化金额。</p>
   ${ref.revenueStatus==='valuation_only'?'<p class="financial-flag">兑换估值，独立营业收入待核。</p>':''}${ref.containsOneoff?'<p class="financial-flag">包含库存事件，历史统计倍数不代表持续回购能力。</p>':''}${project.ticker==='JUP'?'<p class="financial-flag">业务覆盖重叠，仍待去重。</p>':''}${ref.crossesBurnPolicy?'<p class="financial-flag">窗口跨越销毁政策变更，不能全按现行规则理解。</p>':''}${ref.revenueStatus==='incomplete'?'<p class="financial-flag">窗口缺完整收入，未补齐或年化。</p>':''}
   <details class="source-detail financial-disclosure"><summary>算式与统计口径</summary>
+    <div class="source-formula"><h3>持币收益范围</h3><p>${esc(HOLDER_RETURN_RULE)}${ref.holderScope?.eligible===false?' '+esc(ref.holderScope.note):''}</p></div>
     <div class="source-formula"><h3>两种估值</h3><p>流通市值 ${exactUsd(project.market.market_cap)}；CoinGecko FDV ${exactUsd(m.fdv)}。前者只计已流通代币，后者考虑尚未流通的供应。</p></div>
     <div class="source-formula"><h3>P/S = 估值 ÷ 年化收入统计</h3><p>同窗统计 ${exactUsd(ref.revenueUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.revenueAnnual)}。未扣完整经营成本，不是项目净利润。${ref.revenueStatus==='valuation_only'?statisticLabel(project)+'仅作兑换估值分母，不能当作独立营业收入。':ref.revenueStatus==='incomplete'?'窗口缺完整收入，未补齐缺日。':''}</p></div>
     <div class="source-formula"><h3>持币者回报倍数 = 估值 ÷ 年化回购／销毁统计</h3><p>同窗统计 ${exactUsd(ref.holderUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.holderAnnual)}。${esc(project.capture.stat_note)} 回购或销毁不代表持币人直接收到现金。</p></div>
@@ -542,6 +546,7 @@ $('#metric-help').addEventListener('click',()=>{
   sourceRequest?.abort();
   $('#source-title').textContent='指标说明';
   $('#source-content').innerHTML=`<dl class="metric-guide">
+    <div><dt>持币收益范围</dt><dd>${esc(HOLDER_RETURN_RULE)} BNB → asBNB 的收益排除；质押奖励仍作为供应释放压力统计。</dd></div>
     <div><dt>流通市值 / FDV</dt><dd>流通市值只按已流通代币估值；FDV采用CoinGecko完全稀释估值，考虑尚未流通的供应。每项指标的两行使用同一份年化金额。</dd></div>
     <div><dt>协议收入</dt><dd>所选期间内协议获得的收入统计，尚未扣完整经营成本。不是项目净利润；标为“待核”的项目未取得独立营业收入。</dd></div>
     <div><dt>P/S</dt><dd>估值 ÷ 年化收入统计。UNI的兑换估值单独标记，不视为独立营业收入。</dd></div>
