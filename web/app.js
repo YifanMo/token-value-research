@@ -34,8 +34,6 @@ const price = value => known(value) ? '$'+value.toLocaleString('en-US',{maximumF
 const signed = value => known(value) ? `${value>0?'+':''}${pct(value)}` : '缺数据';
 const metricPair = (a,b) => `${pct(a)} <span class="number-sub">${pct(b)}</span>`;
 const multiple = value => known(value) ? `${value.toFixed(2)}x` : '—';
-const incomeLabels={missing:'缺完整净利润',not_applicable:'销毁机制，P/E不适用',period_mismatch:'利润期间不匹配',scope_unverified:'利润口径待核',costs_incomplete:'成本未完整扣除',oneoffs_unseparated:'一次性项目未拆分',source_missing:'缺利润数据来源',loss:'亏损，P/E不适用',zero:'净利为零，P/E不适用',positive:'净利润口径已核对'};
-const incomeLabel=(project,status)=>status==='missing'&&!project.financials?.net_income_windows?'未接入净利润数据':incomeLabels[status];
 const link = source => `<a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.title)}</a>`;
 const evidenceNames = {official:'官方排期',contract:'原合约资格',tracker:'第三方模型',run_rate:'当前速度外推',scenario:'情景假设',reported_plan:'二级报道拟执行',approved_policy:'已通过政策',ended:'原排期已结束',authority:'权限上限',protocol_policy:'现行协议规则',unknown:'尚未核实'};
 const primaryComponent = project => project.supply_forecast?.components?.find(c=>c.id===project.supply_forecast.overview_component_id);
@@ -145,13 +143,12 @@ function toggleCustomRange(open) {
 
 function financialCells(project,m) {
   const ticker=esc(project.ticker);
-  if (isReserveBurn(project)) return ['收入倍数','持币者回报倍数','净利润P/E','协议收入占手续费','回购占收入'].map(label=>`<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} ${label}为什么不适用">不适用<span class="number-sub">储备 / Gas销毁</span></button></td>`).join('');
+  if (isReserveBurn(project)) return ['收入倍数','持币者回报倍数','协议收入占手续费','回购占收入'].map(label=>`<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} ${label}为什么不适用">不适用<span class="number-sub">储备 / Gas销毁</span></button></td>`).join('');
   const ref=calculateReferenceMultiples(project,state.days,valuationBasis);
   const holderPe=`${multiple(ref.peMc)}<span class="number-sub">${multiple(ref.peFdv)}</span>${ref.containsOneoff?'<span class="stat-method">历史统计，库存事件未对账</span>':''}`;
-  const projectPe=m.netIncomeStatus==='positive' ? `${multiple(m.peMc)}<span class="number-sub">${multiple(m.peFdv)}</span>` : `${['loss','zero'].includes(m.netIncomeStatus)?'不适用':'—'}<span class="number-sub">${esc(incomeLabel(project,m.netIncomeStatus))}</span>`;
   const ps=`${multiple(ref.psMc)}<span class="number-sub">${multiple(ref.psFdv)}</span>${ref.revenueStatus==='valuation_only'?'<span class="stat-method">兑换估值分母，非营业收入</span>':''}`;
   const share=project.fee_normalization?`<button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 手续费分成与去重口径">${pct(m.revenueShare)}<span class="number-sub">总手续费分母 · 已去重<br>${isHypeFeeReconciliation(project)?'99%规则与拆分':'费用去重核对'} ↗</span></button>`:pct(m.revenueShare);
-  return `<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} P/S计算口径">${ps}</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 持币者回报倍数计算口径">${holderPe}</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 项目净利润P/E计算口径">${projectPe}</button></td><td class="financial-value">${share}</td><td class="financial-value">${pct(m.holderCapture)}</td>`;
+  return `<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} P/S计算口径">${ps}</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 持币者回报倍数计算口径">${holderPe}</button></td><td class="financial-value">${share}</td><td class="financial-value">${pct(m.holderCapture)}</td>`;
 }
 
 const feeReconciliation = feeReconciliationMarkup;
@@ -244,17 +241,15 @@ async function openFinancial(ticker) {
   const m=calculate(project,days,valuationBasis), w=m.coverage?.revenue;
   const ref=calculateReferenceMultiples(project,days,valuationBasis);
   const exactUsd=value=>known(value)?'$'+value.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
-  const earnings=project.financials?.net_income_windows?.[String(days)];
   sourceRequest?.abort();
   const request=new AbortController();sourceRequest=request;
   $('#source-title').textContent=`${ticker} · 财务指标与计算口径`;
-  $('#source-content').innerHTML=`<div class="financial-dialog-summary"><div><span>协议收入倍数 P/S</span><strong>${multiple(ref.psMc)}</strong><small>FDV ${multiple(ref.psFdv)}</small></div><div><span>持币者回报倍数 · 回购／销毁统计</span><strong>${multiple(ref.peMc)}</strong><small>FDV ${multiple(ref.peFdv)}</small></div><div><span>项目净利润 P/E</span><strong>${m.netIncomeStatus==='positive'?multiple(m.peMc):['loss','zero'].includes(m.netIncomeStatus)?'不适用':'待核'}</strong><small>${esc(incomeLabel(project,m.netIncomeStatus))}</small></div></div>
+  $('#source-content').innerHTML=`<div class="financial-dialog-summary"><div><span>协议收入倍数 P/S</span><strong>${multiple(ref.psMc)}</strong><small>FDV ${multiple(ref.psFdv)}</small></div><div><span>持币者回报倍数 · 回购／销毁统计</span><strong>${multiple(ref.peMc)}</strong><small>FDV ${multiple(ref.peFdv)}</small></div></div>
   <div class="source-formula"><h3>持币者回报倍数：市值 ÷ 年化回购／销毁统计</h3><p>期间 ${esc(w?.start)} → ${esc(w?.end)}；API持有人统计 ${exactUsd(ref.holderUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.holderAnnual)}。流通市值 ÷ 年化统计 = <strong>${multiple(ref.peMc)}</strong>；FDV ÷ 年化统计 = <strong>${multiple(ref.peFdv)}</strong>。回购或销毁不代表持币人直接收到现金。</p><p>${esc(project.capture.stat_note)} ${ref.containsOneoff?'所选窗口跨存量事件，历史API总额仍可求倍数，但不能当成持续盈利或未来回购能力。':''}</p></div>
   <div class="source-formula"><h3>参考 P/S：收入字段倍数</h3><p>同窗API收入字段（采用本地归一化金额）${exactUsd(ref.revenueUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.revenueAnnual)}。流通市值 / FDV ÷ 该金额 = <strong>${multiple(ref.psMc)} / ${multiple(ref.psFdv)}</strong>。</p><p>${ref.revenueStatus==='valuation_only'?statisticLabel(project)+'仅作原字段倍数；独立营业收入的P/S仍未知。':ref.revenueStatus==='incomplete'?'窗口缺少完整归一化收入，未用原始重复额或已观察部分补齐。':'以当前统计范围计算，未扣完整经营成本。'} ${project.ticker==='JUP'?'JUP仍含业务覆盖重叠，未宣称完全去重。':''} ${ref.notes.map(esc).join(' ')}</p></div>
   ${m.revenueStatus==='valuation_only'?`<div class="source-meaning"><h3>${esc(project.ticker)}的真实手续费收入尚未独立取得</h3><p>本次API revenue字段 ${exactUsd(m.reportedRevenue)} 属于${esc(statisticLabel(project))}，不能拿来作为独立营业收入口径P/S的分母。已收费用资产、兑换价值与现金买入成本需要分别对账。${link({title:'源码与核对依据',url:project.flow.source_note_url})}</p></div>`:''}
   ${feeReconciliation(project,m)}
   <div class="source-formula"><h3>市销率 P/S：用收入衡量价格</h3><p>收入期间 ${esc(w?.start)} → ${esc(w?.end)}；${w?.complete===false?'窗口缺完整金额，不补齐或年化':days===365?'完整365天总额':'按所选'+days+'天收入折算一年，属于该期间的平均统计速度'}。</p><p>年收入 = ${exactUsd(m.revenue)} × 365 ÷ ${days} = <strong>${exactUsd(m.revenueAnnual)}</strong>。</p><p>流通市值 ${exactUsd(project.market.market_cap)} ÷ 年收入 = <strong>${multiple(m.psRevenueMc)}</strong>；CoinGecko FDV ${exactUsd(m.fdv)} ÷ 同一年收入 = <strong>${multiple(m.psRevenueFdv)}</strong>。</p><p>分母使用协议自己得到的收入，扣除了部分 LP、creator 等分成；它还没有扣完整经营成本。协议收入的统计范围与上市公司营业收入可能不同，横向比较时须核对范围。</p></div>
-  <div class="source-formula"><h3>项目净利润 P/E：市值 ÷ 年化项目净利润</h3><p>流通市值 / FDV ÷ 同窗年化净利润；当前净利润 ${exactUsd(m.netIncome)}，年化 ${exactUsd(m.netIncomeAnnual)}。${esc(incomeLabel(project,m.netIncomeStatus))}。</p><p>${known(m.netIncome)?`本次流通 / FDV 的 P/E：${multiple(m.peMc)} / ${multiple(m.peFdv)}。`:'当前快照没有满足要求的净利润记录；这不表示净利润为零，也不能据此判断亏损。协议收入、回购额度、销毁估值均不代替净利润。'}</p><p>需要补齐同一期间、同一协议范围的成本与费用（包括激励、运营及其他应计项目），短窗年化须分离一次性项目；完整365天可使用该年度净利润，并保留财报来源。亏损或净利为零时，P/E不适用。</p>${earnings?.source_url?`<div class="sources">${link({title:'利润记录来源',url:earnings.source_url})}</div>`:''}</div>
   <div class="source-formula"><h3>协议收入占手续费 / 回购与销毁占收入</h3><p>协议所得收入 ${exactUsd(m.revenue)} ÷ 用户手续费 ${exactUsd(m.fees)} = <strong>${pct(m.revenueShare)}</strong>，表示用户付费中协议拿到的比例，不是利润率。</p><p>可比较的回购 / 销毁统计金额 ${exactUsd(m.holder)} ÷ 协议所得收入 ${exactUsd(m.revenue)} = <strong>${pct(m.holderCapture)}</strong>。这是同窗比例，不再年化，也不是按净利润计算的派息率。</p><p>${esc(project.capture.stat_note)} ${esc(m.coverage?.holders?.recurring_note||'')}估值与执行时差可能使比例超过100%，不强行截断。</p></div>
   <section class="source-policy"><h3>本次使用的数据与保存响应</h3><p>市值与FDV：${link({title:'CoinGecko 市场快照',url:project.market.source})} · ${esc(project.market.last_updated)}。当前采集器未接入成本和净利润数据源。</p><div class="financial-data-sources">${['fees','revenue','holders'].map(kind=>{
     const source=project.data_sources.find(s=>s.kind===kind), name={fees:'用户手续费',revenue:statisticLabel(project),holders:'回购 / 销毁统计金额'}[kind];
@@ -527,7 +522,7 @@ try {
 }
 
 function viewSummary() {
-  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple','project_net_income_pe'],comparison_sort:{...state.sort},
+  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple'],comparison_sort:{...state.sort},
     rows:orderedProjects().map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis);return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
       gross_proxy_yield_fdv:m.grossYieldFdv,
       ps_revenue_mc:m.psRevenueMc,ps_revenue_fdv:m.psRevenueFdv,pe_mc:m.peMc,pe_fdv:m.peFdv,net_income_status:m.netIncomeStatus,revenue_status:m.revenueStatus,reported_api_revenue_usd:m.reportedRevenue,protocol_revenue_share:m.revenueShare,buyback_burn_share_of_revenue:m.holderCapture,
