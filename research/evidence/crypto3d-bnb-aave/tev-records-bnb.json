@@ -1,0 +1,553 @@
+{
+  "protocol": "bnb",
+  "updated_at": "2026-08-10T13:10:57.318113Z",
+  "data_source": "config.json.burn_history (全量 Quarterly Auto-Burn) + asBNB APY 估算（最近 4 季）",
+  "records": [
+    {
+      "id": "bnb-burn-2017-10-18",
+      "date": "2017-10-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (986,000 BNB)",
+      "amount_usd": 1500000,
+      "amount_bnb": 986000,
+      "period": "Q4 2017",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2018-01-15",
+      "date": "2018-01-15",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,821,586 BNB)",
+      "amount_usd": 30000000,
+      "amount_bnb": 1821586,
+      "period": "Q1 2018",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2018-04-15",
+      "date": "2018-04-15",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,220,314 BNB)",
+      "amount_usd": 30000000,
+      "amount_bnb": 2220314,
+      "period": "Q2 2018",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2018-07-18",
+      "date": "2018-07-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,528,767 BNB)",
+      "amount_usd": 30400000,
+      "amount_bnb": 2528767,
+      "period": "Q3 2018",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2018-10-17",
+      "date": "2018-10-17",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,643,986 BNB)",
+      "amount_usd": 12700000,
+      "amount_bnb": 1643986,
+      "period": "Q4 2018",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2019-01-16",
+      "date": "2019-01-16",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,623,818 BNB)",
+      "amount_usd": 9400000,
+      "amount_bnb": 1623818,
+      "period": "Q1 2019",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2019-04-16",
+      "date": "2019-04-16",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (829,888 BNB)",
+      "amount_usd": 15600000,
+      "amount_bnb": 829888,
+      "period": "Q2 2019",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2019-07-12",
+      "date": "2019-07-12",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (808,888 BNB)",
+      "amount_usd": 23800000,
+      "amount_bnb": 808888,
+      "period": "Q3 2019",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2019-10-17",
+      "date": "2019-10-17",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,061,888 BNB)",
+      "amount_usd": 36700000,
+      "amount_bnb": 2061888,
+      "period": "Q4 2019",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2020-01-19",
+      "date": "2020-01-19",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,216,888 BNB)",
+      "amount_usd": 38800000,
+      "amount_bnb": 2216888,
+      "period": "Q1 2020",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2020-04-17",
+      "date": "2020-04-17",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (3,373,988 BNB)",
+      "amount_usd": 52400000,
+      "amount_bnb": 3373988,
+      "period": "Q2 2020",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2020-07-18",
+      "date": "2020-07-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (3,477,388 BNB)",
+      "amount_usd": 60500000,
+      "amount_bnb": 3477388,
+      "period": "Q3 2020",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2020-10-17",
+      "date": "2020-10-17",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,253,888 BNB)",
+      "amount_usd": 68000000,
+      "amount_bnb": 2253888,
+      "period": "Q4 2020",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2021-01-19",
+      "date": "2021-01-19",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (3,619,888 BNB)",
+      "amount_usd": 165800000,
+      "amount_bnb": 3619888,
+      "period": "Q1 2021",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2021-04-16",
+      "date": "2021-04-16",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,099,888 BNB)",
+      "amount_usd": 595314380,
+      "amount_bnb": 1099888,
+      "period": "Q2 2021",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2021-07-18",
+      "date": "2021-07-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,296,728 BNB)",
+      "amount_usd": 394000000,
+      "amount_bnb": 1296728,
+      "period": "Q3 2021",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2021-10-18",
+      "date": "2021-10-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,335,888 BNB)",
+      "amount_usd": 639000000,
+      "amount_bnb": 1335888,
+      "period": "Q4 2021",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2022-01-18",
+      "date": "2022-01-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,684,387 BNB)",
+      "amount_usd": 868000000,
+      "amount_bnb": 1684387,
+      "period": "Q1 2022",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2022-04-14",
+      "date": "2022-04-14",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,839,786 BNB)",
+      "amount_usd": 772000000,
+      "amount_bnb": 1839786,
+      "period": "Q2 2022",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2022-07-21",
+      "date": "2022-07-21",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,959,595 BNB)",
+      "amount_usd": 452000000,
+      "amount_bnb": 1959595,
+      "period": "Q3 2022",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2022-10-13",
+      "date": "2022-10-13",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,065,152 BNB)",
+      "amount_usd": 549000000,
+      "amount_bnb": 2065152,
+      "period": "Q4 2022",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2023-01-17",
+      "date": "2023-01-17",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,064,494 BNB)",
+      "amount_usd": 620000000,
+      "amount_bnb": 2064494,
+      "period": "Q1 2023",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2023-04-14",
+      "date": "2023-04-14",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,020,132 BNB)",
+      "amount_usd": 670000000,
+      "amount_bnb": 2020132,
+      "period": "Q2 2023",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2023-07-14",
+      "date": "2023-07-14",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,991,854 BNB)",
+      "amount_usd": 484000000,
+      "amount_bnb": 1991854,
+      "period": "Q3 2023",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2023-10-20",
+      "date": "2023-10-20",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,135,181 BNB)",
+      "amount_usd": 453000000,
+      "amount_bnb": 2135181,
+      "period": "Q4 2023",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2024-01-19",
+      "date": "2024-01-19",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (2,134,068 BNB)",
+      "amount_usd": 649000000,
+      "amount_bnb": 2134068,
+      "period": "Q1 2024",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2024-04-24",
+      "date": "2024-04-24",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,944,452 BNB)",
+      "amount_usd": 1110000000,
+      "amount_bnb": 1944452,
+      "period": "Q2 2024",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2024-07-19",
+      "date": "2024-07-19",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,643,698 BNB)",
+      "amount_usd": 971000000,
+      "amount_bnb": 1643698,
+      "period": "Q3 2024",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2024-10-22",
+      "date": "2024-10-22",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,772,712 BNB)",
+      "amount_usd": 1070000000,
+      "amount_bnb": 1772712,
+      "period": "Q4 2024",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2025-01-22",
+      "date": "2025-01-22",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,579,109 BNB)",
+      "amount_usd": 1012925751,
+      "amount_bnb": 1579109,
+      "period": "Q1 2025",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2025-04-16",
+      "date": "2025-04-16",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,595,600 BNB)",
+      "amount_usd": 1024224671,
+      "amount_bnb": 1595600,
+      "period": "Q2 2025",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-asbnb-2025-07-10",
+      "date": "2025-07-10",
+      "type": "staking_reward",
+      "mechanism": "asBNB 综合收益 (Staking + Launchpool/HODLer/Megadrop)",
+      "amount_usd": 1377510918,
+      "period": "Q3 2025",
+      "source": {
+        "type": "proxy",
+        "provider": "Aster asBNB",
+        "url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB"
+      },
+      "notes": "asBNB 6.87% APY × marketCap / 4"
+    },
+    {
+      "id": "bnb-burn-2025-07-18",
+      "date": "2025-07-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,441,281 BNB)",
+      "amount_usd": 1207856696,
+      "amount_bnb": 1441281,
+      "period": "Q3 2025",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-burn-2025-10-18",
+      "date": "2025-10-18",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,371,804 BNB)",
+      "amount_usd": 1276747228,
+      "amount_bnb": 1371804,
+      "period": "Q4 2025",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-asbnb-2025-10-27",
+      "date": "2025-10-27",
+      "type": "staking_reward",
+      "mechanism": "asBNB 综合收益 (Staking + Launchpool/HODLer/Megadrop)",
+      "amount_usd": 1377510918,
+      "period": "Q4 2025",
+      "source": {
+        "type": "proxy",
+        "provider": "Aster asBNB",
+        "url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB"
+      },
+      "notes": "asBNB 6.87% APY × marketCap / 4"
+    },
+    {
+      "id": "bnb-burn-2026-01-15",
+      "date": "2026-01-15",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,371,804 BNB)",
+      "amount_usd": 1277189711,
+      "amount_bnb": 1371804,
+      "period": "Q1 2026",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "https://www.bnbburn.info/"
+      }
+    },
+    {
+      "id": "bnb-asbnb-2026-01-15",
+      "date": "2026-01-15",
+      "type": "staking_reward",
+      "mechanism": "asBNB 综合收益 (Staking + Launchpool/HODLer/Megadrop)",
+      "amount_usd": 1377510918,
+      "period": "Q1 2026",
+      "source": {
+        "type": "proxy",
+        "provider": "Aster asBNB",
+        "url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB"
+      },
+      "notes": "asBNB 6.87% APY × marketCap / 4"
+    },
+    {
+      "id": "bnb-burn-2026-04-15",
+      "date": "2026-04-15",
+      "type": "burn",
+      "mechanism": "Quarterly Auto-Burn (1,569,307 BNB)",
+      "amount_usd": 983955702,
+      "amount_bnb": 1569307,
+      "period": "Q2 2026",
+      "source": {
+        "type": "onchain",
+        "provider": "BNB Chain",
+        "url": "Dune BSC traces"
+      }
+    },
+    {
+      "id": "bnb-asbnb-2026-04-15",
+      "date": "2026-04-15",
+      "type": "staking_reward",
+      "mechanism": "asBNB 综合收益 (Staking + Launchpool/HODLer/Megadrop)",
+      "amount_usd": 1377510918,
+      "period": "Q2 2026",
+      "source": {
+        "type": "proxy",
+        "provider": "Aster asBNB",
+        "url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB"
+      },
+      "notes": "asBNB 6.87% APY × marketCap / 4"
+    }
+  ]
+}

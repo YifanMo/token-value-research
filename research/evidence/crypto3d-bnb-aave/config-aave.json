@@ -1,0 +1,251 @@
+{
+  "id": "aave",
+  "name": "Aave",
+  "ticker": "AAVE",
+  "icon": "https://coin-images.coingecko.com/coins/images/12645/large/aave-token-round.png",
+  "category": "lending",
+  "description": "去中心化借贷协议，允许用户存款赚取利息或借入资产",
+  "website": "https://aave.com",
+  "docs": "https://docs.aave.com",
+  "token": {
+    "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+    "chain": "ethereum",
+    "coingecko_id": "aave",
+    "defillama_id": "aave"
+  },
+  "return_mechanisms": [
+    {
+      "type": "buyback",
+      "name": "AAVE Buyback Program",
+      "description": "Aave DAO 每年拨出 $50M 预算用于回购 AAVE",
+      "status": "active",
+      "start_date": "2024-07-25",
+      "annual_budget_usd": 50000000,
+      "source": {
+        "type": "governance",
+        "title": "Aavenomics Update - Part 1",
+        "url": "https://governance.aave.com/t/arfc-aavenomics-implementation-part-one/18937",
+        "proposal_id": "AIP-73"
+      }
+    },
+    {
+      "type": "staking_reward",
+      "name": "Safety Module (Umbrella)",
+      "description": "质押 AAVE 到 Safety Module 获得协议收入分成作为风险补偿",
+      "status": "active",
+      "contract": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+      "start_date": "2020-09-01"
+    }
+  ],
+  "return_summary": {
+    "fee_switch": "ON",
+    "fee_switch_details": "$50M 年度回购预算",
+    "buybacks": "ACTIVE",
+    "dividends": "NONE",
+    "burns": "NONE",
+    "primary_value_accrual": "回购 ($50M/年) + Safety Module 质押奖励"
+  },
+  "confidence": "high",
+  "data_sources": [
+    {
+      "name": "Aave Governance Forum",
+      "type": "governance",
+      "url": "https://governance.aave.com",
+      "reliability": "high"
+    },
+    {
+      "name": "TokenLogic Reports",
+      "type": "report",
+      "url": "https://aave.tokenlogic.xyz",
+      "reliability": "high"
+    },
+    {
+      "name": "DefiLlama",
+      "type": "api",
+      "url": "https://api.llama.fi/protocol/aave",
+      "reliability": "high"
+    }
+  ],
+  "market_data": {
+    "price_usd": 179.8,
+    "market_cap_usd": 1736849395,
+    "snapshot_date": "2026-02-14",
+    "data_source": "CoinGecko",
+    "tvl": 24631521067.11426,
+    "tvl_updated": "2026-03-27T01:00:14.491Z",
+    "circulating_market_cap": 2773829180,
+    "circulating_supply": 15435224.49781873,
+    "price_updated_at": "2026-10-03T00:05:04.039671+00:00"
+  },
+  "notes": "Aave 在 2024 年通过 Aavenomics 升级开启了代币回购机制。TEV 来源：Safety Module 质押奖励 + 年度回购。",
+  "last_updated": "2026-08-02",
+  "return_data": {
+    "has_returns": true,
+    "shareholder_yield_percent": 3.19,
+    "annual_returns_usd": 30000000,
+    "market_cap_usd": 1799059173.84,
+    "calculation_date": "2026-08-02",
+    "sources": [
+      {
+        "name": "Annual Buyback Program",
+        "type": "governance",
+        "annual_usd": 50000000,
+        "note": "AIP-73 fixed annual buyback budget"
+      },
+      {
+        "name": "DefiLlama holdersRevenue",
+        "type": "defillama",
+        "annual_usd": 33797484,
+        "note": "Safety Module staking rewards"
+      }
+    ],
+    "calculation": "详见 calc_pipeline 数组（6 steps 端到端推导）",
+    "validation": {
+      "method": "TEV = 固定 Buyback $30M/年（2026-03 治理）+ Safety Module (Umbrella) DefiLlama dailyHoldersRevenue 按窗口年化",
+      "fixed_buyback_usd_annual": 30000000,
+      "sm_7d_usd": 0,
+      "sm_30d_usd": 0,
+      "sm_90d_usd": 711916,
+      "sm_365d_usd": 27438501,
+      "caveats": [
+        "Buyback 是 treasury-accumulated，不是真 burn（买入 AAVE → Ecosystem Reserve，治理可 redistribute）",
+        "Safety Module 分发是脉冲式（每 1-2 周一次大包），短周期窗口可能为 0",
+        "最近 50+ 天 SM = $0，可能 Umbrella 新合约 DefiLlama 追踪滞后，或真的暂停分发",
+        "链上 AAVE @ 0xdead 365d = 0.0001 AAVE（没有真销毁，符合 treasury buyback 模式）"
+      ]
+    },
+    "methodology": "Aave DAO annual buyback budget (fixed) + Umbrella/Safety Module holder rewards (dynamic from DefiLlama)"
+  },
+  "analyst_notes": "【2026-04-22 更新 - 双源 TEV + 各周期独立】\n\n## TEV 机制（双源组合）\n\nAave 的 TEV 由两个独立机制组成，各周期独立累加：\n\n### 1. 年度 Buyback（$30M/年，2026-03 治理）\n\n- **来源**：AIP-73 \"Aavenomics Update Part 1\" 设立年度 AAVE 回购预算\n- **2026-03 治理**：从 $50M 下调至 $30M（99.37% 通过，需核实具体 AIP 号）\n- **执行**：TokenLogic / Aave Finance Committee 用 DAO 财库 USDC/GHO 市场买入 AAVE\n- **⚠️ 关键 caveats**：\n  - 买到的 AAVE 进入 **Ecosystem Reserve** (`0x25F2...6491`) 和 AFC multisig\n  - **不是真 burn，是 treasury accumulation**，类似 Hyperliquid AF\n  - 治理可 redistribute（一部分会用于 Umbrella stakers 激励 / contributor grants）\n  - 链上验证：过去 365d AAVE → 0xdead = 0.0001 AAVE（确认不 burn）\n\n### 2. Safety Module (Umbrella) holders revenue\n\n- **来源**：协议 reserve factor 收入 + liquidation fees 分成\n- **数据源**：DefiLlama `dailyHoldersRevenue`（近 365d 合计 $40.29M）\n- **特点**：**脉冲式分发**——每 1-2 周一次大包（$200k~$6M），其他天为 0\n- **Umbrella 迁移**：2025 年中 Umbrella 合约替代旧 stkAAVE (`0x4da2...70f5`)\n- **⚠️ 最近 50+ 天 SM = $0**：可能是 Umbrella 新合约 DefiLlama 追踪滞后，或真的暂停分发（需进一步核实）\n\n## TEV 公式（各周期独立）\n\n```\nTEV_Nd = $30M (固定 Buyback) + (DefiLlama holdersRevenue 近 N 天累加 × 365/N)\n      ÷ marketCap × 年化\n```\n\n- 7/30/90d：holdersRevenue 按窗口累加后年化\n- 365d：holdersRevenue 365d 直接累计（不需年化）\n\n## 方案 A 选择的代价\n\n短周期（7d/30d）窗口碰巧没抓到 SM 分发大包 → TEV 显示只剩 $30M buyback，yield 降至 1.67%。\n\n这**反映的是\"Safety Module 分发周期\"而非\"价值下降\"**。用户需理解：\n- Aave 的 SM 分发不是每天——是治理节奏\n- 最近 50 天没分发，可能正常（迁移期）也可能异常\n\n长周期（365d）能稳定反映全年实际分发总额，更接近\"稳态 TEV\"。\n\n## 当前数字（2026-04-22 快照）\n\n| 周期 | Buyback | SM | Total TEV | Yield | Earning Yield | 分配率 |\n|------|---------|-----|-----------|-------|---------------|--------|\n| 7d   | $30M    | $0  | $30M      | 1.67% | 8.65%         | 19%    |\n| 30d  | $30M    | $0  | $30M      | 1.67% | 5.18%         | 32%    |\n| 90d  | $30M    | $27.4M 年化 | $57M | 3.19% | 5.63%   | 57%    |\n| 365d | $30M    | $40.29M | $70M    | 3.91% | 6.91%         | 57%    |\n\n## 数据源\n\n- DefiLlama: `https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue`（SM）\n- DefiLlama: `https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue`（协议 reserve factor）\n- 官方 Buyback 仪表盘：https://aave.tokenlogic.xyz（手动核对用）\n- Buyback 执行合约：待核实（可能是 AFC Safe）\n\n## 历史口径变更\n\n- 2026-04-22: 从单一 fixedTevUsd $30M 改为双源组合（Buyback + SM holdersRevenue 按周期）；明确 buyback 是 treasury-accumulated 非 burn；加 caveats；payout_ratio 按周期独立\n- 2026-03: 治理把 buyback 从 $50M → $30M\n- 2024-07-25: AIP-73 启动 Aavenomics buyback\n- 2020-09-01: Safety Module 上线（老 stkAAVE）",
+  "return_status": "active",
+  "confidence_reason": {
+    "zh": "治理提案 AIP-1 明确年回购预算，链上可追踪",
+    "en": "AIP-1 governance proposal with fixed annual buyback budget, on-chain trackable"
+  },
+  "payout_ratio": 0.4969,
+  "total_yield_percent": 6.42,
+  "market_cap_usd": 1799059173.84,
+  "shareholder_yield_percent": 3.19,
+  "metrics": {
+    "current_market_cap_usd": 1799059173.84,
+    "trailing_365d_revenue_usd": 115460247,
+    "trailing_30d_revenue_usd": 3825124,
+    "trailing_365d_shareholder_returns_usd": 30000000,
+    "trailing_30d_shareholder_returns_usd": 2500000,
+    "trailing_365d_holders_revenue_usd": 42212267,
+    "trailing_30d_holders_revenue_usd": 6155965,
+    "trailing_7d_revenue_usd": 939246,
+    "trailing_90d_revenue_usd": 15130849,
+    "shareholder_yield_7d_ann": 1.67,
+    "shareholder_yield_30d_ann": 1.67,
+    "shareholder_yield_90d_ann": 1.83,
+    "total_yield_7d_ann": 2.72,
+    "total_yield_30d_ann": 2.59,
+    "total_yield_90d_ann": 3.41,
+    "dividend_yield_7d_ann": 0,
+    "buyback_yield_7d_ann": 1.67,
+    "dividend_yield_30d_ann": 0,
+    "buyback_yield_30d_ann": 1.67,
+    "dividend_yield_90d_ann": 0.16,
+    "buyback_yield_90d_ann": 1.67
+  },
+  "calc_pipeline": [
+    {
+      "step": 1,
+      "label": "数据源 A：固定年度 Buyback（$30M/年）",
+      "description": "AIP-73 Aavenomics Part 1 (2024-07) 设立年度 AAVE 回购预算。2026-03 治理从 $50M 下调至 $30M（99.37% 通过）。AFC multisig 用 DAO 财库 USDC/GHO 市场买 AAVE 存 Ecosystem Reserve。⚠️ Treasury-accumulated 非真 burn，治理可 redistribute（链上 AAVE @ 0xdead 365d = 0.0001 AAVE 确认不销毁）。",
+      "source_url": "https://aave.tokenlogic.xyz",
+      "value_field": "validation.fixed_buyback_usd_annual",
+      "addresses": {
+        "AAVE": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+        "Ecosystem Reserve": "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+        "Collector": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c"
+      },
+      "unit": "USD"
+    },
+    {
+      "step": 2,
+      "label": "数据源 B：Safety Module (Umbrella) holders revenue",
+      "description": "DefiLlama dailyHoldersRevenue，来自 Aave 协议 reserve factor + liquidation fees，分配给 Umbrella stakers。脉冲式分发（每 1-2 周一次大包 $200k~$6M）。⚠️ 最近 50+ 天 SM = $0，可能 Umbrella 迁移期 DefiLlama 追踪滞后。",
+      "source_url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue"
+    },
+    {
+      "step": 3,
+      "label": "按周期累加 SM（USD）",
+      "formula": "Σ dailyHoldersRevenue 过去 N 天",
+      "value_fields_by_period": {
+        "7d": "validation.sm_7d_usd",
+        "30d": "validation.sm_30d_usd",
+        "90d": "validation.sm_90d_usd",
+        "365d": "validation.sm_365d_usd"
+      },
+      "unit": "USD"
+    },
+    {
+      "step": 4,
+      "label": "双源合成 → 年化股东回报 USD",
+      "description": "短周期：$30M 常数 + SM_sum × (365/N)；365d：$30M + SM_365d_sum（已是年度累计不再年化）",
+      "formula": "fixedBuyback + sm_sum × annFactor(N)"
+    },
+    {
+      "step": 5,
+      "label": "除以市值",
+      "formula": "ShareholderReturn_USD ÷ market_cap × 100%",
+      "inputs": {
+        "market_cap": "market_cap_usd"
+      }
+    },
+    {
+      "step": 6,
+      "label": "最终 股东回报率",
+      "derived": true,
+      "value_fields_by_period": {
+        "7d": "metrics.shareholder_yield_7d_ann",
+        "30d": "metrics.shareholder_yield_30d_ann",
+        "90d": "metrics.shareholder_yield_90d_ann",
+        "365d": "shareholder_yield_percent"
+      },
+      "unit": "%"
+    }
+  ],
+  "dividend_yield_percent": 1.53,
+  "buyback_yield_percent": 1.66,
+  "style": "cash_cow",
+  "revenue_recognition": {
+    "entity_type": "app",
+    "principle": "所有计算用净利润：收入 ≠ 总协议费，扣除给 LP 的部分才是协议净利润",
+    "revenue_included": {
+      "protocol_fees": {
+        "note": "DefiLlama dailyRevenue（协议归属/净），非 dailyFees"
+      }
+    },
+    "revenue_excluded": {},
+    "calculation": {
+      "revenue_usd_365d": "DefiLlama dailyRevenue 365d 累加"
+    },
+    "source_type": "official",
+    "source_url": "https://app.aave.com/governance"
+  },
+  "data_pipeline": {
+    "sources": [
+      {
+        "type": "official",
+        "method": "AI 抓治理提案/月报（回购金额变化）",
+        "frequency": "event",
+        "script": "ai-watch-governance.py"
+      },
+      {
+        "type": "defillama",
+        "method": "dailyRevenue 日频",
+        "frequency": "daily",
+        "script": "fetch-defillama.js"
+      }
+    ],
+    "ai_self_check": [
+      "mechanism-change",
+      "data-plausibility",
+      "cross-validation",
+      "freshness"
+    ]
+  }
+}

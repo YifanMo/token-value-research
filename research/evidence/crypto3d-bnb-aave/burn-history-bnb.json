@@ -1,0 +1,79 @@
+{
+  "updated_at": "2026-08-12",
+  "asbnb_apy_percent": 6.87,
+  "asbnb_source": "Aster asBNB (Staking + Launchpool/HODLer/Megadrop)",
+  "bep95_weekly_bnb": 720.64,
+  "quarterly_burns": [
+    {
+      "number": 27,
+      "date": "2024-04-24",
+      "bnb_burned": 1944452.51,
+      "bnb_price": 600,
+      "usd_value": 1166671506
+    },
+    {
+      "number": 28,
+      "date": "2024-07-22",
+      "bnb_burned": 1643698.8,
+      "bnb_price": 591,
+      "usd_value": 971025791
+    },
+    {
+      "number": 29,
+      "date": "2024-11-01",
+      "bnb_burned": 1772712.36,
+      "bnb_price": 604,
+      "usd_value": 1070718265
+    },
+    {
+      "number": 30,
+      "date": "2025-01-23",
+      "bnb_burned": 1634200.95,
+      "bnb_price": 710,
+      "usd_value": 1160282674
+    },
+    {
+      "number": 31,
+      "date": "2025-04-16",
+      "bnb_burned": 1579207.72,
+      "bnb_price": 580,
+      "usd_value": 915940477
+    },
+    {
+      "number": 32,
+      "date": "2025-07-10",
+      "bnb_burned": 1595599.78,
+      "bnb_price": 642,
+      "usd_value": 1024375059
+    },
+    {
+      "number": 33,
+      "date": "2025-10-27",
+      "bnb_burned": 1441281.41,
+      "bnb_price": 839,
+      "usd_value": 1209235103
+    },
+    {
+      "number": 34,
+      "date": "2026-01-15",
+      "bnb_burned": 1371803.77,
+      "bnb_price": 931,
+      "usd_value": 1277189711
+    },
+    {
+      "number": 35,
+      "date": "2026-04-15",
+      "bnb_burned": 1569307.34,
+      "bnb_price": 627,
+      "usd_value": 983955702
+    },
+    {
+      "number": 36,
+      "date": "2026-07-16",
+      "announced_date": "2026-07-15",
+      "bnb_burned": 1615827.795,
+      "usd_value": 931702464,
+      "source": "https://www.bnbchain.org/en/blog/36th-bnb-burn"
+    }
+  ]
+}

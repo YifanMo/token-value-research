@@ -1,0 +1,293 @@
+{
+  "as_of": "2026-10-03",
+  "local_completed_utc_day": "2026-10-02",
+  "local_inputs_sha256": "59624c5374b800564134a6137cefe722b8c775c819c94e2dc3a5a033a0d94561",
+  "projects": {
+    "BNB": {
+      "market": {
+        "current_price": 765.08,
+        "market_cap": 101874275157,
+        "fully_diluted_valuation": 101874270850,
+        "circulating_supply": 133159219.43,
+        "total_supply": 133159212.87,
+        "max_supply": 200000000,
+        "last_updated": "2026-10-03T08:28:30.000Z",
+        "source": "https://www.coingecko.com/en/coins/binancecoin",
+        "remaining_supply_fdv": 101877450582.5796,
+        "original_cap_fdv": 153016000000
+      },
+      "local_windows": [
+        {
+          "days": 7,
+          "start": "2026-09-26",
+          "end": "2026-10-02",
+          "fees_usd": 4417413,
+          "reported_revenue_usd": null,
+          "revenue_status": "not_applicable",
+          "holders_usd": null,
+          "holders_complete": false,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": null,
+          "ps_fdv": null,
+          "yield_mc": null,
+          "yield_fdv": null,
+          "quarter_burn": {
+            "count": 0,
+            "tokens": null,
+            "execution_day_valuation_usd": null,
+            "historical_valuation_share_mc": null,
+            "current_price_share_mc": null,
+            "current_price_share_fdv": null
+          }
+        },
+        {
+          "days": 30,
+          "start": "2026-09-03",
+          "end": "2026-10-02",
+          "fees_usd": 22211850,
+          "reported_revenue_usd": null,
+          "revenue_status": "not_applicable",
+          "holders_usd": null,
+          "holders_complete": false,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": null,
+          "ps_fdv": null,
+          "yield_mc": null,
+          "yield_fdv": null,
+          "quarter_burn": {
+            "count": 0,
+            "tokens": null,
+            "execution_day_valuation_usd": null,
+            "historical_valuation_share_mc": null,
+            "current_price_share_mc": null,
+            "current_price_share_fdv": null
+          }
+        },
+        {
+          "days": 90,
+          "start": "2026-07-05",
+          "end": "2026-10-02",
+          "fees_usd": 49576130,
+          "reported_revenue_usd": null,
+          "revenue_status": "not_applicable",
+          "holders_usd": null,
+          "holders_complete": false,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": null,
+          "ps_fdv": null,
+          "yield_mc": null,
+          "yield_fdv": null,
+          "quarter_burn": {
+            "count": 1,
+            "tokens": 1615827.795,
+            "execution_day_valuation_usd": 939357885.390498,
+            "historical_valuation_share_mc": 0.00922075650543613,
+            "current_price_share_mc": 0.012134933254675094,
+            "current_price_share_fdv": 0.012134933767710987
+          }
+        },
+        {
+          "days": 365,
+          "start": "2025-10-03",
+          "end": "2026-10-02",
+          "fees_usd": 219076584,
+          "reported_revenue_usd": null,
+          "revenue_status": "not_applicable",
+          "holders_usd": null,
+          "holders_complete": false,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": null,
+          "ps_fdv": null,
+          "yield_mc": null,
+          "yield_fdv": null,
+          "quarter_burn": {
+            "count": 4,
+            "tokens": 5998120.2155,
+            "execution_day_valuation_usd": 4844149977.613261,
+            "historical_valuation_share_mc": 0.04755027675188724,
+            "current_price_share_mc": 0.04504612972610109,
+            "current_price_share_fdv": 0.045046131630543496
+          }
+        }
+      ],
+      "reference": {
+        "market_cap_usd_displayed": 102316692186,
+        "metrics_current_market_cap_usd": 102295657104,
+        "revenue_usd_365d_column": 11655376079.49,
+        "net_income_usd_365d_column": 11655376079.49,
+        "daily_updated_at": "2026-10-03T00:13:32.000Z",
+        "periods": [
+          {
+            "period_days": 7,
+            "shareholder_yield_percent": 12.73,
+            "earnings_yield_percent": 6.89,
+            "pe": 7.855459544383346,
+            "ps": 14.51378809869376,
+            "pe_display": "7.9x",
+            "ps_display": "14.5x"
+          },
+          {
+            "period_days": 30,
+            "shareholder_yield_percent": 27.15,
+            "earnings_yield_percent": 21.3,
+            "pe": 3.683241252302026,
+            "ps": 4.694835680751174,
+            "pe_display": "3.7x",
+            "ps_display": "4.7x"
+          },
+          {
+            "period_days": 90,
+            "shareholder_yield_percent": 17.53,
+            "earnings_yield_percent": 11.69,
+            "pe": 5.704506560182544,
+            "ps": 8.554319931565441,
+            "pe_display": "5.7x",
+            "ps_display": "8.6x"
+          },
+          {
+            "period_days": 365,
+            "shareholder_yield_percent": 11.3915,
+            "earnings_yield_percent": 11.3915,
+            "pe": 8.77847517886143,
+            "ps": 8.77847517886143,
+            "pe_display": "8.8x",
+            "ps_display": "8.8x"
+          }
+        ]
+      }
+    },
+    "AAVE": {
+      "market": {
+        "current_price": 180.71,
+        "market_cap": 2789137335,
+        "fully_diluted_valuation": 2891176819,
+        "circulating_supply": 15435305.4652286,
+        "total_supply": 16000000,
+        "max_supply": 16000000,
+        "last_updated": "2026-10-03T08:28:30.000Z",
+        "source": "https://www.coingecko.com/en/coins/aave",
+        "remaining_supply_fdv": 2891360000,
+        "original_cap_fdv": 2891360000
+      },
+      "local_windows": [
+        {
+          "days": 7,
+          "start": "2026-09-26",
+          "end": "2026-10-02",
+          "fees_usd": 8918248,
+          "reported_revenue_usd": 1152061,
+          "revenue_status": "income",
+          "holders_usd": 0,
+          "holders_complete": true,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": 46.430097933004,
+          "ps_fdv": 48.128724664538964,
+          "yield_mc": 0,
+          "yield_fdv": 0,
+          "quarter_burn": null
+        },
+        {
+          "days": 30,
+          "start": "2026-09-03",
+          "end": "2026-10-02",
+          "fees_usd": 37270680,
+          "reported_revenue_usd": 5066461,
+          "revenue_status": "income",
+          "holders_usd": 0,
+          "holders_complete": true,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": 45.24739547399022,
+          "ps_fdv": 46.90275350479507,
+          "yield_mc": 0,
+          "yield_fdv": 0,
+          "quarter_burn": null
+        },
+        {
+          "days": 90,
+          "start": "2026-07-05",
+          "end": "2026-10-02",
+          "fees_usd": 98050215,
+          "reported_revenue_usd": 13388328,
+          "revenue_status": "income",
+          "holders_usd": 0,
+          "holders_complete": true,
+          "holder_pe_mc": null,
+          "holder_pe_fdv": null,
+          "ps_mc": 51.368064299115154,
+          "ps_fdv": 53.247344573121644,
+          "yield_mc": 0,
+          "yield_fdv": 0,
+          "quarter_burn": null
+        },
+        {
+          "days": 365,
+          "start": "2025-10-03",
+          "end": "2026-10-02",
+          "fees_usd": 728850926,
+          "reported_revenue_usd": 94350468,
+          "revenue_status": "income",
+          "holders_usd": 19651786,
+          "holders_complete": true,
+          "holder_pe_mc": 141.92793138496418,
+          "holder_pe_fdv": 147.1203085052931,
+          "ps_mc": 29.561457342214773,
+          "ps_fdv": 30.642951543176235,
+          "yield_mc": 0.0070458294589498946,
+          "yield_fdv": 0.006797158122897913,
+          "quarter_burn": null
+        }
+      ],
+      "reference": {
+        "market_cap_usd_displayed": 2773829180,
+        "metrics_current_market_cap_usd": 2767080247,
+        "revenue_usd_365d_column": 115460247,
+        "net_income_usd_365d_column": 115460247,
+        "daily_updated_at": "2026-10-03T00:13:24.000Z",
+        "periods": [
+          {
+            "period_days": 7,
+            "shareholder_yield_percent": 1.67,
+            "earnings_yield_percent": 2.72,
+            "pe": 59.880239520958085,
+            "ps": 36.76470588235294,
+            "pe_display": "59.9x",
+            "ps_display": "36.8x"
+          },
+          {
+            "period_days": 30,
+            "shareholder_yield_percent": 1.67,
+            "earnings_yield_percent": 2.59,
+            "pe": 59.880239520958085,
+            "ps": 38.610038610038615,
+            "pe_display": "59.9x",
+            "ps_display": "38.6x"
+          },
+          {
+            "period_days": 90,
+            "shareholder_yield_percent": 1.83,
+            "earnings_yield_percent": 3.41,
+            "pe": 54.6448087431694,
+            "ps": 29.325513196480937,
+            "pe_display": "54.6x",
+            "ps_display": "29.3x"
+          },
+          {
+            "period_days": 365,
+            "shareholder_yield_percent": 1.0815,
+            "earnings_yield_percent": 4.1625,
+            "pe": 92.46417013407306,
+            "ps": 24.024024024024026,
+            "pe_display": "92.5x",
+            "ps_display": "24.0x"
+          }
+        ]
+      }
+    }
+  }
+}

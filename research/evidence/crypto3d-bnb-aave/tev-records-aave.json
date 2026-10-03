@@ -1,0 +1,277 @@
+{
+  "protocol": "aave",
+  "updated_at": "2026-08-10T13:13:54.186Z",
+  "data_source": "DefiLlama API (dailyHoldersRevenue)",
+  "data_source_url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+  "records": [
+    {
+      "id": "aave-buyback-burn-2025-04",
+      "date": "2025-04-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 3030637,
+      "period": "2025-04",
+      "days_with_data": 22,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 22 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-05",
+      "date": "2025-05-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 4467515,
+      "period": "2025-05",
+      "days_with_data": 31,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 31 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-06",
+      "date": "2025-06-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 4063855,
+      "period": "2025-06",
+      "days_with_data": 29,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 29 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-07",
+      "date": "2025-07-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 3659464,
+      "period": "2025-07",
+      "days_with_data": 27,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 27 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-08",
+      "date": "2025-08-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 3893658,
+      "period": "2025-08",
+      "days_with_data": 30,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 30 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-09",
+      "date": "2025-09-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 3852695,
+      "period": "2025-09",
+      "days_with_data": 29,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 29 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-10",
+      "date": "2025-10-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 3807221,
+      "period": "2025-10",
+      "days_with_data": 30,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 30 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-11",
+      "date": "2025-11-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 3288105,
+      "period": "2025-11",
+      "days_with_data": 23,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 23 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2025-12",
+      "date": "2025-12-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 2735258,
+      "period": "2025-12",
+      "days_with_data": 1,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 1 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2026-01",
+      "date": "2026-01-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 2844382,
+      "period": "2026-01",
+      "days_with_data": 6,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 6 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2026-02",
+      "date": "2026-02-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 413512,
+      "period": "2026-02",
+      "days_with_data": 2,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 2 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2026-03",
+      "date": "2026-03-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 6155965,
+      "period": "2026-03",
+      "days_with_data": 1,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 1 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2026-04",
+      "date": "2026-04-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 20188,
+      "period": "2026-04",
+      "days_with_data": 1,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 1 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2026-05",
+      "date": "2026-05-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 135368,
+      "period": "2026-05",
+      "days_with_data": 1,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 1 days of data"
+    },
+    {
+      "id": "aave-buyback-burn-2026-06",
+      "date": "2026-06-01",
+      "type": "aggregate",
+      "mechanism": "AAVE Buyback",
+      "amount_usd": 576548,
+      "period": "2026-06",
+      "days_with_data": 2,
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama",
+        "endpoint": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+        "data_type": "dailyHoldersRevenue",
+        "methodology": "See DefiLlama methodology"
+      },
+      "notes": "Monthly aggregate from 2 days of data"
+    }
+  ],
+  "summary": {
+    "total_tev_usd": 42944371,
+    "total_30d_usd": 0,
+    "by_mechanism": {
+      "buyback_burn": 42944371
+    },
+    "by_period": {
+      "2025-Q2": 11562007,
+      "2025-Q3": 11405817,
+      "2025-Q4": 9830584,
+      "2026-Q1": 9413859,
+      "2026-Q2": 732104
+    }
+  }
+}

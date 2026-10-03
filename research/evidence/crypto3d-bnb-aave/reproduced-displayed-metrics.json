@@ -1,0 +1,92 @@
+{
+  "aave": {
+    "market_cap_usd_displayed": 2773829180,
+    "metrics_current_market_cap_usd": 2767080247,
+    "revenue_usd_365d_column": 115460247,
+    "net_income_usd_365d_column": 115460247,
+    "daily_updated_at": "2026-10-03T00:13:24.000Z",
+    "periods": [
+      {
+        "period_days": 7,
+        "shareholder_yield_percent": 1.67,
+        "earnings_yield_percent": 2.72,
+        "pe": 59.880239520958085,
+        "ps": 36.76470588235294,
+        "pe_display": "59.9x",
+        "ps_display": "36.8x"
+      },
+      {
+        "period_days": 30,
+        "shareholder_yield_percent": 1.67,
+        "earnings_yield_percent": 2.59,
+        "pe": 59.880239520958085,
+        "ps": 38.610038610038615,
+        "pe_display": "59.9x",
+        "ps_display": "38.6x"
+      },
+      {
+        "period_days": 90,
+        "shareholder_yield_percent": 1.83,
+        "earnings_yield_percent": 3.41,
+        "pe": 54.6448087431694,
+        "ps": 29.325513196480937,
+        "pe_display": "54.6x",
+        "ps_display": "29.3x"
+      },
+      {
+        "period_days": 365,
+        "shareholder_yield_percent": 1.0815,
+        "earnings_yield_percent": 4.1625,
+        "pe": 92.46417013407306,
+        "ps": 24.024024024024026,
+        "pe_display": "92.5x",
+        "ps_display": "24.0x"
+      }
+    ]
+  },
+  "bnb": {
+    "market_cap_usd_displayed": 102316692186,
+    "metrics_current_market_cap_usd": 102295657104,
+    "revenue_usd_365d_column": 11655376079.49,
+    "net_income_usd_365d_column": 11655376079.49,
+    "daily_updated_at": "2026-10-03T00:13:32.000Z",
+    "periods": [
+      {
+        "period_days": 7,
+        "shareholder_yield_percent": 12.73,
+        "earnings_yield_percent": 6.89,
+        "pe": 7.855459544383346,
+        "ps": 14.51378809869376,
+        "pe_display": "7.9x",
+        "ps_display": "14.5x"
+      },
+      {
+        "period_days": 30,
+        "shareholder_yield_percent": 27.15,
+        "earnings_yield_percent": 21.3,
+        "pe": 3.683241252302026,
+        "ps": 4.694835680751174,
+        "pe_display": "3.7x",
+        "ps_display": "4.7x"
+      },
+      {
+        "period_days": 90,
+        "shareholder_yield_percent": 17.53,
+        "earnings_yield_percent": 11.69,
+        "pe": 5.704506560182544,
+        "ps": 8.554319931565441,
+        "pe_display": "5.7x",
+        "ps_display": "8.6x"
+      },
+      {
+        "period_days": 365,
+        "shareholder_yield_percent": 11.3915,
+        "earnings_yield_percent": 11.3915,
+        "pe": 8.77847517886143,
+        "ps": 8.77847517886143,
+        "pe_display": "8.8x",
+        "ps_display": "8.8x"
+      }
+    ]
+  }
+}

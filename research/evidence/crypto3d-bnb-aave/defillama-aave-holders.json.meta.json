@@ -1,0 +1,8 @@
+{
+  "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+  "retrieved_at": "2026-10-03T15:31:42.855994+00:00",
+  "sha256": "063e0361c2c35fbefa8f53ba53262117a8d2e170f1a41d552732715afb6b6153",
+  "bytes": 626019,
+  "archive_recorded_at": "2026-10-03T15:31:42.861927+00:00",
+  "retrieved_time_basis": "response file write completion time"
+}

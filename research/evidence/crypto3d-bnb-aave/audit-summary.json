@@ -1,0 +1,145 @@
+{
+  "scope": "Evidence facts and reproducible calculations; no website implementation changed by audit agent.",
+  "source_generated_at": "2026-10-03T00:15:12.089959+00:00",
+  "formula_source": "equity.html loadProtocolData and renderTable; PE=100/shareholderYield,PS=100/totalYield; no FDV numerator",
+  "aave": {
+    "current_table_mc_usd": 2773829180,
+    "config_legacy_mc_usd": 1799059173.84,
+    "reference_config_last_updated": "2026-08-02",
+    "reference_config_calculation_date": "2026-08-02",
+    "reference_ttm_revenue_usd": 115460247,
+    "same_value_in_config": 115460247,
+    "local_current_parent_dailyRevenue_api_ttm_usd": 94350468,
+    "local_api_metadata": {
+      "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyRevenue",
+      "retrieved_at": "2026-10-03T08:30:39.218503+00:00",
+      "sha256": "a5823ab0a81d7bad49f452261e595b63c17cb79f609e1c8770c645099474de85",
+      "status": "fresh"
+    },
+    "revenue_difference_explanation": "Reference preserves cached revenue/config/period yields when fresh daily file only supplies fees and market values. Source endpoint is the same dailyRevenue parent aave API. Exact TTM date range behind reference cached revenue is not independently identified; Aug2 is configuration/calculation stamp, not proof of its original series cutoff.",
+    "short_window_reproduction": [
+      {
+        "days": 7,
+        "trailing_revenue_usd": 939246,
+        "annualized_revenue_usd": 48974970.0,
+        "yield_using_config_legacy_mc_percent": 2.7222545379352603,
+        "stored_earning_yield_percent": 2.72,
+        "yield_using_current_table_mc_percent": 1.7656087243267085
+      },
+      {
+        "days": 30,
+        "trailing_revenue_usd": 3825124,
+        "annualized_revenue_usd": 46539008.666666664,
+        "yield_using_config_legacy_mc_percent": 2.586852580692581,
+        "stored_earning_yield_percent": 2.59,
+        "yield_using_current_table_mc_percent": 1.6777892814101358
+      },
+      {
+        "days": 90,
+        "trailing_revenue_usd": 15130849,
+        "annualized_revenue_usd": 61363998.722222224,
+        "yield_using_config_legacy_mc_percent": 3.4108938502141597,
+        "stored_earning_yield_percent": 3.41,
+        "yield_using_current_table_mc_percent": 2.2122486548440676
+      }
+    ],
+    "fixed_buyback_budget_usd_annual": 30000000,
+    "budget_yield_current_mc_percent": 1.0815374002230376,
+    "budget_yield_legacy_mc_percent": 1.6675382575641762,
+    "holders_revenue_methodology": "Archived DefiLlama parent API child Aave V3 plus adapter lines203 and387-397 classify dailyHoldersRevenue as AAVE buybacks using treasury, not Safety Module staking rewards.",
+    "budget_plus_holders_problem": "Reference short-window pipeline adds $30M annual policy budget to dailyHoldersRevenue and labels latter Safety Module. This combines policy amount and buyback execution series; when nonzero it can count the buyback mechanism twice. Current1Y snapshot excludes uncertain holder-revenue category, so short and1Y methodologies also differ.",
+    "official_budget_status_limit": "Archived governance24229 is a March4 ARFC proposal; it alone does not prove onchain budget implementation or snapshot99.37% execution. Archived official funding report24192 states execution launched April9,2025. Reference mechanism labels start July25,2024 and$50M are stale/mixapprovalwith execution.",
+    "profit_limit": "Snapshot sets net income equal dailyRevenue115460247 and operating_cost_usd_365d=null. This is protocol retained fee revenue, not proof of complete operating net profit."
+  },
+  "bnb": {
+    "current_table_mc_usd": 102316692186,
+    "current_price_usd": 768.39,
+    "quarterly_burn_comparison": [
+      {
+        "rank": 33,
+        "crypto3d_tokens": "1441281.41",
+        "local_chain_exact_tokens": "1441281.413",
+        "difference_tokens": "-0.003",
+        "local_transaction_hash": "0x8c85b7c3be353083ba5994eceb15da64cb0bf0618e70bb4932e6ef6b3de10f07"
+      },
+      {
+        "rank": 34,
+        "crypto3d_tokens": "1371803.77",
+        "local_chain_exact_tokens": "1371703.6655",
+        "difference_tokens": "100.1045",
+        "local_transaction_hash": "0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8"
+      },
+      {
+        "rank": 35,
+        "crypto3d_tokens": "1569307.34",
+        "local_chain_exact_tokens": "1569307.342",
+        "difference_tokens": "-0.002",
+        "local_transaction_hash": "0xb70c9d7bb30bbe3407397b65d4297421796ecb7bfbc57ab271048e950d289a40"
+      },
+      {
+        "rank": 36,
+        "crypto3d_tokens": "1615827.795",
+        "local_chain_exact_tokens": "1615827.795",
+        "difference_tokens": "0.000",
+        "local_transaction_hash": "0xa9c1d03773a2edd29d5fe24bef231fb404b0c193661941a41457f8317fc49fa7"
+      }
+    ],
+    "quarterly_difference_tokens": "100.0995",
+    "quarterly_difference_explanation": "Primarily quarter34 reported total includes Pioneer compensation (official100.1 BNB) while local current transaction1,371,703.6655 BNB does not; other2-decimal rounding leaves total difference100.0995.",
+    "bep95_source_updated_at": "2026-08-10T01:10:21.185137Z",
+    "bep95_source_range": {
+      "start": "2025-03-14",
+      "end": "2026-08-10",
+      "count": 515
+    },
+    "bep95_misclassified_spike": {
+      "date": "2026-07-16",
+      "bnb": 1615868.862895,
+      "tx_count": null,
+      "source": "rpc_delta"
+    },
+    "quarter36_in_separate_quarterly_file": {
+      "number": 36,
+      "date": "2026-07-16",
+      "announced_date": "2026-07-15",
+      "bnb_burned": 1615827.795,
+      "usd_value": 931702464,
+      "source": "https://www.bnbchain.org/en/blog/36th-bnb-burn"
+    },
+    "spike_minus_quarter36_bnb": "41.067895",
+    "spike_inference": "The rpc_delta BEP95 series contains quarter36 value plus~41BNB. Quarter36 is also separately included in AutoBurn, so combining unfiltered daily series and AutoBurn doublecounts it. The old short-window precomputed values show~1.617M/1.620M in30/90days; current1Y snapshot states filtering and only$17.25M realtime burn. Do not generalize to claim current1Y still doublecounts.",
+    "one_year_snapshot_components_usd": {
+      "by_mechanism": [
+        {
+          "mechanism": "Auto-Burn（季度）",
+          "type": "destroy",
+          "usd_365d": 4608972507.84,
+          "yield_percent": 4.5046
+        },
+        {
+          "mechanism": "BEP-95 实时销毁",
+          "type": "destroy",
+          "usd_365d": 17246818.47,
+          "yield_percent": 0.0169
+        },
+        {
+          "mechanism": "aBNB 打新+质押",
+          "type": "yield",
+          "usd_365d": 7029156753.18,
+          "yield_percent": 6.87
+        }
+      ],
+      "summary": {
+        "destroy_usd_365d": 4626219326.31,
+        "yield_usd_365d": 7029156753.18,
+        "destroy_yield_percent": 4.5215,
+        "yield_yield_percent": 6.87,
+        "shareholder_returns_usd_365d": 11655376079.49,
+        "shareholder_yield_percent": 11.3915
+      }
+    },
+    "revenue_scope": "BNB snapshot defines platform revenue=quarterly burn market value+gas burn market value+market cap*asBNB6.87%APY. Binance company revenue excluded/not known; BSC gas fee revenue also excluded because gas burn already included.",
+    "asbnb_limit": "6.87% is estimated Aster wrapped-product APY (staking+Launchpool/HODLer/Megadrop); not cash paid to every wallet merely holding BNB. Official Aster page retrieved but current6.87% could not be independently reproduced.",
+    "profit_scope": "Snapshot explicitly no cost model: revenue=gross profit=net income=holderreturns, 100% margins; PE/PS8.7785x are inverse combinedbenefit yield, not Binance company earnings/sales multiples."
+  }
+}

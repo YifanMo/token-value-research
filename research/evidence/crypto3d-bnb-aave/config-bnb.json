@@ -1,0 +1,760 @@
+{
+  "id": "bnb",
+  "name": "BNB",
+  "ticker": "BNB",
+  "icon": "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png",
+  "category": "cex_token",
+  "description": "Binance 交易所平台币，同时是 BNB Chain 原生代币",
+  "website": "https://www.binance.com",
+  "docs": "https://www.bnbchain.org/en",
+  "token": {
+    "address_bsc": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    "chain": "BNB Chain",
+    "coingecko_id": "binancecoin",
+    "note": "BNB 是 BNB Chain 原生代币，WBNB 是包装版本"
+  },
+  "onchain_addresses": {
+    "burn_address": "0x000000000000000000000000000000000000dEaD",
+    "validator_set": "0x0000000000000000000000000000000000001000",
+    "system_reward": "0x0000000000000000000000000000000000001002",
+    "stake_hub": "0x0000000000000000000000000000000000002002",
+    "source": "https://github.com/bnb-chain/bsc-genesis-contract/blob/master/contracts/System.sol"
+  },
+  "return_mechanisms": [
+    {
+      "type": "burn",
+      "name": "Quarterly Auto-Burn",
+      "description": "每季度根据 BNB 价格和区块数量自动销毁，目标将总供应量降至 100M BNB。与 Binance CEX 收入无关，公式透明可审计",
+      "status": "active",
+      "frequency": "quarterly",
+      "formula": "B = N × 1000 / P (B=销毁量, N=季度区块数, P=平均价格)",
+      "is_profit_based": false,
+      "note": "官方明确声明独立于 Binance CEX 收入",
+      "source": {
+        "type": "official",
+        "title": "33rd BNB Burn",
+        "url": "https://www.bnbchain.org/en/blog/33rd-bnb-burn"
+      }
+    },
+    {
+      "type": "burn",
+      "name": "Real-Time Burn (BEP-95)",
+      "description": "每个区块按验证人设定比例销毁部分 gas fee",
+      "status": "active",
+      "frequency": "per_block",
+      "is_profit_based": false,
+      "note": "链上可验证，类似 ETH EIP-1559",
+      "source": {
+        "type": "bep",
+        "title": "BEP-95",
+        "url": "https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP95.md"
+      }
+    },
+    {
+      "type": "staking",
+      "name": "BNB Staking Rewards",
+      "description": "通过 StakeHub 合约质押/委托获取 BNB 收益，来源于链上手续费分配",
+      "status": "active",
+      "frequency": "continuous",
+      "contract": "0x0000000000000000000000000000000000002002",
+      "source": {
+        "type": "contract",
+        "title": "StakeHub Contract",
+        "url": "https://bscscan.com/address/0x0000000000000000000000000000000000002002"
+      }
+    }
+  ],
+  "holder_perks": {
+    "description": "持币激励（发放其他代币，非 BNB 本身回流）",
+    "programs": [
+      {
+        "name": "HODLer Airdrops",
+        "type": "airdrop",
+        "reward": "其他代币",
+        "requirement": "BNB Simple Earn 持仓快照",
+        "url": "https://www.binance.com/en/support/announcement"
+      },
+      {
+        "name": "Launchpool",
+        "type": "farming",
+        "reward": "新项目代币",
+        "requirement": "锁定 BNB",
+        "url": "https://www.binance.com/en/launchpool"
+      },
+      {
+        "name": "Megadrop",
+        "type": "airdrop",
+        "reward": "新项目代币",
+        "requirement": "锁定 BNB + Web3 任务",
+        "url": "https://www.binance.com/en/support/faq/detail/fb007363c6db4d15976fcdd09f6161da"
+      },
+      {
+        "name": "Airdrop Alliance",
+        "type": "ecosystem_airdrop",
+        "reward": "生态项目代币",
+        "requirement": "BNB 余额 ≥ 0.05",
+        "url": "https://www.bnbchain.org/en/blog/introducing-bnb-chains-airdrop-alliance-program"
+      }
+    ],
+    "note": "这些激励通过 asBNB APY（6.87%）间接计入 TEV，asBNB 净值增长反映了 Staking + Launchpool/HODLer/Megadrop 的综合收益"
+  },
+  "burn_history": [
+    {
+      "quarter": "Q4 2017 (1st)",
+      "date": "2017-10-18",
+      "amount_bnb": 986000,
+      "avg_price_usd": 1.52,
+      "value_usd": 1500000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2018 (2nd)",
+      "date": "2018-01-15",
+      "amount_bnb": 1821586,
+      "avg_price_usd": 16.47,
+      "value_usd": 30000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2018 (3rd)",
+      "date": "2018-04-15",
+      "amount_bnb": 2220314,
+      "avg_price_usd": 13.51,
+      "value_usd": 30000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2018 (4th)",
+      "date": "2018-07-18",
+      "amount_bnb": 2528767,
+      "avg_price_usd": 12.02,
+      "value_usd": 30400000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2018 (5th)",
+      "date": "2018-10-17",
+      "amount_bnb": 1643986,
+      "avg_price_usd": 7.73,
+      "value_usd": 12700000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2019 (6th)",
+      "date": "2019-01-16",
+      "amount_bnb": 1623818,
+      "avg_price_usd": 5.79,
+      "value_usd": 9400000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2019 (7th)",
+      "date": "2019-04-16",
+      "amount_bnb": 829888,
+      "avg_price_usd": 18.8,
+      "value_usd": 15600000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2019 (8th)",
+      "date": "2019-07-12",
+      "amount_bnb": 808888,
+      "avg_price_usd": 29.42,
+      "value_usd": 23800000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2019 (9th)",
+      "date": "2019-10-17",
+      "amount_bnb": 2061888,
+      "avg_price_usd": 17.8,
+      "value_usd": 36700000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2020 (10th)",
+      "date": "2020-01-19",
+      "amount_bnb": 2216888,
+      "avg_price_usd": 17.5,
+      "value_usd": 38800000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2020 (11th)",
+      "date": "2020-04-17",
+      "amount_bnb": 3373988,
+      "avg_price_usd": 15.53,
+      "value_usd": 52400000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2020 (12th)",
+      "date": "2020-07-18",
+      "amount_bnb": 3477388,
+      "avg_price_usd": 17.4,
+      "value_usd": 60500000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2020 (13th)",
+      "date": "2020-10-17",
+      "amount_bnb": 2253888,
+      "avg_price_usd": 30.17,
+      "value_usd": 68000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2021 (14th)",
+      "date": "2021-01-19",
+      "amount_bnb": 3619888,
+      "avg_price_usd": 45.8,
+      "value_usd": 165800000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2021 (15th)",
+      "date": "2021-04-16",
+      "amount_bnb": 1099888,
+      "avg_price_usd": 541.25,
+      "value_usd": 595314380,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2021 (16th)",
+      "date": "2021-07-18",
+      "amount_bnb": 1296728,
+      "avg_price_usd": 303.84,
+      "value_usd": 394000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2021 (17th)",
+      "date": "2021-10-18",
+      "amount_bnb": 1335888,
+      "avg_price_usd": 478.33,
+      "value_usd": 639000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2022 (18th)",
+      "date": "2022-01-18",
+      "amount_bnb": 1684387,
+      "avg_price_usd": 515.32,
+      "value_usd": 868000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2022 (19th)",
+      "date": "2022-04-14",
+      "amount_bnb": 1839786,
+      "avg_price_usd": 419.61,
+      "value_usd": 772000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2022 (20th)",
+      "date": "2022-07-21",
+      "amount_bnb": 1959595,
+      "avg_price_usd": 230.66,
+      "value_usd": 452000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2022 (21th)",
+      "date": "2022-10-13",
+      "amount_bnb": 2065152,
+      "avg_price_usd": 265.84,
+      "value_usd": 549000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2023 (22th)",
+      "date": "2023-01-17",
+      "amount_bnb": 2064494,
+      "avg_price_usd": 300.32,
+      "value_usd": 620000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2023 (23th)",
+      "date": "2023-04-14",
+      "amount_bnb": 2020132,
+      "avg_price_usd": 331.66,
+      "value_usd": 670000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2023 (24th)",
+      "date": "2023-07-14",
+      "amount_bnb": 1991854,
+      "avg_price_usd": 242.99,
+      "value_usd": 484000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2023 (25th)",
+      "date": "2023-10-20",
+      "amount_bnb": 2135181,
+      "avg_price_usd": 212.16,
+      "value_usd": 453000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2024 (26th)",
+      "date": "2024-01-19",
+      "amount_bnb": 2134068,
+      "avg_price_usd": 304.11,
+      "value_usd": 649000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2024 (27th)",
+      "date": "2024-04-24",
+      "amount_bnb": 1944452,
+      "avg_price_usd": 570.85,
+      "value_usd": 1110000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2024 (28th)",
+      "date": "2024-07-19",
+      "amount_bnb": 1643698,
+      "avg_price_usd": 590.74,
+      "value_usd": 971000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2024 (29th)",
+      "date": "2024-10-22",
+      "amount_bnb": 1772712,
+      "avg_price_usd": 603.59,
+      "value_usd": 1070000000,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2025 (30th)",
+      "date": "2025-01-22",
+      "amount_bnb": 1579109,
+      "avg_price_usd": 641.45,
+      "value_usd": 1012925751,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2025 (31th)",
+      "date": "2025-04-16",
+      "amount_bnb": 1595600,
+      "avg_price_usd": 641.91,
+      "value_usd": 1024224671,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q3 2025 (32th)",
+      "date": "2025-07-18",
+      "amount_bnb": 1441281,
+      "avg_price_usd": 838.04,
+      "value_usd": 1207856696,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q4 2025 (33th)",
+      "date": "2025-10-18",
+      "amount_bnb": 1371804,
+      "avg_price_usd": 930.71,
+      "value_usd": 1276747228,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q1 2026 (34th)",
+      "date": "2026-01-15",
+      "amount_bnb": 1371804,
+      "avg_price_usd": 931,
+      "value_usd": 1277189711,
+      "source": "https://www.bnbburn.info/"
+    },
+    {
+      "quarter": "Q2 2026 (35th)",
+      "date": "2026-04-15",
+      "amount_bnb": 1569307,
+      "avg_price_usd": 627,
+      "value_usd": 983955702,
+      "source": "Dune BSC traces"
+    }
+  ],
+  "example_transactions": {
+    "auto_burn": {
+      "tx": "0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8",
+      "description": "Q1 2026 季度销毁 1,371,703 BNB",
+      "url": "https://bscscan.com/tx/0xb9df58e7faa7fec91abfb834384a54394619be5cb124b50fa931a12f738ff6c8"
+    },
+    "bep95_burn": {
+      "tx": "0x5c20a7b49686957f35f4b634423597300968d446cceab4e09c9cf1dc658adc7f",
+      "description": "BEP-95 实时销毁 + 系统奖励分配示例",
+      "url": "https://bscscan.com/tx/0x5c20a7b49686957f35f4b634423597300968d446cceab4e09c9cf1dc658adc7f"
+    },
+    "staking_claim": {
+      "tx": "0x23f423a3701e3df3f20db6a9289fe3ae721a2819f3a4eca917d23d666e5eb0f7",
+      "description": "StakeHub 质押收益领取示例",
+      "url": "https://bscscan.com/tx/0x23f423a3701e3df3f20db6a9289fe3ae721a2819f3a4eca917d23d666e5eb0f7"
+    }
+  },
+  "return_summary": {
+    "fee_switch": "N/A",
+    "fee_switch_details": "CEX 收入不直接链上分配",
+    "buybacks": "NONE",
+    "buyback_details": "Auto-Burn 不是利润回购，是公式计算的供给收缩",
+    "dividends": "NONE",
+    "burns": "ACTIVE",
+    "burn_details": "季度 Auto-Burn（公式计算）+ 实时 BEP-95（gas fee）",
+    "staking": "ACTIVE",
+    "staking_details": "StakeHub 质押收益（BNB 计价，来自链上手续费）",
+    "primary_value_accrual": "供给收缩 + 链上质押收益（非 CEX 利润分润模式）"
+  },
+  "market_data": {
+    "price_usd": 768.39,
+    "circulating_supply": 133159254.5,
+    "circulating_market_cap": 102316692186,
+    "target_supply": 100000000,
+    "snapshot_date": "2026-03-01",
+    "data_source": "CoinGecko",
+    "tvl": 5387604237.313377,
+    "tvl_updated": "2026-03-27T01:00:24.034Z",
+    "price_updated_at": "2026-10-03T00:05:04.039671+00:00"
+  },
+  "return_data": {
+    "has_returns": true,
+    "shareholder_yield_percent": 12.46,
+    "calculation_date": "2026-08-02",
+    "methodology": "Auto-Burn（短周期=近4季USD累加；365d=近4季BNB×当前价）+ BEP-95（按窗口从日时间序列求和）+ asBNB APY。BEP-95 现已真正波动——数据源：Dune Analytics bnb.traces + 每日 BSC RPC 累积。",
+    "validation": {
+      "method": "Auto-Burn（短周期=近4季USD累加；365d=近4季BNB×当前价）+ BEP-95（按窗口从日时间序列计算）+ asBNB APY (Aster)",
+      "burn_apy_percent": 4.42,
+      "asbnb_apy_percent": 6.87,
+      "total_apy_percent": 11.29,
+      "burn_source": "Auto-Burn 近4季 5,977,992 BNB (历史$4.49B / 当前价$3.37B); BEP-95 506天数据, 7/30/90/365d = 438/1617419/1620744/1641532 BNB",
+      "asbnb_source": "Aster asBNB (Staking + Launchpool/HODLer/Megadrop)",
+      "asbnb_url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB",
+      "burn_data_url": "https://www.bnbburn.info/",
+      "dead_address_balance_bnb": 13300850.55,
+      "dead_address": "0x000000000000000000000000000000000000dEaD",
+      "note": "Burn 通过链上黑洞地址余额验证；asBNB 通过 Aster 官方数据（含 Staking + Launchpool/HODLer/Megadrop，不含 Burn）",
+      "total_annual_burn_bnb": 6025469,
+      "bep95_annual_bnb": 37576,
+      "bnb_price_usd": 564.05,
+      "market_cap_usd": 76912536768.93126,
+      "circulating_supply": 136357344.28,
+      "burn_apy_short_percent": 5.2,
+      "burn_apy_annual_percent": 4.42,
+      "return_yield_short_percent": 12.07,
+      "return_yield_annual_percent": 11.29,
+      "last_burn_bnb": 1569307.34,
+      "last_burn_date": "2026-04-15",
+      "recent_4q_burn_bnb": 5977992,
+      "recent_4q_burn_usd_historical": 4494755575,
+      "recent_4q_burn_usd_current": 3371894312,
+      "return_yield_7d_percent": 12.73,
+      "return_yield_30d_percent": 27.15,
+      "return_yield_90d_percent": 17.53,
+      "return_yield_365d_percent": 12.46,
+      "bep95_7d_bnb": 437.6,
+      "bep95_30d_bnb": 1617418.68,
+      "bep95_90d_bnb": 1620744.43,
+      "bep95_365d_bnb": 1641532.43,
+      "bep95_data_days": 506,
+      "bep95_data_range": {
+        "start": "2025-03-14",
+        "end": "2026-08-01"
+      }
+    },
+    "sources": [
+      {
+        "type": "onchain",
+        "name": "Quarterly Auto-Burn",
+        "annual_bnb": 5987793.6,
+        "annual_usd": 3753987320,
+        "calculation": "近4季合计 5,987,793.6 BNB × $626.94 = $3.75B",
+        "note": "公式计算 B = N × 1000 / P，非利润回购",
+        "url": "https://www.bnbburn.info/"
+      },
+      {
+        "type": "onchain",
+        "name": "BEP-95 Real-Time Burn",
+        "annual_bnb": 16327,
+        "annual_usd": 10236049,
+        "calculation": "周均 ~314 BNB × 52 = ~16,327 BNB/年",
+        "note": "每区块销毁部分 gas fee，类似 EIP-1559",
+        "url": "https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP95.md"
+      },
+      {
+        "type": "proxy",
+        "name": "asBNB 综合持有收益 (Aster)",
+        "apy_percent": 6.87,
+        "annual_usd": 5875836597,
+        "includes": [
+          "Staking Rewards",
+          "Launchpool",
+          "HODLer Airdrops",
+          "Megadrops"
+        ],
+        "excludes": [
+          "Auto-Burn",
+          "BEP-95"
+        ],
+        "note": "基于过去一年 Launchpool/HODLer/Megadrop 的预计 APY，不含 Burn",
+        "url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB"
+      }
+    ],
+    "calculation": "详见 calc_pipeline 数组（8 steps 端到端推导）",
+    "caveats": [
+      "Auto-Burn 基于公式 B=N×1000/P，不是利润回购",
+      "Auto-Burn 为季度事件，30d/7d 滚动窗口会零 burn，故统一用'近 4 季稳定态'口径",
+      "asBNB 6.87% 基于 Aster 官方数据，含 Staking + Launchpool/HODLer/Megadrop",
+      "asBNB 不包含 Burn 的供给收缩价值（与 Burn APY 无重叠）",
+      "slisBNB 仅含 Staking 收益，不适合作为 BNB 全部 TEV 的 proxy",
+      "CEX 财务不公开，Holder Perks 部分依赖 Aster 聚合数据"
+    ],
+    "market_cap_usd": 76912536768.93126
+  },
+  "confidence": "high",
+  "data_sources": [
+    {
+      "name": "BscScan",
+      "type": "explorer",
+      "url": "https://bscscan.com",
+      "reliability": "high",
+      "data": [
+        "burn_transactions",
+        "staking_events",
+        "supply"
+      ]
+    },
+    {
+      "name": "BNB Chain Blog",
+      "type": "official",
+      "url": "https://www.bnbchain.org/en/blog",
+      "reliability": "high",
+      "data": [
+        "burn_announcements",
+        "mechanism_docs"
+      ]
+    },
+    {
+      "name": "CoinGecko",
+      "type": "api",
+      "url": "https://api.coingecko.com/api/v3/coins/binancecoin",
+      "reliability": "high",
+      "data": [
+        "price",
+        "market_cap",
+        "supply"
+      ]
+    },
+    {
+      "name": "BSC Genesis Contract",
+      "type": "github",
+      "url": "https://github.com/bnb-chain/bsc-genesis-contract",
+      "reliability": "high",
+      "data": [
+        "system_contracts",
+        "addresses"
+      ]
+    }
+  ],
+  "analyst_notes": "【2026-04-19 更新 - BEP-95 时间序列】\n\n## BNB TEV 计算方法\n\n采用 **Auto-Burn + BEP-95 + asBNB** 三源组合，每项按下表规则取值：\n\n| 展示周期 | Auto-Burn | BEP-95 | asBNB |\n|---------|-----------|--------|-------|\n| 7d  | 近 4 季 USD 历史累加 | 近 7 天 BNB × 52 × 当前价 | 6.87% |\n| 30d | 近 4 季 USD 历史累加 | 近 30 天 BNB × 365/30 × 当前价 | 6.87% |\n| 90d | 近 4 季 USD 历史累加 | 近 90 天 BNB × 365/90 × 当前价 | 6.87% |\n| 365d | 近 4 季 BNB × 当前价（重估） | 近 365 天 BNB × 当前价（无年化） | 6.87% |\n\nTEV Yield = (Auto-Burn USD + BEP-95 USD) ÷ 市值 + asBNB APY\n\n### BEP-95 数据源（2026-04-19 升级）\n\n- **种子**：Dune Analytics `bnb.traces` query（dead address 入金 < 10万 BNB 的部分，排除 Auto-Burn 大额）\n- **初始范围**：2025-03-14 → 2026-04-18（401 天）\n- **增量更新**：`scripts/fetch-bep95-daily.py`（TODO，待做）每日从 BSC RPC 拉新日数据 append\n- **存储**：`data/protocols/bnb/bep95-history.json`\n\n### Auto-Burn 双口径\n\n- **短周期（7/30/90d）** = 近 4 季 burn 的 `usd_value` 直接累加（每次 burn 公告时的历史 USD 值）\n  → 相当于官方披露的『过去一年累计销毁金额』，burn 发生时锁定\n- **365d** = 近 4 季 burn `bnb_burned` 合计 × 当前价\n  → 按当前市价重估的『过去一年年化』\n- 两者差异 = BNB 价格相对历史均价的变动\n\n### 为什么 BEP-95 各周期不同？\n\n BEP-95 是每区块持续销毁（链上 gas fee 的一部分）。7 天、30 天、90 天内的销毁量反映的是**不同时间段的链上活跃度**。高活跃期（如 10 月 ALT 季）日销毁可达 500+ BNB，平时 40-60 BNB。通过时间序列能真实反映。\n\n### 历史口径变更\n\n- 2026-04-19 (v4): BEP-95 升级为日时间序列（Dune seed + 日累积），各周期真正波动\n- 2026-04-19 (v3): 短周期 Auto-Burn 改为 USD 历史累加\n- 2026-04-19 (v2): 尝试『上次 burn × 4』作为短周期年化（Boss 否决）\n- 2026-04-19 (v1): 所有周期同值（Boss 否决）\n- 2026-03-01: 从 slisBNB 单一 proxy 改为 Burn + asBNB 双源",
+  "last_updated": "2026-08-02",
+  "burn_progress": {
+    "total_burned": 13300851,
+    "initial_supply": 200000000,
+    "target_supply": 100000000,
+    "target": 100000000,
+    "ticker": "BNB",
+    "note": "BNB 初始供应 2 亿，目标销毁至 1 亿。当前已完成 63.6%。",
+    "target_label": "burn_target",
+    "segments": [
+      {
+        "label": "季度 Auto-Burn",
+        "label_en": "Quarterly Auto-Burn",
+        "amount": 62442984,
+        "color": "rgba(240,185,11,0.85)"
+      },
+      {
+        "label": "BEP-95 实时销毁",
+        "label_en": "BEP-95 Real-time Burn",
+        "amount": -49142133,
+        "color": "rgba(240,185,11,0.4)"
+      }
+    ]
+  },
+  "return_status": "active",
+  "confidence_reason": {
+    "zh": "Auto-Burn 链上完全可验证（0xdead + BEP-95），asBNB 来自链上 StakeHub 合约",
+    "en": "Auto-Burn fully verifiable on-chain (0xdead + BEP-95), asBNB from on-chain StakeHub contract"
+  },
+  "payout_ratio": null,
+  "payout_ratio_note": "BNB 无 fee 分润机制，TEV 来自供给收缩（Auto-Burn + BEP-95）+ 链上质押收益（asBNB），不适用『分配比例』概念",
+  "total_yield_percent": 8.07,
+  "market_cap_usd": 76912536768.93126,
+  "shareholder_yield_percent": 12.46,
+  "metrics": {
+    "trailing_7d_revenue_usd": 265445,
+    "trailing_30d_revenue_usd": 842118,
+    "trailing_90d_revenue_usd": 3364197,
+    "shareholder_yield_7d_ann": 12.73,
+    "shareholder_yield_30d_ann": 27.15,
+    "shareholder_yield_90d_ann": 17.53,
+    "total_yield_7d_ann": 6.89,
+    "total_yield_30d_ann": 21.3,
+    "total_yield_90d_ann": 11.69,
+    "dividend_yield_7d_ann": 6.87,
+    "buyback_yield_7d_ann": 5.86,
+    "dividend_yield_30d_ann": 6.87,
+    "buyback_yield_30d_ann": 20.28,
+    "dividend_yield_90d_ann": 6.87,
+    "buyback_yield_90d_ann": 10.66
+  },
+  "calc_pipeline": [
+    {
+      "step": 1,
+      "label": "数据源 A：Quarterly Auto-Burn（季度事件）",
+      "description": "每季度 BNB 官方基于区块数 × 平均价公式销毁一批（公式 B = N × 1000 / P，独立于 Binance CEX 收入）。历史 35 次已全部记录。",
+      "source_url": "https://www.bnbburn.info/",
+      "output_file": "data/protocols/bnb/burn-history.json",
+      "updated_by": "手动补 + update-bnb-tev.py 检测新事件"
+    },
+    {
+      "step": 2,
+      "label": "数据源 B：BEP-95 日时间序列（每区块 gas 销毁）",
+      "description": "每区块按验证人设定比例销毁 gas fee（类似 ETH EIP-1559）。Dune 一次性 seed + 每日 BSC RPC 累积维护 401 天数据。",
+      "source_url": "Dune Analytics (bnb.traces) + BSC RPC (eth_getBalance dead address)",
+      "output_file": "data/protocols/bnb/bep95-history.json",
+      "updated_by": "~/crypto3d-updater/scripts/update-bnb-tev.py",
+      "addresses": {
+        "Dead address": "0x000000000000000000000000000000000000dEaD"
+      }
+    },
+    {
+      "step": 3,
+      "label": "数据源 C：asBNB 综合 APY（稳态估算）",
+      "description": "Aster 官方 asBNB 包装产品的综合 APY（Staking + Launchpool + HODLer + Megadrop 叠加）。不含 Burn 部分（与数据源 A/B 无重叠）。",
+      "source_url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB",
+      "inputs": {
+        "asBNB APY": "validation.asbnb_apy_percent"
+      },
+      "unit": "%"
+    },
+    {
+      "step": 4,
+      "label": "Auto-Burn USD 按周期",
+      "description": "短周期（7/30/90d）用近 4 季 burn 历史 USD 累加（官方披露，固定到下次 burn）；365d 用近 4 季 BNB × 当前价重估。",
+      "formula": "短周期 = Σ usd_value(近4季)；365d = Σ bnb_burned(近4季) × current_price",
+      "value_fields_by_period": {
+        "7d": "validation.recent_4q_burn_usd_historical",
+        "30d": "validation.recent_4q_burn_usd_historical",
+        "90d": "validation.recent_4q_burn_usd_historical",
+        "365d": "validation.recent_4q_burn_usd_current"
+      },
+      "unit": "USD"
+    },
+    {
+      "step": 5,
+      "label": "BEP-95 窗口累加（BNB 数量）",
+      "description": "bep95-history.daily 里过去 N 天的 BNB 数量汇总（反映 BSC 链上真实 gas 消耗）。",
+      "formula": "Σ bnb(过去 N 天)",
+      "value_fields_by_period": {
+        "7d": "validation.bep95_7d_bnb",
+        "30d": "validation.bep95_30d_bnb",
+        "90d": "validation.bep95_90d_bnb",
+        "365d": "validation.bep95_365d_bnb"
+      },
+      "unit": "BNB"
+    },
+    {
+      "step": 6,
+      "label": "三源组合 → 年化 Burn Yield",
+      "description": "Auto-Burn USD（周期值）+ BEP-95 × 365/N × BNB 当前价，得 Burn 年化 USD，再 / 市值。",
+      "formula": "(autoBurn_USD + bep95_BNB × 365/N × price) ÷ marketCap × 100%",
+      "inputs": {
+        "BNB price": "validation.bnb_price_usd",
+        "market_cap": "market_cap_usd"
+      }
+    },
+    {
+      "step": 7,
+      "label": "叠加 asBNB APY",
+      "description": "Burn Yield + asBNB APY（6.87%）= 总 股东回报率（Burn 供给收缩 + Staking 收益，两者无重叠）",
+      "formula": "Burn Yield + asBNB APY"
+    },
+    {
+      "step": 8,
+      "label": "最终 股东回报率",
+      "derived": true,
+      "value_fields_by_period": {
+        "7d": "metrics.shareholder_yield_7d_ann",
+        "30d": "metrics.shareholder_yield_30d_ann",
+        "90d": "metrics.shareholder_yield_90d_ann",
+        "365d": "shareholder_yield_percent"
+      },
+      "unit": "%"
+    }
+  ],
+  "dividend_yield_percent": 6.87,
+  "buyback_yield_percent": 5.59,
+  "style": "cash_cow",
+  "revenue_recognition": {
+    "entity_type": "platform_token",
+    "principle": "平台币不像一家公司，把它的所有赋能都当成收入",
+    "revenue_included": {
+      "launchpad_launchpool": {
+        "note": "平台币天然属性，计入；用 aBNB APY 推算（含打新+质押合计）"
+      },
+      "staking_rewards": {
+        "note": "计入；aBNB APY 已含打新+质押合计（Boss 2026-08-02 确认）"
+      },
+      "burn": {
+        "note": "计入，否则平台币无收入",
+        "items": [
+          "auto_burn",
+          "bep95_burn"
+        ]
+      }
+    },
+    "revenue_excluded": {
+      "fees": {
+        "note": "gas 手续费不计入（BEP-95 销毁部分已含于 burn 科目）"
+      }
+    },
+    "calculation": {
+      "revenue_usd_365d": "aBNB_APY × mcap + (auto_burn + bep95)_usd_365d",
+      "proxy_apy_source": "asBNB APY（StakeHub 链上）"
+    },
+    "source_type": "chain",
+    "source_url": "https://bscscan.com/address/0x000000000000000000000000000000000000dEaD"
+  },
+  "data_pipeline": {
+    "sources": [
+      {
+        "type": "chain",
+        "method": "RPC 遍历 0xdead 转账（Auto-Burn + BEP-95）",
+        "frequency": "daily",
+        "script": "update-bnb.py"
+      },
+      {
+        "type": "chain",
+        "method": "StakeHub 合约 asBNB APY（打新+质押）",
+        "frequency": "daily",
+        "script": "update-bnb.py"
+      },
+      {
+        "type": "official",
+        "method": "AI 抓取 Auto-Burn 季度公告（变更检测）",
+        "frequency": "event",
+        "script": "ai-watch-official.py"
+      }
+    ],
+    "ai_self_check": [
+      "mechanism-change",
+      "data-plausibility",
+      "cross-validation",
+      "freshness"
+    ]
+  }
+}

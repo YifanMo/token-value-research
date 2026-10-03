@@ -1,0 +1,185 @@
+{
+  "recorded_at": "2026-10-03T15:34:57.461381+00:00",
+  "sources": [
+    {
+      "file": "all-protocols.json",
+      "url": "https://crypto3d.pro/data/all-protocols.json",
+      "retrieved_at": "2026-10-03T15:29:22.557902+00:00",
+      "sha256": "2d29394790cd7ab233bd03fcc1a3f52c59519737203feb08096df575a95cfa1e",
+      "bytes": 152779,
+      "archive_recorded_at": "2026-10-03T15:29:33.527072+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "bep95-history.json",
+      "url": "https://crypto3d.pro/data/protocols/bnb/bep95-history.json",
+      "retrieved_at": "2026-10-03T15:30:13.882251+00:00",
+      "sha256": "9210a662c30af6d7b31ad7263cf4090ee94fa03ea209bfdbd6564c39d559bda0",
+      "bytes": 49639,
+      "archive_recorded_at": "2026-10-03T15:30:13.885332+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "burn-history-bnb.json",
+      "url": "https://crypto3d.pro/data/protocols/bnb/burn-history.json",
+      "retrieved_at": "2026-10-03T15:30:31.829270+00:00",
+      "sha256": "db462fffa15fd3597e87212e2fafb0b8560c1ddef218f99c25673ea5680d5efe",
+      "bytes": 1737,
+      "archive_recorded_at": "2026-10-03T15:30:31.830841+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "config-aave.json",
+      "url": "https://crypto3d.pro/data/protocols/aave/config.json",
+      "retrieved_at": "2026-10-03T15:30:28.492520+00:00",
+      "sha256": "9cf6ef3eae6ccbf1cf9c25f46a42373ad0d5065cb51cf841f196df9c89d48aea",
+      "bytes": 12337,
+      "archive_recorded_at": "2026-10-03T15:30:28.495967+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "config-bnb.json",
+      "url": "https://crypto3d.pro/data/protocols/bnb/config.json",
+      "retrieved_at": "2026-10-03T15:30:10.664133+00:00",
+      "sha256": "9ba135153594dcdd27e7afd444ef843b44d306665a108c262063ee24aae0f7dd",
+      "bytes": 27616,
+      "archive_recorded_at": "2026-10-03T15:30:10.667012+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "daily-aave-latest.json",
+      "url": "https://crypto3d.pro/data/daily/aave/latest.json",
+      "retrieved_at": "2026-10-03T15:29:37.595951+00:00",
+      "sha256": "8826288a84e70858d92c4fb62d69ae59a287bed886c63ae1b09f5d2a389ed344",
+      "bytes": 840,
+      "archive_recorded_at": "2026-10-03T15:29:37.597696+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "daily-bnb-latest.json",
+      "url": "https://crypto3d.pro/data/daily/bnb/latest.json",
+      "retrieved_at": "2026-10-03T15:29:35.266500+00:00",
+      "sha256": "641595127bf6d47524abd2ee10ffa73f082556458726809eb7b146bbd95b0ee5",
+      "bytes": 856,
+      "archive_recorded_at": "2026-10-03T15:29:35.269250+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "defillama-aave-holders.json",
+      "url": "https://api.llama.fi/summary/fees/aave?dataType=dailyHoldersRevenue",
+      "retrieved_at": "2026-10-03T15:31:42.855994+00:00",
+      "sha256": "063e0361c2c35fbefa8f53ba53262117a8d2e170f1a41d552732715afb6b6153",
+      "bytes": 626019,
+      "archive_recorded_at": "2026-10-03T15:31:42.861927+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "defillama-aave-v3-adapter.ts",
+      "url": "https://raw.githubusercontent.com/DefiLlama/dimension-adapters/master/fees/aave-v3.ts",
+      "retrieved_at": "2026-10-03T15:32:14.083329+00:00",
+      "sha256": "a96f28e2a652ae39b95dde76d930106e58d0c4752f65897d7be7c24253bbe5d7",
+      "bytes": 16474,
+      "archive_recorded_at": "2026-10-03T15:32:14.088090+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "defillama-aave-v3-holders.json",
+      "url": "https://api.llama.fi/summary/fees/aave-v3?dataType=dailyHoldersRevenue",
+      "retrieved_at": "2026-10-03T15:31:59.018199+00:00",
+      "sha256": "e7e0110162b45cb9558b883f003767e768aba6527659417c287d6cde75e4b653",
+      "bytes": 517748,
+      "archive_recorded_at": "2026-10-03T15:32:30.896039+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "equity.html",
+      "url": "https://crypto3d.pro/equity/",
+      "retrieved_at": "2026-10-03T15:29:11.625832+00:00",
+      "sha256": "9abe27672e371c6d13346f379752ad6ac4f3f1f0a27ce93a192ef6344164c7b9",
+      "bytes": 50047,
+      "archive_recorded_at": "2026-10-03T15:29:33.526592+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "official-aave-budget.json",
+      "url": "https://governance.aave.com/t/arfc-buyback-program-budget-adjustment/24229.json",
+      "retrieved_at": "2026-10-03T15:32:19.474215+00:00",
+      "sha256": "9eed99ace0ea306f0187b6adff92355b5c081877dfadc6c9da50e402f35e01f1",
+      "bytes": 23978,
+      "archive_recorded_at": "2026-10-03T15:32:19.477808+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "official-aave-funding.json",
+      "url": "https://governance.aave.com/t/aave-dao-funding-insights/24192.json",
+      "retrieved_at": "2026-10-03T15:32:23.870806+00:00",
+      "sha256": "aa1fe4376ec12bcf11fef0571af63e05009d367519debfe4376f7896ad5f22c8",
+      "bytes": 134025,
+      "archive_recorded_at": "2026-10-03T15:32:23.873862+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "official-aster-asbnb.html",
+      "url": "https://www.asterdex.com/en/earn/astoken?token=slisBNB",
+      "retrieved_at": "2026-10-03T15:32:30.891492+00:00",
+      "sha256": "1d5836b11fba9b1b690db460f8bc956e54c8d9b633f7454f4d981170b4c53657",
+      "bytes": 773949,
+      "archive_recorded_at": "2026-10-03T15:32:30.894332+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "official-bnb36.html",
+      "url": "https://www.bnbchain.org/en/blog/36th-bnb-burn",
+      "retrieved_at": "2026-10-03T15:32:17.556571+00:00",
+      "sha256": "e300100ff8804d1462d88ce1b82bf685e0c5f0d927f515db302b27b069bc45b6",
+      "bytes": 344547,
+      "archive_recorded_at": "2026-10-03T15:32:17.562144+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "protocol.html",
+      "url": "https://crypto3d.pro/equity/protocol.html?id=bnb",
+      "retrieved_at": "2026-10-03T15:29:43.366278+00:00",
+      "sha256": "40176e1486f87a10ac498c920e4584abc62cecbaeacc57e2817e576323ce1b2d",
+      "bytes": 103731,
+      "archive_recorded_at": "2026-10-03T15:29:43.367846+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "snapshot-aave.json",
+      "url": "https://crypto3d.pro/data/snapshots/aave.json",
+      "retrieved_at": "2026-10-03T15:29:40.082225+00:00",
+      "sha256": "feb06fea2af5bccec7aa9279cfb25250b372027918dcc961be55febadbad6286",
+      "bytes": 3282,
+      "archive_recorded_at": "2026-10-03T15:29:40.084890+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "snapshot-bnb.json",
+      "url": "https://crypto3d.pro/data/snapshots/bnb.json",
+      "retrieved_at": "2026-10-03T15:29:38.508425+00:00",
+      "sha256": "aa0280cfd488998793a1082becfca29c156702cecb2e7339a30b65b7753a37ae",
+      "bytes": 2865,
+      "archive_recorded_at": "2026-10-03T15:29:38.512752+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "tev-records-aave.json",
+      "url": "https://crypto3d.pro/data/protocols/aave/tev-records.json",
+      "retrieved_at": "2026-10-03T15:30:30.463804+00:00",
+      "sha256": "fe97dd04db34e31078c246b08b34a1e6696522b67ba19acbf21e4b116b3c348c",
+      "bytes": 8801,
+      "archive_recorded_at": "2026-10-03T15:30:30.466805+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    },
+    {
+      "file": "tev-records-bnb.json",
+      "url": "https://crypto3d.pro/data/protocols/bnb/tev-records.json",
+      "retrieved_at": "2026-10-03T15:30:12.237873+00:00",
+      "sha256": "028cc604e360e9bd0d8e7d06d6023eeff55679e1b6a9462ccfb5d40d04dd7097",
+      "bytes": 15021,
+      "archive_recorded_at": "2026-10-03T15:30:12.241792+00:00",
+      "retrieved_time_basis": "response file write completion time"
+    }
+  ]
+}
