@@ -6,13 +6,13 @@
   <meta name="description" content="协议收入、回购去向、供应稀释与政策变更的本地研究框架。">
   <title>协议收入与代币价值 · 研究框架</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101b2c'/%3E%3Cpath d='M6 23h20M8 18v-5m8 5V7m8 11v-9' stroke='%23edc66d' stroke-width='3'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css?v=31">
+  <link rel="stylesheet" href="./styles.css?v=32">
 </head>
 <body>
   <main>
     <header class="masthead">
-      <div><span class="eyebrow">TOKEN VALUE RESEARCH / 01</span><h1>协议收入与代币价值</h1><p id="snapshot-date">读取本地快照…</p></div>
-      <nav aria-label="研究文档"><a href="../research/report.md">研究报告</a><a href="../research/framework.md">计算口径</a></nav>
+      <div><h1>代币价值研究</h1><p id="snapshot-date">读取本地快照…</p></div>
+      <nav aria-label="研究文档"><button id="metric-help">指标说明</button><a href="../research/report.md">研究报告</a></nav>
     </header>
     <div id="errors" role="status"></div>
     <section id="research-controls" aria-label="全页观察窗口" class="controls">
@@ -20,40 +20,34 @@
       <form id="custom-range-form" hidden><label>起始日期 <input id="range-start" name="start" type="date" required></label><label>结束日期 <input id="range-end" name="end" type="date" required></label><button type="submit">应用</button><button id="custom-range-cancel" type="button">收起</button></form>
       <p id="range-error" role="status"></p>
       <p id="range-context" class="range-context"></p>
-      <p class="range-context">时间筛选同时应用于总结表和代币详情。默认展示近30天；更早的图表数据按需加载。</p>
     </section>
     <section class="comparison" aria-labelledby="compare-heading">
-      <div class="section-title"><h2 id="compare-heading">协议收入、代币回购与估值对比 <span id="token-count"></span></h2><span id="period-note"></span></div>
-      <p class="notice">回购 / 销毁金额可能来自费用分配或代币估值，具体标在每行。点击指标查看算式与来源。</p>
-      <div class="table-navigation" role="group" aria-label="表格查看位置"><button id="show-business">← 收入与供应</button><button id="show-financial">财务估值指标 →</button><button id="show-flows">收入去向图 ↓</button><button id="reset-sort" hidden>默认顺序</button><span>横向滚动查看更多；来源在最右侧</span></div>
-      <p id="sort-status" class="sort-status" role="status">点击表头排序；缺失或不适用置后。</p>
+      <div class="section-title"><h2 id="compare-heading">协议收入、代币回购与估值对比 <span id="token-count"></span></h2><button id="reset-sort" hidden>默认顺序</button></div>
+      <p id="sort-status" class="sr-only" role="status">点击表头排序；缺失或不适用置后。</p>
       <div class="table-wrap" id="comparison-scroll"><table><thead><tr>
-        <th><button class="sort-header" data-sort="ticker" data-sort-label="代币名称" aria-label="按代币名称排序">项目 / 机制 <span class="sort-direction" aria-hidden="true">↕</span></button></th>
+        <th><button class="sort-header" data-sort="ticker" data-sort-label="代币名称" aria-label="按代币名称排序">代币 <span class="sort-direction" aria-hidden="true">↕</span></button></th>
         <th><button class="sort-header" data-sort="marketCap" data-sort-label="流通市值" aria-label="按流通市值排序">流通市值 <span class="sort-direction" aria-hidden="true">↕</span></button></th>
-        <th><button class="sort-header" data-sort="fdv" data-sort-label="FDV" aria-label="按FDV排序">FDV <span class="sort-direction" aria-hidden="true">↕</span><small>CoinGecko</small></button></th>
-        <th><button class="sort-header" data-sort="revenue" data-sort-label="协议所得收入" aria-label="按协议所得收入排序">协议所得收入 <span class="sort-direction" aria-hidden="true">↕</span></button></th>
-        <th><button class="sort-header" data-sort="yieldMc" data-sort-label="年化回购收益率 / 流通市值" aria-label="年化回购收益率按流通市值排序">年化回购／销毁收益率 <span class="sort-direction" aria-hidden="true">↕</span><small>年化统计金额 ÷ 估值<br>按流通市值</small></button><button class="sort-alternate" data-sort="yieldFdv" data-sort-label="年化回购收益率 / FDV" aria-label="年化回购收益率按FDV排序">按 FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
-        <th>未来365天新增／释放<br><small>已知类别 · 排期／估算 ↗</small></th>
-        <th id="financial-start" class="financial-col"><button class="sort-header" data-sort="psMc" data-sort-label="协议收入倍数 P/S / 流通市值" aria-label="P/S按流通市值排序">协议收入倍数 P/S <span class="sort-direction" aria-hidden="true">↕</span><small>估值 ÷ 年化收入统计<br>未扣完整经营成本<br>按流通市值</small></button><button class="sort-alternate" data-sort="psFdv" data-sort-label="协议收入倍数 P/S / FDV" aria-label="P/S按FDV排序">按 FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
-        <th id="holder-pe-heading" class="financial-col"><button class="sort-header" data-sort="holderPeMc" data-sort-label="持币者回报倍数 / 流通市值" aria-label="持币者回报倍数按流通市值排序">持币者回报倍数 <span class="sort-direction" aria-hidden="true">↕</span><small>参考P/E · 估值 ÷ 年化回购／销毁统计<br>按流通市值</small></button><button class="sort-alternate" data-sort="holderPeFdv" data-sort-label="持币者回报倍数 / FDV" aria-label="持币者回报倍数按FDV排序">按 FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
-        <th class="financial-col"><button class="sort-header" data-sort="revenueShare" data-sort-label="协议收入占手续费" aria-label="按协议收入占手续费排序">协议收入<br>占手续费 <span class="sort-direction" aria-hidden="true">↕</span><small>收入 ÷ 手续费</small></button></th>
-        <th class="financial-col"><button class="sort-header" data-sort="holderCapture" data-sort-label="回购／销毁占协议收入" aria-label="按回购销毁占协议收入排序">回购 / 销毁<br>占协议收入 <span class="sort-direction" aria-hidden="true">↕</span><small>同窗统计金额</small></button></th>
-        <th>回购 / 销毁数据来源</th>
+        <th><button class="sort-header" data-sort="fdv" data-sort-label="FDV" aria-label="按FDV排序">FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
+        <th><button class="sort-header" data-sort="revenue" data-sort-label="协议所得收入" aria-label="按协议所得收入排序">协议收入 <span class="sort-direction" aria-hidden="true">↕</span></button></th>
+        <th><button class="sort-header" data-sort="yieldMc" data-sort-label="年化回购收益率 / 流通市值" aria-label="年化回购收益率按流通市值排序" title="年化回购／销毁统计金额 ÷ 流通市值">年化回购／销毁收益率 <span class="sort-direction" aria-hidden="true">↕</span></button><button class="sort-alternate" data-sort="yieldFdv" data-sort-label="年化回购收益率 / FDV" aria-label="年化回购收益率按FDV排序">按 FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
+        <th id="financial-start" class="financial-col"><button class="sort-header" data-sort="psMc" data-sort-label="协议收入倍数 P/S / 流通市值" aria-label="P/S按流通市值排序" title="估值 ÷ 年化收入统计，未扣完整经营成本">P/S <span class="sort-direction" aria-hidden="true">↕</span></button><button class="sort-alternate" data-sort="psFdv" data-sort-label="协议收入倍数 P/S / FDV" aria-label="P/S按FDV排序">按 FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
+        <th id="holder-pe-heading" class="financial-col"><button class="sort-header" data-sort="holderPeMc" data-sort-label="持币者回报倍数 / 流通市值" aria-label="持币者回报倍数按流通市值排序" title="参考P/E：估值 ÷ 年化回购／销毁统计，并非项目净利润P/E">持币者回报倍数 <span class="sort-direction" aria-hidden="true">↕</span></button><button class="sort-alternate" data-sort="holderPeFdv" data-sort-label="持币者回报倍数 / FDV" aria-label="持币者回报倍数按FDV排序">按 FDV <span class="sort-direction" aria-hidden="true">↕</span></button></th>
+        <th class="overview-supply">未来365天释放</th>
+        <th>来源</th>
       </tr></thead><tbody id="comparison-body"></tbody></table></div>
-      <p class="financial-note">每个倍数均标明“流通市值”和“FDV”，两行使用同一份年化金额。流通市值只计已流通代币；FDV采用CoinGecko完全稀释估值，考虑尚未流通的供应。P/S使用收入统计，持币者回报倍数使用回购／销毁统计。</p>
-      <p class="footnote">年化 = 所选窗口金额 × 365 / 天数；收益率表示统计金额相对估值的比例，不是持币人的现金收益或币价增幅；含库存事件的历史倍数保留提示，收益率仅用可年化部分。“—”表示缺数据或口径待核。</p>
+      <div class="table-caption"><span>USD · 点击数值查看详情</span><span>— 缺数据 / 不适用</span></div>
     </section>
-    <details class="supply-comparison"><summary>查看全部代币的未来供应对比</summary><section id="supply-overview" aria-labelledby="supply-heading"></section></details>
     <section id="token-controls" aria-label="选择详情代币" class="controls token-controls">
-      <label for="token-selector">查看代币 <select id="token-selector" disabled><option>读取代币…</option></select></label>
+      <h2>代币详情</h2><label for="token-selector"><span class="sr-only">查看代币</span><select id="token-selector" disabled><option value="">选择代币…</option></select></label><button id="close-detail" hidden>收起详情</button>
     </section>
-    <section id="detail" aria-live="polite"></section>
-    <footer>所有金额为 USD。研究快照与供应商口径可复核；缺失不填零。</footer>
+    <section id="detail" aria-live="polite" hidden></section>
+    <details class="supply-comparison"><summary>全部代币 · 供应对比</summary><section id="supply-overview" aria-labelledby="supply-heading"></section></details>
+    <footer><span>Token Value Research</span><a href="../research/framework.md">完整计算口径 ↗</a></footer>
   </main>
   <dialog id="source-dialog" aria-labelledby="source-title">
     <div class="source-head"><div><span class="eyebrow">数据来源与计算过程</span><h2 id="source-title"></h2></div><button id="source-close" aria-label="关闭数据来源">关闭</button></div>
     <div id="source-content" aria-live="polite"></div>
   </dialog>
-  <script type="module" src="./app.js?v=32"></script>
+  <script type="module" src="./app.js?v=33"></script>
 </body>
 </html>

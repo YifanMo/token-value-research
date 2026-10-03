@@ -7,12 +7,12 @@ import {validateDateRange} from './periods.js';
 import {selectedChartData} from './charts.js';
 import {HistoryLoader} from './data-loader.js';
 import {isReserveBurn, statisticLabel, isHypeFeeReconciliation, captureBadge} from './models.js';
-import {burnFinancialMarkup, burnStats, quarterComparisonMarkup} from './burns.js';
+import {burnFinancialMarkup, burnStats} from './burns.js';
 import {feeReconciliationMarkup} from './fee-view.js';
 import {sortProjects} from './comparison-sort.js';
 
 const valuationBasis = 'reported';
-const state = {days:30, ticker:'HYPE', event:null, preset:30, start:null, end:null, sort:{key:null,direction:'desc'}};
+const state = {days:30, ticker:'HYPE', detailOpen:false, detailTab:'flow', event:null, preset:30, start:null, end:null, sort:{key:null,direction:'desc'}};
 let snapshot;
 let baseSnapshot;
 let historyLoader;
@@ -53,7 +53,12 @@ function supplyWindowMarkup(project, component, days, showRatio=false) {
 
 function supplyReference(project) {
   const component=primaryComponent(project);
-  return `<button class="metric-button" data-supply="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看未来释放依据">${supplyWindowMarkup(project,component,365,true)}<span class="stat-method">${esc(component?.label||'未来释放未披露')} ↗</span>${project.supply_forecast?.overview_note?`<span class="stat-method">${esc(project.supply_forecast.overview_note)}</span>`:''}</button>`;
+  const summary=componentWindowSummary(component,snapshot.as_of,365);
+  const value=known(summary.amount)?summary.amount:summary.known_amount;
+  const estimated=['scenario','tracker','run_rate'].includes(component?.evidence)||summary.status==='projection';
+  const label=!known(value)?'未公布':summary.status==='partial'?(estimated?'部分估算':'部分计划'):summary.status==='upper_bound'?'权限上限':estimated?'估算':isReserveBurn(project)?'常规发行':evidenceNames[component?.evidence]||'已登记计划';
+  const prefix=component?.display_prefix||(summary.status==='upper_bound'?'最多':estimated?'约':'');
+  return `<button class="metric-button" data-supply="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看未来释放依据" title="${esc(component?.label||'未来释放未披露')} · 单位为代币枚数">${known(value)?esc(prefix)+amount(value):'—'}<span class="cell-tag">${esc(label)}</span></button>`;
 }
 
 function openSupply(ticker) {
@@ -144,30 +149,29 @@ function toggleCustomRange(open) {
 
 function financialCells(project,m) {
   const ticker=esc(project.ticker);
-  if (isReserveBurn(project)) return ['收入倍数','持币者回报倍数','协议收入占手续费','回购占收入'].map(label=>`<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} ${label}为什么不适用">不适用<span class="number-sub">储备 / Gas销毁</span></button></td>`).join('');
+  if (isReserveBurn(project)) return ['收入倍数','持币者回报倍数'].map(label=>`<td class="financial-value"><button class="metric-button muted" data-financial="${ticker}" aria-label="${ticker} ${label}为什么不适用">不适用</button></td>`).join('');
   const ref=calculateReferenceMultiples(project,state.days,valuationBasis);
-  const holderPe=`${valuationPair(ref.peMc,ref.peFdv)}${ref.containsOneoff?'<span class="stat-method">历史统计，库存事件未对账</span>':''}`;
-  const ps=`${valuationPair(ref.psMc,ref.psFdv)}${ref.revenueStatus==='valuation_only'?'<span class="stat-method">兑换估值分母，非营业收入</span>':''}`;
-  const share=project.fee_normalization?`<button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 手续费分成与去重口径">${pct(m.revenueShare)}<span class="number-sub">总手续费分母 · 已去重<br>${isHypeFeeReconciliation(project)?'99%规则与拆分':'费用去重核对'} ↗</span></button>`:pct(m.revenueShare);
-  return `<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} P/S计算口径">${ps}</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 持币者回报倍数计算口径">${holderPe}</button></td><td class="financial-value">${share}</td><td class="financial-value">${pct(m.holderCapture)}</td>`;
+  const holderPe=`${valuationPair(ref.peMc,ref.peFdv)}${ref.containsOneoff?'<span class="cell-tag">库存事件待核</span>':''}`;
+  const ps=`${valuationPair(ref.psMc,ref.psFdv)}${ref.revenueStatus==='valuation_only'?'<span class="cell-tag">兑换估值</span>':''}`;
+  return `<td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} P/S计算口径">${ps}</button></td><td class="financial-value"><button class="metric-button" data-financial="${ticker}" aria-label="${ticker} 持币者回报倍数计算口径">${holderPe}</button></td>`;
 }
 
 const feeReconciliation = feeReconciliationMarkup;
 
 function render() {
-  $('#snapshot-date').textContent = `研究截至 ${snapshot.as_of} · 收入截至已完成UTC日 ${snapshot.completed_day_cutoff_utc}`;
-  $('#period-note').textContent = `${state.start} → ${state.end} · ${state.days}天 · UTC`;
-  $('#token-count').textContent = `共 ${snapshot.projects.length} 个代币`;
-  $('#token-selector').value = state.ticker;
+  $('#snapshot-date').textContent = `数据快照 · ${snapshot.as_of}`;
+  $('#token-count').textContent = `${snapshot.projects.length} 个代币`;
+  $('#token-selector').value = state.detailOpen?state.ticker:'';
   document.querySelectorAll('[data-days]').forEach(button => button.setAttribute('aria-pressed',Number(button.dataset.days)===state.preset));
   $('#custom-range-toggle').setAttribute('aria-pressed',state.preset===null);
   if($('#custom-range-form').hidden) {$('#range-start').value=state.start;$('#range-end').value=state.end;}
-  $('#range-context').textContent=`${state.start} → ${state.end} · ${state.days}个UTC日（含首尾）；市值、供应和未来排期仍采用当前快照。`;
+  $('#range-context').textContent=`${state.start} — ${state.end} · ${state.days}天 · UTC`;
   renderComparison();
   const missing = Object.entries(snapshot.source_status).filter(([,value])=>value.status==='missing');
   const stale = snapshot.projects.filter(p=>(!isReserveBurn(p)&&p.flow_lag_days>0) || p.market_lag_days>0);
   const failed = Object.entries(snapshot.source_status).filter(([,value])=>value.refresh_error && value.status!=='missing').map(([key,value])=>sourceIssueSummary(key,value,snapshot.projects));
-  $('#errors').innerHTML = (missing.length ? `<p class="alert">${missing.length}个来源暂缺，相应价格、基准或链上供应字段显示缺数据；不会推定为0。</p>` : '')+(stale.length ? `<p class="alert">${stale.map(p=>esc(p.ticker)).join('、')}有滞后数据，查看项目来源时间；不能作为实时估值。</p>` : '')+(failed.length ? `<div class="alert">${failed.map(issue=>`<p><strong>${esc(issue.name)}更新未成功：${esc(issue.cause)}</strong><br>${esc(issue.impact)} 上次成功抓取：${esc(issue.lastSuccess || '未知')}。 ${link({title:'查看接口 ↗',url:issue.url})}</p>`).join('')}</div>` : '')+(snapshot!==baseSnapshot&&historyReadErrors.length?`<details class="alert"><summary>${historyReadErrors.length}份历史归档未通过读取或哈希核对，相应金额显示缺数据</summary><p>${historyReadErrors.map(esc).join('<br>')}</p></details>`:'');
+  const notices=[missing.length?`${missing.length}个来源缺失`:'',stale.length?`${stale.length}个代币有滞后数据`:'',failed.length?`${failed.length}个来源更新失败`:'',snapshot!==baseSnapshot&&historyReadErrors.length?`${historyReadErrors.length}份历史归档待核`:''].filter(Boolean);
+  $('#errors').innerHTML=notices.length?`<details class="alert compact-alert"><summary>${notices.map(esc).join(' · ')} <span>查看原因</span></summary>${missing.length?`<p>暂缺来源：${missing.map(([key])=>esc(key)).join('、')}；相应字段缺数据，不补零。</p>`:''}${stale.length?`<p>${stale.map(p=>esc(p.ticker)).join('、')}数据有滞后，实际时间见项目来源。</p>`:''}${failed.map(issue=>`<p><strong>${esc(issue.name)}：${esc(issue.cause)}</strong><br>${esc(issue.impact)} 上次成功：${esc(issue.lastSuccess||'未知')}。 ${link({title:'查看接口 ↗',url:issue.url})}</p>`).join('')}${snapshot!==baseSnapshot&&historyReadErrors.length?`<p>${historyReadErrors.map(esc).join('<br>')}</p>`:''}</details>`:'';
   renderSupplyOverview();
   bindTableActions($('#supply-overview'));
   renderDetail();
@@ -181,8 +185,18 @@ function orderedProjects() {
 function renderComparison() {
   $('#comparison-body').innerHTML = orderedProjects().map(project => {
     const m = calculate(project,state.days,valuationBasis);
-    const source=buybackSource(project);
-    return `<tr class="${state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.ticker===project.ticker}"><strong>${esc(project.ticker)} <span class="number-sub">${esc(project.name)}</span></strong><span>${esc(project.capture.label)}</span></button></td><td>${amount(project.market.market_cap,true)}</td><td>${amount(m.fdv,true)}</td><td>${isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核收入':amount(m.revenue,true)}<span class="number-sub">${isReserveBurn(project)?'BSC链手续费 '+amount(m.fees,true)+' · '+state.days+'天':m.revenueStatus==='valuation_only'?statisticLabel(project)+' '+amount(m.reportedRevenue,true):`${state.days}天 / ${esc(state.end)}`}</span>${!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`<span class="stat-method">仅覆盖${m.coverage.revenue.coverage_days}/${state.days}天</span>`:''}${project.ticker==='JUP'?'<span class="number-sub">含覆盖重叠，待去重</span>':''}${project.flow_normalizations?'<span class="number-sub">已剔除已核重复项</span>':''}</td><td>${isReserveBurn(project)?quarterComparisonMarkup(project,state.start,state.end):metricPair(m.grossYieldMc,m.grossYieldFdv)}${isReserveBurn(project)?'':`<span class="stat-method">${esc(project.capture.stat_label)}</span>`}</td><td class="accent">${supplyReference(project)}</td>${financialCells(project,m)}<td class="source-cell"><span class="source-provider">${esc(project.ticker)} · ${esc(source?.provider || (isReserveBurn(project)?'链上核验记录':'DefiLlama'))}</span><button class="source-open" data-source="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看本次 API 返回">${isReserveBurn(project)?'查看已核销毁记录':'查看本次 API 返回'}</button>${source?link({title:'在线 API ↗',url:source.url}):isReserveBurn(project)?link({title:'季度记录在线 API ↗',url:project.burns?.quarterly_records?.find(record=>record.verified)?.source_url}):'<span class="muted">来源缺失</span>'}</td></tr>`;
+    const ticker=esc(project.ticker),selected=state.detailOpen&&state.ticker===project.ticker;
+    const burn=isReserveBurn(project)?burnStats(project,state.start,state.end):null;
+    const income=isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核':amount(m.revenue,true);
+    const incomeTags=[m.revenueStatus==='valuation_only'?'独立收入待核':'',!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`覆盖${m.coverage.revenue.coverage_days}/${state.days}天`:'',project.ticker==='JUP'?'待去重':''].filter(Boolean);
+    const yieldMarkup=burn?`<button class="metric-button" data-quarter-plan="${ticker}" aria-label="${ticker} 查看季度销毁计划">${burn.count?amount(burn.tokens)+' BNB':'季度销毁'}<span class="cell-tag">${burn.count?'未年化':'无已核事件'}</span></button>`:`<button class="metric-button" data-source="${ticker}" aria-label="${ticker} 查看年化回购销毁收益率来源">${metricPair(m.grossYieldMc,m.grossYieldFdv)}${!known(m.holder)&&m.incomeLinkedCapture?'<span class="cell-tag">年化待核</span>':''}</button>`;
+    return `<tr class="${selected?'selected':''}">
+      <td><button class="token-select" data-token="${ticker}" aria-pressed="${selected}" title="查看 ${ticker} 详情"><strong>${ticker}<span class="token-arrow" aria-hidden="true">↗</span></strong><span title="${esc(project.name)}">${esc(project.name)}</span></button></td>
+      <td><button class="metric-button market-value" data-financial="${ticker}" aria-label="${ticker} 查看流通市值">${amount(project.market.market_cap,true)}</button></td>
+      <td><button class="metric-button market-value" data-financial="${ticker}" aria-label="${ticker} 查看FDV">${amount(m.fdv,true)}</button></td>
+      <td><button class="metric-button market-value" data-financial="${ticker}" aria-label="${ticker} 查看协议收入口径">${income}${incomeTags.map(label=>`<span class="cell-tag">${esc(label)}</span>`).join('')}</button></td>
+      <td>${yieldMarkup}</td>${financialCells(project,m)}<td class="accent overview-supply">${supplyReference(project)}</td>
+      <td class="source-cell"><button class="source-open" data-source="${ticker}" aria-label="${ticker} 查看本次 API 返回">来源 ↗</button></td></tr>`;
   }).join('');
   updateSortIndicators();
   bindTableActions($('#comparison-body'));
@@ -195,6 +209,7 @@ function bindTableActions(container) {
   container.querySelectorAll('[data-token]').forEach(button => button.addEventListener('click',()=>selectToken(button.dataset.token,true)));
   container.querySelectorAll('[data-quarter-plan]').forEach(button=>button.addEventListener('click',()=>{
     selectToken(button.dataset.quarterPlan);
+    showDetailTab('flow');
     $('#bnb-quarterly-plan')?.scrollIntoView({behavior:'smooth',block:'start'});
   }));
 }
@@ -217,7 +232,10 @@ function updateSortIndicators() {
 
 function selectToken(ticker,scrollToDetail=false) {
   if (!snapshot.projects.some(project=>project.ticker===ticker)) return;
+  const changed=state.ticker!==ticker;
   state.ticker=ticker;
+  state.detailOpen=true;
+  if(changed) state.detailTab='flow';
   state.event=null;
   $('#token-selector').value=ticker;
   document.querySelectorAll('[data-token]').forEach(button=>{
@@ -227,6 +245,32 @@ function selectToken(ticker,scrollToDetail=false) {
   });
   renderDetail();
   if (scrollToDetail) $('#detail').scrollIntoView({behavior:'auto',block:'start'});
+}
+
+function closeDetail() {
+  state.detailOpen=false;
+  $('#token-selector').value='';
+  $('#detail').hidden=true;
+  $('#close-detail').hidden=true;
+  document.querySelectorAll('[data-token]').forEach(button=>{
+    button.setAttribute('aria-pressed',false);
+    button.closest('tr')?.classList.remove('selected');
+  });
+  renderComparison();
+}
+
+function showDetailTab(tab) {
+  if(!['flow','supply','history','sources','conclusion'].includes(tab)) return;
+  state.detailTab=tab;
+  document.querySelectorAll('[data-detail-tab]').forEach(button=>{
+    const active=button.dataset.detailTab===tab;
+    button.setAttribute('aria-selected',active);
+    button.tabIndex=active?0:-1;
+  });
+  document.querySelectorAll('[data-detail-panel]').forEach(panel=>panel.hidden=panel.dataset.detailPanel!==tab);
+  const project=snapshot.projects.find(p=>p.ticker===state.ticker);
+  if(tab==='history') renderAnalysis(project);
+  if(tab==='flow') connectMoneyFlow(project,state.days);
 }
 
 async function openFinancial(ticker) {
@@ -239,23 +283,29 @@ async function openFinancial(ticker) {
     $('#source-dialog').scrollTop=0;
     return;
   }
-  const m=calculate(project,days,valuationBasis), w=m.coverage?.revenue;
+  const m=calculate(project,days,valuationBasis);
   const ref=calculateReferenceMultiples(project,days,valuationBasis);
   const exactUsd=value=>known(value)?'$'+value.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
   sourceRequest?.abort();
   const request=new AbortController();sourceRequest=request;
   $('#source-title').textContent=`${ticker} · 财务指标与计算口径`;
-  $('#source-content').innerHTML=`<p>每个指标用同一份年化金额计算两次：流通市值只按已流通代币估值；FDV采用CoinGecko完全稀释估值，考虑尚未流通的供应。</p><div class="financial-dialog-summary"><div><span>协议收入倍数 P/S</span>${valuationPair(ref.psMc,ref.psFdv)}</div><div><span>持币者回报倍数 · 回购／销毁统计</span>${valuationPair(ref.peMc,ref.peFdv)}</div></div>
-  <div class="source-formula"><h3>持币者回报倍数：市值 ÷ 年化回购／销毁统计</h3><p>期间 ${esc(w?.start)} → ${esc(w?.end)}；API持有人统计 ${exactUsd(ref.holderUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.holderAnnual)}。流通市值 ÷ 年化统计 = <strong>${multiple(ref.peMc)}</strong>；FDV ÷ 年化统计 = <strong>${multiple(ref.peFdv)}</strong>。回购或销毁不代表持币人直接收到现金。</p><p>${esc(project.capture.stat_note)} ${ref.containsOneoff?'所选窗口跨存量事件，历史API总额仍可求倍数，但不能当成持续盈利或未来回购能力。':''}</p></div>
-  <div class="source-formula"><h3>参考 P/S：收入字段倍数</h3><p>同窗API收入字段（采用本地归一化金额）${exactUsd(ref.revenueUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.revenueAnnual)}。流通市值 / FDV ÷ 该金额 = <strong>${multiple(ref.psMc)} / ${multiple(ref.psFdv)}</strong>。</p><p>${ref.revenueStatus==='valuation_only'?statisticLabel(project)+'仅作原字段倍数；独立营业收入的P/S仍未知。':ref.revenueStatus==='incomplete'?'窗口缺少完整归一化收入，未用原始重复额或已观察部分补齐。':'以当前统计范围计算，未扣完整经营成本。'} ${project.ticker==='JUP'?'JUP仍含业务覆盖重叠，未宣称完全去重。':''} ${ref.notes.map(esc).join(' ')}</p></div>
-  ${m.revenueStatus==='valuation_only'?`<div class="source-meaning"><h3>${esc(project.ticker)}的真实手续费收入尚未独立取得</h3><p>本次API revenue字段 ${exactUsd(m.reportedRevenue)} 属于${esc(statisticLabel(project))}，不能拿来作为独立营业收入口径P/S的分母。已收费用资产、兑换价值与现金买入成本需要分别对账。${link({title:'源码与核对依据',url:project.flow.source_note_url})}</p></div>`:''}
-  ${feeReconciliation(project,m)}
-  <div class="source-formula"><h3>市销率 P/S：用收入衡量价格</h3><p>收入期间 ${esc(w?.start)} → ${esc(w?.end)}；${w?.complete===false?'窗口缺完整金额，不补齐或年化':days===365?'完整365天总额':'按所选'+days+'天收入折算一年，属于该期间的平均统计速度'}。</p><p>年收入 = ${exactUsd(m.revenue)} × 365 ÷ ${days} = <strong>${exactUsd(m.revenueAnnual)}</strong>。</p><p>流通市值 ${exactUsd(project.market.market_cap)} ÷ 年收入 = <strong>${multiple(m.psRevenueMc)}</strong>；CoinGecko FDV ${exactUsd(m.fdv)} ÷ 同一年收入 = <strong>${multiple(m.psRevenueFdv)}</strong>。</p><p>分母使用协议自己得到的收入，扣除了部分 LP、creator 等分成；它还没有扣完整经营成本。协议收入的统计范围与上市公司营业收入可能不同，横向比较时须核对范围。</p></div>
-  <div class="source-formula"><h3>协议收入占手续费 / 回购与销毁占收入</h3><p>协议所得收入 ${exactUsd(m.revenue)} ÷ 用户手续费 ${exactUsd(m.fees)} = <strong>${pct(m.revenueShare)}</strong>，表示用户付费中协议拿到的比例，不是利润率。</p><p>可比较的回购 / 销毁统计金额 ${exactUsd(m.holder)} ÷ 协议所得收入 ${exactUsd(m.revenue)} = <strong>${pct(m.holderCapture)}</strong>。这是同窗比例，不再年化，也不是按净利润计算的派息率。</p><p>${esc(project.capture.stat_note)} ${esc(m.coverage?.holders?.recurring_note||'')}估值与执行时差可能使比例超过100%，不强行截断。</p></div>
-  <section class="source-policy"><h3>本次使用的数据与保存响应</h3><p>市值与FDV：${link({title:'CoinGecko 市场快照',url:project.market.source})} · ${esc(project.market.last_updated)}。当前采集器未接入成本和净利润数据源。</p><div class="financial-data-sources">${['fees','revenue','holders'].map(kind=>{
-    const source=project.data_sources.find(s=>s.kind===kind), name={fees:'用户手续费',revenue:statisticLabel(project),holders:'回购 / 销毁统计金额'}[kind];
-    return `<article><strong>${name}</strong><span class="number-sub">抓取 ${esc(source?.retrieved_at||'未知')}</span><div class="source-links">${source?link({title:'在线 API ↗',url:source.url}):'来源缺失'}${source?.response_path?link({title:'本次 JSON ↗',url:source.response_path}):''}</div><p id="financial-proof-${kind}" role="status">正在核对保存响应…</p></article>`;
-  }).join('')}</div><p class="source-explanation">文件哈希和逐日加总匹配只能证明表格可复算，不代表净利润或现金回购已审计。${link({title:'完整计算口径',url:'../research/framework.md'})}</p></section>`;
+  $('#source-content').innerHTML=`<div class="financial-dialog-summary"><div><span>协议收入倍数 P/S</span>${valuationPair(ref.psMc,ref.psFdv)}</div><div><span>持币者回报倍数</span>${valuationPair(ref.peMc,ref.peFdv)}</div></div>
+  <div class="financial-inputs"><div><span>年化收入统计</span><strong>${amount(ref.revenueAnnual,true)}</strong></div><div><span>年化回购／销毁统计</span><strong>${amount(ref.holderAnnual,true)}</strong></div><div><span>协议收入占手续费</span><strong>${pct(m.revenueShare)}</strong></div><div><span>回购／销毁占收入</span><strong>${pct(m.holderCapture)}</strong></div></div>
+  <p>${esc(state.start)} — ${esc(state.end)} · ${days}天。分别以流通市值和FDV作为估值，除以同一份年化金额。</p>
+  ${ref.revenueStatus==='valuation_only'?'<p class="financial-flag">兑换估值，独立营业收入待核。</p>':''}${ref.containsOneoff?'<p class="financial-flag">包含库存事件，历史统计倍数不代表持续回购能力。</p>':''}${project.ticker==='JUP'?'<p class="financial-flag">业务覆盖重叠，仍待去重。</p>':''}${ref.crossesBurnPolicy?'<p class="financial-flag">窗口跨越销毁政策变更，不能全按现行规则理解。</p>':''}${ref.revenueStatus==='incomplete'?'<p class="financial-flag">窗口缺完整收入，未补齐或年化。</p>':''}
+  <details class="source-detail financial-disclosure"><summary>算式与统计口径</summary>
+    <div class="source-formula"><h3>两种估值</h3><p>流通市值 ${exactUsd(project.market.market_cap)}；CoinGecko FDV ${exactUsd(m.fdv)}。前者只计已流通代币，后者考虑尚未流通的供应。</p></div>
+    <div class="source-formula"><h3>P/S = 估值 ÷ 年化收入统计</h3><p>同窗统计 ${exactUsd(ref.revenueUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.revenueAnnual)}。未扣完整经营成本，不是项目净利润。${ref.revenueStatus==='valuation_only'?statisticLabel(project)+'仅作兑换估值分母，不能当作独立营业收入。':ref.revenueStatus==='incomplete'?'窗口缺完整收入，未补齐缺日。':''}</p></div>
+    <div class="source-formula"><h3>持币者回报倍数 = 估值 ÷ 年化回购／销毁统计</h3><p>同窗统计 ${exactUsd(ref.holderUsd)} × 365 ÷ ${days} = 年化 ${exactUsd(ref.holderAnnual)}。${esc(project.capture.stat_note)} 回购或销毁不代表持币人直接收到现金。</p></div>
+    <div class="source-formula"><h3>收入与回购比例</h3><p>协议收入 ${exactUsd(m.revenue)} ÷ 用户手续费 ${exactUsd(m.fees)} = ${pct(m.revenueShare)}；回购／销毁统计 ${exactUsd(m.holder)} ÷ 协议收入 ${exactUsd(m.revenue)} = ${pct(m.holderCapture)}。均为同窗比例，不是净利润率；估值与执行时差可能使比例超过100%。</p></div>
+    ${project.fee_normalization?`<details class="source-detail"><summary>${isHypeFeeReconciliation(project)?'99%规则与手续费去重':'手续费去重依据'}</summary>${feeReconciliation(project,m)}</details>`:''}
+  </details>
+  <details class="source-detail financial-disclosure"><summary>数据来源与原始响应</summary>
+    <section class="source-policy"><p>市值与FDV：${link({title:'CoinGecko 市场快照',url:project.market.source})} · ${esc(project.market.last_updated)}。</p><div class="financial-data-sources">${['fees','revenue','holders'].map(kind=>{
+      const source=project.data_sources.find(s=>s.kind===kind), name={fees:'用户手续费',revenue:statisticLabel(project),holders:'回购／销毁统计金额'}[kind];
+      return `<article><strong>${name}</strong><span class="number-sub">抓取 ${esc(source?.retrieved_at||'未知')}</span><div class="source-links">${source?link({title:'在线 API ↗',url:source.url}):'来源缺失'}${source?.response_path?link({title:'本次 JSON ↗',url:source.response_path}):''}</div><p id="financial-proof-${kind}" role="status">正在核对保存响应…</p></article>`;
+    }).join('')}</div><p>文件哈希和逐日加总匹配表示表格可复算，不代表净利润或现金回购已审计。${link({title:'完整计算口径 ↗',url:'../research/framework.md'})}</p></section>
+  </details>`;
   if (!$('#source-dialog').open) $('#source-dialog').showModal();
   $('#source-dialog').scrollTop=0;
   await Promise.allSettled(['fees','revenue','holders'].map(async kind=>{
@@ -346,27 +396,41 @@ function historyCoverageMarkup(project) {
 }
 
 function renderDetail() {
+  $('#detail').hidden=!state.detailOpen;
+  $('#close-detail').hidden=!state.detailOpen;
+  if(!state.detailOpen) return;
   const project = snapshot.projects.find(p=>p.ticker===state.ticker);
   const m = calculate(project,state.days,valuationBasis);
   const burn=isReserveBurn(project)?burnStats(project,state.start,state.end):null;
   $('#detail').innerHTML = `<div class="detail-head"><div><span class="eyebrow">${esc(project.sector)}</span><h2>${esc(project.ticker)} / ${esc(project.name)}</h2></div><span class="badge">${esc(captureBadge(project))}</span></div>
-  <div class="mini-stats"><div><span>当前价格</span><strong>${price(project.market.current_price)}</strong></div><div><span>${burn?'所选期间已核季度销毁枚数':'回购 / 销毁金额 ÷ 协议收入'}</span><strong>${burn?amount(burn.tokens):pct(m.holderCapture)}</strong></div><div><span>${burn?'已核季度估值 ÷ 当前流通市值（未年化）':'回购 / 销毁金额 ÷ 用户手续费'}</span><strong>${burn?pct(burn.shareMc):pct(m.feeCapture)}</strong></div><div><span>流通 / 数据源总量</span><strong>${pct(m.floatRatio)}</strong></div></div>
+  <div class="mini-stats"><div><span>当前价格</span><strong>${price(project.market.current_price)}</strong></div><div><span>${burn?'已核季度销毁枚数':'回购／销毁占收入'}</span><strong>${burn?amount(burn.tokens):pct(m.holderCapture)}</strong></div><div><span>${burn?'季度销毁估值／市值 · 未年化':'回购／销毁占手续费'}</span><strong>${burn?pct(burn.shareMc):pct(m.feeCapture)}</strong></div><div><span>流通占总量</span><strong>${pct(m.floatRatio)}</strong></div></div>
+  <div class="detail-tabs" role="tablist" aria-label="代币详情内容">${[['flow','收入流向'],['supply','供应与解锁'],['history','历史与政策'],['sources','数据来源'],['conclusion','分析结论']].map(([id,label])=>`<button id="tab-${id}" role="tab" data-detail-tab="${id}" aria-controls="panel-${id}" aria-selected="${state.detailTab===id}">${label}</button>`).join('')}</div>
+  <section id="panel-flow" data-detail-panel="flow" role="tabpanel" aria-labelledby="tab-flow" hidden>
   ${moneyFlowMarkup(project,state.days)}
   ${project.fee_normalization?`<details class="card"><summary>${isHypeFeeReconciliation(project)?'费用去重与99%的核对细节':'费用去重的核对细节'}</summary>${feeReconciliation(project,m)}</details>`:''}
-  <div class="grid-2"><article class="card"><h3>收入从哪里来</h3><p>${esc(project.business)}</p><h3>持续性与周期</h3><p>${esc(project.sustainability)}</p><h3>进入代币的路径</h3><p>${esc(project.capture.policy)}</p><p><strong>分母：</strong>${esc(project.capture.denominator)}</p><p><strong>数据口径：</strong>${esc(project.capture.basis)}</p></article>
-  <article class="card"><h3>供应与稀释</h3><div class="mini-stats"><div><span>数据源流通量</span><strong>${amount(project.market.circulating_supply)}</strong></div><div><span>数据源总量</span><strong>${amount(project.market.total_supply)}</strong></div><div><span>数据源最大供应量</span><strong>${amount(project.market.max_supply)}</strong></div><div><span>初始分配量</span><strong>${amount(project.initial_supply)}</strong></div></div><p>${esc(project.allocation_note)}</p><div class="allocation" aria-label="初始分配">${(project.allocations||[]).map((x,i)=>`<span style="width:${x.pct}%;--opacity:${.35+i*.11}" title="${esc(x.label)} ${x.pct}%"></span>`).join('')}</div><div class="allocation-labels">${(project.allocations||[]).map(x=>`<span>${esc(x.label)} ${x.pct}%</span>`).join('')}</div><div class="rule"></div><p>${esc(project.supply_note)}</p><p class="accent">${esc(project.supply_ledger?.note)}</p>${fdvDetailMarkup(project)}</article></div>
-  ${project.onchain_supply?`<article class="card"><h3>独立链上供应核验</h3><p>实际mint supply：${esc(project.onchain_supply.exact_tokens)} ${esc(project.ticker)} · mint / freeze authority：${project.onchain_supply.mint_authority===null?'null':esc(project.onchain_supply.mint_authority)} / ${project.onchain_supply.freeze_authority===null?'null':esc(project.onchain_supply.freeze_authority)} · finalized slot ${project.onchain_supply.slot}</p><p>${esc(project.onchain_supply.note)}${project.ticker==='PUMP'?' Token-2022可能仍有其他扩展权限；不能概括所有权限已撤销。':''}</p><p class="data-status">RPC抓取时间：${esc(project.onchain_supply.retrieved_at)}</p></article>`:''}
+  <details class="card detail-disclosure"><summary>业务与回购机制</summary><h3>收入从哪里来</h3><p>${esc(project.business)}</p><h3>持续性与周期</h3><p>${esc(project.sustainability)}</p><h3>进入代币的路径</h3><p>${esc(project.capture.policy)}</p><p><strong>分母：</strong>${esc(project.capture.denominator)}</p><p><strong>数据口径：</strong>${esc(project.capture.basis)}</p></details>
+  </section><section id="panel-supply" data-detail-panel="supply" role="tabpanel" aria-labelledby="tab-supply" hidden>
+  <article class="card"><h3>供应与稀释</h3><div class="mini-stats"><div><span>当前流通量</span><strong>${amount(project.market.circulating_supply)}</strong></div><div><span>数据源总量</span><strong>${amount(project.market.total_supply)}</strong></div><div><span>最大供应量</span><strong>${amount(project.market.max_supply)}</strong></div><div><span>初始分配量</span><strong>${amount(project.initial_supply)}</strong></div></div><div class="allocation" aria-label="初始分配">${(project.allocations||[]).map((x,i)=>`<span style="width:${x.pct}%;--opacity:${.35+i*.11}" title="${esc(x.label)} ${x.pct}%"></span>`).join('')}</div><div class="allocation-labels">${(project.allocations||[]).map(x=>`<span>${esc(x.label)} ${x.pct}%</span>`).join('')}</div><details class="source-detail"><summary>分配与供应口径</summary><p>${esc(project.allocation_note)}</p><p>${esc(project.supply_note)}</p><p class="accent">${esc(project.supply_ledger?.note)}</p></details>${fdvDetailMarkup(project)}</article>
+  ${project.onchain_supply?`<details class="card"><summary>独立链上供应核验</summary><p>实际mint supply：${esc(project.onchain_supply.exact_tokens)} ${esc(project.ticker)} · mint / freeze authority：${project.onchain_supply.mint_authority===null?'null':esc(project.onchain_supply.mint_authority)} / ${project.onchain_supply.freeze_authority===null?'null':esc(project.onchain_supply.freeze_authority)} · finalized slot ${project.onchain_supply.slot}</p><p>${esc(project.onchain_supply.note)}${project.ticker==='PUMP'?' Token-2022可能仍有其他扩展权限；不能概括所有权限已撤销。':''}</p><p class="data-status">RPC抓取时间：${esc(project.onchain_supply.retrieved_at)}</p></details>`:''}
   ${supplyDetailMarkup(project)}
-  <div id="analysis-surface"></div>
-  <article class="card"><h3>来源与口径检查</h3><p>${esc(project.capture.annualization_note)}</p><div class="sources">${(project.sources||[]).map(link).join('')} ${link({title:'市场快照',url:project.market.source})}</div><div class="data-status">市场供应商时间：${esc(project.market.last_updated)} · 来源数据截至：${esc(project.flow_end)} · 所选统计期间：${esc(state.start)} → ${esc(state.end)} · ${isReserveBurn(project)?'已核季度记录 '+burn.count+' 笔；手续费日序列与Gas模型已接入，逐日实际销毁未核，实时观察另标时点':'数据完整性：'+Object.entries(m.coverage||{}).filter(([key])=>['fees','revenue','holders'].includes(key)).map(([key,w])=>`${key} ${w.coverage_days}/${w.days}天`).join(' / ')}</div>${historyCoverageMarkup(project)}<details class="source-detail"><summary>数据抓取状态与来源</summary><ul>${[...(project.data_sources||[]),project.price_source||{},{kind:'market',...snapshot.source_status['coingecko-markets']}].map(source=>`<li>${esc(source.kind||'price')} · ${esc(source.status||'unknown')} · ${esc(source.retrieved_at||'未知抓取时间')}<br><a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.url)}</a>${source.refresh_error?`<br>${esc(source.refresh_error)}`:''}</li>`).join('')}</ul></details></article>`;
-  $('#detail').insertAdjacentHTML('beforeend', conclusionMarkup(project));
-  renderAnalysis(project);
-  connectMoneyFlow(project,state.days);
+  </section><section id="panel-history" data-detail-panel="history" role="tabpanel" aria-labelledby="tab-history" hidden><div id="analysis-surface"></div></section>
+  <section id="panel-sources" data-detail-panel="sources" role="tabpanel" aria-labelledby="tab-sources" hidden>
+  <article class="card"><h3>来源与口径检查</h3><p>${esc(project.capture.annualization_note)}</p><div class="sources">${(project.sources||[]).map(link).join('')} ${link({title:'市场快照',url:project.market.source})}</div><div class="data-status">市场供应商时间：${esc(project.market.last_updated)} · 来源数据截至：${esc(project.flow_end)} · 所选统计期间：${esc(state.start)} → ${esc(state.end)} · ${isReserveBurn(project)?'已核季度记录 '+burn.count+' 笔；手续费日序列与Gas模型已接入，逐日实际销毁未核，实时观察另标时点':'数据完整性：'+Object.entries(m.coverage||{}).filter(([key])=>['fees','revenue','holders'].includes(key)).map(([key,w])=>`${key} ${w.coverage_days}/${w.days}天`).join(' / ')}</div>${historyCoverageMarkup(project)}<details class="source-detail"><summary>数据抓取状态与来源</summary><ul>${[...(project.data_sources||[]),project.price_source||{},{kind:'market',...snapshot.source_status['coingecko-markets']}].map(source=>`<li>${esc(source.kind||'price')} · ${esc(source.status||'unknown')} · ${esc(source.retrieved_at||'未知抓取时间')}<br><a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.url)}</a>${source.refresh_error?`<br>${esc(source.refresh_error)}`:''}</li>`).join('')}</ul></details></article></section>`;
+  $('#detail').insertAdjacentHTML('beforeend', `<section id="panel-conclusion" data-detail-panel="conclusion" role="tabpanel" aria-labelledby="tab-conclusion" hidden>${conclusionMarkup(project)}</section>`);
+  document.querySelectorAll('[data-detail-tab]').forEach(button=>{
+    button.addEventListener('click',()=>showDetailTab(button.dataset.detailTab));
+    button.addEventListener('keydown',event=>{
+      const buttons=[...document.querySelectorAll('[data-detail-tab]')],index=buttons.indexOf(button);
+      const target=event.key==='ArrowRight'?buttons[(index+1)%buttons.length]:event.key==='ArrowLeft'?buttons[(index+buttons.length-1)%buttons.length]:event.key==='Home'?buttons[0]:event.key==='End'?buttons.at(-1):null;
+      if(target){event.preventDefault();showDetailTab(target.dataset.detailTab);target.focus();}
+    });
+  });
+  showDetailTab(state.detailTab);
 }
 
 function conclusionMarkup(project) {
   const conclusion=buildConclusion(project,state.days,snapshot.as_of);
-  return `<article class="card conclusion-card" id="token-conclusion" aria-labelledby="conclusion-heading"><h3 id="conclusion-heading">${esc(project.ticker)} · 分析结论</h3><p class="conclusion-text"><strong>研究判断：${esc(conclusion.headline)}</strong> ${esc(conclusion.text)}</p><p class="conclusion-note">所选流量期间${esc(state.start)}至${esc(state.end)}；估值、供应和政策说明仍截至当前快照，不是当年估值回测。未来释放从${esc(snapshot.as_of)}起看90天，事件对照固定前后各30天。供应排期复核日：${esc(conclusion.policyVerifiedOn||'尚缺复核日期')}。</p><details class="conclusion-proof"><summary>查看结论依据</summary><p>开头与持续性评价是基于业务和供应风险的研究判断；比例、估值及事件变化来自本次保存数据。团队与投资人比例是初始或历史分配，当前钱包持仓并未完整取得；解锁模型、奖励外推与实际执行分别标明。</p><div class="sources">${conclusion.sources.map(link).join('')}</div></details></article>`;
+  return `<article class="card conclusion-card" id="token-conclusion" aria-labelledby="conclusion-heading"><h3 id="conclusion-heading">${esc(project.ticker)} · 分析结论</h3><p class="conclusion-text"><strong>研究判断：${esc(conclusion.headline)}</strong></p><details class="conclusion-proof"><summary>展开完整分析</summary><p class="conclusion-text">${esc(conclusion.text)}</p></details><details class="conclusion-proof"><summary>查看结论依据与时间口径</summary><p>所选流量期间${esc(state.start)}至${esc(state.end)}；估值、供应和政策说明仍截至当前快照，不是当年估值回测。未来释放从${esc(snapshot.as_of)}起看90天，事件对照固定前后各30天。供应排期复核日：${esc(conclusion.policyVerifiedOn||'尚缺复核日期')}。</p><p>开头与持续性评价是基于业务和供应风险的研究判断；比例、估值及事件变化来自本次保存数据。团队与投资人比例是初始或历史分配，当前钱包持仓并未完整取得；解锁模型、奖励外推与实际执行分别标明。</p><div class="sources">${conclusion.sources.map(link).join('')}</div></details></article>`;
 }
 
 function renderSupplyOverview() {
@@ -374,7 +438,7 @@ function renderSupplyOverview() {
   <div class="supply-definitions"><div><span>当前总量 · 存量</span><p>数据源统计的当前总量；对销毁和储备的处理方式可能不同。</p></div><div><span>未来解锁 / 释放 · 流量</span><p>解除处置限制或从储备转出。不一定增发，也不等于当日卖出。</p></div><div><span>净供应变化 · 期间差额</span><p>新增减去退出；总量与流通分别算。例如销毁10M、解锁30M：总量−10M，流通可能+20M。</p></div></div>
   <div class="table-wrap"><table class="supply-summary"><thead><tr><th>项目 / 展示的释放项目</th><th>当前流通 / 数据源总量</th><th>两者差额<br><small>并非全都即将解锁</small></th><th>未来30天</th><th>未来90天</th><th>未来365天<br><small>枚数 / 当前流通</small></th></tr></thead><tbody>${snapshot.projects.map(project=>{
     const c=primaryComponent(project), f=project.supply_forecast;
-    return `<tr class="${state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.ticker===project.ticker}"><strong>${esc(project.ticker)}</strong><span>${esc(c?.label||'未取得排期')}</span></button><span class="evidence ${esc(c?.evidence||'unknown')}">${esc(evidenceNames[c?.evidence]||'尚未核实')}</span></td><td>${amount(project.market.circulating_supply)}<span class="number-sub">${amount(project.market.total_supply)}</span></td><td>${known(project.market.total_supply)&&known(project.market.circulating_supply)?amount(project.market.total_supply-project.market.circulating_supply):'—'}</td>${[30,90,365].map(days=>`<td>${supplyWindowMarkup(project,c,days,days===365)}</td>`).join('')}</tr>`;
+    return `<tr class="${state.detailOpen&&state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.detailOpen&&state.ticker===project.ticker}"><strong>${esc(project.ticker)}</strong><span>${esc(c?.label||'未取得排期')}</span></button><span class="evidence ${esc(c?.evidence||'unknown')}">${esc(evidenceNames[c?.evidence]||'尚未核实')}</span></td><td>${amount(project.market.circulating_supply)}<span class="number-sub">${amount(project.market.total_supply)}</span></td><td>${known(project.market.total_supply)&&known(project.market.circulating_supply)?amount(project.market.total_supply-project.market.circulating_supply):'—'}</td>${[30,90,365].map(days=>`<td>${supplyWindowMarkup(project,c,days,days===365)}</td>`).join('')}</tr>`;
   }).join('')}</tbody></table></div><p class="footnote">数量单位：K=千、M=百万、B=十亿，均为对应代币枚数。每行只展示一个主要释放项目，其他类别见下方项目明细。官方预算、第三方归属模型、奖励速度外推不可当作同一置信度；均不是已核实未来流通增量。部分计划可用，不代表完整净供应已知。排期只覆盖部分日期时保留已列数量，另外标明截止日期和缺口，不用零填满剩余日期。</p>`;
 }
 
@@ -385,10 +449,10 @@ function supplySourcesMarkup(sources=[]) {
 function supplyDetailMarkup(project) {
   const f=project.supply_forecast;
   if (!f) return '<article class="card"><h3>未来释放排期</h3><p>暂无结构化排期数据。</p></article>';
-  return `<article class="card supply-detail"><div class="section-title"><h3>${esc(project.ticker)} · 未来释放排期与证据</h3><span>复核日 ${esc(f.verified_on)} · 完整流通台账未齐</span></div><p>${esc(f.summary)}</p>${f.carry_in?`<div class="carry-in"><strong>已到期、仍可能释放的余额：${amount(f.carry_in.tokens)} ${esc(project.ticker)}</strong><p>${esc(f.carry_in.note)}</p>${f.carry_in.retrieved_at?`<p class="data-status">余额来源抓取：${esc(f.carry_in.retrieved_at)}</p>`:''}<div class="sources">${(f.carry_in.sources||[]).map(link).join('')}</div></div>`:''}<div class="table-wrap"><table class="forecast-table"><thead><tr><th>供应项目 / 事件类型</th><th>依据</th><th>30天</th><th>90天</th><th>365天</th></tr></thead><tbody>${f.components.map(c=>`<tr><td><strong>${esc(c.label)}</strong><span class="number-sub">${esc(c.effect_label)}</span></td><td><span class="evidence ${esc(c.evidence)}">${esc(evidenceNames[c.evidence])}</span></td>${[30,90,365].map(days=>`<td>${supplyWindowMarkup(project,c,days)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
-  <div class="forecast-evidence">${f.components.map(c=>{const upcoming=nextEvent(c,snapshot.as_of);return `<div><strong>${esc(c.label)}</strong>${upcoming?`<span class="next-unlock">下一事件 ${esc(upcoming.date)} · ${amount(upcoming.tokens)} ${esc(project.ticker)}${upcoming.time_utc?' · '+esc(upcoming.time_utc)+' UTC':''}</span>`:''}<p>${esc(c.note)}</p><div class="sources">${supplySourcesMarkup(c.sources)}</div></div>`;}).join('')}</div>
+  return `<article class="card supply-detail"><div class="section-title"><h3>${esc(project.ticker)} · 未来释放排期与证据</h3><span>复核日 ${esc(f.verified_on)} · 完整流通台账未齐</span></div><details class="source-detail"><summary>排期说明</summary><p>${esc(f.summary)}</p></details>${f.carry_in?`<div class="carry-in"><strong>已到期、仍可能释放的余额：${amount(f.carry_in.tokens)} ${esc(project.ticker)}</strong><p>${esc(f.carry_in.note)}</p>${f.carry_in.retrieved_at?`<p class="data-status">余额来源抓取：${esc(f.carry_in.retrieved_at)}</p>`:''}<div class="sources">${(f.carry_in.sources||[]).map(link).join('')}</div></div>`:''}<div class="table-wrap"><table class="forecast-table"><thead><tr><th>供应项目 / 事件类型</th><th>依据</th><th>30天</th><th>90天</th><th>365天</th></tr></thead><tbody>${f.components.map(c=>`<tr><td><strong>${esc(c.label)}</strong><span class="number-sub">${esc(c.effect_label)}</span></td><td><span class="evidence ${esc(c.evidence)}">${esc(evidenceNames[c.evidence])}</span></td>${[30,90,365].map(days=>`<td>${supplyWindowMarkup(project,c,days)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+  <details class="source-detail"><summary>各项政策与原始依据</summary><div class="forecast-evidence">${f.components.map(c=>{const upcoming=nextEvent(c,snapshot.as_of);return `<div><strong>${esc(c.label)}</strong>${upcoming?`<span class="next-unlock">下一事件 ${esc(upcoming.date)} · ${amount(upcoming.tokens)} ${esc(project.ticker)}${upcoming.time_utc?' · '+esc(upcoming.time_utc)+' UTC':''}</span>`:''}<p>${esc(c.note)}</p><div class="sources">${supplySourcesMarkup(c.sources)}</div></div>`;}).join('')}</div></details>
   ${f.inventory?`<div class="forecast-inventory"><h3>已有库存，未来日期未定</h3><div class="inventory-values">${f.inventory.rows.map(row=>`<div><span>${esc(row.label)}</span><strong>${row.approximate?'约':''}${amount(row.tokens)} ${esc(project.ticker)}</strong></div>`).join('')}</div><p>${esc(f.inventory.note)}</p><div class="sources">${f.inventory.sources.map(link).join('')}</div></div>`:''}
-  <div class="forecast-gaps"><h3>尚缺什么，为什么不能直接报净通缩</h3><ul>${(f.gaps||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><p class="data-status">排期来自人工复核的政策与模型，行情更新不会自动刷新政策。零仅适用于标明已结束或无权限的具体类别；不代表其他储备释放为零。</p></article>`;
+  <details class="source-detail forecast-gaps"><summary>供应数据缺口与限制</summary><ul>${(f.gaps||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p class="data-status">排期来自人工复核的政策与模型，行情更新不会自动刷新政策。零仅适用于标明已结束或无权限的具体类别；不代表其他储备释放为零。</p></details></article>`;
 }
 
 function chartMarkup(project, mode) {
@@ -422,6 +486,7 @@ function chartMarkup(project, mode) {
 }
 
 function renderAnalysis(project) {
+  if(!state.detailOpen||state.detailTab!=='history') return;
   const chartKey=`${project.ticker}:${state.start}:${state.end}`;
   const ready=historyLoader.ready(project.ticker,state.start,state.end);
   const chartProject=ready?{...project,history:historyLoader.rows(project.ticker)}:project;
@@ -471,7 +536,24 @@ $('#custom-range-form').addEventListener('submit',async event=>{
   event.preventDefault();
   if(await applyRange($('#range-start').value,$('#range-end').value)) toggleCustomRange(false);
 });
-$('#token-selector').addEventListener('change',event=>selectToken(event.target.value));
+$('#token-selector').addEventListener('change',event=>event.target.value?selectToken(event.target.value):closeDetail());
+$('#close-detail').addEventListener('click',closeDetail);
+$('#metric-help').addEventListener('click',()=>{
+  sourceRequest?.abort();
+  $('#source-title').textContent='指标说明';
+  $('#source-content').innerHTML=`<dl class="metric-guide">
+    <div><dt>流通市值 / FDV</dt><dd>流通市值只按已流通代币估值；FDV采用CoinGecko完全稀释估值，考虑尚未流通的供应。每项指标的两行使用同一份年化金额。</dd></div>
+    <div><dt>协议收入</dt><dd>所选期间内协议获得的收入统计，尚未扣完整经营成本。不是项目净利润；标为“待核”的项目未取得独立营业收入。</dd></div>
+    <div><dt>P/S</dt><dd>估值 ÷ 年化收入统计。UNI的兑换估值单独标记，不视为独立营业收入。</dd></div>
+    <div><dt>持币者回报倍数</dt><dd>参考P/E：估值 ÷ 年化回购／销毁统计。它衡量代币价值捕获，不是项目净利润P/E。</dd></div>
+    <div><dt>年化回购／销毁收益率</dt><dd>年化回购／销毁统计金额 ÷ 估值。统计可能来自费用分配、回购额度或销毁估值；具体方法见每行来源，不表示持币人的现金收益或币价增幅。</dd></div>
+    <div><dt>年化与时间</dt><dd>年化金额 = 所选窗口金额 × 365 ÷ 天数。窗口按完整UTC日计算；市值、供应和未来排期仍采用当前快照。库存事件不强行当作持续回购能力，更早的图表数据按需加载。</dd></div>
+    <div><dt>未来365天释放</dt><dd>从研究快照日期起算，以对应代币枚数展示一个主要释放项目。估算、部分计划与权限上限分别标记，不代表完整未来流通增量，也不能直接得出净通缩结论。</dd></div>
+    <div><dt>排序与缺失</dt><dd>点击表头排序，再次点击反向；收益率和倍数主表头按流通市值，“按FDV”单独排序。缺数据或不适用始终置后。“—”不等于零。BNB季度储备销毁另列、不年化。</dd></div>
+  </dl><div class="sources">${link({title:'完整计算口径 ↗',url:'../research/framework.md'})}</div>`;
+  if(!$('#source-dialog').open) $('#source-dialog').showModal();
+  $('#source-dialog').scrollTop=0;
+});
 document.querySelectorAll('[data-sort]').forEach(button=>button.addEventListener('click',()=>{
   if (!snapshot) return;
   const key=button.dataset.sort;
@@ -491,13 +573,6 @@ const controlsObserver=new ResizeObserver(()=>{
 });
 controlsObserver.observe($('#research-controls'));
 controlsObserver.observe($('#token-controls'));
-$('#show-business').addEventListener('click',()=>$('#comparison-scroll').scrollTo({left:0,behavior:'auto'}));
-$('#show-financial').addEventListener('click',()=>{
-  const table=$('#comparison-scroll'), target=$('#financial-start');
-  const firstWidth=$('#comparison-body td').getBoundingClientRect().width;
-  table.scrollTo({left:table.scrollLeft+target.getBoundingClientRect().left-table.getBoundingClientRect().left-(innerWidth>700?firstWidth:0),behavior:'auto'});
-});
-$('#show-flows').addEventListener('click',()=>$('#money-flow-section').scrollIntoView({behavior:'smooth',block:'start'}));
 setRangeBusy(true);
 try {
   const response = await fetch('../data/dashboard-lite.json',{cache:'no-cache'});
@@ -511,7 +586,7 @@ try {
   state.start=startForDays(state.end,state.days);
   for (const input of [$('#range-start'),$('#range-end')]) {input.min=earliestHistory();input.max=state.end;}
   if (!snapshot.projects.some(project=>project.ticker===state.ticker)) state.ticker=snapshot.projects[0].ticker;
-  $('#token-selector').innerHTML=snapshot.projects.map(project=>`<option value="${esc(project.ticker)}">${esc(project.ticker)} · ${esc(project.name)}</option>`).join('');
+  $('#token-selector').innerHTML='<option value="">选择代币…</option>'+snapshot.projects.map(project=>`<option value="${esc(project.ticker)}">${esc(project.ticker)} · ${esc(project.name)}</option>`).join('');
   $('#token-selector').disabled=false;
   $('#range-error').textContent='';
   setRangeBusy(false);
@@ -523,7 +598,7 @@ try {
 }
 
 function viewSummary() {
-  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple'],comparison_sort:{...state.sort},
+  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,detail_open:state.detailOpen,detail_tab:state.detailTab,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple'],comparison_sort:{...state.sort},
     rows:orderedProjects().map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis);return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
       gross_proxy_yield_fdv:m.grossYieldFdv,
       ps_revenue_mc:m.psRevenueMc,ps_revenue_fdv:m.psRevenueFdv,pe_mc:m.peMc,pe_fdv:m.peFdv,net_income_status:m.netIncomeStatus,revenue_status:m.revenueStatus,reported_api_revenue_usd:m.reportedRevenue,protocol_revenue_share:m.revenueShare,buyback_burn_share_of_revenue:m.holderCapture,

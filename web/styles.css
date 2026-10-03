@@ -135,3 +135,110 @@
 .financial-dialog-summary .valuation-pair{display:grid;margin-top:10px}
 .financial-dialog-summary .valuation-row{display:flex}
 .financial-dialog-summary .valuation-value{font-size:1.3rem;color:var(--gold);font-weight:500}
+
+/* Data first: keep the overview compact and disclose research on demand. */
+main{max-width:1600px;padding:28px 28px 24px}
+.masthead{margin-bottom:18px;align-items:center}
+.masthead h1{font-size:1.4rem;letter-spacing:0;margin:0 0 3px}
+.masthead p{font-size:.75rem}
+.masthead nav{align-items:center;gap:18px;font-size:.8125rem}
+.masthead nav button{border:0;background:none;color:var(--blue);padding:0;font-size:inherit}
+.masthead nav button:hover{text-decoration:underline}
+#research-controls{flex-direction:row;align-items:center;gap:10px 20px;margin:0 0 18px;padding:12px 0}
+#research-controls .control-main{flex:1 1 auto}
+#research-controls .control-main .period{flex:0 1 auto;gap:6px}
+#research-controls button{font-size:.8125rem;padding:5px 10px}
+#research-controls .range-context{margin-left:auto;font-size:.75rem;white-space:nowrap}
+#custom-range-form{flex-basis:100%}
+.comparison .section-title{margin-bottom:12px}
+.comparison h2{font-size:1rem}
+#token-count{margin-left:10px;font-size:.75rem;font-weight:400}
+#reset-sort{font-size:.75rem;padding:4px 8px}
+.comparison table{min-width:1180px;font-size:.8125rem}
+.comparison th,.comparison td{padding:12px 12px;vertical-align:middle}
+.comparison th{min-width:92px;max-width:none;line-height:1.5}
+.comparison th:first-child{min-width:130px}
+.comparison th:nth-child(5){min-width:172px}
+.comparison th.financial-col{min-width:145px;max-width:none;border-top:0}
+.comparison th:nth-child(8){min-width:118px}
+.comparison th:last-child,.comparison .source-cell{min-width:70px;background:none}
+.comparison .source-cell{padding:12px;text-align:right}
+.comparison .source-open{margin:0 0 0 auto;padding:0;background:none;border:0;font-size:.75rem;white-space:nowrap}
+.comparison .financial-value{border-left:0}
+.comparison tr:hover td{background:var(--panel)}
+.comparison tr.selected td{background:var(--raised)}
+.comparison tr.selected td:first-child{box-shadow:inset 3px 0 var(--gold)}
+.comparison .token-select strong{font-size:.9375rem;display:flex;gap:12px;align-items:center}
+.comparison .token-select>span{font-size:.6875rem;max-width:116px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.comparison .token-select .token-arrow{display:inline;font-size:.75rem;color:var(--blue);opacity:0}
+.comparison .token-select:hover .token-arrow,.comparison .token-select:focus-visible .token-arrow{opacity:1}
+.comparison .valuation-label{font-size:.6875rem}
+.comparison .valuation-pair{gap:4px}
+.comparison .valuation-row{gap:12px}
+.comparison .sort-alternate{font-size:.6875rem;margin-top:2px}
+.market-value{color:var(--ink)}
+.cell-tag{display:block;margin-top:4px;color:var(--muted);font-size:.6875rem;line-height:1.5}
+.table-caption{display:flex;justify-content:space-between;gap:12px;font-size:.6875rem;color:var(--muted);padding:9px 2px 0}
+.compact-alert{font-size:.75rem;padding:9px 12px;margin-bottom:12px}
+.compact-alert summary{cursor:pointer}
+.compact-alert summary span{color:var(--blue);margin-left:12px}
+.compact-alert p{margin:10px 0}
+.token-controls{justify-content:flex-start;margin:24px 0 0;padding:12px 0;gap:14px}
+.token-controls h2{font-size:1rem;margin-right:auto}
+.token-controls label{margin:0;flex:0 1 auto;white-space:nowrap}
+.token-controls select{font-size:.8125rem;margin:0;min-width:190px}
+#close-detail{font-size:.75rem;padding:6px 10px}
+.detail-head{margin:20px 0 16px}
+.detail-head h2{font-size:1.25rem}
+.detail-tabs{display:flex;gap:6px;margin:0 0 20px;border-bottom:1px solid var(--border);overflow-x:auto}
+.detail-tabs button{border:0;border-radius:0;background:none;padding:10px 16px;font-size:.8125rem;color:var(--muted);white-space:nowrap}
+.detail-tabs button[aria-selected=true]{color:var(--gold);box-shadow:inset 0 -2px var(--gold)}
+.detail-tabs button:hover{color:var(--ink);background:var(--panel)}
+.detail-disclosure>summary{cursor:pointer;color:var(--blue);font-size:.875rem}
+.detail-disclosure[open]>summary{margin-bottom:18px}
+.card>summary{cursor:pointer}
+.card[open]>summary{margin-bottom:16px}
+.supply-comparison{margin:22px 0 0;background:none;border:0;border-top:1px solid var(--border);border-radius:0}
+.supply-comparison>summary{padding:12px 0;font-size:.8125rem}
+.supply-comparison>summary:hover{background:none}
+footer{display:flex;justify-content:space-between;margin-top:12px;padding-top:16px}
+.metric-guide{margin:0 0 24px;display:grid;gap:18px}
+.metric-guide dt{font-size:.875rem;color:var(--ink);font-weight:600;margin-bottom:5px}
+.metric-guide dd{margin:0;color:var(--muted);font-size:.8125rem}
+.financial-inputs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+.financial-inputs span{display:block;font-size:.75rem;color:var(--muted)}
+.financial-inputs strong{font-size:1.05rem;font-weight:500}
+.financial-disclosure{padding:14px 0;border-top:1px solid var(--border);margin-top:0}
+.financial-disclosure summary{color:var(--blue)}
+.financial-flag{color:var(--gold)!important}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:1000px){main{padding:24px 20px}.comparison th,.comparison td{padding:11px 12px}}
+@media(max-width:1200px){
+  .comparison .overview-supply{display:none}
+  .comparison table{min-width:900px}
+  .comparison th:first-child{min-width:110px}
+  .comparison th{min-width:82px}
+  .comparison th:nth-child(5){min-width:154px}
+  .comparison th.financial-col{min-width:140px}
+  .comparison th:last-child,.comparison .source-cell{min-width:62px}
+}
+@media(max-width:700px){
+  main{padding:20px 16px}
+  .masthead{flex-direction:row;align-items:center;gap:12px}
+  .masthead h1{font-size:1.15rem}
+  .masthead nav{gap:12px;font-size:.75rem}
+  .masthead nav a{display:none}
+  #research-controls{gap:8px;align-items:stretch}
+  #research-controls .control-main{flex-basis:100%;gap:0}
+  #research-controls .range-context{margin-left:0;white-space:normal}
+  .comparison .section-title{flex-direction:row;align-items:center;gap:8px}
+  .comparison h2{font-size:.875rem}
+  #token-count{display:block;margin:3px 0 0}
+  .token-controls{gap:8px;flex-wrap:wrap}
+  .token-controls h2{font-size:.9375rem}
+  .token-controls label{width:auto;max-width:70%;display:block;flex:0 1 auto}
+  #token-selector{width:auto;min-width:0;max-width:100%;margin:0}
+  .detail-tabs button{padding:9px 12px}
+  .table-caption{font-size:.625rem}
+  .comparison th:first-child,.comparison td:first-child{position:sticky;left:0;z-index:2;box-shadow:8px 0 12px -10px #000}
+}

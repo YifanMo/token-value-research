@@ -307,16 +307,18 @@ export function quarterlyPlanMarkup(project) {
   const recordSource = bnbSources(project).find(source => source.kind === 'burns');
   return `<article class="card quarterly-plan" id="bnb-quarterly-plan" aria-labelledby="quarterly-plan-title">
     <h3 id="quarterly-plan-title">BNB季度销毁计划 · Auto-Burn</h3>
-    <p>${esc(plan.description)}</p>
     <div class="mini-stats"><div><span>执行频率</span><strong>每季度</strong></div>
     <div><span>季度计划的总供应目标</span><strong>${quantity(plan.target_supply_tokens)} BNB</strong></div>
     <div><span>最近已核执行 · 当前研究快照</span><strong>${latest ? `第${esc(latest.rank || '未知')}次` : '尚未取得'}</strong><span class="number-sub">${esc(latest?.date || '未知日期')}</span></div>
     <div><span>最近一笔实际销毁枚数</span><strong>${quantity(latest?.tokens)} BNB</strong></div></div>
-    <p>最近一笔按当前研究快照展示，不受上方日期筛选影响；所选期间的合计另列在下表。未来季度的执行日期与数量以实际公告及交易为准。</p>
+    <details class="source-detail"><summary>季度规则与数据口径</summary>
+    <p>${esc(plan.description)}</p>
+    <p>最近一笔按当前研究快照展示，不受上方日期筛选影响；所选期间的合计另列在对应窗口记录中。未来季度的执行日期与数量以实际公告及交易为准。</p>
     <p>${esc(plan.cash_note)} BEP-95的Gas实时销毁另列，不包含在这些季度交易枚数中。</p>
     <div class="sources">${(plan.sources || []).map(source => link(source.title, source.url)).join(' ')} ${link('最近一笔官方公告 ↗',quarterAnnouncement(project,latest))} ${link('最近一笔销毁交易 ↗',latest?.tx_url || latest?.transaction_url)}</div>
     <p class="footnote">季度记录：${sourceLinks(recordSource)}。机制复核日：${esc(plan.verified_on || '未知')}。</p>
     <details><summary>早期“利润回购”与现行季度销毁的区别</summary><p>${esc(plan.history_note)}</p><div class="sources">${(plan.history_sources || []).map(source => link(source.title, source.url)).join(' ')}</div></details>
+    </details>
   </article>`;
 }
 
