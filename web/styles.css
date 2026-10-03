@@ -94,3 +94,8 @@
   #custom-range-form button{width:100%}
   #range-error{grid-column:1 / -1}
 }
+
+/* Long periods stay folded until requested. */
+[hidden]{display:none!important}
+#extended-periods{display:inline-flex;flex-wrap:wrap;gap:6px;margin-right:0}
+.history-loading{min-height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.875rem}

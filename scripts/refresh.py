@@ -16,6 +16,14 @@ import time
 import urllib.error
 import urllib.request
 
+try:
+    from scripts.web_assets import generate_web_assets
+except ModuleNotFoundError as error:
+    if error.name != "scripts":
+        raise
+    # Direct execution (python scripts/refresh.py) starts with scripts/ on sys.path.
+    from web_assets import generate_web_assets
+
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
 UTC = dt.timezone.utc
@@ -613,6 +621,7 @@ def compile_snapshot(as_of, fetch_meta, now=None):
     # Archive each run; immutable filenames keep before/after supply snapshots for future studies.
     timestamp = dt.datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     dump(ROOT / "data" / "snapshots" / f"{timestamp}.json", snapshot)
+    generate_web_assets(snapshot, ROOT)
     return snapshot
 
 

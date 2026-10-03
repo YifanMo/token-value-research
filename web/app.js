@@ -3,15 +3,17 @@ import {componentAmount, nextEvent} from './supply.js';
 import {buybackSource, auditResponse} from './sources.js';
 import {moneyFlowMarkup,connectMoneyFlow} from './flow-view.js';
 import {buildConclusion} from './conclusions.js';
-import {createRangeProject, validateDateRange} from './periods.js';
+import {validateDateRange} from './periods.js';
 import {selectedChartData} from './charts.js';
+import {HistoryLoader} from './data-loader.js';
 
 const valuationBasis = 'reported';
 const state = {days:30, ticker:'HYPE', event:null, preset:30, start:null, end:null};
 let snapshot;
 let baseSnapshot;
-let historyResponses;
-let historyLoad;
+let historyLoader;
+let rangeWorker;
+const rangePending=new Map(), rangeCache=new Map(), chartRequests=new Map(), chartErrors=new Map();
 const historyReadErrors=[];
 let rangeRequestId=0;
 let sourceRequest;
@@ -43,36 +45,46 @@ function supplyReference(project) {
 const startForDays=(end,days)=>new Date(Date.parse(end+'T00:00:00Z')-(days-1)*86400000).toISOString().slice(0,10);
 const earliestHistory=()=>baseSnapshot.history_earliest || baseSnapshot.projects.flatMap(project=>project.history||[]).map(row=>row.date).sort()[0];
 
-async function loadHistoryResponses() {
-  if (historyResponses) return historyResponses;
-  if (historyLoad) return historyLoad;
-  historyLoad=(async()=>{
-    const output={};
-    await Promise.allSettled(baseSnapshot.projects.map(async project=>{
-      output[project.ticker]={};
-      const extra=project.windows?.['30']?.flow_distributions?.sources || [];
-      const sources=[...project.data_sources,...extra];
-      const reads=await Promise.allSettled(sources.map(async source=>{
-        if (!source.response_path) return;
-        const response=await fetch(source.response_path,{cache:'no-store'});
-        if (!response.ok) throw Error('历史响应读取失败');
-        const bytes=await response.arrayBuffer();
-        const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(value=>value.toString(16).padStart(2,'0')).join('');
-        if (digest!==(source.stored_sha256||source.sha256)) throw Error('历史文件与本次快照哈希不符');
-        output[project.ticker][source.kind]=JSON.parse(new TextDecoder().decode(bytes));
-      }));
-      reads.forEach((result,index)=>{if(result.status==='rejected') historyReadErrors.push(`${project.ticker} ${sources[index].kind}：${result.reason.message}`);});
-    }));
-    historyResponses=output;
-    return output;
-  })();
-  return historyLoad;
+function calculateRangeInWorker(start,end,id) {
+  const key=`${start}:${end}`;
+  if (rangeCache.has(key)) return Promise.resolve(rangeCache.get(key));
+  if (!rangeWorker) {
+    try {rangeWorker=new Worker(new URL('./range-worker.js',import.meta.url),{type:'module'});}
+    catch {return Promise.reject(Error('浏览器无法启动后台计算，请使用支持模块 Worker 的浏览器'));}
+    const worker=rangeWorker;
+    rangeWorker.addEventListener('message',event=>{
+      const pending=rangePending.get(event.data.id);
+      if (!pending) return;
+      rangePending.delete(event.data.id);
+      if (event.data.error) pending.reject(Error(event.data.error));
+      else pending.resolve(event.data.result);
+    });
+    const failed=()=>{
+      if(rangeWorker!==worker) return;
+      for(const pending of rangePending.values()) pending.reject(Error('后台历史计算失败，请重试'));
+      rangePending.clear();rangeWorker?.terminate();rangeWorker=null;
+    };
+    rangeWorker.addEventListener('error',failed);
+    rangeWorker.addEventListener('messageerror',failed);
+  }
+  return new Promise((resolve,reject)=>{
+    rangePending.set(id,{resolve:result=>{
+      if (!result.errors.length) {
+        if(rangeCache.size>=8) rangeCache.delete(rangeCache.keys().next().value);
+        rangeCache.set(key,result);
+      }
+      resolve(result);
+    },reject});
+    const projects=baseSnapshot.projects.map(({history,...project})=>project);
+    try {rangeWorker.postMessage({id,start,end,projects});}
+    catch(error){rangePending.delete(id);reject(error);}
+  });
 }
 
 function setRangeBusy(busy) {
   $('#research-controls').setAttribute('aria-busy',busy);
   document.querySelectorAll('.period button,#custom-range-form button,#custom-range-form input').forEach(control=>control.disabled=busy);
-  if (busy) $('#range-error').textContent='正在核对本次归档的历史数据…';
+  if (busy) $('#range-error').textContent='正在加载并核对所选时间段，请稍候…';
 }
 
 async function applyRange(start,end,preset=null) {
@@ -82,15 +94,20 @@ async function applyRange(start,end,preset=null) {
   const cachedPreset=preset && [7,30,90,365].includes(preset) && end===baseSnapshot.completed_day_cutoff_utc;
   setRangeBusy(true);
   try {
-    const responses=cachedPreset?null:await loadHistoryResponses();
+    const result=cachedPreset?null:await calculateRangeInWorker(start,end,requestId);
     if (requestId!==rangeRequestId) return false;
-    snapshot=cachedPreset?baseSnapshot:{...baseSnapshot,projects:baseSnapshot.projects.map(project=>createRangeProject(project,start,end,responses[project.ticker]||{}))};
+    historyReadErrors.splice(0,historyReadErrors.length,...(result?.errors||[]));
+    const byTicker=new Map(result?.projects.map(project=>[project.ticker,project])||[]);
+    snapshot=cachedPreset?baseSnapshot:{...baseSnapshot,projects:baseSnapshot.projects.map(project=>{
+      const computed=byTicker.get(project.ticker);
+      return {...project,windows:{...project.windows,[String(valid.days)]:computed.window},custom_range:computed.custom_range};
+    })};
     Object.assign(state,{start,end,days:valid.days,preset,event:null});
     $('#range-error').textContent='';
     render();
     return true;
   } catch(error) {
-    $('#range-error').textContent=error.message;
+    if(requestId===rangeRequestId) $('#range-error').textContent=error.message;
     return false;
   } finally {
     if (requestId===rangeRequestId) setRangeBusy(false);
@@ -150,7 +167,13 @@ function selectToken(ticker,scrollToDetail=false) {
   if (!snapshot.projects.some(project=>project.ticker===ticker)) return;
   state.ticker=ticker;
   state.event=null;
-  render();
+  $('#token-selector').value=ticker;
+  document.querySelectorAll('[data-token]').forEach(button=>{
+    const selected=button.dataset.token===ticker;
+    button.setAttribute('aria-pressed',selected);
+    button.closest('tr')?.classList.toggle('selected',selected);
+  });
+  renderDetail();
   if (scrollToDetail) $('#detail').scrollIntoView({behavior:'auto',block:'start'});
 }
 
@@ -335,11 +358,27 @@ function chartMarkup(project, mode) {
 }
 
 function renderAnalysis(project) {
+  const chartKey=`${project.ticker}:${state.start}:${state.end}`;
+  const ready=historyLoader.ready(project.ticker,state.start,state.end);
+  const chartProject=ready?{...project,history:historyLoader.rows(project.ticker)}:project;
+  const loading=chartErrors.has(chartKey)?`<p class="error">${esc(chartErrors.get(chartKey))}</p><button data-retry-history>重新加载历史</button>`:'<p class="history-loading" role="status">正在加载所选时间段的历史图表…</p>';
   const index = state.event === null ? project.event_studies.length-1 : Math.min(state.event,project.event_studies.length-1);
   const selected = project.event_studies[index];
-  $('#analysis-surface').innerHTML = `<div class="grid-2"><article class="card"><h3>${project.flow?.revenue_is_income===false?'UNI费用兑换估值':'收入与回购 / 销毁'} · ${state.days>90?'月度':'日度'}</h3>${chartMarkup(project,'revenue')}</article><article class="card"><h3>价格与市场对照 · 所选期间</h3>${chartMarkup(project,'price')}</article></div>
+  $('#analysis-surface').innerHTML = `<div class="grid-2"><article class="card"><h3>${project.flow?.revenue_is_income===false?'UNI费用兑换估值':'收入与回购 / 销毁'} · ${state.days>90?'月度':'日度'}</h3>${ready?chartMarkup(chartProject,'revenue'):loading}</article><article class="card"><h3>价格与市场对照 · 所选期间</h3>${ready?chartMarkup(chartProject,'price'):loading}</article></div>
   <article class="card"><div class="section-title"><h3>经济模型变更与观察结果</h3><span>事件前后各30/90天 · 与筛选期间独立</span></div><div class="event-grid"><div class="timeline">${project.event_studies.map((event,i)=>`<button data-event="${i}" aria-pressed="${i===index}"><time>${esc(event.date)}</time><span>${esc(event.title)}<small>${esc(event.status)}</small></span></button>`).join('')}</div><div id="study-result">${studyMarkup(selected,project)}</div></div></article>`;
   document.querySelectorAll('[data-event]').forEach(button=>button.addEventListener('click',()=>{state.event=Number(button.dataset.event);renderAnalysis(project);}));
+  document.querySelectorAll('[data-retry-history]').forEach(button=>button.addEventListener('click',()=>{chartErrors.delete(chartKey);renderAnalysis(project);}));
+  if(!ready && !chartErrors.has(chartKey) && !chartRequests.has(chartKey)) {
+    const start=state.start,end=state.end;
+    const request=historyLoader.load(project.ticker,start,end);
+    chartRequests.set(chartKey,request);
+    request.catch(error=>chartErrors.set(chartKey,error.message)).finally(()=>{
+      chartRequests.delete(chartKey);
+      if(state.ticker===project.ticker && state.start===start && state.end===end) {
+        renderAnalysis(snapshot.projects.find(current=>current.ticker===state.ticker));
+      }
+    });
+  }
 }
 
 function studyMarkup(event,project) {
@@ -358,6 +397,11 @@ document.querySelectorAll('[data-days]').forEach(button=>button.addEventListener
   if (await applyRange(startForDays(end,days),end,days)) toggleCustomRange(false);
 }));
 $('#custom-range-toggle').addEventListener('click',()=>toggleCustomRange($('#custom-range-form').hidden));
+$('#more-history-toggle').addEventListener('click',()=>{
+  const open=$('#extended-periods').hidden;
+  $('#extended-periods').hidden=!open;
+  $('#more-history-toggle').setAttribute('aria-expanded',open);
+});
 $('#custom-range-cancel').addEventListener('click',()=>toggleCustomRange(false));
 $('#custom-range-form').addEventListener('submit',async event=>{
   event.preventDefault();
@@ -373,18 +417,23 @@ $('#show-financial').addEventListener('click',()=>{
   table.scrollTo({left:table.scrollLeft+target.getBoundingClientRect().left-table.getBoundingClientRect().left-(innerWidth>700?firstWidth:0),behavior:'auto'});
 });
 $('#show-flows').addEventListener('click',()=>$('#money-flow-section').scrollIntoView({behavior:'smooth',block:'start'}));
+setRangeBusy(true);
 try {
-  const response = await fetch('../data/dashboard.json',{cache:'no-store'});
+  const response = await fetch('../data/dashboard-lite.json',{cache:'no-cache'});
   if (!response.ok) throw Error(`读取数据失败 (${response.status})`);
   snapshot = await response.json();
   if (!snapshot.projects?.length) throw Error('快照没有项目，请运行更新脚本。');
+  if (snapshot.delivery?.version!==1) throw Error('轻量快照尚未生成，请运行 scripts/web_assets.py');
   baseSnapshot=snapshot;
+  historyLoader=new HistoryLoader(baseSnapshot);
   state.end=snapshot.completed_day_cutoff_utc;
   state.start=startForDays(state.end,state.days);
   for (const input of [$('#range-start'),$('#range-end')]) {input.min=earliestHistory();input.max=state.end;}
   if (!snapshot.projects.some(project=>project.ticker===state.ticker)) state.ticker=snapshot.projects[0].ticker;
   $('#token-selector').innerHTML=snapshot.projects.map(project=>`<option value="${esc(project.ticker)}">${esc(project.ticker)} · ${esc(project.name)}</option>`).join('');
   $('#token-selector').disabled=false;
+  $('#range-error').textContent='';
+  setRangeBusy(false);
   render();
   registerResearchTools();
 } catch (error) {
@@ -393,7 +442,7 @@ try {
 }
 
 function viewSummary() {
-  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,financial_columns:['ps','holder_return_multiple','project_net_income_pe'],
+  return {as_of:snapshot.as_of,flow_end:snapshot.completed_day_cutoff_utc,start:state.start,end:state.end,days:state.days,preset:state.preset,history_earliest:earliestHistory(),basis:valuationBasis,ticker:state.ticker,chart_history_loaded:historyLoader.ready(state.ticker,state.start,state.end),financial_columns:['ps','holder_return_multiple','project_net_income_pe'],
     rows:snapshot.projects.map(p=>{const m=calculate(p,state.days,valuationBasis),ref=calculateReferenceMultiples(p,state.days,valuationBasis);return {ticker:p.ticker,gross_proxy_yield_mc:m.grossYieldMc,
       gross_proxy_yield_fdv:m.grossYieldFdv,permanent_proxy_yield_mc:m.permanentProxyYieldMc,permanent_proxy_yield_fdv:m.permanentProxyYieldFdv,
       ps_revenue_mc:m.psRevenueMc,ps_revenue_fdv:m.psRevenueFdv,pe_mc:m.peMc,pe_fdv:m.peFdv,net_income_status:m.netIncomeStatus,revenue_status:m.revenueStatus,reported_api_revenue_usd:m.reportedRevenue,protocol_revenue_share:m.revenueShare,buyback_burn_share_of_revenue:m.holderCapture,
