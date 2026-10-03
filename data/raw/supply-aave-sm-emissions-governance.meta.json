@@ -1,0 +1,8 @@
+{
+  "url": "https://governance.aave.com/t/arfc-safety-module-umbrella-emission-update/23103.json",
+  "retrieved_at": "2026-10-03T10:22:53.941365+00:00",
+  "status": 200,
+  "sha256": "79bd224e1b65fba6ce4a573385eb18c15aad7c1d0bf296da6b3eac256daff7b3",
+  "bytes": 75666,
+  "response_file": "data/raw/supply-aave-sm-emissions-governance.json"
+}

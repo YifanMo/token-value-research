@@ -778,26 +778,26 @@
   },
   "bnb-quarter-burns": {
     "url": "https://www.bnbburn.info/api/getQuarterBurns",
-    "retrieved_at": "2026-10-03T08:31:36.492384+00:00",
-    "sha256": "440768e74e8fa7cd927c4cbe4313329e02756ef1fd3b468b11333cdcfcae2218",
+    "retrieved_at": "2026-10-03T10:32:27.305638+00:00",
+    "sha256": "dffd037abb4ef323a7e5a4182506fda9ae22b3e0d6bfcf69a8dca15ae66730fe",
     "status": "fresh"
   },
   "bnb-supply": {
     "url": "https://www.bnbburn.info/api/getBnbSupply",
-    "retrieved_at": "2026-10-03T08:31:36.390800+00:00",
-    "sha256": "a9c29bf6a7007a0d78d660944a956c112f4ca8d5d21193f3e048a81f1fd08ebd",
+    "retrieved_at": "2026-10-03T10:32:26.995587+00:00",
+    "sha256": "95a05a012025d16144da33c106c72d8602117436010861711dd4ac3d81df2b82",
     "status": "fresh"
   },
   "bnb-realtime-burn-info": {
     "url": "https://www.bnbburn.info/api/getRealTimeBurnInfo",
-    "retrieved_at": "2026-10-03T08:31:37.985348+00:00",
-    "sha256": "141a1a2d4fa3b6be737b66414817446661a5d1f218884e6a9fd625dd335a3d40",
+    "retrieved_at": "2026-10-03T10:32:27.160829+00:00",
+    "sha256": "d895925420fa712ff04d2e6740bd731e374222366eda762f52795c3e77806e10",
     "status": "fresh"
   },
   "bnb-burn-breakdown": {
     "url": "https://www.bnbburn.info/api/getBurnBreakdown",
-    "retrieved_at": "2026-10-03T08:31:37.839838+00:00",
-    "sha256": "437d6945654e4a36035aec029f3c90cdffab519777032674c84ea7d88893bca9",
+    "retrieved_at": "2026-10-03T10:32:26.996104+00:00",
+    "sha256": "3c4c37cf89db42ecd128b70aaa086efa0a6a2148d40ece10c715d1e734cc744d",
     "status": "fresh"
   },
   "rpc-bnb-burn-transactions": {
@@ -1067,5 +1067,72 @@
       }
     ],
     "cache_note": "已完成季度交易的链上证明复用；保留原核验时间。"
+  },
+  "bnb-bsc-fees": {
+    "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyFees",
+    "retrieved_at": "2026-10-03T10:32:28.258220+00:00",
+    "sha256": "bc13c18d97040173cde642c51e9a2abc586f8a6232a491165d2131d5458a779f",
+    "status": "fresh"
+  },
+  "bnb-bsc-chain-revenue-estimate": {
+    "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyRevenue",
+    "retrieved_at": "2026-10-03T10:32:28.563345+00:00",
+    "sha256": "3174e6a557b2514eebec6c890be3d72696f62a4f39038fcdc756fd8f5d21742f",
+    "status": "fresh"
+  },
+  "bnb-current-block": {
+    "url": "https://bsc-dataseed.bnbchain.org",
+    "retrieved_at": "2026-10-03T10:32:28.043481+00:00",
+    "sha256": "05fffc5bcbb8f1259999bdaf02b18f9125f6660748981b56deb9319aad2dcf35",
+    "status": "fresh",
+    "request": [
+      {
+        "jsonrpc": "2.0",
+        "id": "current-block",
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "chain-id",
+        "method": "eth_chainId",
+        "params": []
+      }
+    ]
+  },
+  "bnb-validator-parameters": {
+    "url": "https://bsc-dataseed.bnbchain.org",
+    "retrieved_at": "2026-10-03T10:32:29.394113+00:00",
+    "sha256": "86b2455e6ff738ca01c6cb7909aa87d7c153a6513153f6d4b957b203e93ff275",
+    "status": "fresh",
+    "request": [
+      {
+        "jsonrpc": "2.0",
+        "id": "burn-ratio-0x77a80f3",
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x0000000000000000000000000000000000001000",
+            "data": "0x5192c82c"
+          },
+          "0x77a80f3"
+        ]
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": "ratio-scale-0x77a80f3",
+        "method": "eth_call",
+        "params": [
+          {
+            "to": "0x0000000000000000000000000000000000001000",
+            "data": "0x820dcaa8"
+          },
+          "0x77a80f3"
+        ]
+      }
+    ]
   }
 }

@@ -1,0 +1,103 @@
+{
+  "url": "https://rpc.flashbots.net",
+  "retrieved_at": "2026-10-03T10:29:03.710780+00:00",
+  "sha256": "9faeb9c412a20d6d47df9abedb0906431d1bcbd51be944314abea03efa03de30",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0xa1116930326d21fb917d5a27f1e9943a9595fb47",
+          "data": "0xf11b8188000000000000000000000000a1116930326d21fb917d5a27f1e9943a9595fb47"
+        },
+        "0x18e6c7a"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x1a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d",
+          "data": "0xf11b81880000000000000000000000001a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d"
+        },
+        "0x18e6c7a"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x9eda81c21c273a82be9bbc19b6a6182212068101",
+          "data": "0xf11b81880000000000000000000000009eda81c21c273a82be9bbc19b6a6182212068101"
+        },
+        "0x18e6c7a"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+          "data": "0x70a08231000000000000000000000000317625234562b1526ea2fac4030ea499c5291de4"
+        },
+        "0x18e6c7a"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x317625234562b1526ea2fac4030ea499c5291de4",
+          "data": "0x7c6e94e3"
+        },
+        "0x18e6c7a"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x317625234562b1526ea2fac4030ea499c5291de4",
+          "data": "0xabb76be8"
+        },
+        "0x18e6c7a"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x317625234562b1526ea2fac4030ea499c5291de4",
+          "data": "0x685cda02"
+        },
+        "0x18e6c7a"
+      ]
+    }
+  ],
+  "block": 26111098,
+  "block_timestamp": "2026-10-03T10:05:11+00:00",
+  "call_labels": [
+    "stkABPT",
+    "stkGHO",
+    "stkAAVEwstETHBPTv2",
+    "migratorBalance",
+    "migrationStarted",
+    "totalLendMigrated",
+    "LendAaveRatio"
+  ],
+  "response_file": "data/raw/supply-aave-migration-rpc.json"
+}

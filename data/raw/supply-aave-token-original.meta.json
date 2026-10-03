@@ -1,0 +1,8 @@
+{
+  "url": "https://raw.githubusercontent.com/aave/aave-token/master/contracts/token/AaveToken.sol",
+  "retrieved_at": "2026-10-03T10:22:52.738014+00:00",
+  "status": 200,
+  "sha256": "136f572a630342dff529362d951a97d0aac22e7a402e3a1049d14609e044935b",
+  "bytes": 6702,
+  "response_file": "data/raw/supply-aave-token-original.txt"
+}

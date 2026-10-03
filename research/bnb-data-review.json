@@ -1,0 +1,127 @@
+{
+  "ticker": "BNB",
+  "reviewed_on": "2026-10-03",
+  "income_cutoff_utc": "2026-10-02",
+  "decision": "BSC链手续费可以取得；Gas日销毁美元值只有供应商10%政策模型；季度销毁使用逐笔链上证明。三者分别展示，不作为币安企业收入或实际现金回购。",
+  "sources": [
+    {
+      "key": "bnb-bsc-fees",
+      "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyFees",
+      "evidence": "indexed_transaction_gas_fees",
+      "methodology_url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/bsc.ts",
+      "query_source_url": "https://github.com/DefiLlama/dimension-adapters/blob/master/helpers/getChainFees.ts",
+      "meaning": "BSC交易Gas价格乘receipt使用量的索引汇总，USD由供应商换算；不是币安公司收入，也不覆盖opBNB、Greenfield或链上App自身收入。",
+      "observed_daily_rows_through_cutoff": 2225,
+      "first_date": "2020-08-30",
+      "response_path": "../data/responses/bc13c18d97040173cde642c51e9a2abc586f8a6232a491165d2131d5458a779f.json",
+      "stored_sha256": "bc13c18d97040173cde642c51e9a2abc586f8a6232a491165d2131d5458a779f",
+      "retrieved_at": "2026-10-03T10:32:28.258220+00:00",
+      "status": "fresh"
+    },
+    {
+      "key": "bnb-bsc-chain-revenue-estimate",
+      "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyRevenue",
+      "evidence": "provider_policy_estimate",
+      "methodology_url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/bsc.ts",
+      "meaning": "公开适配器固定将BSC手续费10%记为Revenue和HoldersRevenue，没有读取feeBurned事件。本项目保留来源返回但只用于专用Gas销毁估算序列。",
+      "first_included_date": "2021-11-30",
+      "included_daily_rows_through_cutoff": 1768,
+      "historical_ratio_independently_verified": false,
+      "usd_is_cash_purchase_cost": false,
+      "response_path": "../data/responses/3174e6a557b2514eebec6c890be3d72696f62a4f39038fcdc756fd8f5d21742f.json",
+      "stored_sha256": "3174e6a557b2514eebec6c890be3d72696f62a4f39038fcdc756fd8f5d21742f",
+      "retrieved_at": "2026-10-03T10:32:28.563345+00:00",
+      "status": "fresh"
+    },
+    {
+      "key": "bnb-validator-parameters",
+      "url": "https://bsc-dataseed.bnbchain.org",
+      "evidence": "pinned_block_eth_call",
+      "contract": "0x0000000000000000000000000000000000001000",
+      "contract_source_url": "https://github.com/bnb-chain/bsc-genesis-contract/blob/master/contracts/BSCValidatorSet.sol",
+      "workflow": "先读取BSC最新区块和chainId，再把burnRatio()和BLOCK_FEES_RATIO_SCALE()两次eth_call钉在这个区块。响应id含块号，编译时拒绝不同块号缓存混用。",
+      "observed_block_number": 125468915,
+      "observed_block_time_utc": "2026-10-03T10:32:27+00:00",
+      "observed_burn_ratio": 1000,
+      "observed_ratio_scale": 10000,
+      "observed_ratio": 0.1,
+      "scope": "仅这个区块的当前治理参数；不反推历史窗口比例",
+      "response_path": "../data/responses/86b2455e6ff738ca01c6cb7909aa87d7c153a6513153f6d4b957b203e93ff275.json",
+      "stored_sha256": "86b2455e6ff738ca01c6cb7909aa87d7c153a6513153f6d4b957b203e93ff275",
+      "retrieved_at": "2026-10-03T10:32:29.394113+00:00",
+      "status": "fresh"
+    },
+    {
+      "key": "bnb-realtime-burn-info",
+      "url": "https://www.bnbburn.info/api/getRealTimeBurnInfo",
+      "evidence": "official_linked_indexer",
+      "meaning": "BNB官方季度报告链接的NodeReal跟踪器，返回抓取时点滚动7天、累计和近期几个区块；没有可用逐日历史字段。",
+      "use": "独立当前摘要；不摊成每日、不代替UTC窗口，也不与季度交易做完整实际合计。",
+      "response_path": "../data/responses/d895925420fa712ff04d2e6740bd731e374222366eda762f52795c3e77806e10.json",
+      "stored_sha256": "d895925420fa712ff04d2e6740bd731e374222366eda762f52795c3e77806e10",
+      "retrieved_at": "2026-10-03T10:32:27.160829+00:00",
+      "status": "fresh"
+    },
+    {
+      "key": "bnb-quarter-burns",
+      "url": "https://www.bnbburn.info/api/getQuarterBurns",
+      "evidence": "discovery_only_then_rpc_proof",
+      "meaning": "发现季度交易地址和hash，日期、数量、Pioneer与预测行不直接视作已执行。成功receipt、chainId、dead接收地址、native value和实际区块时间联合决定已核销毁。",
+      "response_path": "../data/responses/dffd037abb4ef323a7e5a4182506fda9ae22b3e0d6bfcf69a8dca15ae66730fe.json",
+      "stored_sha256": "dffd037abb4ef323a7e5a4182506fda9ae22b3e0d6bfcf69a8dca15ae66730fe",
+      "retrieved_at": "2026-10-03T10:32:27.305638+00:00",
+      "status": "fresh"
+    }
+  ],
+  "fixed_window_observations": {
+    "7": {
+      "start": "2026-09-26",
+      "end": "2026-10-02",
+      "bsc_gas_fees_usd": 4417413.0,
+      "gas_burn_policy_estimate_usd": 441741.0,
+      "complete": true
+    },
+    "30": {
+      "start": "2026-09-03",
+      "end": "2026-10-02",
+      "bsc_gas_fees_usd": 22211850.0,
+      "gas_burn_policy_estimate_usd": 2221184.0,
+      "complete": true
+    },
+    "90": {
+      "start": "2026-07-05",
+      "end": "2026-10-02",
+      "bsc_gas_fees_usd": 49576130.0,
+      "gas_burn_policy_estimate_usd": 4957613.0,
+      "complete": true
+    },
+    "365": {
+      "start": "2025-10-03",
+      "end": "2026-10-02",
+      "bsc_gas_fees_usd": 219076584.0,
+      "gas_burn_policy_estimate_usd": 21907660.0,
+      "complete": true
+    }
+  },
+  "history_gap_investigation": {
+    "tracker_discovery": "公开前端使用getRealTimeBurn、getRealTimeBurnInfo、getQuarterBurns、getBurnBreakdown和getBnbSupply；已读返回未发现真实逐日Gas历史。没有猜测未知endpoint或使用前端嵌入的第三方API凭证。",
+    "actual_onchain_event": "BSCValidatorSet.deposit将治理比例费用转至dead地址并发出feeBurned(uint256)。完整历史应汇总这个事件并按区块时间归到UTC日，必须确保所有块范围覆盖。",
+    "public_rpc_documentation": "https://docs.bnbchain.org/bnb-smart-chain/developers/json_rpc/json-rpc-endpoint/",
+    "public_rpc_limit": "官方文档明确列出的主网dataseed禁用eth_getLogs；单一区块的实际探测返回-32005 limit exceeded，原始响应与请求已存bnb-gas-logs-capability.json及meta。",
+    "next_reliable_path": "取得支持历史日志的公开索引或经用户已有授权的专用RPC，再增量扫描feeBurned事件并缓存已完成块范围；现阶段不把模型宣称为逐日实际链上销毁。"
+  },
+  "compiler_workflow": [
+    "refresh使用bnb_jobs获取并缓存固定JSON来源和当前区块；原始字节保留sha256、URL、抓取时间。",
+    "bnb_rpc_jobs生成交易/receipt证明与同一区块参数getter请求；完成后bnb_block_jobs获取季度交易的实际区块。",
+    "compile_bnb_data只读原始缓存和元数据，按完整UTC日cutoff截断真实手续费与模型，拒绝范围错误、方法变更、坏数值、冲突日期及10%不对账的Gas模型日。",
+    "日序列观察窗口保留缺失日期，任何缺日总额为空但已观察小计保留；不填0、不从滚动7天摊成日、不替缺价季度交易用当前价。",
+    "charts.fees输出BSC费用；统一revenue/holders保持空；Gas估算与季度记录由专用字段输出并分别带证据类型。"
+  ],
+  "remaining_unknowns": [
+    "逐日实际feeBurned日志与历史治理比例变更全记录。",
+    "旧Ethereum与Beacon季度交易的对应链证明。",
+    "季度native销毁之前是否以及花了多少现金市场购买BNB。",
+    "币安公司可比营业收入、完整净利润；不能由季度销毁价值倒推。",
+    "当前团队、投资人和储备钱包归因以及完整自由流通释放排期。"
+  ]
+}

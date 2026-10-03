@@ -12,7 +12,7 @@ import re
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-CHART_FIELDS = ("date", "fees", "revenue", "holders", "price", "btc", "sol")
+CHART_FIELDS = ("date", "fees", "revenue", "holders", "price", "btc", "sol", "gas_burn_estimate_usd")
 RECENT_DAYS = 90
 
 
@@ -85,7 +85,13 @@ def generate_web_assets(snapshot, root=ROOT):
         recent = [{field: row[field] for field in CHART_FIELDS if field in row}
                   for row in history if recent_start <= row["date"] <= cutoff_string]
         recent_rows += len(recent)
-        lite["projects"].append({**project, "history": recent})
+        light_project = {**project, "history": recent}
+        # BNB's full daily fee/model maps duplicate the lazy history. Keep
+        # aggregate windows and provenance, loading old observations on demand.
+        if isinstance(project.get("burns"), dict):
+            light_project["burns"] = {key: value for key, value in project["burns"].items()
+                                      if key not in ("chain_fee_history", "gas_burn_estimate_history")}
+        lite["projects"].append(light_project)
     body = compact_bytes(lite)
     path = root / "data" / "dashboard-lite.json"
     write_atomic(path, body)

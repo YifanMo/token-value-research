@@ -1,7 +1,7 @@
 import {calculate, known} from './core.js';
-import {componentAmount} from './supply.js';
+import {componentAmount, componentWindowSummary} from './supply.js';
 import {isReserveBurn, statisticLabel} from './models.js';
-import {burnStats} from './burns.js';
+import {burnStats, bnbChainWindow} from './burns.js';
 
 // These are reviewed interpretations of the research, not fetched facts.
 // Amounts, ratios, dated schedules and event observations come from the snapshot.
@@ -94,11 +94,16 @@ function futureSentence(project, asOf) {
   const forecast = project.supply_forecast;
   const component = forecast?.components?.find(item => item.id === forecast.overview_component_id);
   const horizon = 90;
-  const tokens = component ? componentAmount(component, asOf, horizon) : null;
-  const labels = {scenario: '情景模型', tracker: '第三方归属模型', run_rate: '当前速度外推', contract: '原合约预算资格', official: '官方排期', reported_plan: '报道中的拟执行批次', approved_policy: '已通过政策'};
-  const estimate = known(tokens)
-    ? `未来${horizon}天${component.label}约${quantity(tokens)}枚（${labels[component.evidence] || '已登记依据'}，非确定流通增量）`
-    : `未来${horizon}天主要释放量因排期或覆盖缺口仍未知`;
+  const window=componentWindowSummary(component,asOf,horizon);
+  const tokens=window.amount;
+  const labels = {scenario:'情景模型',tracker:'第三方归属模型',run_rate:'当前速度外推',contract:'原合约预算资格',official:'官方排期',reported_plan:'报道中的拟执行批次',approved_policy:'已通过政策',ended:'原排期已结束',authority:'当前权限 / 规则',protocol_policy:'现行协议规则'};
+  const estimate=known(tokens)
+    ? component?.mode==='capacity'
+      ? `当前${component.label}权限上限${quantity(tokens)}枚，不代表未来${horizon}天会行使`
+      : `未来${horizon}天${component.label}${window.status==='projection'?'按当前速率延续约':tokens===0?'为':'约'}${quantity(tokens)}枚（${labels[component.evidence]||'已登记依据'}，只覆盖该类别）`
+    : known(window.known_amount)
+      ? `未来${horizon}天${component.label}已登记部分约${quantity(window.known_amount)}枚，覆盖至${window.known_end}；其余${window.missing_days}天未知，全年覆盖缺口仍未知`
+      : `未来${horizon}天主要释放量因排期或覆盖缺口仍未知`;
   const additional = project.ticker === 'HYPE' ? forecast?.components?.find(item => item.id === 'hype-october-subset') : null;
   const additionalTokens = additional ? componentAmount(additional, asOf, horizon) : null;
   const alternative = known(additionalTokens) && additionalTokens > 0 ? `另有媒体转述近期拟分发${quantity(additionalTokens)}枚，实际执行未核且不能与理论模型相加。` : '';
@@ -161,13 +166,15 @@ export function buildConclusion(project, days, asOf) {
   const supply = `当前流通${quantity(market.circulating_supply)}枚、数据源总量${quantity(market.total_supply)}枚，流通市值${usd(market.market_cap)}、FDV${usd(metrics.fdv)}；${reviewed?.allocation || project.allocation_note || '初始分配未齐'}，当前团队与投资人持仓尚未完整核实。`;
   const window = metrics.coverage;
   const burn = isReserveBurn(project) ? burnStats(project, window?.fees?.start || window?.holders?.start, window?.fees?.end || window?.holders?.end) : null;
+  const bnb = isReserveBurn(project) ? bnbChainWindow(project, window?.fees?.start, window?.fees?.end) : null;
+  const gasObservation = bnb ? `${bnb.fees.complete ? `所选${days}天BSC链手续费${usd(bnb.fees.usd)}` : `所选${days}天BSC链手续费缺${bnb.fees.missing_days}天，总额未知`}；${bnb.gasEstimate.complete ? `供应商按10%模型推算的Gas销毁估值${usd(bnb.gasEstimate.usd)}` : 'Gas销毁估算因缺日未知'}，不是逐日实际销毁核验，亦不含Binance公司收入。` : '';
   const burnObservation = burn?.count ? `所选期间已核${burn.count}笔季度销毁、共${quantity(burn.tokens)}枚，销毁日美元估值合计${usd(burn.usd)}；估值÷当前流通市值${pct(burn.shareMc)}、÷FDV${pct(burn.shareFdv)}，仅是已核记录比例，未年化。` : '所选期间暂无已核季度销毁记录，实际总销毁量未知，不能填零。';
   const sentences = isReserveBurn(project) ? [
     reviewed.business || project.business || 'BNB Chain的Gas使用与季度储备销毁分别研究，交易所企业收入未公开为完整可核的同窗数据。',
     'Auto-Burn季度储备销毁与BEP-95实时Gas销毁是两条独立路径，不能称为企业净利润用于回购；收入进入代币的比例、P/S和P/E均不适用。',
     supply, future.text,
     (reviewed.supplyEffect || '已核销毁会减少对应供应，但当前流通口径、其他销毁与释放未完整对账，不能确认自由流通净通缩或净通胀').replace(/[。.]?$/u,'。'),
-    burnObservation + ' 未覆盖全部历史季度和实时Gas销毁；美元估值不是已成交回购现金。',
+    gasObservation + ' ' + burnObservation + ' 未覆盖全部历史季度和实时Gas销毁；美元估值不是已成交回购现金。',
     modelHistory(project), '季度销毁、Gas活动和币价受多种因素影响；缺少完整收入与历史供应对照，不能证明经济模型变化持续改善收入或价格。',
   ] : [reviewed?.business || project.business || '收费来源与持续性仍需核实。', captureSentence(project, metrics, asOf), supply, future.text,
     `${reviewed?.supplyEffect || '同窗供应台账未齐，净通缩或净通胀仍待核'}。`, yieldSentence(project, metrics, days), modelHistory(project), observation.text];

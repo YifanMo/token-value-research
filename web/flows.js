@@ -19,12 +19,28 @@ export function buildFlow(project, days = 30) {
   if (isReserveBurn(project)) {
     const start = w.fees?.start || w.holders?.start || project.custom_range?.start || null;
     const end = w.fees?.end || w.holders?.end || project.custom_range?.end || null;
+    const feeAmount=completeAmount(w.fees),gasRecord=w.gas_burn_estimate;
+    const fees=known(feeAmount) && feeAmount>=0 ? feeAmount : null;
+    const source=project.data_sources?.find(source=>source.kind==='gas_burn_policy_estimate');
+    const assumptionsMatch=[gasRecord,source].every(record=>
+      (record?.assumed_ratio==null || record.assumed_ratio===.1) &&
+      (record?.effective_from==null || record.effective_from==='2021-11-30'));
+    const model=completeAmount(gasRecord);
+    const modelValid=known(fees) && fees>=0 && known(model) && model>=0 &&
+      sameWindow(w.fees,gasRecord) && start>='2021-11-30' && assumptionsMatch &&
+      gasRecord?.evidence==='provider_policy_estimate' && Math.abs(model-fees*.1)<=Math.max(1,days);
+    const gas=modelValid?model:null;
+    const remaining=known(gas) && fees>=gas ? fees-gas : null;
+    const warnings=[...(config.cautions || []), '季度储备销毁与Gas销毁模型是两条独立路径；未将季度销毁公告估值填入收入或回购现金。', 'Gas美元金额按供应商10%规则估算，未核逐日实际销毁；当前区块的比例参数不能证明整个历史窗口的比例。', '实时Gas观察是抓取时点的数据，不是所选时间窗口的销毁总额。'];
+    if (!known(fees)) warnings.push('BSC交易Gas费用未覆盖完整所选期间，金额未知。');
+    if (!modelValid) warnings.push('Gas模型缺日、尚未生效、期间或计算规则未对平，所选期间估算金额未知。');
+    if (known(gas) && fees<gas) warnings.push('Gas模型大于总费用，其余费用不填为负数或零。');
     return {ticker:project.ticker, start, end, days, mode:'reserve_and_gas_burn', unallocatedUsd:null, unallocatedRecord:null,
-      warnings:[...(config.cautions || []), '季度储备销毁与实时Gas销毁是两条独立路径；未将季度销毁公告估值填入收入或回购现金。', '实时Gas观察是抓取时点的数据，不是所选时间窗口的销毁总额。'],
+      chainFeesUsd:fees,gasBurnEstimateUsd:gas,remainingGasFeesEstimateUsd:remaining,warnings,
       nodes:[
-        {id:'fees',label:config.fees_label || 'BNB Chain交易Gas费用',usd:null,evidence:'policy',note:config.origins || '用户使用链上交易支付Gas，所选窗口费用总额尚未取得。'},
-        {id:'revenue',label:'验证者等所得',usd:null,evidence:'unknown',note:'除实时销毁部分以外的费用分配，所选期间金额待核；不等于交易所企业收入。'},
-        {id:'other',label:'BEP-95实时Gas销毁',usd:null,evidence:'policy',note:config.gas_burn_note || '按链上规则处理部分Gas费用；累计观察与期间增量需分别核对。'},
+        {id:'fees',label:config.fees_label || 'BSC链交易Gas费用',usd:fees,evidence:known(fees)?'api':'unknown',note:joinNotes(config.origins,'来自用户实际支付Gas的链上索引统计，仅覆盖BSC；不含交易所企业收入、opBNB或Greenfield费用。')},
+        {id:'revenue',label:'其余Gas费用（估算）',usd:remaining,evidence:known(remaining)?'estimate':'unknown',note:'链Gas费用减10%模型估算的统计差额，不能当作验证者实际收到的现金、协议营业收入或企业利润。'},
+        {id:'other',label:'BEP-95 Gas销毁美元金额（估算）',usd:gas,evidence:known(gas)?'estimate':'unknown',note:'供应商按同日BSC费用的10%估算，逐日取整允许1美元差；自2021-11-30起核对。尚未用实际销毁事件逐日验证，不是现金回购。'},
         {id:'funding',label:'Auto-Burn季度销毁规则',usd:null,evidence:'policy',note:config.funding_note || '根据已公布规则决定季度销毁数量，不能推定为利润支付的市场回购现金。'},
         {id:'outcome',label:'已核季度储备销毁',usd:null,evidence:'policy',note:config.outcome_note || '所选期间的已核季度记录在下方单列；未核完整发行、销毁及流通台账。'},
       ],edges:[{from:'fees',to:'revenue',dashed:true},{from:'fees',to:'other',dashed:true},{from:'funding',to:'outcome',dashed:true}]};

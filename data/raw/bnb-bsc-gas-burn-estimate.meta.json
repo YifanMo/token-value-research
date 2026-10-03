@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyHoldersRevenue",
+  "retrieved_at": "2026-10-03T10:26:37.938521+00:00",
+  "sha256": "6463682077341053d31c1038897670c4fa347b4df981d7996f30cc646033bffa",
+  "status": "fresh"
+}

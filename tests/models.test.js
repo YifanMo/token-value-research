@@ -48,8 +48,13 @@ test('missing quarterly events and prices remain unknown and gas snapshots remai
 });
 
 test('BNB presents two unconnected burn paths and source JSON without a daily-income audit schema',()=>{
-  const p=bnb(),flow=buildFlow(p,30);
-  assert.equal(flow.mode,'reserve_and_gas_burn');assert.ok(flow.nodes.every(node=>node.usd===null));
+  const p=bnb();p.windows[30].gas_burn_estimate={...series(10),evidence:'provider_policy_estimate',assumed_ratio:.1,effective_from:'2021-11-30'};
+  const flow=buildFlow(p,30);
+  assert.equal(flow.mode,'reserve_and_gas_burn');
+  assert.equal(flow.nodes.find(node=>node.id==='fees').usd,100);assert.equal(flow.nodes.find(node=>node.id==='fees').evidence,'api');
+  assert.equal(flow.nodes.find(node=>node.id==='other').usd,10);assert.equal(flow.nodes.find(node=>node.id==='other').evidence,'estimate');
+  assert.equal(flow.nodes.find(node=>node.id==='revenue').usd,90);assert.equal(flow.nodes.find(node=>node.id==='revenue').evidence,'estimate');
+  assert.ok(flow.nodes.filter(node=>['funding','outcome'].includes(node.id)).every(node=>node.usd===null));
   assert.ok(!flow.edges.some(edge=>edge.from==='revenue'&&edge.to==='funding'));
   p.burns.data_sources=[{kind:'burn_proof',url:'https://example.com/rpc',response_path:'../data/proof.json',sha256:'proof-hash'}];
   p.burns.quarterly_records[0].usd_basis='executed_native_tokens_times_same_utc_date_price; not_cash_cost';

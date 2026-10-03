@@ -1,0 +1,714 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-03",
+  "window_definition": "UTC dates; annual rates are conditional scenarios, not guaranteed distribution calendars. Inventory and already-earned rewards are separate.",
+  "projects": [
+    {
+      "ticker": "CAKE",
+      "verified_on": "2026-10-03",
+      "overview_component_id": "cake-effective-emissions-policy",
+      "overview_note": "采用官方2026-01-30披露的约22,250枚/日净有效排放政策作延续情景，年化8,121,250枚；尚未独立重算2026-10-03当天所有产品的实际mint与回烧。此项已扣掉维持政策额度的原始铸币回烧，不能再扣同一回烧；不等于扣完业务收入回购后的净供应，也不代表全部马上流入市场。",
+      "summary": "CAKE可补出未来一年约8.12M枚的净有效排放政策情景，而不是团队月度解锁表。已核原MasterChef参数仍40 CAKE/块；官方主厨说明大部分原始铸币回烧，使有效净排放维持约22.25k/日。业务收入支持的回购销毁及旧生态库存使用须另计，不能仅据这条年率宣称净通缩。",
+      "components": [
+        {
+          "id": "cake-effective-emissions-policy",
+          "label": "净有效排放政策（延续情景）",
+          "evidence": "scenario",
+          "mode": "annual_rate",
+          "annual_tokens": 8121250,
+          "daily_tokens": 22250,
+          "display_prefix": "约",
+          "effect_label": "扣除原始铸币回烧；非全部即时流通",
+          "note": "官方2026-01-30主厨答复给净mint约22.25k/日，外推30/90/365天为667,500 / 2,002,500 / 8,121,250枚。这是净有效排放政策保持、回烧照常的情景，不能当原始mint量、精确链上速率或不可调整承诺。1月13日概述约22.5k与后续22.25k为近似口径，使用更明确的后者；旧14.5k为farm子项，不是所有产品合计。包含生态储备增加，实际市场释放未核；收入支持回购销毁与旧库存外流另外处理。",
+          "sources": [
+            {
+              "title": "官方主厨2026年净排放说明（2026-01-30，第11帖）",
+              "url": "https://forum.pancakeswap.finance/t/discussion-of-proposal-to-reduce-cake-token-max-supply/1551/11",
+              "raw_file": "data/raw/supply-cake-maxcap-governance.json",
+              "metadata_file": "data/raw/supply-cake-maxcap-governance.meta.json"
+            },
+            {
+              "title": "官方Tokenomics 3.0原方案与分配声明",
+              "url": "https://forum.pancakeswap.finance/t/cake-tokenomics-proposal-3-0-true-ownership-simplified-governance-and-sustainable-growth/1237",
+              "raw_file": "data/raw/supply-cake-tokenomics3-governance.json",
+              "metadata_file": "data/raw/supply-cake-tokenomics3-governance.meta.json"
+            },
+            {
+              "title": "BSC finalized：CAKE owner / MasterChef cakePerBlock",
+              "url": "https://bsc-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-cake-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-cake-finalized-rpc.meta.json"
+            }
+          ],
+          "overlap_group": "cake-effective-emissions",
+          "usable_in_float_scenario": true,
+          "policy_observation_date": "2026-01-30"
+        },
+        {
+          "id": "cake-original-vc-team",
+          "label": "原VC / 团队专属分配池",
+          "evidence": "approved_policy",
+          "mode": "zero",
+          "effect_label": "官方称无此初始分配；不代表当前无人持币",
+          "note": "官方Tokenomics 3.0提案明确称无VC funds或team allocations。因此这类初始分配池不列未来月度解锁；0仅适用于该声明的初始分配类别，不是已审计团队当前钱包余额，也不取消奖励、生态基金或团队获得的其他经济利益。",
+          "sources": [
+            {
+              "title": "官方Tokenomics 3.0原方案与分配声明",
+              "url": "https://forum.pancakeswap.finance/t/cake-tokenomics-proposal-3-0-true-ownership-simplified-governance-and-sustainable-growth/1237",
+              "raw_file": "data/raw/supply-cake-tokenomics3-governance.json",
+              "metadata_file": "data/raw/supply-cake-tokenomics3-governance.meta.json"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "cake-gross-mint",
+          "label": "原合约gross mint / 回烧执行",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "按区块产生；不机械加到净有效排放",
+          "note": "BSC finalized读到CAKE.owner为原MasterChef，cakePerBlock=40e18。官方源码还包含dev分配，实际mint依赖各池update、alloc及区块速度，不能将40枚/块直接年化成市场新增流通；它与净22.25k/日政策重叠，完整未来原始mint与维持政策的实际回烧尚未核。",
+          "sources": [
+            {
+              "title": "BSC finalized：CAKE owner / MasterChef cakePerBlock",
+              "url": "https://bsc-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-cake-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-cake-finalized-rpc.meta.json"
+            },
+            {
+              "title": "官方原MasterChef源码",
+              "url": "https://raw.githubusercontent.com/pancakeswap/pancake-farm/master/contracts/MasterChef.sol",
+              "raw_file": "data/raw/supply-cake-masterchef-source.txt",
+              "metadata_file": "data/raw/supply-cake-masterchef-source.meta.json"
+            },
+            {
+              "title": "官方CAKE铸币权限源码",
+              "url": "https://raw.githubusercontent.com/pancakeswap/pancake-farm/master/contracts/CakeToken.sol",
+              "raw_file": "data/raw/supply-cake-token-source.txt",
+              "metadata_file": "data/raw/supply-cake-token-source.meta.json"
+            }
+          ],
+          "overlap_group": "cake-effective-emissions",
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "cake-ecosystem-inventory",
+          "label": "旧生态库存及其他储备外流",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "旧币释放；未承诺日期",
+          "note": "2026-01-13官方曾披露生态增长基金约3.5M枚，该历史库存不能当成当前余额或未来一年一定释放。净排放政策包含持续生态拨入，后续使用未必同步流入市场；完整现时钱包、外流安排与跨链供应对账未取得。",
+          "sources": [
+            {
+              "title": "官方主厨2026年净排放说明（2026-01-30，第11帖）",
+              "url": "https://forum.pancakeswap.finance/t/discussion-of-proposal-to-reduce-cake-token-max-supply/1551/11",
+              "raw_file": "data/raw/supply-cake-maxcap-governance.json",
+              "metadata_file": "data/raw/supply-cake-maxcap-governance.meta.json"
+            },
+            {
+              "title": "官方Tokenomics 3.0原方案与分配声明",
+              "url": "https://forum.pancakeswap.finance/t/cake-tokenomics-proposal-3-0-true-ownership-simplified-governance-and-sustainable-growth/1237",
+              "raw_file": "data/raw/supply-cake-tokenomics3-governance.json",
+              "metadata_file": "data/raw/supply-cake-tokenomics3-governance.meta.json"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "gaps": [
+        "约22.25k/日是有日期的官方政策披露，当前产品级净mint执行尚未独立重算，年率为情景。",
+        "原始mint回烧和经营收入回购销毁必须分账，避免重复抵扣。",
+        "旧储备外流、实际burn以及自由流通台账尚未齐；未来市场供应不能仅由年率决定。"
+      ]
+    },
+    {
+      "ticker": "AAVE",
+      "verified_on": "2026-10-03",
+      "overview_component_id": "aave-stkaave-run-rate",
+      "overview_note": "当前链上stkAAVE奖励约150枚/日，保持速率并持续获批补资时未来365天约54,750枚；从既有生态储备转出，非新增mint。当前allowance还要支付历史待领取奖励，不是已保证全年预算。",
+      "summary": "AAVE可补出stkAAVE约54,750枚/年的储备奖励速度情景；三个退出的旧Safety Module当前新增奖励为0。代币总量16M、现行实现无外部mint接口已核，但代理可升级，治理未来增发及其他金库支付仍保留未知。储备余额与可支出allowance是库存，不机械变成未来一年排期。",
+      "components": [
+        {
+          "id": "aave-stkaave-run-rate",
+          "label": "stkAAVE储备奖励（速率情景）",
+          "evidence": "run_rate",
+          "mode": "annual_rate",
+          "annual_tokens": 54750,
+          "daily_tokens": 150,
+          "display_prefix": "约",
+          "effect_label": "已有储备转用户；非新mint",
+          "note": "Ethereum finalized block 26,111,098（2026-10-03 10:05:11 UTC）读取assets(stkAAVE).emissionPerSecond=1,736,111,111,111,111 raw、AAVE18位，约150枚/日。保持速率且持续补资的情景，30/90/365天为4,500 / 13,500 / 54,750枚。官方2026-08-28补资说明同一150/日，9月16日修订只承诺计划补90天和部分旧backlog；不能当已锁定全年发放。链上allowance28,104.810513也承担历史待领，可能先耗尽；治理可改速度/补资。奖励累积、领取转出与出售日期不同。",
+          "sources": [
+            {
+              "title": "Ethereum finalized：奖励速度、储备、总量及代理槽",
+              "url": "https://ethereum-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-aave-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-aave-finalized-rpc.meta.json"
+            },
+            {
+              "title": "官方Safety Module补资提案及2026-09-16修订",
+              "url": "https://governance.aave.com/t/direct-to-aip-safety-module-august-2026-allowance-update/25550",
+              "raw_file": "data/raw/supply-aave-sm-aug2026.json",
+              "metadata_file": "data/raw/supply-aave-sm-aug2026.meta.json"
+            },
+            {
+              "title": "官方奖励累积参数与可调配置源码",
+              "url": "https://raw.githubusercontent.com/aave/aave-stake-v2/master/contracts/stake/AaveDistributionManager.sol",
+              "raw_file": "data/raw/supply-aave-distribution-source.txt",
+              "metadata_file": "data/raw/supply-aave-distribution-source.meta.json"
+            },
+            {
+              "title": "官方Safety Module地址表",
+              "url": "https://raw.githubusercontent.com/bgd-labs/aave-address-book/main/src/AaveSafetyModule.sol",
+              "raw_file": "data/raw/supply-aave-addressbook-sm.txt",
+              "metadata_file": "data/raw/supply-aave-addressbook-sm.meta.json"
+            }
+          ],
+          "overlap_group": "aave-ecosystem-reserve",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "aave-sunset-sm",
+          "label": "三个退出的旧Safety Module新增奖励",
+          "evidence": "contract",
+          "mode": "zero",
+          "effect_label": "当前奖励速率0；旧待领仍可支付",
+          "note": "第二次finalized batch block 26,111,130（2026-10-03 10:11:35 UTC）读取stkABPT v1、stkGHO、stkAAVEwstETHBPTv2各自assets().emissionPerSecond均0。0只表示这些模块在当前参数保持时无新增奖励；已有待领负债和补资仍可带来储备外流，不记为新产生的365天奖励。",
+          "sources": [
+            {
+              "title": "Ethereum finalized：旧模块奖励与迁移合约余额",
+              "url": "https://ethereum-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-aave-secondary-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-aave-secondary-finalized-rpc.meta.json"
+            },
+            {
+              "title": "官方Safety Module补资提案及2026-09-16修订",
+              "url": "https://governance.aave.com/t/direct-to-aip-safety-module-august-2026-allowance-update/25550",
+              "raw_file": "data/raw/supply-aave-sm-aug2026.json",
+              "metadata_file": "data/raw/supply-aave-sm-aug2026.meta.json"
+            },
+            {
+              "title": "官方Safety Module地址表",
+              "url": "https://raw.githubusercontent.com/bgd-labs/aave-address-book/main/src/AaveSafetyModule.sol",
+              "raw_file": "data/raw/supply-aave-addressbook-sm.txt",
+              "metadata_file": "data/raw/supply-aave-addressbook-sm.meta.json"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "aave-original-allocation",
+          "label": "原AAVE迁移 / 初始储备分配",
+          "evidence": "contract",
+          "mode": "zero",
+          "effect_label": "初始16M已mint；不是团队现持仓",
+          "note": "原初始化源码一次性mint 13M给LEND迁移、3M给分发储备，当前totalSupply链上仍16M。原初始化不构成未来月度新增mint排期；此0只用于重复发生的原始mint。LEND迁移源码是转出已存在AAVE而非再mint，当前迁移合约余额0；仍不能据此断言所有旧LEND权益已处理或团队/投资人当前持币为0。没有将LEND层旧分配自动编为本轮AAVE团队解锁表。",
+          "sources": [
+            {
+              "title": "官方原代币初始化13M+3M mint源码",
+              "url": "https://raw.githubusercontent.com/aave/aave-token/master/contracts/token/AaveToken.sol",
+              "raw_file": "data/raw/supply-aave-token-original.txt",
+              "metadata_file": "data/raw/supply-aave-token-original.meta.json"
+            },
+            {
+              "title": "官方LEND迁移transfer源码（不是新增mint）",
+              "url": "https://raw.githubusercontent.com/aave/aave-token/master/contracts/token/LendToAaveMigrator.sol",
+              "raw_file": "data/raw/supply-aave-migrator-source.txt",
+              "metadata_file": "data/raw/supply-aave-migrator-source.meta.json"
+            },
+            {
+              "title": "官方迁移与代理说明 / 合约地址",
+              "url": "https://raw.githubusercontent.com/aave/aave-token/master/README.md",
+              "raw_file": "data/raw/supply-aave-migration-readme.txt",
+              "metadata_file": "data/raw/supply-aave-migration-readme.meta.json"
+            },
+            {
+              "title": "Ethereum finalized：奖励速度、储备、总量及代理槽",
+              "url": "https://ethereum-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-aave-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-aave-finalized-rpc.meta.json"
+            },
+            {
+              "title": "Ethereum finalized：旧模块奖励与迁移合约余额",
+              "url": "https://ethereum-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-aave-secondary-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-aave-secondary-finalized-rpc.meta.json"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "aave-future-mint-policy",
+          "label": "治理升级后的额外mint政策",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "当前无外部mint；未来升级不可推为永久0",
+          "note": "AAVE代理implementation槽为0x5d4aa78b08bc7c530e21bf7447988b1be7991322；链上验证AaveTokenV3及继承源码/ABI没有外部mint接口，totalSupply=16M。proxy admin非零且官方说明由治理控制升级。未发现当前常规新增mint功能，但未来升级政策和可铸上限未知，不能把当前实现写成未来365天或永久绝对mint=0。",
+          "sources": [
+            {
+              "title": "Ethereum finalized：奖励速度、储备、总量及代理槽",
+              "url": "https://ethereum-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-aave-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-aave-finalized-rpc.meta.json"
+            },
+            {
+              "title": "链上验证的现行AaveTokenV3源码 / ABI",
+              "url": "https://eth.blockscout.com/api/v2/smart-contracts/0x5d4aa78b08bc7c530e21bf7447988b1be7991322",
+              "raw_file": "data/raw/supply-aave-current-implementation-blockscout.json",
+              "metadata_file": "data/raw/supply-aave-current-implementation-blockscout.meta.json"
+            },
+            {
+              "title": "官方迁移与代理说明 / 合约地址",
+              "url": "https://raw.githubusercontent.com/aave/aave-token/master/README.md",
+              "raw_file": "data/raw/supply-aave-migration-readme.txt",
+              "metadata_file": "data/raw/supply-aave-migration-readme.meta.json"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "aave-other-reserve-outflows",
+          "label": "其他grants / 服务支付 / 旧待领奖励",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "储备处置；无法由余额推排期",
+          "note": "stkAAVE年率不含历史待领奖励、其他模块残余负债、grants、服务商支出或其他治理处置。2026-08-27官方历史snapshot为stkAAVE claimable约55,042.63枚，不是本次抓取现时余额；不将旧backlog再次年化或叠加成已核未来承诺。完整未来外流日历仍未取得。",
+          "sources": [
+            {
+              "title": "官方Safety Module补资提案及2026-09-16修订",
+              "url": "https://governance.aave.com/t/direct-to-aip-safety-module-august-2026-allowance-update/25550",
+              "raw_file": "data/raw/supply-aave-sm-aug2026.json",
+              "metadata_file": "data/raw/supply-aave-sm-aug2026.meta.json"
+            },
+            {
+              "title": "Ethereum finalized：奖励速度、储备、总量及代理槽",
+              "url": "https://ethereum-rpc.publicnode.com",
+              "raw_file": "data/raw/supply-aave-finalized-rpc.json",
+              "metadata_file": "data/raw/supply-aave-finalized-rpc.meta.json"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "inventory": {
+        "note": "链上余额是当时可见库存/授权；并非未来365天必定解锁。stkAAVE allowance是同一生态储备的支出权限，不能与储备余额相加；旧待领可先消耗allowance。两个finalized batch分别记录块，未冒称所有调用固定在同一历史块。",
+        "sources": [
+          {
+            "title": "Ethereum finalized：奖励速度、储备、总量及代理槽",
+            "url": "https://ethereum-rpc.publicnode.com",
+            "raw_file": "data/raw/supply-aave-finalized-rpc.json",
+            "metadata_file": "data/raw/supply-aave-finalized-rpc.meta.json"
+          },
+          {
+            "title": "Ethereum finalized：旧模块奖励与迁移合约余额",
+            "url": "https://ethereum-rpc.publicnode.com",
+            "raw_file": "data/raw/supply-aave-secondary-finalized-rpc.json",
+            "metadata_file": "data/raw/supply-aave-secondary-finalized-rpc.meta.json"
+          }
+        ],
+        "retrieved_at": "2026-10-03T10:24:19.414044+00:00",
+        "rows": [
+          {
+            "label": "Ecosystem Reserve AAVE余额",
+            "tokens": 564693.8746273546,
+            "approximate": false,
+            "block": 26111098
+          },
+          {
+            "label": "stkAAVE可从同一储备支出的allowance",
+            "tokens": 28104.810513111086,
+            "approximate": false,
+            "block": 26111098,
+            "overlaps_with": "Ecosystem Reserve AAVE余额"
+          },
+          {
+            "label": "LEND迁移合约现时AAVE余额",
+            "tokens": 0,
+            "approximate": false,
+            "block": 26111130
+          }
+        ]
+      },
+      "gaps": [
+        "当前奖励速率可以外推，但须持续补资；旧待领与新累积不能重复相加。",
+        "代理可治理升级，所以未来mint政策未知；当前源码无外部mint不等于永不增发。",
+        "原迁移分配不是当前团队/投资人持仓分类；其他储备支付和完整自由流通变化未核。"
+      ]
+    }
+  ],
+  "archived_public_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/bgd-labs/aave-address-book/main/src/AaveSafetyModule.sol",
+      "retrieved_at": "2026-10-03T10:22:52.709278+00:00",
+      "sha256": "08e151dfe62717ad081e06ba16b903065eacf22419d9847e22723ec2778a8d7b",
+      "key": "supply-aave-addressbook-sm",
+      "raw_file": "data/raw/supply-aave-addressbook-sm.txt",
+      "metadata_file": "data/raw/supply-aave-addressbook-sm.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://eth.blockscout.com/api/v2/smart-contracts/0x5d4aa78b08bc7c530e21bf7447988b1be7991322",
+      "retrieved_at": "2026-10-03T10:25:45.808125+00:00",
+      "sha256": "c1e894929e72b87ba456bf323ad0b2382e2109e9422c0c29695ffe8e988f9faa",
+      "key": "supply-aave-current-implementation-blockscout",
+      "raw_file": "data/raw/supply-aave-current-implementation-blockscout.json",
+      "metadata_file": "data/raw/supply-aave-current-implementation-blockscout.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aave/aave-stake-v2/master/contracts/stake/AaveDistributionManager.sol",
+      "retrieved_at": "2026-10-03T10:24:20.499942+00:00",
+      "sha256": "b58b9e2529a2bdb0544a268a1e2fdb587078435602812613770fb045770a8a78",
+      "key": "supply-aave-distribution-source",
+      "raw_file": "data/raw/supply-aave-distribution-source.txt",
+      "metadata_file": "data/raw/supply-aave-distribution-source.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://ethereum-rpc.publicnode.com",
+      "retrieved_at": "2026-10-03T10:24:19.414044+00:00",
+      "sha256": "b0f8d280d26966f3d46ccff9edcb102b75d42fc40590a008bf266e8ede21635b",
+      "key": "supply-aave-finalized-rpc",
+      "raw_file": "data/raw/supply-aave-finalized-rpc.json",
+      "metadata_file": "data/raw/supply-aave-finalized-rpc.meta.json",
+      "status": "fresh",
+      "request": [
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "eth_getBlockByNumber",
+          "params": [
+            "finalized",
+            false
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "eth_getStorageAt",
+          "params": [
+            "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+            "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "eth_getStorageAt",
+          "params": [
+            "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+            "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103",
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+              "data": "0x18160ddd"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 5,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+              "data": "0x70a0823100000000000000000000000025f2226b597e8f9514b3f68f00f494cf4f286491"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 6,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+              "data": "0xdd62ed3e00000000000000000000000025f2226b597e8f9514b3f68f00f494cf4f2864910000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 7,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+              "data": "0x1652e7b70000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 8,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+              "data": "0xf11b81880000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 9,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+              "data": "0x919cd40f"
+            },
+            "finalized"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aave/aave-token/master/README.md",
+      "retrieved_at": "2026-10-03T10:25:45.223623+00:00",
+      "sha256": "885276e924e2d336782fabff752fd7935d7db5225ff6d3bc001020ef22ef7ae2",
+      "key": "supply-aave-migration-readme",
+      "raw_file": "data/raw/supply-aave-migration-readme.txt",
+      "metadata_file": "data/raw/supply-aave-migration-readme.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aave/aave-token/master/contracts/token/LendToAaveMigrator.sol",
+      "retrieved_at": "2026-10-03T10:25:45.219146+00:00",
+      "sha256": "cbd1ea83af38696d8af4385a319b35daad3a78d3f96133ec85c7097f3454dd78",
+      "key": "supply-aave-migrator-source",
+      "raw_file": "data/raw/supply-aave-migrator-source.txt",
+      "metadata_file": "data/raw/supply-aave-migrator-source.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://ethereum-rpc.publicnode.com",
+      "retrieved_at": "2026-10-03T10:30:15.028559+00:00",
+      "sha256": "cddff3d9171be0dc12fec2e7432737338213f517daf9251479497554964ad4eb",
+      "key": "supply-aave-secondary-finalized-rpc",
+      "raw_file": "data/raw/supply-aave-secondary-finalized-rpc.json",
+      "metadata_file": "data/raw/supply-aave-secondary-finalized-rpc.meta.json",
+      "status": "fresh",
+      "request": [
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "eth_getBlockByNumber",
+          "params": [
+            "finalized",
+            false
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0xa1116930326d21fb917d5a27f1e9943a9595fb47",
+              "data": "0xf11b8188000000000000000000000000a1116930326d21fb917d5a27f1e9943a9595fb47"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x1a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d",
+              "data": "0xf11b81880000000000000000000000001a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x9eda81c21c273a82be9bbc19b6a6182212068101",
+              "data": "0xf11b81880000000000000000000000009eda81c21c273a82be9bbc19b6a6182212068101"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 5,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+              "data": "0x70a08231000000000000000000000000317625234562b1526ea2fac4030ea499c5291de4"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 6,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x317625234562b1526ea2fac4030ea499c5291de4",
+              "data": "0x7c6e94e3"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 7,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x317625234562b1526ea2fac4030ea499c5291de4",
+              "data": "0xabb76be8"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 8,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x317625234562b1526ea2fac4030ea499c5291de4",
+              "data": "0x685cda02"
+            },
+            "finalized"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://governance.aave.com/t/direct-to-aip-safety-module-august-2026-allowance-update/25550.json",
+      "retrieved_at": "2026-10-03T10:24:21.359638+00:00",
+      "sha256": "ab0ac8652a35e3e85ca208d000357f9f8f078b240962c285226ddedea22b1c72",
+      "key": "supply-aave-sm-aug2026",
+      "raw_file": "data/raw/supply-aave-sm-aug2026.json",
+      "metadata_file": "data/raw/supply-aave-sm-aug2026.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aave/aave-token/master/contracts/token/AaveToken.sol",
+      "retrieved_at": "2026-10-03T10:22:52.738014+00:00",
+      "sha256": "136f572a630342dff529362d951a97d0aac22e7a402e3a1049d14609e044935b",
+      "key": "supply-aave-token-original",
+      "raw_file": "data/raw/supply-aave-token-original.txt",
+      "metadata_file": "data/raw/supply-aave-token-original.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://bsc-rpc.publicnode.com",
+      "retrieved_at": "2026-10-03T10:26:11.494388+00:00",
+      "sha256": "49acab13478bf7d99a2089d84cec5265e249da1366769c6f2f78913fbe8cc684",
+      "key": "supply-cake-finalized-rpc",
+      "raw_file": "data/raw/supply-cake-finalized-rpc.json",
+      "metadata_file": "data/raw/supply-cake-finalized-rpc.meta.json",
+      "status": "fresh",
+      "request": [
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "method": "eth_getBlockByNumber",
+          "params": [
+            "finalized",
+            false
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+              "data": "0x8da5cb5b"
+            },
+            "finalized"
+          ]
+        },
+        {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "method": "eth_call",
+          "params": [
+            {
+              "to": "0x73feaa1ee314f8c655e354234017be2193c9e24e",
+              "data": "0x0755e0b6"
+            },
+            "finalized"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pancakeswap/pancake-farm/master/contracts/MasterChef.sol",
+      "retrieved_at": "2026-10-03T10:25:45.274033+00:00",
+      "sha256": "0b54698c2ddb07d50820c09075ef18d995f500f65a5f042f1f97590e23bd494a",
+      "key": "supply-cake-masterchef-source",
+      "raw_file": "data/raw/supply-cake-masterchef-source.txt",
+      "metadata_file": "data/raw/supply-cake-masterchef-source.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://forum.pancakeswap.finance/t/discussion-of-proposal-to-reduce-cake-token-max-supply/1551.json",
+      "retrieved_at": "2026-10-03T10:22:53.770095+00:00",
+      "sha256": "3d90235d6d34c07fc7f75fbe62d44c7aee79055b255e63fff53a1cf7fcda7e80",
+      "key": "supply-cake-maxcap-governance",
+      "raw_file": "data/raw/supply-cake-maxcap-governance.json",
+      "metadata_file": "data/raw/supply-cake-maxcap-governance.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pancakeswap/pancake-farm/master/contracts/CakeToken.sol",
+      "retrieved_at": "2026-10-03T10:25:45.289377+00:00",
+      "sha256": "62c25be723232d7285482379e558e68a7200a9af5b7b4deffd9b5d6b8acfa937",
+      "key": "supply-cake-token-source",
+      "raw_file": "data/raw/supply-cake-token-source.txt",
+      "metadata_file": "data/raw/supply-cake-token-source.meta.json",
+      "status": "fresh"
+    },
+    {
+      "url": "https://forum.pancakeswap.finance/t/cake-tokenomics-proposal-3-0-true-ownership-simplified-governance-and-sustainable-growth/1237.json",
+      "retrieved_at": "2026-10-03T10:22:53.952441+00:00",
+      "sha256": "bb8d7e41c77b2611bcf3d9b632cd2799afab125b9fd22402c709482113415356",
+      "key": "supply-cake-tokenomics3-governance",
+      "raw_file": "data/raw/supply-cake-tokenomics3-governance.json",
+      "metadata_file": "data/raw/supply-cake-tokenomics3-governance.meta.json",
+      "status": "fresh"
+    }
+  ],
+  "failed_checks": [
+    {
+      "url": "https://repo.sourcify.dev/contracts/full_match/1/0x5d4aa78b08bc7c530e21bf7447988b1be7991322/metadata.json",
+      "result": "404; current verified code instead archived from Blockscout and linked to live proxy implementation slot"
+    },
+    {
+      "url": "https://ethereum-rpc.publicnode.com",
+      "result": "Explicit historical block eth_call batches returned HTTP403; successful finalized batches archived separately with their block timestamps."
+    },
+    {
+      "url": "https://rpc.flashbots.net",
+      "result": "batch response was JSON-RPC error, not data; not used in forecasts"
+    }
+  ]
+}

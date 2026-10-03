@@ -162,7 +162,8 @@ test('arbitrary range aggregation reproduces the saved thirty-day snapshot for a
   for (const p of snapshot.projects) {
     const original = p.windows['30'];
     const sources = [...p.data_sources, ...(original.flow_distributions?.sources || [])];
-    const raws = Object.fromEntries(sources.filter(source => ['fees', 'revenue', 'holders', 'supply', 'protocol'].includes(source.kind))
+    const kinds=p.flow?.mode==='reserve_and_gas_burn'?['chain_fees','gas_burn_policy_estimate']:['fees','revenue','holders','supply','protocol'];
+    const raws = Object.fromEntries(sources.filter(source => kinds.includes(source.kind))
       .map(source => [source.kind, JSON.parse(fs.readFileSync(new URL(source.response_path, webRoot)))]));
     const before = structuredClone(p);
     const ranged = createRangeProject(p, original.fees.start, original.fees.end, raws);
@@ -182,9 +183,71 @@ test('arbitrary range aggregation reproduces the saved thirty-day snapshot for a
       close(window[kind].composition.sum_usd, original[kind].composition.sum_usd, label);
     }
     assert.equal(window.holders.recurring_usd, original.holders.recurring_usd, p.ticker);
+    if (p.flow?.mode==='reserve_and_gas_burn' && original.gas_burn_estimate) {
+      const actual=window.gas_burn_estimate,expected=original.gas_burn_estimate;
+      assert.equal(actual.complete,expected.complete,'BNB dedicated model complete');
+      assert.equal(actual.covered_days,expected.covered_days,'BNB dedicated model coverage');
+      close(actual.usd,expected.usd,'BNB dedicated model USD');
+      close(actual.observed_usd,expected.observed_usd,'BNB dedicated model observed USD');
+      assert.deepEqual(actual.missing_dates,expected.missing_dates,'BNB dedicated model gaps');
+    }
     for (const kind of ['supply', 'protocol']) if (original.flow_distributions?.[kind]) {
       close(window.flow_distributions[kind].usd, original.flow_distributions[kind].usd, `${p.ticker} ${kind}`);
     }
     assert.deepEqual(p, before, p.ticker);
   }
+});
+
+const bscResponse=(rows,kind='fees')=>({...response(rows),id:'chain#bsc',category:'Chain',methodology:kind==='fees'?{Fees:'Transaction fees paid by users'}:{Revenue:'Amount of 10% BNB transaction fees that were burned'}});
+const bnbFixture=()=>({...fixture(),ticker:'BNB',flow:{mode:'reserve_and_gas_burn',revenue_is_income:false},zero_before:{fees:'2026-10-02',revenue:'2026-10-02',holders:'2026-10-02'},
+  data_sources:[{kind:'chain_fees'},{kind:'gas_burn_policy_estimate',assumed_ratio:.1,effective_from:'2021-11-30'}]});
+
+test('custom BNB windows keep actual BSC gas fees separate from the provider policy model and protocol income',()=>{
+  const p=bnbFixture(),before=structuredClone(p);
+  const raws={chain_fees:bscResponse([['2026-09-30',100],['2026-10-01',200]]),
+    gas_burn_policy_estimate:bscResponse([['2026-09-30',10],['2026-10-01',20]],'model'),
+    revenue:response([['2026-09-30',10],['2026-10-01',20]]),holders:response([['2026-09-30',10],['2026-10-01',20]])};
+  const w=selected(createRangeProject(p,'2026-09-30','2026-10-01',raws),2);
+  assert.equal(w.fees.usd,300);assert.equal(w.fees.evidence,'indexed_transaction_gas_fees');
+  assert.equal(w.gas_burn_estimate.usd,30);assert.equal(w.gas_burn_estimate.complete,true);assert.equal(w.gas_burn_estimate.covered_days,2);
+  assert.equal(w.gas_burn_estimate.evidence,'provider_policy_estimate');assert.equal(w.gas_burn_estimate.actual_burn_verified,false);assert.equal(w.gas_burn_estimate.cash_buyback_usd,null);
+  for(const kind of ['revenue','holders']) {assert.equal(w[kind].usd,null);assert.equal(w[kind].coverage_days,0);assert.equal(w[kind].documented_zero_days,0);}
+  assert.deepEqual(p,before);
+  const sameDay=selected(createRangeProject(p,'2026-10-01','2026-10-01',raws),1);
+  assert.equal(sameDay.fees.usd,200);assert.equal(sameDay.gas_burn_estimate.usd,20);
+});
+
+test('BNB model rejects missing matching days, pre-policy zeros, mismatches and wrong registered assumptions',()=>{
+  const fee=bscResponse([['2021-11-29',100],['2021-11-30',100],['2021-12-01',100]]);
+  const gas=bscResponse([['2021-11-29',0],['2021-11-30',10],['2021-12-01',11]],'model');
+  const w=selected(createRangeProject(bnbFixture(),'2021-11-29','2021-12-01',{fees:fee,gas_burn_policy_estimate:gas}),3);
+  assert.equal(w.fees.usd,300);assert.equal(w.gas_burn_estimate.usd,null);assert.equal(w.gas_burn_estimate.observed_usd,21);
+  assert.deepEqual(w.gas_burn_estimate.missing_dates,['2021-11-29']);assert.equal(w.gas_burn_estimate.documented_zero_days,0);
+  for(const changed of ['missing_fee','wrong_amount','missing_model','wrong_ratio','wrong_effective_date']) {
+    const p=bnbFixture(),fees=bscResponse([['2026-09-30',100],['2026-10-01',200]]),model=bscResponse([['2026-09-30',10],['2026-10-01',20]],'model');
+    if(changed==='missing_fee') fees.totalDataChart.shift();
+    if(changed==='wrong_amount') model.totalDataChart[0][1]=11.01;
+    if(changed==='wrong_ratio') p.data_sources[1].assumed_ratio=.2;
+    if(changed==='wrong_effective_date') p.data_sources[1].effective_from='2021-11-29';
+    const result=selected(createRangeProject(p,'2026-09-30','2026-10-01',{fees,gas_burn_policy_estimate:changed==='missing_model'?undefined:model}),2).gas_burn_estimate;
+    assert.equal(result.usd,null,changed);assert.equal(result.complete,false,changed);
+  }
+});
+
+test('BSC chain scope, UTC grid, nonnegative amounts, methodology and duplicate conflicts are checked independently',()=>{
+  for(const changed of ['scope','category','methodology','utc_time','conflict','negative']) {
+    const fees=bscResponse([['2026-09-30',100],['2026-10-01',200]]),gas=bscResponse([['2026-09-30',10],['2026-10-01',20]],'model');
+    if(changed==='scope') fees.id='chain#ethereum';
+    if(changed==='category') fees.category='DEX';
+    if(changed==='methodology') fees.methodology.Fees='New scope';
+    if(changed==='utc_time') fees.totalDataChart[0][0]+=3600;
+    if(changed==='negative') fees.totalDataChart[0][1]=-100;
+    if(changed==='conflict') fees.totalDataChart.push([second('2026-09-30'),101],[second('2026-09-30'),100]);
+    const w=selected(createRangeProject(bnbFixture(),'2026-09-30','2026-10-01',{fees,gas_burn_policy_estimate:gas}),2);
+    assert.equal(w.fees.usd,null,changed);assert.equal(w.gas_burn_estimate.usd,null,changed);
+  }
+  const zeros=selected(createRangeProject(bnbFixture(),'2026-10-01','2026-10-01',{fees:bscResponse([['2026-10-01',0]]),gas_burn_policy_estimate:bscResponse([['2026-10-01',0]],'model')}),1);
+  assert.equal(zeros.fees.usd,0);assert.equal(zeros.gas_burn_estimate.usd,0);assert.equal(zeros.gas_burn_estimate.complete,true);
+  const fees=bscResponse([['2026-10-01',100]]),wrongMethod=bscResponse([['2026-10-01',10]],'model');wrongMethod.methodology.Revenue='actual collected treasury profit';
+  assert.equal(selected(createRangeProject(bnbFixture(),'2026-10-01','2026-10-01',{fees,gas_burn_policy_estimate:wrongMethod}),1).gas_burn_estimate.usd,null);
 });

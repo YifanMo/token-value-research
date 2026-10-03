@@ -93,7 +93,8 @@ test('worker range results match full archived aggregation for every registered 
   assert.equal(result.projects.length, full.projects.length);
   assert.deepEqual(result.errors, []);
   for (const original of full.projects) {
-    const sources = [...original.data_sources.filter(source=>['fees','revenue','holders'].includes(source.kind)), ...(original.windows['30'].flow_distributions?.sources || [])];
+    const kinds=original.flow?.mode==='reserve_and_gas_burn'?['chain_fees','gas_burn_policy_estimate']:['fees','revenue','holders'];
+    const sources = [...original.data_sources.filter(source=>kinds.includes(source.kind)), ...(original.windows['30'].flow_distributions?.sources || [])];
     const responses = Object.fromEntries(sources.map(source => [source.kind, JSON.parse(fs.readFileSync(new URL(source.response_path, webRoot)))]));
     const expected = createRangeProject(original, start, end, responses);
     const actual = result.projects.find(p => p.ticker === original.ticker);

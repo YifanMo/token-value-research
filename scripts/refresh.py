@@ -390,21 +390,26 @@ def observed_return(values, event, offset):
 
 def archive_response(key, meta):
     """Pin this snapshot's response bytes so future refreshes cannot replace its evidence."""
-    path = RAW / (key + ".json")
+    return archive_file(RAW / (key + ".json"), meta, key)
+
+
+def archive_file(path, meta, label):
+    """Archive a reviewed schedule or public response without changing its bytes."""
     if not path.exists():
         return {}
     body = path.read_bytes()
     digest = hashlib.sha256(body).hexdigest()
     if meta.get("sha256") and meta["sha256"] != digest:
-        raise ValueError(f"{key} 的保存文件与抓取哈希不一致，先核实原始数据。")
-    archive = ROOT / "data" / "responses" / (digest + ".json")
+        raise ValueError(f"{label} 的保存文件与抓取哈希不一致，先核实原始数据。")
+    filename = digest + path.suffix
+    archive = ROOT / "data" / "responses" / filename
     archive.parent.mkdir(parents=True, exist_ok=True)
     if archive.exists():
         if archive.read_bytes() != body:
-            raise ValueError(f"{key} 的归档响应文件已改变。")
+            raise ValueError(f"{label} 的归档响应文件已改变。")
     else:
         archive.write_bytes(body)
-    return {"response_path": "../data/responses/" + digest + ".json", "stored_sha256": digest}
+    return {"response_path": "../data/responses/" + filename, "stored_sha256": digest}
 
 
 def supplemental_key(source):
@@ -444,7 +449,8 @@ def update_supplemental_sources(manifest, status, offline=False):
 
 
 def bnb_responses():
-    keys = [job[0] for job in bnb_data.bnb_jobs()] + [bnb_data.TRANSACTIONS_KEY, bnb_data.BLOCKS_KEY]
+    keys = [job[0] for job in bnb_data.bnb_jobs()] + [bnb_data.TRANSACTIONS_KEY, bnb_data.BLOCKS_KEY,
+                                                                  bnb_data.VALIDATOR_PARAMETERS_KEY]
     return {key: load(RAW / (key + ".json"), {}) for key in keys}
 
 
@@ -484,6 +490,7 @@ def compile_snapshot(as_of, fetch_meta, now=None):
     if supply_forecasts.get("verified_on", "") > as_of.isoformat():
         raise ValueError("供应排期复核日晚于 --as-of，不用于历史回测。")
     forecast_by_ticker = {x["ticker"]: x for x in supply_forecasts.get("projects", [])}
+    forecast_evidence = archive_file(ROOT / "data" / "supply-forecasts.json", {}, "供应排期")
     market = {x["id"]: x for x in load(RAW / "coingecko-markets.json", [])}
     for token in market.values():
         updated = token.get("last_updated")
@@ -509,9 +516,10 @@ def compile_snapshot(as_of, fetch_meta, now=None):
         ticker = profile["ticker"]
         slug, coin = PROJECTS[ticker]
         project = dict(profile)
-        project["supply_forecast"] = forecast_by_ticker.get(ticker)
-        if project["supply_forecast"]:
-            project["supply_forecast"]["verified_on"] = supply_forecasts.get("verified_on")
+        forecast = forecast_by_ticker.get(ticker)
+        project["supply_forecast"] = ({**forecast, **forecast_evidence,
+                                      "verified_on": forecast.get("verified_on") or supply_forecasts.get("verified_on")}
+                                     if forecast else None)
         m = market.get(coin, {})
         project["market"] = {key: m.get(key) for key in [
             "current_price", "market_cap", "fully_diluted_valuation", "circulating_supply",
@@ -565,6 +573,7 @@ def compile_snapshot(as_of, fetch_meta, now=None):
                 for kind, values in charts.items()}
             if ticker == "BNB":
                 project["windows"][str(days)]["burns"] = bnb["quarterly_windows"][str(days)]
+                project["windows"][str(days)]["gas_burn_estimate"] = bnb["gas_burn_estimate_windows"][str(days)]
             for kind, rule in flow_rules.items():
                 raw_values, excluded, statuses, issues = normalization[kind]
                 flow_window = project["windows"][str(days)][kind]
@@ -606,10 +615,17 @@ def compile_snapshot(as_of, fetch_meta, now=None):
                                "price_observation": price_observations.get(date),
                                "btc_observation": btc_observations.get(date),
                                "sol_observation": sol_observations.get(date)} for date in dates]
+        if ticker == "BNB":
+            for row in project["history"]:
+                row["gas_burn_estimate_usd"] = bnb["gas_burn_estimate_history"].get(row["date"])
         project["history_coverage"] = {
             kind: {"raw": series_coverage(raw_charts[kind]), "normalized": series_coverage(charts[kind]),
                    "normalization_rule": flow_rules.get(kind, {}).get("id"),
                    "documented_zero_before": profile.get("zero_before", {}).get(kind)} for kind in TYPES}
+        if ticker == "BNB":
+            project["history_coverage"]["gas_burn_estimate_usd"] = {
+                **series_coverage(bnb["gas_burn_estimate_history"]),
+                "evidence": "provider_policy_estimate", "actual_burn_verified": False}
         for name, values, primary, supplementary in [
             ("price", price, price_primary, price_supplementary),
             ("btc", btc, btc_primary, btc_supplementary),
@@ -655,6 +671,9 @@ def compile_snapshot(as_of, fetch_meta, now=None):
                                    for kind, dtype in TYPES.items()] if slug else []
         if ticker == "BNB":
             project["data_sources"] = bnb["data_sources"]
+            for source in project["data_sources"]:
+                if source["kind"] == "gas_burn_policy_estimate":
+                    source["effective_from"] = bnb_data.BEP95_START.isoformat()
         project["price_source"] = {"url": f"https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days=365&interval=daily",
                                    **fetch_meta.get(f"price-{coin}", {}),
                                    "provider": "CoinGecko", "first": min(price) if price else None,

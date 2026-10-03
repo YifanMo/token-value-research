@@ -5,6 +5,9 @@ import {burnStats} from './burns.js';
 
 const DAY = 86400000;
 const MAIN_KINDS = ['fees', 'revenue', 'holders'];
+const BEP95_START = '2021-11-30';
+const GAS_MODEL_RATE = .1;
+const GAS_MODEL_METHODOLOGY = 'Amount of 10% BNB transaction fees that were burned';
 
 function utcDate(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
@@ -39,6 +42,51 @@ function responseDaily(raw) {
     if (date) values.set(date, row[1]); // Same last-observation rule as the collector.
   }
   return values;
+}
+
+// BSC sources use an exact UTC-day grid and an explicit chain scope. Unlike
+// generic DeFi rows, conflicting duplicates cannot be resolved by taking last.
+function bscDaily(raw, field, methodology) {
+  const values=new Map(),issues=[];
+  const sourceAvailable=Array.isArray(raw?.totalDataChart);
+  if (!raw || raw.id!=='chain#bsc' || raw.category!=='Chain') return {values,issues:[{reason:'unexpected_protocol_or_scope'}],sourceAvailable};
+  if (!sourceAvailable) return {values,issues:[{reason:'missing_daily_chart'}],sourceAvailable};
+  if (raw.methodology?.[field]!==methodology) return {values,issues:[{reason:'methodology_changed_or_missing'}],sourceAvailable};
+  const conflicting=new Set();
+  for (const row of raw.totalDataChart) {
+    if (!Array.isArray(row) || row.length!==2 || !Number.isInteger(row[0]) || row[0]%86400!==0 || !known(row[1]) || row[1]<0) continue;
+    const date=dateOfSecond(row[0]);
+    if (!date || conflicting.has(date)) continue;
+    if (values.has(date) && values.get(date)!==row[1]) {
+      values.delete(date);conflicting.add(date);issues.push({date,reason:'conflicting_duplicate_day'});
+    } else values.set(date,row[1]);
+  }
+  return {values,issues,sourceAvailable};
+}
+
+function bscResponses(project, responses) {
+  const feeRaw=responses.chain_fees ?? responses.fees;
+  const modelRaw=responses.gas_burn_policy_estimate;
+  const fees=bscDaily(feeRaw,'Fees','Transaction fees paid by users');
+  const model=bscDaily(modelRaw,'Revenue',GAS_MODEL_METHODOLOGY);
+  const source=project.data_sources?.find(source=>source.kind==='gas_burn_policy_estimate');
+  if ((source?.assumed_ratio!=null && source.assumed_ratio!==GAS_MODEL_RATE) ||
+      (source?.effective_from!=null && source.effective_from!==BEP95_START)) {
+    model.values.clear();model.issues.push({reason:'registered_model_assumption_changed'});
+  }
+  for (const [date,amount] of model.values) {
+    let reason;
+    if (date<BEP95_START) reason='before_policy_effective';
+    else if (!fees.values.has(date)) reason='matching_fee_observation_missing';
+    else if (Math.abs(amount-fees.values.get(date)*GAS_MODEL_RATE)>1) reason='provider_ten_percent_model_does_not_reconcile';
+    if (reason) {model.values.delete(date);model.issues.push({date,reason});}
+  }
+  const response=(raw,series)=>series.sourceAvailable ? {...raw,totalDataChart:[...series.values].map(([date,amount])=>[utcDate(date)/1000,amount])} : undefined;
+  const normalizedFees=response(feeRaw,fees);
+  // The chain breakdown repeats the single BSC total; it is not a protocol
+  // business decomposition. Match the collector's explicit unknown composition.
+  if (normalizedFees) normalizedFees.totalDataChartBreakdown=[];
+  return {responses:{fees:normalizedFees,gas_burn_policy_estimate:response(modelRaw,model)},fees,model};
 }
 
 function protocolEarliest(responses) {
@@ -133,8 +181,11 @@ function aggregate(project, kind, raw, range, researchStart) {
 export function createRangeProject(project, start, end, responses = {}) {
   const range = validateDateRange(start, end);
   if (!range.valid) throw new RangeError(range.error);
-  const researchStart = protocolEarliest(responses);
-  const window = Object.fromEntries(MAIN_KINDS.map(kind => [kind, aggregate(project, kind, responses[kind], range, researchStart)]));
+  const bsc = isReserveBurn(project) ? bscResponses(project,responses) : null;
+  const primaryResponses = bsc ? bsc.responses : responses;
+  const primaryProject = bsc ? {...project,zero_before:{}} : project;
+  const researchStart = protocolEarliest(primaryResponses);
+  const window = Object.fromEntries(MAIN_KINDS.map(kind => [kind, aggregate(primaryProject, kind, primaryResponses[kind], range, researchStart)]));
   const oneoffs = [...new Set(project.holder_oneoff_dates || [])].filter(date => date >= start && date <= end).sort();
   Object.assign(window.holders, {oneoff_dates: oneoffs,
     recurring_usd: oneoffs.length ? null : window.holders.usd,
@@ -148,6 +199,15 @@ export function createRangeProject(project, start, end, responses = {}) {
     extra.complete = [...sourceKinds].every(kind => extra[kind].complete);
     window.flow_distributions = extra;
   }
-  if (isReserveBurn(project)) window.burns = burnStats(project, start, end);
+  if (bsc) {
+    const issues=series=>series.issues.filter(issue=>!issue.date || (issue.date>=start && issue.date<=end));
+    Object.assign(window.fees,{evidence:'indexed_transaction_gas_fees',scope:'BSC native transaction gas only',validation_issues:issues(bsc.fees)});
+    window.gas_burn_estimate={...aggregate(primaryProject,'gas_burn_estimate',primaryResponses.gas_burn_policy_estimate,range,researchStart),
+      evidence:'provider_policy_estimate',assumed_ratio:GAS_MODEL_RATE,effective_from:BEP95_START,
+      actual_burn_verified:false,cash_buyback_usd:null,tokens:null,validation_issues:issues(bsc.model)};
+    window.gas_burn_estimate.covered_days=window.gas_burn_estimate.coverage_days;
+    window.gas_burn_estimate.expected_days=range.days;
+    window.burns = burnStats(project, start, end);
+  }
   return {...project, windows: {...project.windows, [String(range.days)]: window}, custom_range: {...range, research_start: researchStart}};
 }

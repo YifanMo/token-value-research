@@ -1,0 +1,59 @@
+{
+  "ticker": "BNB",
+  "verified_on": "2026-10-03",
+  "profile_patch": {
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": 0,
+      "note": "现行协议没有常规新增BNB发行，验证者和质押奖励来自既有手续费；原2017团队归属排期已过，但当前储备外流与完整自由流通台账仍未知。新发行的已知0不代表全部释放或净流通变化为0。"
+    }
+  },
+  "supply_forecast_project": {
+    "ticker": "BNB",
+    "overview_component_id": "bnb-no-routine-mint",
+    "summary": "现行机制没有常规新增发行，原团队四年归属已过。储备处置、质押解除、跨链迁移和持有者出售仍可增加可交易数量；季度销毁预估不是已执行，不能由这两项已知0确认未来自由流通净通缩。",
+    "components": [
+      {
+        "id": "bnb-no-routine-mint",
+        "label": "常规新增发行 / 挖矿增发",
+        "evidence": "protocol_policy",
+        "mode": "zero",
+        "effect_label": "现行协议规则下无常规新增发行",
+        "usable_in_float_scenario": false,
+        "note": "BEP-95说明BNB无通胀挖矿奖励；验证者和委托人报酬主要来自既有用户Gas费用。Greenfield官方说明跨链采用lock/unlock且不mint。这里的0只对应常规经济供应增发，不是native资产的ERC-20 mint authority检查，也不保证未来治理永远不变。",
+        "sources": [
+          {"title": "官方BEP-95：无通胀挖矿奖励", "url": "https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP95.md"},
+          {"title": "官方Greenfield：跨链lock/unlock，不新增mint", "url": "https://docs.bnbchain.org/bnb-greenfield/core-concept/bnb-token-model/"}
+        ]
+      },
+      {
+        "id": "bnb-original-team-schedule",
+        "label": "原2017团队归属排期",
+        "evidence": "ended",
+        "mode": "zero",
+        "effect_label": "原四年排期已过；不是当前持仓为0",
+        "usable_in_float_scenario": false,
+        "note": "2017初始团队80M份额采用四年归属，原时间表不产生2026年以后的新增归属资格。2019官方改为团队放弃原份额并用于后续销毁承诺，不能将80M全部当日烧毁，也不能把原40%当当前待解锁份额。当前团队、储备及投资人钱包余额未完整归因。",
+        "sources": [
+          {"title": "官方2019团队原份额用途调整", "url": "https://www.binance.com/en/blog/all/356254016530468864"},
+          {"title": "VanEck发行人SEC披露引用：2017初始分配与四年归属", "url": "https://www.sec.gov/Archives/edgar/data/2066824/000162828025053634/vaneckbnbs-1a2.htm"}
+        ]
+      },
+      {
+        "id": "bnb-reserve-float",
+        "label": "储备 / 奖励分发 / 其他自由流通变动",
+        "evidence": "unknown",
+        "mode": "unknown",
+        "effect_label": "既有BNB的流通释放；完整排期未取得",
+        "usable_in_float_scenario": false,
+        "note": "质押奖励来自费用并非新增发行，但持仓转移、解除质押及既有储备分发仍会改变可交易供应。跨链BNB表示须避免重复计算。现有季度链上销毁和单次供应快照不足以补齐这些流通台账。",
+        "sources": [
+          {"title": "官方BNB跨链流通模型", "url": "https://docs.bnbchain.org/bnb-greenfield/core-concept/bnb-token-model/"},
+          {"title": "官方季度销毁机制与两条销毁路径", "url": "https://www.bnbchain.org/en/blog/36th-bnb-burn"}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "url": "https://raw.githubusercontent.com/aave/aave-token/master/contracts/token/LendToAaveMigrator.sol",
+  "retrieved_at": "2026-10-03T10:25:45.219146+00:00",
+  "sha256": "cbd1ea83af38696d8af4385a319b35daad3a78d3f96133ec85c7097f3454dd78",
+  "bytes": 2310,
+  "response_file": "data/raw/supply-aave-migrator-source.txt"
+}

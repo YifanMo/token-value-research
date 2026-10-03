@@ -1,0 +1,120 @@
+{
+  "url": "https://ethereum-rpc.publicnode.com",
+  "retrieved_at": "2026-10-03T10:24:19.414044+00:00",
+  "sha256": "b0f8d280d26966f3d46ccff9edcb102b75d42fc40590a008bf266e8ede21635b",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_getBlockByNumber",
+      "params": [
+        "finalized",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "eth_getStorageAt",
+      "params": [
+        "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "method": "eth_getStorageAt",
+      "params": [
+        "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+        "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103",
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+          "data": "0x18160ddd"
+        },
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+          "data": "0x70a0823100000000000000000000000025f2226b597e8f9514b3f68f00f494cf4f286491"
+        },
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+          "data": "0xdd62ed3e00000000000000000000000025f2226b597e8f9514b3f68f00f494cf4f2864910000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5"
+        },
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+          "data": "0x1652e7b70000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5"
+        },
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+          "data": "0xf11b81880000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5"
+        },
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+          "data": "0x919cd40f"
+        },
+        "finalized"
+      ]
+    }
+  ],
+  "response_file": "data/raw/supply-aave-finalized-rpc.json",
+  "call_labels": [
+    "block",
+    "implementation",
+    "admin",
+    "totalSupply",
+    "reserveBalance",
+    "reserveAllowance",
+    "assetData",
+    "assets",
+    "distributionEnd"
+  ]
+}

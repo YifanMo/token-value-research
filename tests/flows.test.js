@@ -243,3 +243,36 @@ test('building a model does not mutate caller statistics or configuration', () =
   buildFlow(p,30);
   assert.deepEqual(p,before);
 });
+
+test('BNB actual chain fees and policy Gas estimate form a distinct path without becoming protocol income or quarterly buybacks',()=>{
+  const p=fixture('BNB','reserve_and_gas_burn');
+  p.windows['30'].gas_burn_estimate={...series(20),evidence:'provider_policy_estimate',assumed_ratio:.1,effective_from:'2021-11-30',actual_burn_verified:false};
+  const m=buildFlow(p,30);
+  assert.equal(node(m,'fees').usd,200);assert.equal(node(m,'fees').evidence,'api');
+  assert.equal(node(m,'other').usd,20);assert.equal(node(m,'other').evidence,'estimate');
+  assert.equal(node(m,'revenue').usd,180);assert.equal(node(m,'revenue').label,'其余Gas费用（估算）');assert.equal(node(m,'revenue').evidence,'estimate');
+  assert.match(node(m,'revenue').note,/不能当作验证者实际收到/);
+  assert.equal(node(m,'funding').usd,null);assert.equal(node(m,'outcome').usd,null);
+  assert.ok(!m.edges.some(edge=>edge.from==='revenue'&&edge.to==='funding'));
+  assert.equal(m.gasBurnEstimateUsd,20);assert.equal(m.unallocatedUsd,null);
+  assert.ok(m.warnings.some(note=>note.includes('当前区块')&&note.includes('不能证明')));
+});
+
+test('BNB missing, nonmatching and pre-policy Gas model windows remain unknown while valid zero stays zero',()=>{
+  for(const changed of ['incomplete_fee','incomplete_model','missing_model','wrong_dates','wrong_ratio','changed_source_ratio','wrong_amount','pre_policy']) {
+    const p=fixture('BNB','reserve_and_gas_burn');
+    p.windows['30'].gas_burn_estimate={...series(20),evidence:'provider_policy_estimate',assumed_ratio:.1,effective_from:'2021-11-30'};
+    if(changed==='incomplete_fee') p.windows['30'].fees.complete=false;
+    if(changed==='incomplete_model') p.windows['30'].gas_burn_estimate.complete=false;
+    if(changed==='missing_model') delete p.windows['30'].gas_burn_estimate;
+    if(changed==='wrong_dates') p.windows['30'].gas_burn_estimate.start='2026-09-01';
+    if(changed==='wrong_ratio') p.windows['30'].gas_burn_estimate.assumed_ratio=.2;
+    if(changed==='changed_source_ratio') p.data_sources=[{kind:'gas_burn_policy_estimate',assumed_ratio:.2}];
+    if(changed==='wrong_amount') p.windows['30'].gas_burn_estimate.usd=100;
+    if(changed==='pre_policy') for(const kind of ['fees','gas_burn_estimate']) Object.assign(p.windows['30'][kind],{start:'2021-11-29',end:'2021-12-28'});
+    const m=buildFlow(p,30);
+    assert.equal(node(m,'other').usd,null,changed);assert.equal(node(m,'revenue').usd,null,changed);
+  }
+  const p=fixture('BNB','reserve_and_gas_burn');p.windows['30'].fees=series(0);p.windows['30'].gas_burn_estimate={...series(0),evidence:'provider_policy_estimate'};
+  const m=buildFlow(p,30);assert.equal(node(m,'fees').usd,0);assert.equal(node(m,'other').usd,0);assert.equal(node(m,'revenue').usd,0);
+});

@@ -1,0 +1,23 @@
+{
+  "url": "https://bsc-dataseed.bnbchain.org",
+  "retrieved_at": "2026-10-03T10:32:28.043481+00:00",
+  "sha256": "05fffc5bcbb8f1259999bdaf02b18f9125f6660748981b56deb9319aad2dcf35",
+  "status": "fresh",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": "current-block",
+      "method": "eth_getBlockByNumber",
+      "params": [
+        "latest",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "chain-id",
+      "method": "eth_chainId",
+      "params": []
+    }
+  ]
+}

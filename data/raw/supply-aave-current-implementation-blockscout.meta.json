@@ -1,0 +1,7 @@
+{
+  "url": "https://eth.blockscout.com/api/v2/smart-contracts/0x5d4aa78b08bc7c530e21bf7447988b1be7991322",
+  "retrieved_at": "2026-10-03T10:25:45.808125+00:00",
+  "sha256": "c1e894929e72b87ba456bf323ad0b2382e2109e9422c0c29695ffe8e988f9faa",
+  "bytes": 128945,
+  "response_file": "data/raw/supply-aave-current-implementation-blockscout.json"
+}

@@ -1,4 +1,4 @@
-"""BNB native-coin burns, kept separate from income and cash repurchases.
+"""BNB chain fees and burns, kept separate from corporate income/repurchases.
 
 The official burn announcements link the NodeReal-operated BNBBurn tracker.
 That tracker discovers transactions; BSC JSON-RPC proves their success, amount
@@ -26,6 +26,20 @@ REALTIME_KEY = "bnb-realtime-burn-info"
 BREAKDOWN_KEY = "bnb-burn-breakdown"
 TRANSACTIONS_KEY = "rpc-bnb-burn-transactions"
 BLOCKS_KEY = "rpc-bnb-burn-blocks"
+FEES_KEY = "bnb-bsc-fees"
+GAS_ESTIMATE_KEY = "bnb-bsc-chain-revenue-estimate"
+CURRENT_BLOCK_KEY = "bnb-current-block"
+VALIDATOR_PARAMETERS_KEY = "bnb-validator-parameters"
+LLAMA_FEES_URL = "https://api.llama.fi/summary/fees/bsc?dataType=dailyFees"
+LLAMA_GAS_ESTIMATE_URL = "https://api.llama.fi/summary/fees/bsc?dataType=dailyRevenue"
+LLAMA_ADAPTER_URL = "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/bsc.ts"
+VALIDATOR_SET = "0x0000000000000000000000000000000000001000"
+VALIDATOR_SOURCE_URL = "https://github.com/bnb-chain/bsc-genesis-contract/blob/master/contracts/BSCValidatorSet.sol"
+BEP95_START = dt.date(2021, 11, 30)
+GAS_ESTIMATE_METHODOLOGY = "Amount of 10% BNB transaction fees that were burned"
+# Ethereum Keccak-256 selectors of the public uint256 getters in BSCValidatorSet.
+BURN_RATIO_SELECTOR = "0x5192c82c"
+RATIO_SCALE_SELECTOR = "0x820dcaa8"
 HASH = re.compile(r"^0x[0-9a-fA-F]{64}$")
 BSC_EXPLORERS = {"bscscan.com", "www.bscscan.com", "bsctrace.com", "www.bsctrace.com"}
 
@@ -50,6 +64,12 @@ def _hex(value):
     return int(value, 16)
 
 
+def _abi_uint(value):
+    if not isinstance(value, str) or not re.fullmatch(r"0x[0-9a-fA-F]{64}", value):
+        raise ValueError("invalid_abi_uint256")
+    return int(value, 16)
+
+
 def _hash(value):
     return value.lower() if isinstance(value, str) and HASH.fullmatch(value) else None
 
@@ -65,12 +85,18 @@ def _transaction_hash(link):
 
 
 def jobs():
-    """Fixed public tracker endpoints; no embedded website API credentials."""
+    """Discovered/documented public sources; no embedded website credentials."""
     return [
         (QUARTERS_KEY, TRACKER + "/api/getQuarterBurns"),
         (SUPPLY_KEY, TRACKER + "/api/getBnbSupply"),
         (REALTIME_KEY, TRACKER + "/api/getRealTimeBurnInfo"),
         (BREAKDOWN_KEY, TRACKER + "/api/getBurnBreakdown"),
+        (FEES_KEY, LLAMA_FEES_URL),
+        (GAS_ESTIMATE_KEY, LLAMA_GAS_ESTIMATE_URL),
+        (CURRENT_BLOCK_KEY, RPC_URL, [
+            {"jsonrpc": "2.0", "id": "current-block", "method": "eth_getBlockByNumber", "params": ["latest", False]},
+            {"jsonrpc": "2.0", "id": "chain-id", "method": "eth_chainId", "params": []},
+        ]),
     ]
 
 
@@ -114,7 +140,7 @@ def rpc_jobs(raw, cutoff, stage="transactions"):
             for tx_hash in hashes for prefix, method in [
                 ("tx-", "eth_getTransactionByHash"), ("receipt-", "eth_getTransactionReceipt")]
         ]
-        return [(TRANSACTIONS_KEY, RPC_URL, payload)] if payload else []
+        return ([(TRANSACTIONS_KEY, RPC_URL, payload)] if payload else []) + parameter_jobs(raw)
     if stage == "blocks":
         proofs = _batch_results(raw.get(TRANSACTIONS_KEY))
         hashes = sorted({_hash(value.get("blockHash")) for key, value in proofs.items()
@@ -124,6 +150,141 @@ def rpc_jobs(raw, cutoff, stage="transactions"):
                    for block_hash in hashes]
         return [(BLOCKS_KEY, RPC_URL, payload)] if payload else []
     raise ValueError("BNB RPC stage must be transactions or blocks")
+
+
+def _current_block(raw):
+    observation = _batch_results(raw.get(CURRENT_BLOCK_KEY))
+    block = observation.get("current-block")
+    try:
+        if _hex(observation.get("chain-id")) != 56 or not isinstance(block, dict):
+            return None
+        if not _hash(block.get("hash")):
+            return None
+        _hex(block.get("number"))
+        _hex(block.get("timestamp"))
+        return block
+    except (ValueError, TypeError):
+        return None
+
+
+def parameter_jobs(raw):
+    """Pin both getters to the observed BSC block, never mix latest states."""
+    block = _current_block(raw)
+    if not block:
+        return []
+    number = block["number"]
+    payload = [{"jsonrpc": "2.0", "id": prefix + number, "method": "eth_call",
+                "params": [{"to": VALIDATOR_SET, "data": selector}, number]}
+               for prefix, selector in [("burn-ratio-", BURN_RATIO_SELECTOR), ("ratio-scale-", RATIO_SCALE_SELECTOR)]]
+    return [(VALIDATOR_PARAMETERS_KEY, RPC_URL, payload)]
+
+
+def _policy_observation(raw, metadata):
+    result = {"ratio": None, "burn_ratio": None, "ratio_scale": None,
+              "evidence": "unavailable", "snapshot_only": True,
+              "source_key": VALIDATOR_PARAMETERS_KEY, "contract": VALIDATOR_SET,
+              "contract_source_url": VALIDATOR_SOURCE_URL, **metadata.get(VALIDATOR_PARAMETERS_KEY, {}),
+              "note": "只核本区块的治理参数，不能证明整个历史观察窗口比例一直相同。"}
+    block = _current_block(raw)
+    if not block:
+        return result
+    proof = _batch_results(raw.get(VALIDATOR_PARAMETERS_KEY))
+    number = block["number"]
+    try:
+        ratio = _abi_uint(proof.get("burn-ratio-" + number))
+        scale = _abi_uint(proof.get("ratio-scale-" + number))
+        if scale <= 0 or ratio > scale:
+            return result
+        timestamp = _hex(block["timestamp"])
+        result.update(ratio=ratio / scale, burn_ratio=ratio, ratio_scale=scale,
+                      block_number=_hex(number), block_hash=block["hash"],
+                      observed_at=dt.datetime.fromtimestamp(timestamp, UTC).isoformat(),
+                      evidence="pinned_block_eth_call")
+    except (ValueError, TypeError, OverflowError, OSError):
+        pass
+    return result
+
+
+def _daily_series(response, cutoff):
+    """Only valid USD UTC-day rows; conflicting duplicate days become missing."""
+    if not isinstance(response, dict) or response.get("id") != "chain#bsc" or response.get("category") != "Chain":
+        return {}, {"source": "unexpected_protocol_or_scope"}
+    rows = response.get("totalDataChart")
+    if not isinstance(rows, list):
+        return {}, {"source": "missing_daily_chart"}
+    values, issues = {}, {}
+    for row in rows:
+        if not isinstance(row, list) or len(row) != 2:
+            continue
+        timestamp, amount = row
+        if isinstance(timestamp, bool) or not isinstance(timestamp, (int, float)) or not math.isfinite(timestamp):
+            continue
+        if int(timestamp) != timestamp or timestamp % 86400:
+            continue
+        if isinstance(amount, bool) or not isinstance(amount, (int, float)):
+            continue
+        numeric = _number(amount)
+        if numeric is None:
+            continue
+        try:
+            day = dt.datetime.fromtimestamp(timestamp, UTC).date()
+        except (ValueError, OverflowError, OSError):
+            continue
+        if day > cutoff:
+            continue
+        date = day.isoformat()
+        if date in issues:
+            continue
+        if date in values and values[date] != float(numeric):
+            values.pop(date)
+            issues[date] = "conflicting_duplicate_day"
+        else:
+            values[date] = float(numeric)
+    return values, issues
+
+
+def daily_window(history, end, days, *, evidence, label, source_key):
+    """Observed daily USD values only; gaps never become zero or annualized."""
+    end = _date(end)
+    if isinstance(days, bool) or not isinstance(days, int) or days <= 0:
+        raise ValueError("days must be a positive integer")
+    start = end - dt.timedelta(days=days - 1)
+    dates = [(start + dt.timedelta(days=offset)).isoformat() for offset in range(days)]
+    present = {date: history[date] for date in dates if _number(history.get(date)) is not None}
+    missing = [date for date in dates if date not in present]
+    observed = float(sum((Decimal(str(value)) for value in present.values()), Decimal(0)))
+    return {"start": start.isoformat(), "end": end.isoformat(), "days": days,
+            "expected_days": days, "covered_days": len(present), "missing_dates": missing,
+            "usd": observed if not missing else None, "observed_usd": observed if present else None,
+            "complete": not missing, "tokens": None, "actual_burn_verified": False,
+            "cash_buyback_usd": None, "evidence": evidence, "label": label, "source_key": source_key}
+
+
+def _chain_histories(raw, cutoff):
+    fee_response = raw.get(FEES_KEY)
+    fees, fee_issues = _daily_series(fee_response, cutoff)
+    fee_methods = fee_response.get("methodology") if isinstance(fee_response, dict) else None
+    if not isinstance(fee_methods, dict) or fee_methods.get("Fees") != "Transaction fees paid by users":
+        fees, fee_issues = {}, {"source": "fee_methodology_changed_or_missing"}
+    gas_response = raw.get(GAS_ESTIMATE_KEY)
+    estimate, gas_issues = _daily_series(gas_response, cutoff)
+    gas_methods = gas_response.get("methodology") if isinstance(gas_response, dict) else None
+    if not isinstance(gas_methods, dict) or gas_methods.get("Revenue") != GAS_ESTIMATE_METHODOLOGY:
+        estimate, gas_issues = {}, {"source": "gas_model_methodology_changed_or_missing"}
+    retained = {}
+    for date, amount in estimate.items():
+        # Provider has pre-BEP95 zeros. They are policy-model zeros, not burn events.
+        if _date(date) < BEP95_START:
+            continue
+        if date not in fees:
+            gas_issues[date] = "matching_fee_observation_missing"
+            continue
+        # API USD charts are rounded integers; allow their independent rounding.
+        if abs(amount - fees[date] * 0.1) > 1.0:
+            gas_issues[date] = "provider_ten_percent_model_does_not_reconcile"
+            continue
+        retained[date] = amount
+    return fees, retained, {"fees": fee_issues, "gas_burn_estimate": gas_issues}
 
 
 def _verified_transfer(tx_hash, proofs, blocks):
@@ -218,7 +379,9 @@ def quarterly_window(records, end, days, price):
 
 def _source(key, url, kind, metadata):
     return {"source_key": key, "kind": kind, "url": url,
-            **metadata.get(key, {}), "role": "rpc_proof" if key.startswith("rpc-") else "official_linked_indexer"}
+            **metadata.get(key, {}),
+            "role": "rpc_proof" if key.startswith("rpc-") or key in [CURRENT_BLOCK_KEY, VALIDATOR_PARAMETERS_KEY]
+            else "public_analytics_indexer" if key in [FEES_KEY, GAS_ESTIMATE_KEY] else "official_linked_indexer"}
 
 
 def compile_bnb(raw, cutoff, price, metadata=None):
@@ -226,6 +389,19 @@ def compile_bnb(raw, cutoff, price, metadata=None):
     cutoff = _date(cutoff)
     metadata = metadata or {}
     price = price or {}
+    fees, gas_estimate, chain_issues = _chain_histories(raw, cutoff)
+    gas_windows = {str(days): daily_window(gas_estimate, cutoff, days,
+                  evidence="provider_policy_estimate", label="BSC Gas销毁估算（供应商按链手续费10%推算）",
+                  source_key=GAS_ESTIMATE_KEY) for days in [7, 30, 90, 365]}
+    fee_windows = {str(days): daily_window(fees, cutoff, days,
+                  evidence="indexed_transaction_gas_fees", label="BSC链手续费（不含Binance企业收入）",
+                  source_key=FEES_KEY) for days in [7, 30, 90, 365]}
+    for gas_window in gas_windows.values():
+        gas_window.update(assumed_ratio=0.1, fee_scope="BSC native transaction gas only",
+                          usd_basis="provider_daily_usd_valuation_of_ten_percent_gas_fee_model",
+                          note="按供应商固定10%模型估算，未逐笔核验feeBurned事件；不与季度销毁冒充完整实际合计。")
+    policy = _policy_observation(raw, metadata)
+    policy["matches_provider_assumption"] = policy["ratio"] == 0.1 if policy["ratio"] is not None else None
     proofs = _batch_results(raw.get(TRANSACTIONS_KEY))
     blocks = _batch_results(raw.get(BLOCKS_KEY))
     records, seen = [], set()
@@ -300,25 +476,43 @@ def compile_bnb(raw, cutoff, price, metadata=None):
         record["source_url"] = TRACKER + "/api/getQuarterBurns"
         record["tx_url"] = record.get("transaction_url") or record.get("reported_transaction_url")
         record["usd_basis"] = "executed_native_tokens_times_same_utc_date_price; not_cash_cost"
-    sources = [_source(key, url, "burns" if key in [QUARTERS_KEY, BREAKDOWN_KEY] else "supply" if key == SUPPLY_KEY else "gas_burn", metadata)
-               for key, url in jobs()]
-    for key in [TRANSACTIONS_KEY, BLOCKS_KEY]:
+    kinds = {QUARTERS_KEY: "burns", BREAKDOWN_KEY: "burns", SUPPLY_KEY: "supply",
+             REALTIME_KEY: "gas_burn_snapshot", FEES_KEY: "chain_fees",
+             GAS_ESTIMATE_KEY: "gas_burn_policy_estimate", CURRENT_BLOCK_KEY: "policy_block"}
+    sources = [_source(job[0], job[1], kinds[job[0]], metadata) for job in jobs()]
+    for key in [TRANSACTIONS_KEY, BLOCKS_KEY, VALIDATOR_PARAMETERS_KEY]:
         if key in raw or key in metadata:
-            sources.append(_source(key, RPC_URL, "burn_proof", metadata))
+            sources.append(_source(key, RPC_URL, "gas_burn_policy" if key == VALIDATOR_PARAMETERS_KEY else "burn_proof", metadata))
+    for source in sources:
+        if source["source_key"] == FEES_KEY:
+            source.update(methodology_url=LLAMA_ADAPTER_URL, evidence="indexed_transaction_gas_fees",
+                          scope="BSC native transaction gas only")
+        elif source["source_key"] == GAS_ESTIMATE_KEY:
+            source.update(methodology_url=LLAMA_ADAPTER_URL, evidence="provider_policy_estimate", assumed_ratio=0.1)
     windows = {str(days): quarterly_window(records, cutoff, days, price) for days in [7, 30, 90, 365]}
     limitations = [
         "季度Auto-Burn独立于Binance CEX收入；无法由销毁估值反推交易所收入、利润或实际现金回购。",
         "只有successful receipt、dead地址、chainId和block一致的BSC native转账进入已核季度统计。",
         "旧Ethereum/Beacon季度记录未核；当前BNBBurn预测行、错误日期和Pioneer统计不得重复当已执行量。",
-        "BEP-95只取得当前滚动7日及累计摘要，完整历史日序列缺失；季度和Gas两项不做完整合计。",
+        "BSC链手续费来自交易Gas索引；只覆盖BSC，不含Binance企业收入、opBNB或Greenfield费用。",
+        "Gas日销毁美元值为供应商按链手续费10%推算；本区块RPC参数观测不证明整个历史窗口都采用该比例。",
+        "实际BEP-95只取得滚动7日及累计摘要，缺逐日feeBurned事件核验；季度与Gas模型不做完整实际合计。",
         "跟踪器不同摘要口径存在差异；供应与销毁拆分不自动对平初始2亿，需独立复核。",
         "历史价格缺失时不使用当前价格代替，净流通变化仍缺完整供应快照。",
     ]
-    return {"charts": {"fees": {}, "revenue": {}, "holders": {}},
+    return {"charts": {"fees": fees, "revenue": {}, "holders": {}},
             "burn_history": history, "burn_records": records, "quarterly_records": records,
             "burn_windows": windows, "quarterly_windows": windows,
             "supply_observation": supply_observation, "onchain_supply": None,
             "realtime_observation": realtime_observation, "data_sources": sources,
+            "chain_fee_history": fees, "chain_fee_windows": fee_windows,
+            "gas_burn_estimate_history": gas_estimate, "gas_burn_estimate_windows": gas_windows,
+            "gas_burn_policy_observation": policy, "chain_data_issues": chain_issues,
+            "chain_data_coverage": {"fees_first_date": min(fees) if fees else None,
+                                    "fees_last_date": max(fees) if fees else None,
+                                    "fee_days": len(fees), "gas_estimate_first_date": min(gas_estimate) if gas_estimate else None,
+                                    "gas_estimate_last_date": max(gas_estimate) if gas_estimate else None,
+                                    "gas_estimate_days": len(gas_estimate), "actual_daily_gas_burn_verified": False},
             "complete_total_burn_history": False, "cutoff_utc": cutoff.isoformat(),
             "income_linked": False, "mode": "reserve_and_gas_burn", "limitations": limitations}
 

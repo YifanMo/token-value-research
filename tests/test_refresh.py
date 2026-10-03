@@ -296,6 +296,23 @@ class Windows(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     refresh.archive_response('test',{'sha256':digest})
 
+    def test_reviewed_source_pins_exact_text_bytes_and_keeps_extension(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=pathlib.Path(folder)
+            source=root/'official-source.txt'
+            body='有日期的政策说明\n'.encode('utf-8')
+            source.write_bytes(body)
+            digest=refresh.hashlib.sha256(body).hexdigest()
+            with patch.object(refresh,'ROOT',root):
+                evidence=refresh.archive_file(source,{'sha256':digest},'政策证据')
+                archive=root/'data'/'responses'/(digest+'.txt')
+                self.assertEqual(archive.read_bytes(),body)
+                self.assertEqual(evidence['response_path'],'../data/responses/'+digest+'.txt')
+                source.write_bytes(b'new policy')
+                self.assertEqual(archive.read_bytes(),body)
+                with self.assertRaises(ValueError):
+                    refresh.archive_file(source,{'sha256':digest},'政策证据')
+
 
 class MultiYearHistory(unittest.TestCase):
     cutoff = dt.date(2026, 10, 1)

@@ -40,3 +40,31 @@ test('price comparison uses one common date and preserves missing days',()=>{
   assert.equal(data.rows[3].price,120);
   assert.equal(data.rows[3].btc,150);
 });
+
+test('BSC charts keep real fees and modeled burns separate from quarterly records',()=>{
+  const project={flow:{revenue_is_income:false},history:[
+    {date:'2026-01-01',fees:100,gas_burn_estimate_usd:10,holders:999999},
+    {date:'2026-01-02',fees:200,gas_burn_estimate_usd:null,holders:999999},
+    {date:'2026-01-03',fees:0,gas_burn_estimate_usd:0},
+  ]};
+  const data=selectedChartData(project,'2026-01-01','2026-01-03','chain_fees');
+  assert.deepEqual(data.seriesNames,['fees','gas_burn_estimate_usd']);
+  assert.equal(data.rows[0].fees,100);
+  assert.equal(data.rows[1].gas_burn_estimate_usd,null);
+  assert.equal(data.rows[2].gas_burn_estimate_usd,0);
+  assert.equal(data.rows[0].holders,undefined);
+});
+
+test('monthly BSC model gaps do not erase independently complete fee months',()=>{
+  const history=[];
+  for(let time=Date.parse('2026-01-31');time<=Date.parse('2026-05-01');time+=86400000) {
+    const date=new Date(time).toISOString().slice(0,10);
+    history.push({date,fees:100,gas_burn_estimate_usd:date==='2026-02-02'?null:10});
+  }
+  const data=selectedChartData({history},'2026-01-31','2026-05-01','chain_fees');
+  assert.equal(data.monthly,true);
+  assert.equal(data.rows[0].fees,100);
+  assert.equal(data.rows[1].fees,2800);
+  assert.equal(data.rows[1].gas_burn_estimate_usd,null);
+  assert.equal(data.rows.at(-1).gas_burn_estimate_usd,10);
+});

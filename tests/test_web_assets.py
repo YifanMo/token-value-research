@@ -43,7 +43,7 @@ class WebAssetDelivery(unittest.TestCase):
     def row(date, index):
         return {'date': date, 'fees': index - .35, 'revenue': index * 10,
                 'holders': None if index == 5 else index, 'price': None if index == 5 else index + 1,
-                'btc': index + 100, 'sol': index + 10,
+                'btc': index + 100, 'sol': index + 10, 'gas_burn_estimate_usd': None,
                 'price_observation': {'timestamp': index, 'provider': 'DeFiLlama coins API', 'source_key': 'immutable-source'},
                 'extra_provenance': {'null_is_unknown': True}}
 
@@ -115,6 +115,29 @@ class WebAssetDelivery(unittest.TestCase):
         with patch.object(web_assets, 'write_atomic', side_effect=observe):
             web_assets.generate_web_assets(self.snapshot, self.root)
         self.assertEqual(writes[-1], 'dashboard-lite.json')
+
+    def test_bnb_duplicate_daily_maps_are_lazy_but_window_evidence_stays(self):
+        bnb = copy.deepcopy(self.snapshot['projects'][0])
+        bnb['ticker'] = 'BNB'
+        bnb['burns'] = {
+            'chain_fee_history': {'2020-01-01': 123, '2026-10-01': 999},
+            'gas_burn_estimate_history': {'2020-01-01': None, '2026-10-01': 99.9},
+            'gas_burn_estimate_windows': {'30': {'usd': 99.9, 'actual_burn_verified': False}},
+            'data_sources': [{'response_path': '../data/responses/pinned.json'}],
+        }
+        bnb['history'][-2]['gas_burn_estimate_usd'] = 99.9
+        self.snapshot['projects'].append(bnb)
+        before = copy.deepcopy(self.snapshot)
+        web_assets.generate_web_assets(self.snapshot, self.root)
+        lite = self.lite()['projects'][1]
+        self.assertNotIn('chain_fee_history', lite['burns'])
+        self.assertNotIn('gas_burn_estimate_history', lite['burns'])
+        self.assertEqual(lite['burns']['gas_burn_estimate_windows'], bnb['burns']['gas_burn_estimate_windows'])
+        self.assertEqual(lite['history'][-1]['gas_burn_estimate_usd'], 99.9)
+        self.assertEqual(self.snapshot, before)
+        years = self.lite()['delivery']['history']['BNB']
+        full_rows = [row for item in years for row in json.loads(self.local_path(item['path']).read_text())['history']]
+        self.assertEqual(full_rows, bnb['history'])
 
     def test_stable_history_urls_and_changed_year_gets_new_url_without_overwriting_old(self):
         web_assets.generate_web_assets(self.snapshot, self.root)

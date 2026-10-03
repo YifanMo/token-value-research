@@ -1,0 +1,32 @@
+{
+  "url": "https://bsc-dataseed.bnbchain.org",
+  "retrieved_at": "2026-10-03T10:32:29.394113+00:00",
+  "sha256": "86b2455e6ff738ca01c6cb7909aa87d7c153a6513153f6d4b957b203e93ff275",
+  "status": "fresh",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": "burn-ratio-0x77a80f3",
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x0000000000000000000000000000000000001000",
+          "data": "0x5192c82c"
+        },
+        "0x77a80f3"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "ratio-scale-0x77a80f3",
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x0000000000000000000000000000000000001000",
+          "data": "0x820dcaa8"
+        },
+        "0x77a80f3"
+      ]
+    }
+  ]
+}

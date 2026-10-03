@@ -1,0 +1,46 @@
+{
+  "url": "https://bsc-rpc.publicnode.com",
+  "retrieved_at": "2026-10-03T10:26:11.494388+00:00",
+  "sha256": "49acab13478bf7d99a2089d84cec5265e249da1366769c6f2f78913fbe8cc684",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_getBlockByNumber",
+      "params": [
+        "finalized",
+        false
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+          "data": "0x8da5cb5b"
+        },
+        "finalized"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x73feaa1ee314f8c655e354234017be2193c9e24e",
+          "data": "0x0755e0b6"
+        },
+        "finalized"
+      ]
+    }
+  ],
+  "call_labels": [
+    "block",
+    "cakeOwner",
+    "cakePerBlock"
+  ],
+  "response_file": "data/raw/supply-cake-finalized-rpc.json"
+}
