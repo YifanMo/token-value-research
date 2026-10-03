@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {bnbChainWindow, bnbChainMarkup, burnStats, burnFinancialMarkup, burnObservationsMarkup} from '../web/burns.js';
+import {bnbChainWindow, bnbChainMarkup, burnStats, burnFinancialMarkup, burnObservationsMarkup, latestQuarterBurn, quarterlyPlanMarkup, quarterComparisonMarkup} from '../web/burns.js';
 
 const fixture = () => ({ticker:'BNB',market:{market_cap:10000,fully_diluted_valuation:20000},
   history:[
@@ -133,4 +133,26 @@ test('each new source kind exposes its API and immutable response, and legacy si
   assert.match(html,/季度Auto-Burn另列/);assert.match(html,/不是实际现金回购或项目净利润/);
   assert.equal(html,burnFinancialMarkup(p,'2026-09-29','2026-10-01'));
   assert.match(burnObservationsMarkup(p),/最近滚动7天/);assert.match(burnObservationsMarkup(p),/独立于上方日期筛选/);
+});
+
+test('latest executed quarter stays visible outside the selected window and excludes forecasts beyond the snapshot',()=>{
+  const p=fixture();p.flow_end='2026-10-02';p.burns.cutoff_utc='2026-10-02';
+  p.burns.quarterly_records=[
+    {rank:36,date:'2026-07-15',tokens:1615827.795,transaction_hash:'executed',verified:true},
+    {rank:37,date:'2026-10-15',tokens:2000000,transaction_hash:'future',verified:true},
+    {rank:37,date:'2026-10-01',tokens:3000000,transaction_hash:'estimate',verified:false},
+    {rank:35,date:'2026-04-15',tokens:1500000,transaction_hash:'previous',verified:true}];
+  p.quarterly_burn_plan={target_supply_tokens:100000000,verified_on:'2026-10-03',
+    description:'每季度按价格、区块数和参数销毁',cash_note:'独立于Binance收入',history_note:'旧利润比例不能沿用'};
+  p.events=[{date:'2026-07-15',title:'第36次季度销毁已执行',source:'https://example.com/36th'}];
+  assert.equal(latestQuarterBurn(p).rank,36);
+  assert.equal(burnStats(p,'2026-09-03','2026-10-02').count,0);
+  const html=quarterlyPlanMarkup(p), cell=quarterComparisonMarkup(p,'2026-09-03','2026-10-02');
+  assert.match(html,/1,615,827\.795 BNB/);assert.match(html,/100,000,000 BNB/);
+  assert.match(html,/https:\/\/example.com\/36th/);assert.match(html,/不受上方日期筛选影响/);
+  assert.doesNotMatch(html,/3,000,000|2,000,000|第37次/);
+  assert.match(cell,/所选期间没有已核事件/);assert.match(cell,/最近一笔 1,615,827\.795 BNB/);
+  assert.doesNotMatch(cell,/<strong>0/);
+  p.burns.quarterly_records=[];
+  assert.equal(latestQuarterBurn(p),null);assert.match(quarterlyPlanMarkup(p),/尚未取得/);
 });

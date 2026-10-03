@@ -935,6 +935,33 @@
       "future": "现行常规新发行为0、原2017团队归属排期已过；此0不覆盖储备外流、费用奖励分发、解除质押和其他自由流通变化。季度预测不是已执行，完整未来释放日历仍未取得",
       "supplyEffect": "已核季度销毁减少原生代币存量，但逐日实际Gas销毁、旧链销毁与完整流通台账未齐，不能仅凭烧币确认自由流通净通缩",
       "event_date": "2021-12-22"
+    },
+    "quarterly_burn_plan": {
+      "verified_on": "2026-10-03",
+      "target_supply_tokens": 100000000,
+      "description": "季度销毁最早由Binance发起，目前由BNB基金会公告执行。2021年12月起改用Auto-Burn，根据BNB价格、季度区块数和可调整参数确定销毁数量，目标将总供应逐步降至1亿枚。",
+      "cash_note": "现行季度计划独立于Binance交易所收入。实际销毁枚数可以核验；代币的美元估值不代表市场回购花费，也不能倒推币安利润。",
+      "sources": [
+        {
+          "title": "现行机制与供应目标 ↗",
+          "url": "https://www.bnbchain.org/en/blog/36th-bnb-burn"
+        },
+        {
+          "title": "2021年Auto-Burn变更公告 ↗",
+          "url": "https://www.binance.com/en/support/announcement/detail/611c8f41f49e4cd2a02a7c7d66fdf3c0"
+        }
+      ],
+      "history_note": "早期官方曾描述每季度用利润的20%回购销毁；2019年官方明确说明当时不做市场回购，而是烧毁收入中已持有的BNB和团队库存。2021年12月改用Auto-Burn，旧利润比例不能沿用到当前，也不能据此推定最新每一笔销毁的库存来源。",
+      "history_sources": [
+        {
+          "title": "2018年官方早期计划说明 ↗",
+          "url": "https://medium.com/binanceexchange/binances-first-year-in-review-b0708c4c485c"
+        },
+        {
+          "title": "2019年第9次销毁与库存来源 ↗",
+          "url": "https://www.binance.com/en/blog/all/391462665575727104"
+        }
+      ]
     }
   },
   {

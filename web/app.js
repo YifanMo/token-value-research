@@ -7,7 +7,7 @@ import {validateDateRange} from './periods.js';
 import {selectedChartData} from './charts.js';
 import {HistoryLoader} from './data-loader.js';
 import {isReserveBurn, statisticLabel, isHypeFeeReconciliation, captureBadge} from './models.js';
-import {burnFinancialMarkup, burnStats} from './burns.js';
+import {burnFinancialMarkup, burnStats, quarterComparisonMarkup} from './burns.js';
 import {feeReconciliationMarkup} from './fee-view.js';
 
 const valuationBasis = 'reported';
@@ -167,7 +167,7 @@ function render() {
   $('#comparison-body').innerHTML = snapshot.projects.map(project => {
     const m = calculate(project,state.days,valuationBasis);
     const source=buybackSource(project);
-    return `<tr class="${state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.ticker===project.ticker}"><strong>${esc(project.ticker)} <span class="number-sub">${esc(project.name)}</span></strong><span>${esc(project.capture.label)}</span></button></td><td>${amount(project.market.market_cap,true)}</td><td>${amount(m.fdv,true)}</td><td>${isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核收入':amount(m.revenue,true)}<span class="number-sub">${isReserveBurn(project)?'BSC链手续费 '+amount(m.fees,true)+' · '+state.days+'天':m.revenueStatus==='valuation_only'?statisticLabel(project)+' '+amount(m.reportedRevenue,true):`${state.days}天 / ${esc(state.end)}`}</span>${!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`<span class="stat-method">仅覆盖${m.coverage.revenue.coverage_days}/${state.days}天</span>`:''}${project.ticker==='JUP'?'<span class="number-sub">含覆盖重叠，待去重</span>':''}${project.flow_normalizations?'<span class="number-sub">已剔除已核重复项</span>':''}</td><td>${isReserveBurn(project)?'不适用<span class="number-sub">已核季度记录见详情</span>':metricPair(m.grossYieldMc,m.grossYieldFdv)}<span class="stat-method">${esc(project.capture.stat_label)}</span></td><td class="accent">${supplyReference(project)}</td>${financialCells(project,m)}<td class="source-cell"><span class="source-provider">${esc(project.ticker)} · ${esc(source?.provider || (isReserveBurn(project)?'链上核验记录':'DefiLlama'))}</span><button class="source-open" data-source="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看本次 API 返回">${isReserveBurn(project)?'查看已核销毁记录':'查看本次 API 返回'}</button>${source?link({title:'在线 API ↗',url:source.url}):isReserveBurn(project)?link({title:'季度记录在线 API ↗',url:project.burns?.quarterly_records?.find(record=>record.verified)?.source_url}):'<span class="muted">来源缺失</span>'}</td></tr>`;
+    return `<tr class="${state.ticker===project.ticker?'selected':''}"><td><button class="token-select" data-token="${esc(project.ticker)}" aria-pressed="${state.ticker===project.ticker}"><strong>${esc(project.ticker)} <span class="number-sub">${esc(project.name)}</span></strong><span>${esc(project.capture.label)}</span></button></td><td>${amount(project.market.market_cap,true)}</td><td>${amount(m.fdv,true)}</td><td>${isReserveBurn(project)?'不适用':m.revenueStatus==='valuation_only'?'待核收入':amount(m.revenue,true)}<span class="number-sub">${isReserveBurn(project)?'BSC链手续费 '+amount(m.fees,true)+' · '+state.days+'天':m.revenueStatus==='valuation_only'?statisticLabel(project)+' '+amount(m.reportedRevenue,true):`${state.days}天 / ${esc(state.end)}`}</span>${!isReserveBurn(project)&&m.coverage?.revenue?.complete===false?`<span class="stat-method">仅覆盖${m.coverage.revenue.coverage_days}/${state.days}天</span>`:''}${project.ticker==='JUP'?'<span class="number-sub">含覆盖重叠，待去重</span>':''}${project.flow_normalizations?'<span class="number-sub">已剔除已核重复项</span>':''}</td><td>${isReserveBurn(project)?quarterComparisonMarkup(project,state.start,state.end):metricPair(m.grossYieldMc,m.grossYieldFdv)}${isReserveBurn(project)?'':`<span class="stat-method">${esc(project.capture.stat_label)}</span>`}</td><td class="accent">${supplyReference(project)}</td>${financialCells(project,m)}<td class="source-cell"><span class="source-provider">${esc(project.ticker)} · ${esc(source?.provider || (isReserveBurn(project)?'链上核验记录':'DefiLlama'))}</span><button class="source-open" data-source="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看本次 API 返回">${isReserveBurn(project)?'查看已核销毁记录':'查看本次 API 返回'}</button>${source?link({title:'在线 API ↗',url:source.url}):isReserveBurn(project)?link({title:'季度记录在线 API ↗',url:project.burns?.quarterly_records?.find(record=>record.verified)?.source_url}):'<span class="muted">来源缺失</span>'}</td></tr>`;
   }).join('');
   const missing = Object.entries(snapshot.source_status).filter(([,value])=>value.status==='missing');
   const stale = snapshot.projects.filter(p=>(!isReserveBurn(p)&&p.flow_lag_days>0) || p.market_lag_days>0);
@@ -178,6 +178,10 @@ function render() {
   document.querySelectorAll('[data-supply]').forEach(button=>button.addEventListener('click',()=>openSupply(button.dataset.supply)));
   document.querySelectorAll('[data-financial]').forEach(button=>button.addEventListener('click',()=>openFinancial(button.dataset.financial)));
   document.querySelectorAll('[data-token]').forEach(button => button.addEventListener('click',()=>selectToken(button.dataset.token,true)));
+  document.querySelectorAll('[data-quarter-plan]').forEach(button=>button.addEventListener('click',()=>{
+    selectToken(button.dataset.quarterPlan);
+    $('#bnb-quarterly-plan')?.scrollIntoView({behavior:'smooth',block:'start'});
+  }));
   renderDetail();
 }
 

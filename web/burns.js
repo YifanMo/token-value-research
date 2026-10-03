@@ -139,16 +139,57 @@ export function burnStats(project, start, end) {
     note: '仅合计已核季度记录，未覆盖全部历史季度、实时Gas销毁或其他供应变动；未年化，销毁日估值不是回购支出。'};
 }
 
+// The latest executed burn belongs to the research snapshot, independently of
+// the selected fee window. A forecast or a future-dated row cannot replace it.
+export function latestQuarterBurn(project) {
+  const cutoff = project.burns?.cutoff_utc || project.flow_end;
+  if (!validDate(cutoff)) return null;
+  return burnStats(project, '1970-01-01', cutoff).records
+    .filter(record => nonnegative(record.tokens)).at(-1) || null;
+}
+
+const quarterAnnouncement = (project, record) => record && (project.events || []).find(event =>
+  event.date === record.date && event.title?.includes(`第${record.rank}次`))?.source;
+
+export function quarterlyPlanMarkup(project) {
+  const plan = project.quarterly_burn_plan;
+  if (!plan) return '';
+  const latest = latestQuarterBurn(project);
+  const recordSource = bnbSources(project).find(source => source.kind === 'burns');
+  return `<article class="card quarterly-plan" id="bnb-quarterly-plan" aria-labelledby="quarterly-plan-title">
+    <h3 id="quarterly-plan-title">BNB季度销毁计划 · Auto-Burn</h3>
+    <p>${esc(plan.description)}</p>
+    <div class="mini-stats"><div><span>执行频率</span><strong>每季度</strong></div>
+    <div><span>季度计划的总供应目标</span><strong>${quantity(plan.target_supply_tokens)} BNB</strong></div>
+    <div><span>最近已核执行 · 当前研究快照</span><strong>${latest ? `第${esc(latest.rank || '未知')}次` : '尚未取得'}</strong><span class="number-sub">${esc(latest?.date || '未知日期')}</span></div>
+    <div><span>最近一笔实际销毁枚数</span><strong>${quantity(latest?.tokens)} BNB</strong></div></div>
+    <p>最近一笔按当前研究快照展示，不受上方日期筛选影响；所选期间的合计另列在下表。未来季度的执行日期与数量以实际公告及交易为准。</p>
+    <p>${esc(plan.cash_note)} BEP-95的Gas实时销毁另列，不包含在这些季度交易枚数中。</p>
+    <div class="sources">${(plan.sources || []).map(source => link(source.title, source.url)).join(' ')} ${link('最近一笔官方公告 ↗',quarterAnnouncement(project,latest))} ${link('最近一笔销毁交易 ↗',latest?.tx_url || latest?.transaction_url)}</div>
+    <p class="footnote">季度记录：${sourceLinks(recordSource)}。机制复核日：${esc(plan.verified_on || '未知')}。</p>
+    <details><summary>早期“利润回购”与现行季度销毁的区别</summary><p>${esc(plan.history_note)}</p><div class="sources">${(plan.history_sources || []).map(source => link(source.title, source.url)).join(' ')}</div></details>
+  </article>`;
+}
+
+export function quarterComparisonMarkup(project, start, end) {
+  const stats = burnStats(project,start,end), latest = latestQuarterBurn(project);
+  return `<button class="metric-button" data-quarter-plan="${esc(project.ticker)}" aria-label="${esc(project.ticker)} 查看季度销毁计划">
+    <strong>${stats.count ? quantity(stats.tokens)+' BNB' : '季度销毁计划 ↗'}</strong>
+    <span class="number-sub">${stats.count ? `所选期间已核${stats.count}笔 · 未年化` : '所选期间没有已核事件'}</span>
+    ${latest ? `<span class="number-sub">最近一笔 ${quantity(latest.tokens)} BNB · ${esc(latest.date)}</span>` : ''}
+    <span class="stat-method">实际销毁枚数；现金回购收益率不适用</span></button>`;
+}
+
 export function burnRecordsMarkup(project, start, end) {
   const stats = burnStats(project, start, end);
-  const rows = stats.records.map(record => `<tr><td>${esc(record.rank ? '第'+record.rank+'次（'+(record.quarter || '季度销毁')+'）' : record.quarter || record.title || '季度销毁')}<span class="number-sub">${esc(record.date)}</span></td><td>${quantity(record.tokens)}</td><td>${dollars(record.usd)}<span class="number-sub">${esc(usdBasis(record))}</span></td><td>${link('公告 / 依据', record.source_url || record.source || record.url)} ${link('交易记录', record.tx_url || record.transaction_url || (/^https?:\/\//.test(record.tx || '') ? record.tx : null))}</td></tr>`).join('');
+  const rows = stats.records.map(record => `<tr><td>${esc(record.rank ? '第'+record.rank+'次（'+(record.quarter || '季度销毁')+'）' : record.quarter || record.title || '季度销毁')}<span class="number-sub">${esc(record.date)}</span></td><td>${quantity(record.tokens)}</td><td>${dollars(record.usd)}<span class="number-sub">${esc(usdBasis(record))}</span></td><td>${link('官方公告',quarterAnnouncement(project,record))} ${link('季度记录API', record.source_url || record.source || record.url)} ${link('交易记录', record.tx_url || record.transaction_url || (/^https?:\/\//.test(record.tx || '') ? record.tx : null))}</td></tr>`).join('');
   const limitations = project.burns?.limitations;
   return `<article class="card burn-records"><h3>已核季度销毁 · 所选期间</h3><p>${esc(start)} → ${esc(end)}。${stats.count ? `已登记 ${stats.count} 笔季度记录。` : '所选期间没有已核季度记录，不能推定实际销毁为零。'}</p>
-    <div class="mini-stats"><div><span>已核季度销毁枚数</span><strong>${quantity(stats.tokens)} ${esc(project.ticker)}</strong></div><div><span>销毁日美元估值合计</span><strong>${dollars(stats.usd)}</strong></div><div><span>记录估值 ÷ 当前流通市值</span><strong>${percent(stats.shareMc)}</strong></div><div><span>记录估值 ÷ 当前 FDV</span><strong>${percent(stats.shareFdv)}</strong></div></div>
+    ${stats.count ? `<div class="mini-stats"><div><span>已核季度销毁枚数</span><strong>${quantity(stats.tokens)} ${esc(project.ticker)}</strong></div><div><span>销毁日美元估值合计</span><strong>${dollars(stats.usd)}</strong></div><div><span>记录估值 ÷ 当前流通市值</span><strong>${percent(stats.shareMc)}</strong></div><div><span>记录估值 ÷ 当前 FDV</span><strong>${percent(stats.shareFdv)}</strong></div></div>` : ''}
     ${rows ? `<div class="table-wrap"><table><thead><tr><th>记录 / 日期</th><th>销毁枚数</th><th>销毁日美元估值</th><th>来源</th></tr></thead><tbody>${rows}</tbody></table></div>` : ''}
     ${stats.unverifiedCount ? `<p class="footnote">另有 ${stats.unverifiedCount} 条未核 / 预计记录，没有纳入合计。</p>` : ''}
     <p class="footnote">${esc(stats.note)} 比例只比较已核记录与当前估值，不能作为收益率或未来季度预测。</p>
-    ${limitations ? `<p class="footnote">${esc(publicNote(Array.isArray(limitations) ? limitations.join(' ') : limitations))}</p>` : ''}</article>`;
+    ${limitations ? `<details><summary>查看季度销毁核验范围</summary><p class="footnote">${esc(publicNote(Array.isArray(limitations) ? limitations.join(' ') : limitations))}</p></details>` : ''}</article>`;
 }
 
 export function burnObservationsMarkup(project) {
@@ -165,5 +206,5 @@ export function burnFinancialMarkup(project, range, legacyEnd) {
   const names={burns:'季度销毁记录与拆分',burn_proof:'已核季度交易与执行区块',gas_burn:'滚动Gas销毁摘要',gas_burn_snapshot:'滚动Gas销毁摘要',supply:'原生供应索引观察',chain_fees:'BSC日手续费',gas_burn_policy_estimate:'Gas销毁估算 · 供应商10%模型',policy_block:'参数核验所用BSC区块',gas_burn_policy:'当前区块Gas销毁参数'};
   const status={fresh:'已更新',cached:'复用缓存','offline-cache':'离线缓存',missing:'未取得',unknown:'未知'};
   const proof=sources.length?`<section class="source-policy"><h3>BNB数据来源与保存响应</h3><div class="financial-data-sources">${sources.map(source=>`<article><strong>${esc(names[source.kind] || source.kind || '销毁数据')}</strong><span class="number-sub">抓取 ${esc(source.retrieved_at || '未知')} · ${esc(status[source.status] || source.status || '未知')}</span><div class="source-links">${sourceLinks(source)}</div><p>保存文件 SHA-256：<code>${esc(source.stored_sha256 || source.sha256 || '未知')}</code></p>${source.refresh_error?`<p class="footnote">本次抓取情况：${esc(source.refresh_error)}</p>`:''}</article>`).join('')}</div><p class="source-explanation">链手续费是交易费用索引，日Gas销毁是10%政策模型，当前参数是独立区块观察，季度销毁使用已核执行交易。保存响应便于复算，不表示完整供应台账已经取得。</p></section>`:'';
-  return `<div class="source-meaning"><h3>BNB 的销毁与收入回购分别研究</h3><p>Auto-Burn 是按规则处理的季度储备销毁；BEP-95 是链上交易费中的实时销毁。不能把两者合称为“企业净利润用于回购”，也不能用季度销毁估值填入营业收入或净利润。</p><p>本行 P/S、持币者回报倍数、项目净利润 P/E 和年化回购收益率均不适用。季度记录的供应效果仍须与其他供应变动对账，不能据此断言自由流通净通缩。</p></div>${bnbChainMarkup(project,start,end)}${burnRecordsMarkup(project, start, end)}${burnObservationsMarkup(project)}${proof}<div class="sources">${(project.sources || []).map(source => link(source.title, source.url)).join(' ')}</div>`;
+  return `${quarterlyPlanMarkup(project)}${burnRecordsMarkup(project,start,end)}<div class="source-meaning"><h3>BNB 的销毁与收入回购分别研究</h3><p>Auto-Burn 是按规则处理的季度储备销毁；BEP-95 是链上交易费中的实时销毁。不能把两者合称为“企业净利润用于回购”，也不能用季度销毁估值填入营业收入或净利润。</p><p>本行 P/S、持币者回报倍数、项目净利润 P/E 和年化回购收益率均不适用。季度记录的供应效果仍须与其他供应变动对账，不能据此断言自由流通净通缩。</p></div>${bnbChainMarkup(project,start,end)}${burnObservationsMarkup(project)}${proof}<div class="sources">${(project.sources || []).map(source => link(source.title, source.url)).join(' ')}</div>`;
 }
