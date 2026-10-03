@@ -1,0 +1,8 @@
+{
+  "url": "https://api.llama.fi/summary/fees/pump.fun-mobile-app?dataType=dailyRevenue",
+  "retrieved_at": "2026-10-02T18:14:04.269054+00:00",
+  "sha256": "37b6b243d5c717d008590c06b4e3f44eabb2cd4c9d2f1d82c7e17d62afa651a9",
+  "file": "research/evidence/pump-mobile/mobile-revenue.json",
+  "http_status": 200,
+  "archive_note": "Durable local archive; source URL, retrieval time and payload SHA256 preserved. No response content rewritten."
+}

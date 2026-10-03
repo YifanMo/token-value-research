@@ -1,0 +1,6 @@
+{
+  "url": "https://api.coingecko.com/api/v3/coins/pump-fun/market_chart?vs_currency=usd&days=365&interval=daily",
+  "retrieved_at": "2026-10-02T21:32:26.347679+00:00",
+  "sha256": "f4b2017f0298cc81686a83c1bb6062de85d96badf3f69af91dd8ac7a7e1a68fc",
+  "status": "fresh"
+}

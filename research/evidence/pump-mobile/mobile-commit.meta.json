@@ -1,0 +1,8 @@
+{
+  "url": "https://api.github.com/repos/DefiLlama/dimension-adapters/commits?path=fees/pumpfun-app.ts&per_page=1",
+  "retrieved_at": "2026-10-02T18:14:03.484613+00:00",
+  "sha256": "0d935426fb6bb1849a725c43328be6dae7483c4f284d2a9b598549dea2d1c514",
+  "file": "research/evidence/pump-mobile/mobile-commit.json",
+  "http_status": 200,
+  "archive_note": "Durable local archive; source URL, retrieval time and payload SHA256 preserved. No response content rewritten."
+}

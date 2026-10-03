@@ -1,0 +1,784 @@
+{
+  "symbol": "UNI",
+  "project": "Uniswap",
+  "as_of": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "analysis_status": "mechanism_verified_api_revenue_is_redemption_valuation_protocol_income_unknown",
+  "market_snapshot": {
+    "source": "CoinGecko",
+    "local_file": "data/raw/coingecko-markets.json",
+    "source_updated_at": "2026-10-02T10:58:30Z",
+    "price_usd": 9.03,
+    "circulating_supply": 625268422.6104751,
+    "vendor_total_supply": 887516418.9163101,
+    "vendor_max_supply": 1000000000,
+    "market_cap_usd": 5645984361,
+    "fdv_usd": 8013787577,
+    "contract_total_supply_independently_verified": false,
+    "implied_burn_excluding_100m_treasury": 12483581.083689928,
+    "implied_burn_status": "inferred",
+    "implied_burn_assumptions": [
+      "No mint since genesis",
+      "Vendor total supply subtracts all and only economically burned UNI",
+      "100M treasury burn counted once"
+    ],
+    "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=uniswap"
+  },
+  "allocation": {
+    "genesis_supply": 1000000000,
+    "community_pct": 60,
+    "community_treasury_pct": 43,
+    "historical_airdrop_pct": 15,
+    "initial_liquidity_mining_pct": 2,
+    "team_future_employee_pct": 21.266,
+    "investors_pct": 18.044,
+    "advisors_pct": 0.69,
+    "current_insider_ownership_pct": null,
+    "vesting_exact_end": null,
+    "vesting_exact_end_reason": "Original announcement says 4 years from 2020; current docs say concluded September 2025; exact contract schedules not reconciled"
+  },
+  "mechanism": {
+    "revenue_sources": [
+      "Protocol share of swap fees on enabled versions, chains and pools",
+      "Unichain sequencer fees after L1 data costs and Optimism share"
+    ],
+    "excluded_revenues": [
+      "LP fees",
+      "Historical Uniswap Labs interface, wallet and API fees",
+      "Treasury token disposals reported as DUNI accounting revenue"
+    ],
+    "disposition": "Mainnet Firepit transfers canonical UNI to dead; crosschain release requires separate canonical finalization reconciliation",
+    "burn_method": "transfer_to_dead_not_decrement_totalSupply",
+    "direct_cash_dividend": false,
+    "market_purchase_of_each_burn_verified": false,
+    "nominal_collected_protocol_fee_burn_allocation_pct": 100,
+    "realized_capture_pct": null,
+    "realized_capture_reason": "Independent fee-asset USD income, redemption USD, execution spread, TokenJar inventory and canonical finalized burn have not been reconciled",
+    "fee_tiers": [
+      {
+        "version": "v2",
+        "swap_fee_bps": 30,
+        "lp_bps": 25,
+        "protocol_bps": 5,
+        "protocol_pct_of_swap_fee": 16.6666666667
+      },
+      {
+        "version": "v3",
+        "swap_fee_bps": 1,
+        "lp_bps": 0.75,
+        "protocol_bps": 0.25,
+        "protocol_pct_of_swap_fee": 25
+      },
+      {
+        "version": "v3",
+        "swap_fee_bps": 5,
+        "lp_bps": 3.75,
+        "protocol_bps": 1.25,
+        "protocol_pct_of_swap_fee": 25
+      },
+      {
+        "version": "v3",
+        "swap_fee_bps": 30,
+        "lp_bps": 25,
+        "protocol_bps": 5,
+        "protocol_pct_of_swap_fee": 16.6666666667
+      },
+      {
+        "version": "v3",
+        "swap_fee_bps": 100,
+        "lp_bps": 83.34,
+        "protocol_bps": 16.66,
+        "protocol_pct_of_swap_fee": 16.66
+      }
+    ],
+    "unichain_optimism_share_pct": 15,
+    "future_proposal_revenues_not_assumed_live": [
+      "PFDA",
+      "Additional v4 families",
+      "Arc activation",
+      "Remaining five-chain v4 part 2"
+    ],
+    "revenue_sources_status": "configured_or_proposed_asset_sources_not_quantified_protocol_income",
+    "nominal_allocation_pct_status": "policy_description_not_measured_100pct_cash_payout"
+  },
+  "supply_pressure": {
+    "actual_mint_baseline_uni": 0,
+    "actual_mint_evidence_level": "official_statement_not_independent_full_logs",
+    "annual_mint_cap_pct_of_contract_total_supply": 2,
+    "mint_interval_days": 365,
+    "potential_annual_mint_current_contract_basis_uni": 20000000,
+    "growth_budget_annual_uni": 20000000,
+    "growth_budget_quarter_uni": 5000000,
+    "growth_budget_authorized_total_uni": 40000000,
+    "growth_budget_years": [
+      2026,
+      2027
+    ],
+    "growth_budget_type": "Treasury release, not mint",
+    "confirmed_growth_budget_transfer_uni": 5000000,
+    "confirmed_transfer_date": "2026-01-05",
+    "later_withdraw_function_calls_seen": [
+      "2026-04-10",
+      "2026-07-14"
+    ],
+    "later_withdraw_amounts_verified": false,
+    "inferred_three_quarter_transfer_uni": 15000000,
+    "october_1_eligible_tranche_uni": 5000000,
+    "october_actual_transfer_uni": null,
+    "treasury_balance_at_2026_06_30_uni": 275104000,
+    "other_treasury_release_uni": null
+  },
+  "events": [
+    {
+      "date": "2020-09-16",
+      "type": "genesis",
+      "status": "verified",
+      "url": "https://blog.uniswap.org/uni",
+      "claim": "1B initial UNI allocation with four-year vesting and future 2% mint possibility"
+    },
+    {
+      "date": "2024-03-06",
+      "type": "snapshot_vote",
+      "status": "verified",
+      "url": "https://gov.uniswap.org/t/temperature-check-activate-uniswap-protocol-governance/22936/120",
+      "claim": "UniStaker groundwork snapshot passed; does not turn on protocol fees"
+    },
+    {
+      "date": "2024-05-31",
+      "type": "proposal_delayed",
+      "status": "verified",
+      "url": "https://gov.uniswap.org/t/temperature-check-activate-uniswap-protocol-governance/22936/124",
+      "claim": "Onchain vote postponed by official author"
+    },
+    {
+      "date": "2025-11-10",
+      "type": "announcement",
+      "status": "verified",
+      "url": "https://blog.uniswap.org/unification",
+      "claim": "UNIfication proposal published"
+    },
+    {
+      "date": "2025-12-25",
+      "type": "vote_passed",
+      "status": "verified",
+      "url": "https://vote.uniswapfoundation.org/proposals/93",
+      "claim": "UNIfication passed, execution separate from vote"
+    },
+    {
+      "date": "2025-12-28",
+      "type": "execution",
+      "proposal_id": 93,
+      "status": "verified_frontend_with_timestamp_conflict",
+      "url": "https://vote.uniswapfoundation.org/proposals/93",
+      "claim": "Agora SSR says Executed 11:35 pm Dec 28, 2025, timezone unspecified; DUNI financial report says Dec 27; raw block timestamp not obtained",
+      "tx": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e"
+    },
+    {
+      "date": "2026-01-01",
+      "type": "growth_budget_eligible",
+      "status": "verified",
+      "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol",
+      "claim": "5M first quarter eligible; eligibility does not prove transfer"
+    },
+    {
+      "date": "2026-01-05",
+      "type": "treasury_transfer",
+      "status": "verified_official_report",
+      "url": "https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update",
+      "claim": "First 5M quarterly transfer to Labs occurred",
+      "tx": "0x3143564279cec3aab40ec01146c0ca4a9b8339f1516646ac58496f6d198148b2"
+    },
+    {
+      "date": "2026-02-18",
+      "type": "announcement",
+      "status": "verified",
+      "url": "https://gov.uniswap.org/t/temp-check-protocol-fee-expansion-eight-more-chains-and-remaining-mainnet-v3-pools/26035",
+      "claim": "Eight-chain expansion and all-mainnet-v3 open adapter proposed"
+    },
+    {
+      "date": "2026-03-07",
+      "type": "governance_execution",
+      "proposal_id": 94,
+      "status": "verified_frontend",
+      "url": "https://vote.uniswapfoundation.org/proposals/94",
+      "claim": "Mainnet adapter plus Arbitrum, Base, OP message actions executed; target-chain effect distinct"
+    },
+    {
+      "date": "2026-03-08",
+      "type": "governance_execution",
+      "proposal_id": 95,
+      "status": "verified_frontend",
+      "url": "https://vote.uniswapfoundation.org/proposals/95",
+      "claim": "Soneium, X Layer, Worldchain, Zora, Celo planned crosschain expansion; Celo later needed fix",
+      "tx": "0x006b60f2a6a74d9f22a1c59fbb70192fab325baa692a2026d192891f1ccd3640"
+    },
+    {
+      "date": "2026-04-10",
+      "type": "withdraw_call",
+      "status": "inferred_amount",
+      "url": "https://etherscan.io/address/0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2",
+      "claim": "Withdraw function invocation visible; quantity/receipt not independently read",
+      "tx": "0x727c2a1d6c8df448aa5bc55a6f2c59a5960e7d08367536225b093b224b0f17c0"
+    },
+    {
+      "date": "2026-06-01",
+      "type": "governance_execution",
+      "proposal_id": 96,
+      "status": "verified_frontend",
+      "url": "https://vote.uniswapfoundation.org/proposals/96",
+      "claim": "BNB and Polygon expansion; corrected Celo path approved earlier but not previously executed"
+    },
+    {
+      "date": "2026-07-07",
+      "type": "announcement",
+      "status": "verified",
+      "url": "https://gov.uniswap.org/t/temp-check-activate-v4-protocol-fees/26162",
+      "claim": "v4 fee families proposed"
+    },
+    {
+      "date": "2026-07-14",
+      "type": "withdraw_call",
+      "status": "inferred_amount",
+      "url": "https://etherscan.io/address/0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2",
+      "claim": "Withdraw function invocation visible; quantity/receipt not independently read",
+      "tx": "0x9a9d5b96ac13cec677ef134abc6e4195562610dacf1e4ae6c8a188e9ad42de14"
+    },
+    {
+      "date": "2026-07-27",
+      "type": "governance_execution",
+      "proposal_id": 99,
+      "status": "verified_frontend",
+      "url": "https://vote.uniswapfoundation.org/proposals/99",
+      "claim": "Robinhood v2/v3 activation executed; v4 separately under #100"
+    },
+    {
+      "date": "2026-07-27",
+      "type": "governance_execution",
+      "proposal_id": 100,
+      "status": "verified_frontend",
+      "url": "https://vote.uniswapfoundation.org/proposals/100",
+      "claim": "v4 first batch executed: Ethereum, Arbitrum, Base, BNB Chain, Polygon, OP, Robinhood Chain; remaining five chains separately proposed"
+    },
+    {
+      "date": "2026-09-18",
+      "type": "announcement",
+      "proposal_id": 102,
+      "status": "verified_proposal_only",
+      "url": "https://gov.uniswap.org/t/temp-check-protocol-fee-expansion-arc/26287",
+      "claim": "Arc expansion announced; as-of Oct 2 onchain #102 ACTIVE, not executed"
+    },
+    {
+      "date": "2026-10-01",
+      "type": "growth_budget_eligible",
+      "status": "verified_schedule_unknown_transfer",
+      "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol",
+      "claim": "Fourth 2026 quarterly tranche eligible, actual receipt unknown"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "uni_genesis",
+      "url": "https://blog.uniswap.org/uni",
+      "published_date": "2020-09-16",
+      "effective_date": "2020-09",
+      "status": "verified",
+      "claim": "1B genesis allocation: community60%; team21.266%; investor18.044%; advisors0.69%; 4-year vesting; 2% inflation language"
+    },
+    {
+      "id": "uni_current_docs",
+      "url": "https://developers.uniswap.org/docs/ecosystem/governance/uni",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_date": "2026-10-02",
+      "status": "verified_official_statement",
+      "claim": "No active inflation, mint authority up to2% unused; holders lack individual pro-rata claim on protocol fees; docs vesting end conflicts with original schedule and fee coverage lags executed proposals"
+    },
+    {
+      "id": "uni_contract",
+      "url": "https://github.com/Uniswap/governance/blob/ab22c084bacb2636a1aebf9759890063eb6e4946/contracts/Uni.sol",
+      "published_date": "2020-09-24",
+      "effective_date": "2020-09",
+      "status": "verified_source_code",
+      "claim": "Mint cap2% contract totalSupply, minimum365days; totalSupply increases only on mint; ordinary transfer todead does not decrement supply"
+    },
+    {
+      "id": "unification_proposal",
+      "url": "https://blog.uniswap.org/unification",
+      "published_date": "2025-11-10",
+      "effective_date": null,
+      "status": "verified_proposal",
+      "claim": "Initial v2/v3 fee shares; Unichain netfees after L1 and15%Optimism; 100M one-time treasury burn; Labs interface feeszero; quarterly growthbudget proposed"
+    },
+    {
+      "id": "fee_table",
+      "url": "https://developers.uniswap.org/docs/protocols/protocol-fee/concepts/fees",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified_configuration_description",
+      "claim": "v2 protocol5bps of30; v3 1/5bps take25%,30/100bps take1/6; prose scope outdated relative to later execution pages"
+    },
+    {
+      "id": "flow",
+      "url": "https://developers.uniswap.org/docs/protocols/protocol-fee/overview",
+      "published_date": null,
+      "effective_date": "2025-12",
+      "status": "verified_design",
+      "claim": "FeeAdapters->TokenJar->Releaser; user-triggered UNI exchange; governance may update Releaser"
+    },
+    {
+      "id": "firepit",
+      "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/releasers/Firepit.sol",
+      "published_date": "2026-07-23",
+      "effective_date": null,
+      "status": "verified_source_code",
+      "claim": "Firepit resource recipient is address0xdead"
+    },
+    {
+      "id": "exchange_releaser",
+      "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/releasers/ExchangeReleaser.sol",
+      "published_date": "2026-07-23",
+      "effective_date": null,
+      "status": "verified_source_code",
+      "claim": "safeTransferFrom resource to recipient; max20assets; lowvalue assets may remain; execution price changes and threshold may enrich searcher"
+    },
+    {
+      "id": "vesting_code",
+      "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol",
+      "published_date": "2026-07-23",
+      "effective_date": "2026-01-01",
+      "status": "verified_source_code",
+      "claim": "5M defaultquarter,Jan1firstunlock, treasurytransferFrom allowance-based, no tokenmint"
+    },
+    {
+      "id": "duni_2025",
+      "url": "https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update",
+      "published_date": null,
+      "effective_date": "2025-12-31",
+      "status": "verified_official_unaudited_report",
+      "claim": "Authorized40M over2026/27;20Mannual; first5MJan5actualtransfer; unvested cancellable;100Mtreasury burn not income; executiondateDec27conflicts with Agora"
+    },
+    {
+      "id": "duni_q2_2026",
+      "url": "https://vote.uniswapfoundation.org/forums/56/duni-q2-2026-financial-statements-and-tax-update",
+      "published_date": null,
+      "effective_date": "2026-06-30",
+      "status": "verified_official_unaudited_report",
+      "claim": "Treasury275104000UNI; limited DUNI scope excludes broaderprotocolfinancialactivities; income not equal protocolfeeprofit"
+    },
+    {
+      "id": "vesting_explorer",
+      "url": "https://etherscan.io/address/0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2",
+      "published_date": null,
+      "effective_date": "2026-07-14",
+      "status": "verified_indexed_function_calls_unknown_receipts",
+      "claim": "Jan5,Apr10,Jul14withdrawcalls indexed; directreceipt403; do not assert quantities or sales for latercalls"
+    },
+    {
+      "id": "labs_july",
+      "url": "https://gov.uniswap.org/t/temp-check-activate-v4-protocol-fees/26162/17",
+      "published_date": "2026-07-18",
+      "effective_date": "2026-07-18",
+      "status": "verified_author_statement_not_independent_dataset",
+      "claim": "~7.5MUNI/$25.6Mfee-supportedburn sinceDec;monthlyfeesFeb3.1MJune5.1M;top25liquiditymainnet98.5%,Base131%;volumecomparisonmainnet-20%vsmarket-62%,Base-31%vs-36%"
+    },
+    {
+      "id": "deployment_table",
+      "url": "https://developers.uniswap.org/docs/protocols/protocol-fee/deployments",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified_official_addresses",
+      "claim": "Canonical UNI,TokenJar,Firepit,UNIVesting,V3OpenFeeAdapter,V4adapters listed; deploymentalone not prove activation"
+    },
+    {
+      "id": "v3address_fix",
+      "url": "https://gov.uniswap.org/t/temp-check-protocol-fee-expansion-eight-more-chains-and-remaining-mainnet-v3-pools/26035/5",
+      "published_date": "2026-03-03",
+      "effective_date": "2026-03",
+      "status": "verified_official_correction",
+      "claim": "Correct mainnetV3OpenFeeAdapter0xf2371551Fe3937Db7c750f4DfABe5c2fFFdcBf5A; oldproposalproseaddresswrong"
+    },
+    {
+      "id": "dl_uni_redemption_adapter",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/dexs/uniswap-v3.ts#L36",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_date": "2026-10-03",
+      "status": "verified_source_code",
+      "claim": "Firepit Released event count multiplied by queried threshold produces UNI amount; addCGToken values it in USD; dailyRevenue mirrors dailyHoldersRevenue. This does not independently measure accrued protocol fee assets or market-purchase cash.",
+      "code_commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab"
+    },
+    {
+      "id": "dl_uni_cached_methodology",
+      "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyRevenue",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_date": "2026-10-02",
+      "status": "verified_saved_metadata",
+      "local_file": "data/raw/llama-uniswap-revenue.json",
+      "claim": "V2 and V4 child methodology states redemption statistics are combined under V3 adapter. V3 bucket is not proof that all fee assets arose from V3; dailySupplySideRevenue residual is not independent LP receipt evidence."
+    },
+    {
+      "id": "dl_uni_cached_30d",
+      "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyHoldersRevenue",
+      "published_date": null,
+      "effective_date": "2026-10-01",
+      "accessed_date": "2026-10-02",
+      "status": "verified_cached_series_only",
+      "claim": "Sep2-Oct1 30D cached revenue and holders each equal USD15204293; fees USD197185791.55. Independent protocol income, market purchase cash and final canonical burn are not established by these three values."
+    }
+  ],
+  "endpoints": [
+    {
+      "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyFees",
+      "purpose": "Parent aggregate swap fee statistic",
+      "status": "verified_cached_response",
+      "caveat": "Not UNI income; child composition is explanatory and not added to parent"
+    },
+    {
+      "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyRevenue",
+      "purpose": "Reported UNI redemption valuation",
+      "status": "verified_cached_response_and_adapter",
+      "caveat": "Not protocol fee-asset income; no P/S or revenue share calculated from this amount"
+    },
+    {
+      "url": "https://api.llama.fi/summary/fees/uniswap?dataType=dailyHoldersRevenue",
+      "purpose": "UNI redemption valuation",
+      "status": "verified_cached_response_and_adapter",
+      "caveat": "Matches revenue; canonical final burn and actual cash buys require separate reconciliation"
+    },
+    {
+      "url": "https://api.llama.fi/summary/fees/uniswap-v2?dataType=dailyRevenue",
+      "purpose": "Legacy V2 child statistic / metadata; fee-redemption statistics combined under V3",
+      "status": "available_to_parent",
+      "caveat": "Not independently accrued protocol income; child zeros do not prove zero protocol fees; do not sum with parent"
+    },
+    {
+      "url": "https://api.llama.fi/summary/fees/uniswap-v3?dataType=dailyRevenue",
+      "purpose": "UNI redemption USD valuation combined across fee-source versions",
+      "status": "available_to_parent",
+      "caveat": "Same source as holders; not independently accrued protocol income, cash purchase cost or finalized canonical burn"
+    },
+    {
+      "url": "https://api.llama.fi/summary/dexs/uniswap",
+      "purpose": "DEX volume",
+      "status": "unknown_in_this_subtask"
+    },
+    {
+      "url": "https://api.coingecko.com/api/v3/coins/uniswap/market_chart/range",
+      "purpose": "historical price/marketcap",
+      "status": "unknown_in_this_subtask",
+      "caveat": "Public historical access may require subscription"
+    },
+    {
+      "url": "https://dune.com/queries/6711845",
+      "purpose": "Distinct feeassets converted intoUNIburn",
+      "status": "unknown",
+      "caveat": "Public HTML returned empty shell, dataAPI not accessed"
+    },
+    {
+      "url": "https://ethereum-rpc.publicnode.com",
+      "purpose": "canonical UNI totalSupply,balanceOf(dead),Transferlogs,Withdrawnlogs",
+      "status": "blocked_403"
+    },
+    {
+      "url": "https://eth.llamarpc.com",
+      "purpose": "canonical UNI totalSupply,balanceOf(dead),Transferlogs,Withdrawnlogs",
+      "status": "blocked_403"
+    },
+    {
+      "url": "https://eth.blockscout.com/api/v2/addresses/0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2/logs",
+      "purpose": "treasurywithdrawreceipts",
+      "status": "blocked_403"
+    }
+  ],
+  "unknowns": [
+    "Independent full mint/burn log reconciliation",
+    "Current dead address balance",
+    "Source and marketpurchase of searcherburn UNI",
+    "Exact lastinitialvesting dates",
+    "Currentinsider holdings",
+    "ActualApr/Jul/Octgrowthbudget quantities andsale behavior",
+    "Remainingfivechainv4execution",
+    "PreciseUTCtimestamp arbitration Dec27vs28",
+    "FeeassetUSD toburnUSD executionleakage",
+    "Price causal effect beyondmarketcycle",
+    "Independent same-window protocol fee-asset USD income and LP allocation",
+    "Per-event historical UNI threshold and redeemed fee-asset valuation",
+    "P/S and income-based allocation ratios",
+    "Unichain sequencer income net of L1 cost and Optimism share",
+    "Version origin of combined V3 redemption bucket"
+  ],
+  "semantic_correction": {
+    "corrected_on": "2026-10-03",
+    "research_as_of": "2026-10-02",
+    "prior_interpretation_withdrawn": "DefiLlama dailyRevenue was previously described as accrued protocol fee income. It is a copy of UNI redemption valuation under the inspected adapter.",
+    "code_commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab",
+    "source_url": "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/dexs/uniswap-v3.ts#L36",
+    "published_date": null,
+    "effective_date": null,
+    "status": "verified_source_code_and_cached_series",
+    "claim": "Firepit Released event count multiplied by queried threshold produces UNI amount; addCGToken values it in USD; dailyRevenue mirrors dailyHoldersRevenue. This does not independently measure accrued protocol fee assets or market-purchase cash.",
+    "canonical_final_burn_reconciled": false,
+    "each_event_historical_threshold_reconciled": false,
+    "cash_purchase_cost_verified": false
+  },
+  "api_data_semantics": {
+    "fees": {
+      "field": "dailyFees",
+      "meaning": "Parent aggregate user swap fee statistics across tracked versions and chains",
+      "income_to_uni": false
+    },
+    "revenue": {
+      "field": "dailyRevenue",
+      "meaning": "UNI provided to redeem fee assets, valued in USD by adapter",
+      "is_protocol_income": false,
+      "is_cash_buyback": false,
+      "is_independently_finalized_burn": false
+    },
+    "holders": {
+      "field": "dailyHoldersRevenue",
+      "meaning": "Same redemption valuation copied into revenue field",
+      "independent_from_revenue": false
+    },
+    "supply_side": {
+      "field": "dailySupplySideRevenue",
+      "meaning": "Adapter arithmetic residual between swap fee statistic and redemption valuation on applicable paths",
+      "is_independently_measured_lp_payment": false
+    },
+    "version_bucket": "V2 and V4 redemption statistics are combined under V3 adapter; a V3 label does not identify economic fee origin. Do not add child values to parent.",
+    "chain_bucket": "Redemption execution chain, not independently identified fee origin or final canonical burn destination",
+    "protocol_fee_asset_income_usd": null,
+    "protocol_fee_asset_income_status": "unknown_not_independently_reconciled",
+    "lp_fee_allocation_usd": null,
+    "price_to_sales_market_cap": null,
+    "price_to_sales_fdv": null,
+    "protocol_income_pct_of_fees": null,
+    "redemption_pct_of_income": null,
+    "income_ratios_status": "unknown_not_zero",
+    "net_profit_usd": null,
+    "net_profit_status": "complete_protocol_costs_and_verified_profit_source_not_obtained",
+    "scope_caveat": "Unichain DEX swap fees in parent fees are separate from sequencer fees net of L1 data cost and Optimism share; no sequencer income amount inferred from this series."
+  },
+  "cached_30d_observation": {
+    "dashboard_as_of": "2026-10-02",
+    "start_utc": "2026-09-02",
+    "end_utc": "2026-10-01",
+    "days": 30,
+    "fees_usd": 197185791.55,
+    "reported_revenue_redemption_valuation_usd": 15204293.0,
+    "holders_redemption_valuation_usd": 15204293.0,
+    "fees_minus_redemption_valuation_usd": 181981498.55,
+    "residual_status": "arithmetic_difference_not_lp_payment_cost_or_profit",
+    "verified_against_saved_response_only": true,
+    "redemption_version_bucket": [
+      {
+        "label": "Uniswap V3",
+        "usd": 15204293
+      },
+      {
+        "label": "Uniswap V1",
+        "usd": 0
+      },
+      {
+        "label": "Uniswap V2",
+        "usd": 0
+      },
+      {
+        "label": "Uniswap V4",
+        "usd": 0
+      }
+    ],
+    "redemption_execution_chains": [
+      {
+        "label": "Robinhood Chain",
+        "usd": 8455425
+      },
+      {
+        "label": "Ethereum",
+        "usd": 3245639
+      },
+      {
+        "label": "Base",
+        "usd": 2234103
+      },
+      {
+        "label": "Arbitrum",
+        "usd": 617685
+      },
+      {
+        "label": "BSC",
+        "usd": 482773
+      },
+      {
+        "label": "Polygon",
+        "usd": 104026
+      },
+      {
+        "label": "OP Mainnet",
+        "usd": 64642
+      },
+      {
+        "label": "Unichain",
+        "usd": 0
+      },
+      {
+        "label": "Blast",
+        "usd": 0
+      },
+      {
+        "label": "X Layer",
+        "usd": 0
+      },
+      {
+        "label": "Ink",
+        "usd": 0
+      },
+      {
+        "label": "Avalanche",
+        "usd": 0
+      },
+      {
+        "label": "Zora",
+        "usd": 0
+      },
+      {
+        "label": "Tempo",
+        "usd": 0
+      },
+      {
+        "label": "Monad",
+        "usd": 0
+      },
+      {
+        "label": "Sonic",
+        "usd": 0
+      },
+      {
+        "label": "Gnosis",
+        "usd": 0
+      },
+      {
+        "label": "ZKsync Era",
+        "usd": 0
+      },
+      {
+        "label": "Mantle",
+        "usd": 0
+      },
+      {
+        "label": "XDC",
+        "usd": 0
+      },
+      {
+        "label": "Plasma",
+        "usd": 0
+      },
+      {
+        "label": "Filecoin",
+        "usd": 0
+      },
+      {
+        "label": "Rootstock",
+        "usd": 0
+      },
+      {
+        "label": "Hemi",
+        "usd": 0
+      },
+      {
+        "label": "Nibiru",
+        "usd": 0
+      },
+      {
+        "label": "BOB",
+        "usd": 0
+      },
+      {
+        "label": "Sei",
+        "usd": 0
+      },
+      {
+        "label": "Etherlink",
+        "usd": 0
+      },
+      {
+        "label": "Boba",
+        "usd": 0
+      },
+      {
+        "label": "GOAT",
+        "usd": 0
+      },
+      {
+        "label": "World Chain",
+        "usd": 0
+      },
+      {
+        "label": "Linea",
+        "usd": 0
+      },
+      {
+        "label": "Celo",
+        "usd": 0
+      },
+      {
+        "label": "Scroll",
+        "usd": 0
+      },
+      {
+        "label": "0G",
+        "usd": 0
+      },
+      {
+        "label": "Arc",
+        "usd": 0
+      },
+      {
+        "label": "MegaETH",
+        "usd": 0
+      },
+      {
+        "label": "Soneium",
+        "usd": 0
+      },
+      {
+        "label": "Redbelly",
+        "usd": 0
+      }
+    ],
+    "local_files": [
+      "data/raw/llama-uniswap-fees.json",
+      "data/raw/llama-uniswap-revenue.json",
+      "data/raw/llama-uniswap-holders.json"
+    ],
+    "source_urls": [
+      "https://api.llama.fi/summary/fees/uniswap?dataType=dailyFees",
+      "https://api.llama.fi/summary/fees/uniswap?dataType=dailyRevenue",
+      "https://api.llama.fi/summary/fees/uniswap?dataType=dailyHoldersRevenue"
+    ]
+  },
+  "historical_fee_scale_illustration": {
+    "status": "historical_author_report_only_not_verified_income_or_burn_yield",
+    "source_url": "https://gov.uniswap.org/t/temp-check-activate-v4-protocol-fees/26162/17",
+    "published_date": "2026-07-18",
+    "fee_window": "2026-06",
+    "author_reported_monthly_fee_usd": 5100000,
+    "author_reported_month_annualized_usd": 61200000,
+    "valuation_date": "2026-10-02",
+    "market_cap_scale_pct": 1.0839562437,
+    "vendor_fdv_scale_pct": 0.7636838313,
+    "one_billion_contract_supply_scale_pct": 0.6777408638,
+    "hypothetical_constant_price_uni_equivalent_annualized": 6777408.638,
+    "growth_budget_equal_token_value_usd_at_snapshot_price": 180600000,
+    "previous_yield_labels_withdrawn": true,
+    "warning": "June author-reported fees divided by historical October valuation are a scale illustration. They are not current API-measured protocol income, P/S, independently finalized burn yield or prediction. Converting USD one-for-one to burned UNI is an unverified hypothetical; budget eligibility is not actual circulating release."
+  },
+  "tracking_start_conflict": {
+    "governance_frontend_execution_date": "2025-12-28",
+    "official_financial_report_execution_date": "2025-12-27",
+    "adapter_methodology_prose_date": "2025-12-28",
+    "adapter_ethereum_feeSwitchDate": "2025-12-29",
+    "status": "verified_source_descriptions_with_unreconciled_exact_block_timestamp",
+    "note": "Policy execution, prose methodology and code tracking start are separate evidence; retain all rather than asserting one independently verified UTC activation day."
+  }
+}

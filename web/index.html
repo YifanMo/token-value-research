@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="协议收入、回购去向、供应稀释与政策变更的本地研究框架。">
+  <title>协议收入与代币价值 · 研究框架</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101b2c'/%3E%3Cpath d='M6 23h20M8 18v-5m8 5V7m8 11v-9' stroke='%23edc66d' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css?v=25">
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div><span class="eyebrow">TOKEN VALUE RESEARCH / 01</span><h1>协议收入与代币价值</h1><p id="snapshot-date">读取本地快照…</p></div>
+      <nav aria-label="研究文档"><a href="../research/report.md">研究报告</a><a href="../research/framework.md">计算口径</a></nav>
+    </header>
+    <div id="errors" role="status"></div>
+    <section class="comparison" aria-labelledby="compare-heading">
+      <div class="section-title"><h2 id="compare-heading">协议收入、代币回购与估值对比 <span id="token-count"></span></h2><span id="period-note"></span></div>
+      <p class="notice">回购 / 销毁金额可能来自费用分配或代币估值，具体标在每行。点击指标查看算式与来源。</p>
+      <div class="table-navigation" role="group" aria-label="表格查看位置"><button id="show-business">← 收入与供应</button><button id="show-financial">财务估值指标 →</button><button id="show-flows">收入去向图 ↓</button><span>横向滚动查看更多；来源在最右侧</span></div>
+      <div class="table-wrap" id="comparison-scroll"><table><thead><tr><th>项目 / 机制</th><th>流通市值</th><th>FDV<br><small>CoinGecko</small></th><th>协议所得收入</th><th>回购 / 销毁规模<br><small>年化金额 ÷ 流通市值 / FDV</small></th><th>永久销毁规模（估算）<br><small>年化金额 ÷ 流通市值 / FDV</small></th><th>未来365天释放参考<br><small>部分计划 / 估算</small></th><th id="financial-start" class="financial-col">协议收入倍数 P/S<br><small>估值 ÷ 年化收入统计<br>未扣完整经营成本</small></th><th id="holder-pe-heading" class="financial-col">持币者回报倍数<br><small>参考P/E · 估值 ÷ 年化回购／销毁统计</small></th><th id="project-pe-heading" class="financial-col">项目净利润 P/E<br><small>估值 ÷ 年化项目净利润</small></th><th class="financial-col">协议收入<br>占手续费<br><small>收入 ÷ 手续费</small></th><th class="financial-col">回购 / 销毁<br>占协议收入<br><small>同窗统计金额</small></th><th>回购 / 销毁数据来源</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+      <p class="financial-note">倍数上行按流通市值，下行按 CoinGecko FDV。持币者栏按回购／销毁统计，项目栏按扣完成本后的净利润；回购不代表实收现金。</p>
+      <p class="footnote">年化 = 所选窗口金额 × 365 / 天数，不代表未来收益；含库存事件的历史倍数保留提示，收益率仅用可年化部分。“—”表示缺数据或口径待核。</p>
+    </section>
+    <details class="supply-comparison"><summary>查看全部代币的未来供应对比</summary><section id="supply-overview" aria-labelledby="supply-heading"></section></details>
+    <section id="research-controls" aria-label="代币与观察窗口" class="controls">
+      <div class="control-main"><div class="period" role="group" aria-label="观察窗口"><span>观察窗口</span><button data-days="7">7天</button><button data-days="30" aria-pressed="true">30天</button><button data-days="90">90天</button><button data-days="365">1年</button><button data-days="1095">3年</button><button data-days="1825">5年</button><button id="custom-range-toggle" aria-expanded="false" aria-controls="custom-range-form">自定义</button></div>
+      <label for="token-selector">查看代币 <select id="token-selector" disabled><option>读取代币…</option></select></label></div>
+      <form id="custom-range-form" hidden><label>起始日期 <input id="range-start" name="start" type="date" required></label><label>结束日期 <input id="range-end" name="end" type="date" required></label><button type="submit">应用</button><button id="custom-range-cancel" type="button">收起</button></form>
+      <p id="range-error" role="status"></p>
+      <p id="range-context" class="range-context"></p>
+    </section>
+    <section id="detail" aria-live="polite"></section>
+    <footer>所有金额为 USD。研究快照与供应商口径可复核；缺失不填零。</footer>
+  </main>
+  <dialog id="source-dialog" aria-labelledby="source-title">
+    <div class="source-head"><div><span class="eyebrow">数据来源与计算过程</span><h2 id="source-title"></h2></div><button id="source-close" aria-label="关闭数据来源">关闭</button></div>
+    <div id="source-content" aria-live="polite"></div>
+  </dialog>
+  <script type="module" src="./app.js?v=25"></script>
+</body>
+</html>

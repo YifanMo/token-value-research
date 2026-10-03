@@ -1,0 +1,776 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-02",
+  "window_definition": "UTC calendar dates (as_of, as_of + N days]; dated eligibility differs from actual distribution. Carry-in balances are not counted as new scheduled eligibility.",
+  "projects": [
+    {
+      "ticker": "HYPE",
+      "overview_component_id": "hype-contributor-model",
+      "summary": "贡献者的归属资格、Labs实际分发和出售日期不同。官方没有披露逐月完整未来表，第三方238M÷24个月模型只是较高归属情景。另有10月拟分发3.75M的报道，可单独观察，不与理论归属相加。",
+      "components": [
+        {
+          "id": "hype-contributor-model",
+          "label": "贡献者理论归属（较高情景）",
+          "evidence": "scenario",
+          "mode": "events",
+          "effect_label": "归属模型；非官方实际分发",
+          "note": "按初始238M贡献者份额÷24个月，约9.9167M/月；每月6日仅参考第三方日期。官方称多数归属2027–28完成、部分更晚，并未承诺这条24个月等额曲线。不是已核实未来流通增量。 DeFiLlama改为跟踪实际贡献者转账，2026-09-06仅433,419枚，说明理论归属与分发可以大幅不同；模型不是硬上限。",
+          "sources": [
+            {
+              "title": "官方创世分配与归属说明",
+              "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f"
+            },
+            {
+              "title": "Tokenomist跟踪页",
+              "url": "https://tokenomist.ai/hyperliquid"
+            },
+            {
+              "title": "第三方9.92M归属模型的引用",
+              "url": "https://ambcrypto.com/hyperliquid-faces-860m-token-unlock-can-hype-absorb-the-supply/"
+            },
+            {
+              "title": "实际贡献者转账跟踪",
+              "url": "https://defillama.com/unlocks/hyperliquid"
+            }
+          ],
+          "events": [
+            {
+              "date": "2026-10-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2026-11-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2026-12-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-01-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-02-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-03-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-04-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-05-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-06-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-07-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-08-06",
+              "tokens": 9916666.666666666
+            },
+            {
+              "date": "2027-09-06",
+              "tokens": 9916666.666666666
+            }
+          ],
+          "coverage_start": "2026-10-02",
+          "coverage_end": "2027-10-02",
+          "overlap_group": "hype-contributors",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "hype-october-subset",
+          "label": "10月拟分发批次（仅本批）",
+          "evidence": "reported_plan",
+          "mode": "events",
+          "effect_label": "已报道拟执行；未独立核官方原帖 / 执行",
+          "note": "9月30日媒体转述官方Discord称3.75M用于10月团队批次，拟10月7日分发并OTC给单一机构。买家、价格、锁期未披露。这里仅记录这一个批次；未来90/365天显示同一批3.75M，不是全年预测。不得与理论归属模型相加。",
+          "events": [
+            {
+              "date": "2026-10-07",
+              "tokens": 3750000
+            }
+          ],
+          "coverage_start": "2026-10-02",
+          "coverage_end": "2027-10-02",
+          "overlap_group": "hype-contributors",
+          "usable_in_float_scenario": true,
+          "sources": [
+            {
+              "title": "10月3.75M拟分发报道",
+              "url": "https://beincrypto.com/hyperliquid-token-unlock-320-million-price-impact/"
+            },
+            {
+              "title": "拟10月7日分发报道",
+              "url": "https://www.tokenpost.com/news/business/25890"
+            }
+          ]
+        },
+        {
+          "id": "hype-staking",
+          "label": "社区 / 质押储备释放",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "储备释放；并非必然新增经济供应",
+          "note": "38.888%是初始未来奖励预留份额，不是未来一年释放额。质押奖励随参数和质押量变化，完整未来逐月数量未披露。",
+          "sources": [
+            {
+              "title": "官方HYPE分配",
+              "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "gaps": [
+        "贡献者后续每月实际分发表未取得；理论归属不得与对应实际分发重复计数。",
+        "已解锁但仍由团队持有的币可以继续转出，不等于新增归属。",
+        "社区、基金会、质押储备未来处置与链上销毁枚数仍需对账。"
+      ]
+    },
+    {
+      "ticker": "PUMP",
+      "overview_component_id": "pump-insiders-model",
+      "summary": "33%团队与既有投资人池经过25% cliff后，剩余247.5B按36个月摊销，对应6.875B/月。公开模型现可取得，先前全部标成待补过于粗糙；但社区释放未按旧表执行，日期也存在12日与14日差异。 模型下7月cliff后的247.5B扣除8、9月两期，理论未归属剩233.75B；它不是现时已核钱包余额。",
+      "components": [
+        {
+          "id": "pump-insiders-model",
+          "label": "团队 + 既有投资人后续归属",
+          "evidence": "tracker",
+          "mode": "events",
+          "effect_label": "第三方月度资格；不代表同日出售",
+          "note": "DeFiLlama下一事件为2026-10-12 02:15 UTC，team约4.1667B、investors约2.7083B。Blockworks同月量约6.9B，但日期为14日，明确包含估算。默认采用247.5B÷36的枚数模型；不把日期称为官方精确排期。",
+          "sources": [
+            {
+              "title": "DeFiLlama当前解锁页",
+              "url": "https://defillama.com/unlocks/pump"
+            },
+            {
+              "title": "Blockworks当前解锁模型",
+              "url": "https://app.blockworks.com/projects/pump-fun/token-unlocks"
+            }
+          ],
+          "events": [
+            {
+              "date": "2026-10-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2026-11-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2026-12-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-01-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-02-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-03-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-04-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-05-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-06-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-07-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-08-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            },
+            {
+              "date": "2027-09-12",
+              "tokens": 6875000000.0,
+              "time_utc": "02:15"
+            }
+          ],
+          "coverage_start": "2026-10-02",
+          "coverage_end": "2027-10-02",
+          "overlap_group": "pump-insiders",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "pump-conflicting-model",
+          "label": "330B / 36个月对照模型",
+          "evidence": "scenario",
+          "mode": "events",
+          "effect_label": "冲突模型；不能与上一行相加",
+          "note": "Tokenomics.com展示约9.1667B/月，相当于初始330B÷36；与先扣25% cliff的模型相冲突。仅保留作为较高压力对照，不作为默认，也不重复计入。",
+          "sources": [
+            {
+              "title": "Tokenomics.com解锁图",
+              "url": "https://app.tokenomics.com/tokenomics/pump-fun/unlocks"
+            }
+          ],
+          "events": [
+            {
+              "date": "2026-10-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2026-11-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2026-12-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-01-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-02-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-03-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-04-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-05-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-06-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-07-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-08-12",
+              "tokens": 9166666666.666666
+            },
+            {
+              "date": "2027-09-12",
+              "tokens": 9166666666.666666
+            }
+          ],
+          "coverage_start": "2026-10-02",
+          "coverage_end": "2027-10-02",
+          "overlap_group": "pump-insiders",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "pump-community",
+          "label": "社区 / 生态 / 基金会",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "储备释放；公开实际计划未完整",
+          "note": "DeFiLlama说明原24%社区池的月度排期未照表执行，部分TGE币仍在Squads vault，已将这一类别改为TBD。旧宣传线性表不能自动延长。",
+          "sources": [
+            {
+              "title": "DeFiLlama当前解锁页",
+              "url": "https://defillama.com/unlocks/pump"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "pump-mint",
+          "label": "额外mint",
+          "evidence": "authority",
+          "mode": "zero",
+          "effect_label": "mint authority已撤销",
+          "note": "已核Solana mint authority=null，因此此mint的额外mint权限为零；存量储备归属仍可增加流通。",
+          "sources": [
+            {
+              "title": "PUMP mint",
+              "url": "https://solscan.io/token/pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "gaps": [
+        "团队/投资人模型金额较有共识，日期和实际分发仍须核钱包。",
+        "社区等未披露类别及已归属未发余额，不能推定为零。",
+        "必须用实际burn枚数抵消首次流通释放；burn美元估值不能直接当枚数。"
+      ]
+    },
+    {
+      "ticker": "UNI",
+      "overview_component_id": "uni-quarterly-budget",
+      "summary": "旧团队/投资人归属已结束。按原授权与合约参数，2026/2027季度5M预算领取资格可以列出：从10月2日起未来30和90天无新一期到期，未来365天有2027四期共20M。已到期未领取余额另外保存，避免把它漏掉或重复算。",
+      "carry_in": {
+        "tokens": null,
+        "note": "按原参数截至2026-10-01累计到期20M；2026-01-05实际5M转出已被官方财报确认。4月与7月调用有索引但完整回执及现时allowance未核，不能默认未领余额为5M。原参数且无续批/撤销条件下，剩余未领取区间为0–15M；未来任意时间可能领，不属于下表新到期20M。",
+        "sources": [
+          {
+            "title": "治理预算与财报",
+            "url": "https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update"
+          },
+          {
+            "title": "UNIVesting原代码",
+            "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol"
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "uni-quarterly-budget",
+          "label": "DUNI原季度增长预算",
+          "evidence": "contract",
+          "mode": "events",
+          "effect_label": "新增领取资格；非强制流通",
+          "note": "季度5M，从2026-01-01起按季度解锁。40M是治理批准的allowance，不是合约硬编码到2027终止。表中只统计两年授权范围的新资格；未执行或未vested部分可由治理撤销，实际领取与转入自由流通不保证相同。",
+          "sources": [
+            {
+              "title": "治理预算与财报",
+              "url": "https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update"
+            },
+            {
+              "title": "UNIVesting原代码",
+              "url": "https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol"
+            }
+          ],
+          "events": [
+            {
+              "date": "2026-01-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2026-04-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2026-07-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2026-10-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2027-01-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2027-04-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2027-07-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            },
+            {
+              "date": "2027-10-01",
+              "tokens": 5000000.0,
+              "time_utc": "00:00"
+            }
+          ],
+          "coverage_start": "2026-01-01",
+          "coverage_end": "2027-12-31",
+          "overlap_group": "uni-budget",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "uni-original-insiders",
+          "label": "原团队 / 投资人 / 顾问归属",
+          "evidence": "ended",
+          "mode": "zero",
+          "effect_label": "原分配计划已结束；存量仍可出售",
+          "note": "原四年归属在2026之前已结束。此处未来解锁为0只适用于原分配排期，不表示团队不再持币，也不表示没有金库外流。",
+          "sources": [
+            {
+              "title": "UNI治理官方说明",
+              "url": "https://developers.uniswap.org/docs/ecosystem/governance/uni"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "uni-mint-permission",
+          "label": "治理可行使mint权限",
+          "evidence": "authority",
+          "mode": "capacity",
+          "effect_label": "一次权限上限；不计入预计释放",
+          "note": "官方说明2%年度mint权限未行使。若原合约totalSupply仍为1B，则一次mint上限20M；不是自动增发、不是按天线性释放。表中显示上限，仅作治理风险。后续上限取决于实际totalSupply及mintingAllowedAfter。",
+          "sources": [
+            {
+              "title": "UNI官方增发说明",
+              "url": "https://developers.uniswap.org/docs/ecosystem/governance/uni"
+            },
+            {
+              "title": "UNI原合约",
+              "url": "https://github.com/Uniswap/governance/blob/ab22c084bacb2636a1aebf9759890063eb6e4946/contracts/Uni.sol"
+            }
+          ],
+          "max_tokens": 20000000.0,
+          "display_prefix": "≤",
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "uni-other-treasury",
+          "label": "其他grants / 金库外流",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "独立储备处置",
+          "note": "20M预算并不涵盖DAO所有其他储备处置；完整未来金库外流与逐笔burn枚数未齐。",
+          "sources": [
+            {
+              "title": "治理预算与财报",
+              "url": "https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "gaps": [
+        "已到期未领取预算需要读现时allowance、lastUnlockTimestamp和成功回执，当前仍未完成。",
+        "原vesting结束后存量出售，不算新解锁但可增加市场卖压。",
+        "治理mint权限、其他grants、实际burn需另计，不能与季度预算混为一项。"
+      ]
+    },
+    {
+      "ticker": "JUP",
+      "overview_component_id": "jup-asr-scenario",
+      "summary": "Net-Zero表决通过已由finalized RPC核实，暂停分发与回购抵消执行仍需另核。ASR来自旧储备，已纳入reported circulating，分发可能改变可交易量而不增加供应商流通量。当前待领ASR余额和未定储备库存已经取到，单独展示。",
+      "components": [
+        {
+          "id": "jup-asr-scenario",
+          "label": "ASR年率均摊（延续情景）",
+          "evidence": "scenario",
+          "mode": "annual_rate",
+          "effect_label": "旧储备向用户分发；自由流通情景",
+          "note": "当前每季50M机制外推四季为200M；这不是已承诺未来四季完整排期，不按具体日期虚构季度发放。币可能已在reported circulating内，只可作为可交易自由流通情景，不再机械加到vendor circulating或total supply。",
+          "sources": [
+            {
+              "title": "Jupiter Net-Zero FAQ",
+              "url": "https://discuss.jup.ag/t/faqs-net-zero-emission-proposal/39974"
+            },
+            {
+              "title": "官方ASR campaigns API",
+              "url": "https://datapi.jup.ag/rewards/v1/campaigns"
+            }
+          ],
+          "annual_tokens": 200000000.0,
+          "overlap_group": "jup-asr",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "jup-team-approved-policy",
+          "label": "团队新链上发放（暂停政策）",
+          "evidence": "approved_policy",
+          "mode": "zero",
+          "effect_label": "获批暂停计划；实际执行另核",
+          "usable_in_float_scenario": false,
+          "note": "Net-Zero通过的官方方案无期限暂停团队链上分发，改为off-chain账面credits，由Jupiter吸收成员出售。表内0仅是假设这条政策维持时的新增链上发放计划；不是已审计实际流通，也不抹去剩余经济权益。实际暂停、credits及出售吸收需逐笔验证。Mercurial补购承诺的年度范围另核，不混同这条团队暂停政策。",
+          "sources": [
+            {
+              "title": "官方表决结果",
+              "url": "https://vote.jup.ag/proposal/C5XRDvjHZXmMs45WhjzEKdg2dcSg2aCSwEvPvivWpBF6"
+            },
+            {
+              "title": "Net-Zero官方条款",
+              "url": "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948"
+            }
+          ]
+        },
+        {
+          "id": "jup-team-current",
+          "label": "Net-Zero后的团队 / Mercurial净外流",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "分发、回购抵消与实际执行",
+          "note": "旧38.8889M/月团队、14.5833M/月Mercurial表不能在2026新政策后无条件延长。通过治理不等于所有暂停和抵消已执行；需核off-chain credits、团队释放、对冲买入和领取。",
+          "sources": [
+            {
+              "title": "Net-Zero提案",
+              "url": "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948"
+            },
+            {
+              "title": "JUP未定储备跟踪",
+              "url": "https://defillama.com/protocol/unlocks/jupiter"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "jup-airdrop-reserves",
+          "label": "Jupuary / 其他金库储备",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "储备处置；并非必然新增mint",
+          "note": "延期Jupuary、冷多签余额与后续再分配均要看实际执行；不因净零字样把未来各类别记0。",
+          "sources": [
+            {
+              "title": "Net-Zero提案",
+              "url": "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "gaps": [
+        "Net-Zero投票结果和实际释放抵消是两层证据。",
+        "ASR领取不会自动等于自由出售，可能先进入质押。",
+        "未来四季ASR继续拨款、ParaFi到期与其他储备外流尚未获得完整日历。"
+      ],
+      "carry_in": {
+        "tokens": 2587908.8057178557,
+        "note": "官方ASR Q2 campaign抓取时池50M，已领取47,412,091.194282144，剩余2,587,908.8057178557；领取窗口截止2026-10-08 14:00 UTC。余额会随领取变化，只是可领取上限，不保证全部领取，且领取先自动进入质押账户。资金来自旧Jupuary，已纳入reported circulating，不机械再增加供应商流通量。Q1残余已过期，不并入本余额。 本余额为官方API统计值，未逐钱包核对链上实际可领取余额。",
+        "sources": [
+          {
+            "title": "官方ASR campaigns API",
+            "url": "https://datapi.jup.ag/rewards/v1/campaigns"
+          }
+        ],
+        "retrieved_at": "2026-10-02T12:38:47.467097+00:00"
+      },
+      "inventory": {
+        "note": "下面是公开跟踪器的未定排期库存，并非未来一年一定解锁。跟踪页称数据由Jupiter团队提供；部分值为近似，未逐钱包重算。Jupuary1.4B内部含700M延期与700M未定储备，不能再把这两个子项额外加一次。",
+        "sources": [
+          {
+            "title": "JUP未定储备跟踪",
+            "url": "https://defillama.com/protocol/unlocks/jupiter"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Team（暂停 / TBD）",
+            "tokens": 427780000,
+            "approximate": true
+          },
+          {
+            "label": "Mercurial（TBD）",
+            "tokens": 82450000,
+            "approximate": true
+          },
+          {
+            "label": "Jupuary两类合计",
+            "tokens": 1400000000,
+            "approximate": false
+          },
+          {
+            "label": "Community reserve",
+            "tokens": 300000000,
+            "approximate": false
+          },
+          {
+            "label": "Strategic reserve",
+            "tokens": 1332700000,
+            "approximate": false
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "RAY",
+      "overview_component_id": "ray-document-rate",
+      "summary": "旧团队和seed归属已于2024结束，可明确这部分未来解锁为0。staking合约实际按slot计发，官方文档约1.9M/年可作当前速度情景；API的每秒值使用2.5slot/秒换算，不能被误称一年固定排期。",
+      "components": [
+        {
+          "id": "ray-staking-current",
+          "label": "staking按2.5slot/秒换算",
+          "evidence": "run_rate",
+          "mode": "annual_rate",
+          "effect_label": "API名义速率情景；非固定每秒奖励",
+          "note": "官方SDK布局及RPC解码staking v3为perSlotReward=16,712 raw，RAY六位小数。API perSecond=41,780等于按2.5slot/秒换算，名义年化1,317,574.08。未来数量受slot速度、调参、奖励vault补资影响；这是一个速率场景，不是合约固定每秒发放。 本次finalized RPC查到奖励vault仅74,634.822826 RAY；若不补资，不能据年率假设全年足额发放，未来补资未核。",
+          "sources": [
+            {
+              "title": "官方farm元数据",
+              "url": "https://api-v3.raydium.io/farms/info/ids?ids=4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW"
+            },
+            {
+              "title": "官方SDK farm账户布局",
+              "url": "https://github.com/raydium-io/raydium-sdk-V2/blob/master/src/raydium/farm/layout.ts"
+            }
+          ],
+          "annual_tokens": 1317574.08,
+          "overlap_group": "ray-mining-reserve",
+          "usable_in_float_scenario": true
+        },
+        {
+          "id": "ray-document-rate",
+          "label": "mining储备约1.9M/年情景",
+          "evidence": "run_rate",
+          "mode": "annual_rate",
+          "effect_label": "文档当前约数；与单farm不直接相加",
+          "note": "官方文档给当前mining储备约1.9M RAY/年。合约按slot计发，实际网络slot速度可高于API名义2.5slot/秒；文档约数与API单位不必矛盾。作为速度不变情景，未来30/90/365天按年率外推，非不可更改排期；不与同一staking奖励模型相加。",
+          "sources": [
+            {
+              "title": "官方RAY供应与储备说明",
+              "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx"
+            }
+          ],
+          "annual_tokens": 1900000.0,
+          "overlap_group": "ray-mining-reserve",
+          "usable_in_float_scenario": true,
+          "display_prefix": "约"
+        },
+        {
+          "id": "ray-original-insiders",
+          "label": "原团队 / seed归属",
+          "evidence": "ended",
+          "mode": "zero",
+          "effect_label": "原排期已结束；存量仍可出售",
+          "note": "官方原排期于2024-02-21结束。这部分未来新增解锁为0；既有持币转卖和其他生态释放并不会因此停止。",
+          "sources": [
+            {
+              "title": "官方RAY供应与储备说明",
+              "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "ray-mint",
+          "label": "额外mint",
+          "evidence": "authority",
+          "mode": "zero",
+          "effect_label": "mint authority已撤销",
+          "note": "已核Solana mint authority=null；该mint的额外mint权限为0。仍可从约555M既有经济库存中释放储备。",
+          "sources": [
+            {
+              "title": "RAY mint",
+              "url": "https://solscan.io/token/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R"
+            }
+          ],
+          "usable_in_float_scenario": false
+        },
+        {
+          "id": "ray-other-reserves",
+          "label": "其他farms / 生态 / 金库外流",
+          "evidence": "unknown",
+          "mode": "unknown",
+          "effect_label": "其他储备释放",
+          "note": "已查136个官方旧farm，135个API速率为0、一个staking非零；CLMM链上145个RAY reward配置均无未来end。v6元数据有滞后，链上仍有6条微量未来配置，第三方rewardSender未必来自挖矿储备。新配置、过往未领取奖励、生态/顾问/金库外流不在当前年率内；全部未来流通台账仍未齐。",
+          "sources": [
+            {
+              "title": "官方RAY供应与储备说明",
+              "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx"
+            },
+            {
+              "title": "farm-v2公开元数据",
+              "url": "https://api.raydium.io/v2/sdk/farm-v2/mainnet.json"
+            },
+            {
+              "title": "链上核验与覆盖范围",
+              "url": "../research/supply-jup-ray.md"
+            }
+          ],
+          "usable_in_float_scenario": false
+        }
+      ],
+      "gaps": [
+        "合约按slot计发，slot速度、调参及reward vault补资都影响未来枚数；不是一年固定每秒排期。",
+        "完整farm reward periods与生态、顾问、金库未来外流尚未齐。",
+        "回购币是否从reported circulating扣除以及实际burn仍需独立核验。"
+      ]
+    }
+  ],
+  "archived_public_sources": [
+    {
+      "key": "supply-jup-asr",
+      "raw_file": "data/raw/supply-jup-asr.json",
+      "metadata_file": "data/raw/supply-jup-asr.meta.json",
+      "url": "https://datapi.jup.ag/rewards/v1/campaigns",
+      "retrieved_at": "2026-10-02T12:38:47.467097+00:00",
+      "sha256": "cf601670556e5bf057ab50d3acaba17e2e1abef0057701fa1d7607fed1cab082",
+      "status": "fresh"
+    },
+    {
+      "key": "supply-ray-staking-api",
+      "raw_file": "data/raw/supply-ray-staking-api.json",
+      "metadata_file": "data/raw/supply-ray-staking-api.meta.json",
+      "url": "https://api-v3.raydium.io/farms/info/ids?ids=4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW",
+      "retrieved_at": "2026-10-02T12:38:47.122760+00:00",
+      "sha256": "213511b2554dbd2937422c560c705f15e4f741455ba8223ac1e0c3bd95f0a026",
+      "status": "fresh"
+    },
+    {
+      "key": "supply-jup-vote-rpc",
+      "raw_file": "data/raw/supply-jup-vote-rpc.json",
+      "metadata_file": "data/raw/supply-jup-vote-rpc.meta.json",
+      "url": "https://api.mainnet-beta.solana.com",
+      "retrieved_at": "2026-10-02T12:38:46.744018+00:00",
+      "sha256": "0ac2a94b8050b25ac3194183e3a018173693a145aab08f4f668ee944599a0b2f",
+      "status": "fresh",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "getAccountInfo",
+        "params": [
+          "C5XRDvjHZXmMs45WhjzEKdg2dcSg2aCSwEvPvivWpBF6",
+          {
+            "encoding": "base64",
+            "commitment": "finalized"
+          }
+        ]
+      }
+    },
+    {
+      "key": "supply-ray-staking-rpc",
+      "raw_file": "data/raw/supply-ray-staking-rpc.json",
+      "metadata_file": "data/raw/supply-ray-staking-rpc.meta.json",
+      "url": "https://api.mainnet-beta.solana.com",
+      "retrieved_at": "2026-10-02T12:38:46.744235+00:00",
+      "sha256": "3d39195237dd941056df92dddaaddc010d6245a122d09bcfc8177cfd09f0663c",
+      "status": "fresh",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "getAccountInfo",
+        "params": [
+          "4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW",
+          {
+            "encoding": "base64",
+            "commitment": "finalized"
+          }
+        ]
+      }
+    }
+  ]
+}

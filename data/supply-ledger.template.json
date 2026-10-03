@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "description": "实际台账模板；null表示未知。按同一经济供给/流通定义和同一窗口填数，类别互斥。不会自动导入当前dashboard或被当作已核实。",
+  "project": null,
+  "period_start_utc": null,
+  "period_end_utc": null,
+  "supply_basis": "economic_supply_including_booked_unminted_reserves",
+  "circulating_definition": null,
+  "opening_economic_supply_tokens": null,
+  "opening_contract_minted_supply_tokens": null,
+  "opening_reported_circulating_tokens": null,
+  "opening_tradable_float_tokens": null,
+  "ledger_inputs": {
+    "circulating": null,
+    "total": null,
+    "burnTokens": null,
+    "burnFromFloatTokens": null,
+    "buybackToLockTokens": null,
+    "unlockTokens": null,
+    "reserveRewardsTokens": null,
+    "newEconomicSupplyTokens": null,
+    "newEconomicTokensToFloat": null,
+    "treasuryReleaseTokens": null,
+    "relockTokens": null,
+    "knownComplete": false
+  },
+  "transactions": [],
+  "transaction_required_fields": ["project", "chain", "tx_hash", "executed_at_utc", "category", "quantity_tokens", "cash_usd", "from_classification", "to_classification", "source_url", "verification_scope", "nonrecurring", "doublecount_key"],
+  "reconciliation": {
+    "actual_mint_onchain_tokens": null,
+    "onchain_supply_decreasing_burn_tokens": null,
+    "dead_address_transfer_tokens": null,
+    "fee_burn_without_cash_buyback_tokens": null,
+    "pending_crosschain_burn_tokens": null,
+    "source_circulating_exclusions_verified": false,
+    "closing_supply_reconciled": false,
+    "missing_categories": []
+  }
+}

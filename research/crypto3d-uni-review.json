@@ -1,0 +1,261 @@
+{
+  "project": "Crypto3D reference / UNI",
+  "reviewed_at_utc": "2026-10-02T18:59:07.887770+00:00",
+  "reviewed_local_date": "2026-10-03",
+  "scope": "Published first-party website HTML and JSON, no underlying Etherscan independent reconciliation",
+  "application_files_modified": false,
+  "findings": {
+    "pe_definition": "market_cap / annualized holder return (via inverse shareholder yield), not independently sourced net income",
+    "ps_definition": "market_cap / annualized published revenue valuation (via inverse earning yield)",
+    "uni_main_revenue_source": "mainnetdeadtransferburnvaluation_by_site_description_not_DefiLlama_revenue",
+    "uni_qualified_complete_net_income_status": "not_demonstrated_in_inspected_public_data",
+    "uni_revenue_is_independently_measured_protocol_fee_assets": false,
+    "uni_operating_cost": null,
+    "uni_emission_cost": null,
+    "published_verified_label_is_not_our_audit": true
+  },
+  "public_data_loading": {
+    "base_url": "https://crypto3d.pro/data/all-protocols.json",
+    "daily_url": "https://crypto3d.pro/data/daily/uniswap/latest.json",
+    "snapshot_url": "https://crypto3d.pro/data/snapshots/uniswap.json",
+    "default_period_days": 365,
+    "html_formula_lines": "554-590",
+    "html_merge_lines": "416-466",
+    "financial_columns_lines": "610-611",
+    "short_period_null_fallback": "annual field retained",
+    "financial_columns_remain_365d": true,
+    "daily_null_fields_do_not_overwrite_base": true
+  },
+  "uni_values": {
+    "published_revenue_usd_365d": 18365812.03,
+    "published_net_income_usd_365d": 18365812.03,
+    "published_gross_profit_usd_365d": 18365812.03,
+    "published_net_margin_percent": 100.0,
+    "market_cap_usd": 5616491951,
+    "latest_daily_metrics_market_cap_usd": 5614453461,
+    "config_market_cap_usd": 2542249880.4217114,
+    "burn_uni_365d": 4580003,
+    "burn_price_usd": 4.01,
+    "current_price_usd": 8.98,
+    "metrics_trailing_365d_revenue_usd": 18377870,
+    "daily_trailing_30d_holder_returns_usd": 1996110,
+    "daily_trailing_365d_holder_returns_usd": 2952151,
+    "note": "Different fields/periods are kept separately, not reconciled by assumption."
+  },
+  "period_reproduction": [
+    {
+      "days": 7,
+      "published_shareholder_yield_percent": 0.87,
+      "published_earning_yield_percent": 0.87,
+      "table_pe_from_published_yield": 114.94252873563218,
+      "table_ps_from_published_yield": 114.94252873563218,
+      "table_pe_display": "115x",
+      "net_income_column_period_days": 365,
+      "revenue_column_period_days": 365,
+      "hypothetical_recomputed_yield_using_published_burn_price_and_current_cap_percent": 0.3946207534971478,
+      "hypothetical_note": "Arithmetic check only; old burn amounts are not a current complete window, and no absent day is filled as zero."
+    },
+    {
+      "days": 30,
+      "published_shareholder_yield_percent": 0.69,
+      "published_earning_yield_percent": 0.69,
+      "table_pe_from_published_yield": 144.92753623188406,
+      "table_ps_from_published_yield": 144.92753623188406,
+      "table_pe_display": "145x",
+      "net_income_column_period_days": 365,
+      "revenue_column_period_days": 365,
+      "hypothetical_recomputed_yield_using_published_burn_price_and_current_cap_percent": 0.3109810088880039,
+      "hypothetical_note": "Arithmetic check only; old burn amounts are not a current complete window, and no absent day is filled as zero."
+    },
+    {
+      "days": 90,
+      "published_shareholder_yield_percent": 0.75,
+      "published_earning_yield_percent": 0.75,
+      "table_pe_from_published_yield": 133.33333333333334,
+      "table_ps_from_published_yield": 133.33333333333334,
+      "table_pe_display": "133x",
+      "net_income_column_period_days": 365,
+      "revenue_column_period_days": 365,
+      "hypothetical_recomputed_yield_using_published_burn_price_and_current_cap_percent": 0.3399364100880043,
+      "hypothetical_note": "Arithmetic check only; old burn amounts are not a current complete window, and no absent day is filled as zero."
+    },
+    {
+      "days": 365,
+      "published_shareholder_yield_percent": 0.327,
+      "published_earning_yield_percent": 0.327,
+      "table_pe_from_published_yield": 305.8103975535168,
+      "table_ps_from_published_yield": 305.8103975535168,
+      "table_pe_display": "306x",
+      "net_income_column_period_days": 365,
+      "revenue_column_period_days": 365,
+      "hypothetical_recomputed_yield_using_published_burn_price_and_current_cap_percent": 0.3269979230848897,
+      "hypothetical_note": "Arithmetic check only; old burn amounts are not a current complete window, and no absent day is filled as zero."
+    }
+  ],
+  "freshness": {
+    "aggregate_generated_at": "2026-10-02T00:14:56.314668+00:00",
+    "daily_updated_at": "2026-10-02T00:14:52.000Z",
+    "snapshot_as_of": "2026-10-02",
+    "config_last_updated": "2026-08-02",
+    "validation_data_range": {
+      "start": "2025-06-07",
+      "end": "2026-08-01"
+    },
+    "burn_history_updated_at": "2026-08-10T13:11:09.706103Z",
+    "burn_history_max_record_date": "2026-08-10",
+    "tev_records_updated_at": "2026-08-10T13:11:09.711671Z",
+    "burn_history_complete_through_research_as_of": null,
+    "burn_history_missing_future_days_are_zero": false,
+    "history_rows": 365,
+    "estimated_daily_value_rows": 364,
+    "pending_daily_value_rows": 1,
+    "burn_history_completeness_status": "not_established_source_last_updated_Aug10",
+    "burn_history_has_post_aug10_published_records": false
+  },
+  "source_scope": {
+    "chain": "Ethereum mainnet",
+    "all_dead_transfer_from_addresses_counted_per_site": true,
+    "unrelated_user_burns_can_be_included": true,
+    "retro_event_cutoff_prose": ">=10M inconfig; >10M inburn-history source text",
+    "retro_threshold_boundary_execution": "unknown_script_not_obtained",
+    "mainnet_dead_transfers_not_same_as_cash_market_buys": true,
+    "public_source_summary_records_not_full_event_log_evidence": true
+  },
+  "compatible_metrics_suggestion": {
+    "pe_like_name_zh": "持币人统计金额倍数（参考站P/E口径）",
+    "pe_like_formula": "circulating_market_cap / annualized holders statistic",
+    "uni_ps_like_name_zh": "市值／年化兑换UNI估值",
+    "real_profit_pe_status": "unknown_until_qualified_independent_complete_cost_profit_data",
+    "do_not_import_reference_stale_values": true
+  },
+  "evidence": [
+    {
+      "id": "formula",
+      "url": "https://crypto3d.pro/equity/",
+      "status": "verified_public_source",
+      "local_file": "research/evidence/crypto3d-uni/equity.html",
+      "paths_or_lines": [
+        "388",
+        "554-590",
+        "610-611"
+      ],
+      "claim": "Default period365d. Display PE=100/shareholder-yield and PS=100/earning-yield; shorter periods use precomputed period yields. Rev and Net Inc columns remain365d.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "merge",
+      "url": "https://crypto3d.pro/equity/",
+      "status": "verified_public_source",
+      "local_file": "research/evidence/crypto3d-uni/equity.html",
+      "paths_or_lines": [
+        "416-466"
+      ],
+      "claim": "Load all-protocols then overlay non-null daily fields and non-null daily metrics; missing financial fields may fallback from snapshots. Fresh daily records do not automatically replace retained non-null yield values.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "uni_profit",
+      "url": "https://crypto3d.pro/data/snapshots/uniswap.json",
+      "status": "verified_published_fields_not_independent_profit_verification",
+      "local_file": "research/evidence/crypto3d-uni/snapshot-uniswap.json",
+      "paths_or_lines": [
+        "income_statement.revenue.revenue_included",
+        "income_statement.gross_profit",
+        "income_statement.net_income",
+        "income_statement.token_emission_cost",
+        "verification"
+      ],
+      "claim": "Published revenue, gross profit and net income eachUSD18365812.03 =4580003UNI*4.01; operating/emission costs null. Site explicitly equates net income to holder returns rather than demonstrating complete operating costs.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "uni_burn_source",
+      "url": "https://crypto3d.pro/data/protocols/uniswap/config.json",
+      "status": "verified_source_description_execution_script_not_obtained",
+      "local_file": "research/evidence/crypto3d-uni/config-uniswap.json",
+      "paths_or_lines": [
+        "analyst_notes",
+        "calc_pipeline",
+        "revenue_recognition"
+      ],
+      "claim": "Source description says switchedApril22 fromDefiLlama toEthereum UNI transfers todead, all source addresses, exclude large one-time events, current-price revaluation; not equivalent to independently measured protocol revenue.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "burn_freshness",
+      "url": "https://crypto3d.pro/data/protocols/uniswap/burn-history.json",
+      "status": "verified_published_file",
+      "local_file": "research/evidence/crypto3d-uni/burn-history-uniswap.json",
+      "paths_or_lines": [
+        "updated_at",
+        "daily",
+        "retro_events"
+      ],
+      "claim": "Published burn-history updatedAug10 and latest listed dateAug10. The file does not establish complete subsequent burn coverage asofOct2.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "mixed_dates",
+      "url": "https://crypto3d.pro/data/all-protocols.json",
+      "status": "verified_published_fields",
+      "local_file": "research/evidence/crypto3d-uni/all-protocols.json",
+      "paths_or_lines": [
+        "generated_at",
+        "protocols.uniswap.validation",
+        "protocols.uniswap.metrics",
+        "protocols.uniswap.financial_snapshot"
+      ],
+      "claim": "FilegeneratedOct2, validationburnrangeendsAug1 andburnprice4.01, currentprice8.98/currentcap5.616B; source timestamps and valuation inputs differ.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "daily_source",
+      "url": "https://crypto3d.pro/data/daily/uniswap/latest.json",
+      "status": "verified_published_fields",
+      "local_file": "research/evidence/crypto3d-uni/daily-uniswap-latest.json",
+      "paths_or_lines": [
+        "updated_at",
+        "data_sources",
+        "metrics"
+      ],
+      "claim": "DailyOct2 file citesDefiLlama/CoinGecko and reports30Dholderreturns1.996110M/365D2.952151M, but doesnot publish replacement shareholder_yield_Nd_ann values; main table retains old yield fields.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    },
+    {
+      "id": "history_estimates",
+      "url": "https://crypto3d.pro/data/history/uniswap.json",
+      "status": "verified_published_file",
+      "local_file": "research/evidence/crypto3d-uni/history-uniswap.json",
+      "paths_or_lines": [
+        "records[].daily_value_status"
+      ],
+      "claim": "365publishedhistoryrows include364estimateddailyvalues and1pending. This doesnot establish an independent audited net-profit series.",
+      "published_date": null,
+      "effective_date": null,
+      "accessed_at_utc": "2026-10-02T18:52:19Z_to_2026-10-02T18:54:20Z"
+    }
+  ],
+  "raw_manifest": "research/evidence/crypto3d-uni/manifest.json",
+  "raw_public_responses_saved": 9,
+  "unknowns": [
+    "Backend updater script execution and exact >=10M boundary",
+    "UnderlyingEtherscanrawlogs correctness/completeness and specificprotocolvsuserfromallocation",
+    "WhyOct2aggregate retainsoldburnprice/shortyield values",
+    "IndependentcompleteUNIprotocolfeeUSD andcompleteoperatingexpenses",
+    "AllCrypto3Dotherprojectsprofitsemantics outsideUNI scope"
+  ]
+}

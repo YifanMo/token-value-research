@@ -1,0 +1,6 @@
+{
+  "url": "https://coins.llama.fi/chart/coingecko:hyperliquid,coingecko:pump-fun,coingecko:uniswap,coingecko:jupiter-exchange-solana,coingecko:raydium,coingecko:bitcoin,coingecko:solana?start=1577836800&span=70&period=1d&searchWidth=1h",
+  "retrieved_at": "2026-10-02T22:18:19.341735+00:00",
+  "sha256": "a4ffd9d7c2682e55a57bc64eecfddb089f3503844f0e7f1c01f96971aab528bd",
+  "status": "fresh"
+}

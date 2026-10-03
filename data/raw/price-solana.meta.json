@@ -1,0 +1,6 @@
+{
+  "url": "https://api.coingecko.com/api/v3/coins/solana/market_chart?vs_currency=usd&days=365&interval=daily",
+  "retrieved_at": "2026-10-02T21:36:05.301361+00:00",
+  "sha256": "a0b318a96a22e9756567ca17ae2a2b3cbb3daa2a5c840334c4a3e7d2c8645907",
+  "status": "fresh"
+}

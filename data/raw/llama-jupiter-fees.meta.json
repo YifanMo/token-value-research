@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/jupiter?dataType=dailyFees",
+  "retrieved_at": "2026-10-02T21:32:27.851869+00:00",
+  "sha256": "8bfe49d154879c9d2acf04462de46d4ca5032f48ac702f1bf0778d15040895ac",
+  "status": "fresh"
+}

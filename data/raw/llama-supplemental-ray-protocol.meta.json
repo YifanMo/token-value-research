@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyProtocolRevenue",
+  "retrieved_at": "2026-10-02T21:32:30.511226+00:00",
+  "sha256": "b8a042fc4113178d03eb2664b0148639a3468970c2d00929eb4ef25612eac392",
+  "status": "fresh"
+}

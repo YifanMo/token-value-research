@@ -1,0 +1,3082 @@
+{
+  "protocol": "uniswap",
+  "updated_at": "2026-08-10T13:11:09.711671Z",
+  "data_source": "Etherscan V2 (UNI → 0xdead) × 当前 UNI 价 (CoinGecko)",
+  "records": [
+    {
+      "id": "uni-burn-2025-06-07",
+      "date": "2025-06-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 0.0,
+      "amount_usd": 0,
+      "period": "2025-06-07",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2025-10-22",
+      "date": "2025-10-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 0.0,
+      "amount_usd": 0,
+      "period": "2025-10-22",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2025-11-03",
+      "date": "2025-11-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 0.0,
+      "amount_usd": 0,
+      "period": "2025-11-03",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2025-12-29",
+      "date": "2025-12-29",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2025-12-29",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2025-12-30",
+      "date": "2025-12-30",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8003.34,
+      "amount_usd": 32093,
+      "period": "2025-12-30",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2025-12-31",
+      "date": "2025-12-31",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2025-12-31",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-01",
+      "date": "2026-01-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-01-01",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-02",
+      "date": "2026-01-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-01-02",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-03",
+      "date": "2026-01-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-01-03",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-04",
+      "date": "2026-01-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-01-04",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-05",
+      "date": "2026-01-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-05",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-06",
+      "date": "2026-01-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-01-06",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-07",
+      "date": "2026-01-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-07",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-08",
+      "date": "2026-01-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-08",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-09",
+      "date": "2026-01-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-09",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-10",
+      "date": "2026-01-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-01-10",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-11",
+      "date": "2026-01-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-01-11",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-12",
+      "date": "2026-01-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-12",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-13",
+      "date": "2026-01-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-13",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-14",
+      "date": "2026-01-14",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-01-14",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-15",
+      "date": "2026-01-15",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-01-15",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-16",
+      "date": "2026-01-16",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-01-16",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-17",
+      "date": "2026-01-17",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-01-17",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-18",
+      "date": "2026-01-18",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-01-18",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-19",
+      "date": "2026-01-19",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-19",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-20",
+      "date": "2026-01-20",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-01-20",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-21",
+      "date": "2026-01-21",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 26000.0,
+      "amount_usd": 104260,
+      "period": "2026-01-21",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-22",
+      "date": "2026-01-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-22",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-23",
+      "date": "2026-01-23",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-01-23",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-24",
+      "date": "2026-01-24",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-01-24",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-25",
+      "date": "2026-01-25",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-01-25",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-26",
+      "date": "2026-01-26",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-01-26",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-27",
+      "date": "2026-01-27",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-01-27",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-28",
+      "date": "2026-01-28",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-01-28",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-29",
+      "date": "2026-01-29",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-01-29",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-30",
+      "date": "2026-01-30",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 34000.0,
+      "amount_usd": 136340,
+      "period": "2026-01-30",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-01-31",
+      "date": "2026-01-31",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 68000.0,
+      "amount_usd": 272680,
+      "period": "2026-01-31",
+      "tx_count": 17,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-01",
+      "date": "2026-02-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 36000.0,
+      "amount_usd": 144360,
+      "period": "2026-02-01",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-02",
+      "date": "2026-02-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 40000.0,
+      "amount_usd": 160400,
+      "period": "2026-02-02",
+      "tx_count": 10,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-03",
+      "date": "2026-02-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 36000.0,
+      "amount_usd": 144360,
+      "period": "2026-02-03",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-04",
+      "date": "2026-02-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 44000.0,
+      "amount_usd": 176440,
+      "period": "2026-02-04",
+      "tx_count": 11,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-05",
+      "date": "2026-02-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 126000.0,
+      "amount_usd": 505260,
+      "period": "2026-02-05",
+      "tx_count": 32,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-06",
+      "date": "2026-02-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 80000.0,
+      "amount_usd": 320800,
+      "period": "2026-02-06",
+      "tx_count": 20,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-07",
+      "date": "2026-02-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 40000.0,
+      "amount_usd": 160400,
+      "period": "2026-02-07",
+      "tx_count": 10,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-08",
+      "date": "2026-02-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-08",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-09",
+      "date": "2026-02-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 28000.0,
+      "amount_usd": 112280,
+      "period": "2026-02-09",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-10",
+      "date": "2026-02-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-10",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-11",
+      "date": "2026-02-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 32000.0,
+      "amount_usd": 128320,
+      "period": "2026-02-11",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-12",
+      "date": "2026-02-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 28000.0,
+      "amount_usd": 112280,
+      "period": "2026-02-12",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-13",
+      "date": "2026-02-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-02-13",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-14",
+      "date": "2026-02-14",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-02-14",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-15",
+      "date": "2026-02-15",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-15",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-16",
+      "date": "2026-02-16",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-02-16",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-17",
+      "date": "2026-02-17",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-02-17",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-18",
+      "date": "2026-02-18",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 26000.0,
+      "amount_usd": 104260,
+      "period": "2026-02-18",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-19",
+      "date": "2026-02-19",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-02-19",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-20",
+      "date": "2026-02-20",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-20",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-21",
+      "date": "2026-02-21",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-02-21",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-22",
+      "date": "2026-02-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-02-22",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-23",
+      "date": "2026-02-23",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-23",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-24",
+      "date": "2026-02-24",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-02-24",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-25",
+      "date": "2026-02-25",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 32000.0,
+      "amount_usd": 128320,
+      "period": "2026-02-25",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-26",
+      "date": "2026-02-26",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-02-26",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-27",
+      "date": "2026-02-27",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-27",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-02-28",
+      "date": "2026-02-28",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-02-28",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-01",
+      "date": "2026-03-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 32000.0,
+      "amount_usd": 128320,
+      "period": "2026-03-01",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-02",
+      "date": "2026-03-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 32000.0,
+      "amount_usd": 128320,
+      "period": "2026-03-02",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-03",
+      "date": "2026-03-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 28000.0,
+      "amount_usd": 112280,
+      "period": "2026-03-03",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-04",
+      "date": "2026-03-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 36000.0,
+      "amount_usd": 144360,
+      "period": "2026-03-04",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-05",
+      "date": "2026-03-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-05",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-06",
+      "date": "2026-03-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 22000.0,
+      "amount_usd": 88220,
+      "period": "2026-03-06",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-07",
+      "date": "2026-03-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-03-07",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-08",
+      "date": "2026-03-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-08",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-09",
+      "date": "2026-03-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-03-09",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-10",
+      "date": "2026-03-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-10",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-11",
+      "date": "2026-03-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-11",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-12",
+      "date": "2026-03-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-03-12",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-13",
+      "date": "2026-03-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 28000.0,
+      "amount_usd": 112280,
+      "period": "2026-03-13",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-14",
+      "date": "2026-03-14",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-03-14",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-15",
+      "date": "2026-03-15",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-15",
+      "tx_count": 6,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-16",
+      "date": "2026-03-16",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 56000.0,
+      "amount_usd": 224560,
+      "period": "2026-03-16",
+      "tx_count": 21,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-17",
+      "date": "2026-03-17",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-03-17",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-18",
+      "date": "2026-03-18",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 74000.0,
+      "amount_usd": 296740,
+      "period": "2026-03-18",
+      "tx_count": 31,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-19",
+      "date": "2026-03-19",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 28000.0,
+      "amount_usd": 112280,
+      "period": "2026-03-19",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-20",
+      "date": "2026-03-20",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-20",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-21",
+      "date": "2026-03-21",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 74000.0,
+      "amount_usd": 296740,
+      "period": "2026-03-21",
+      "tx_count": 35,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-22",
+      "date": "2026-03-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 28000.0,
+      "amount_usd": 112280,
+      "period": "2026-03-22",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-23",
+      "date": "2026-03-23",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 46000.0,
+      "amount_usd": 184460,
+      "period": "2026-03-23",
+      "tx_count": 14,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-24",
+      "date": "2026-03-24",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 40000.0,
+      "amount_usd": 160400,
+      "period": "2026-03-24",
+      "tx_count": 15,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-25",
+      "date": "2026-03-25",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 18000.0,
+      "amount_usd": 72180,
+      "period": "2026-03-25",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-26",
+      "date": "2026-03-26",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 74000.0,
+      "amount_usd": 296740,
+      "period": "2026-03-26",
+      "tx_count": 32,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-27",
+      "date": "2026-03-27",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 38000.0,
+      "amount_usd": 152380,
+      "period": "2026-03-27",
+      "tx_count": 13,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-28",
+      "date": "2026-03-28",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 20000.0,
+      "amount_usd": 80200,
+      "period": "2026-03-28",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-29",
+      "date": "2026-03-29",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 58000.0,
+      "amount_usd": 232580,
+      "period": "2026-03-29",
+      "tx_count": 26,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-30",
+      "date": "2026-03-30",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 38000.0,
+      "amount_usd": 152380,
+      "period": "2026-03-30",
+      "tx_count": 14,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-03-31",
+      "date": "2026-03-31",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 50000.0,
+      "amount_usd": 200500,
+      "period": "2026-03-31",
+      "tx_count": 18,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-01",
+      "date": "2026-04-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 40000.0,
+      "amount_usd": 160400,
+      "period": "2026-04-01",
+      "tx_count": 13,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-02",
+      "date": "2026-04-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 30000.0,
+      "amount_usd": 120300,
+      "period": "2026-04-02",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-03",
+      "date": "2026-04-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 76000.0,
+      "amount_usd": 304760,
+      "period": "2026-04-03",
+      "tx_count": 35,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-04",
+      "date": "2026-04-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-04-04",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-05",
+      "date": "2026-04-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 26000.0,
+      "amount_usd": 104260,
+      "period": "2026-04-05",
+      "tx_count": 10,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-06",
+      "date": "2026-04-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 42000.0,
+      "amount_usd": 168420,
+      "period": "2026-04-06",
+      "tx_count": 15,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-07",
+      "date": "2026-04-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 62000.0,
+      "amount_usd": 248620,
+      "period": "2026-04-07",
+      "tx_count": 23,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-08",
+      "date": "2026-04-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 30000.0,
+      "amount_usd": 120300,
+      "period": "2026-04-08",
+      "tx_count": 11,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-09",
+      "date": "2026-04-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 68000.0,
+      "amount_usd": 272680,
+      "period": "2026-04-09",
+      "tx_count": 29,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-10",
+      "date": "2026-04-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 26000.0,
+      "amount_usd": 104260,
+      "period": "2026-04-10",
+      "tx_count": 8,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-11",
+      "date": "2026-04-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 36000.0,
+      "amount_usd": 144360,
+      "period": "2026-04-11",
+      "tx_count": 15,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-12",
+      "date": "2026-04-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 18000.0,
+      "amount_usd": 72180,
+      "period": "2026-04-12",
+      "tx_count": 5,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-13",
+      "date": "2026-04-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 32000.0,
+      "amount_usd": 128320,
+      "period": "2026-04-13",
+      "tx_count": 11,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-14",
+      "date": "2026-04-14",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 40000.0,
+      "amount_usd": 160400,
+      "period": "2026-04-14",
+      "tx_count": 14,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-15",
+      "date": "2026-04-15",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 70000.0,
+      "amount_usd": 280700,
+      "period": "2026-04-15",
+      "tx_count": 31,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-16",
+      "date": "2026-04-16",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 30000.0,
+      "amount_usd": 120300,
+      "period": "2026-04-16",
+      "tx_count": 10,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-17",
+      "date": "2026-04-17",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 70000.0,
+      "amount_usd": 280700,
+      "period": "2026-04-17",
+      "tx_count": 28,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-18",
+      "date": "2026-04-18",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 38000.0,
+      "amount_usd": 152380,
+      "period": "2026-04-18",
+      "tx_count": 11,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-19",
+      "date": "2026-04-19",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 36000.0,
+      "amount_usd": 144360,
+      "period": "2026-04-19",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-20",
+      "date": "2026-04-20",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-04-20",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-21",
+      "date": "2026-04-21",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-04-21",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-22",
+      "date": "2026-04-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-04-22",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-23",
+      "date": "2026-04-23",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-04-23",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-24",
+      "date": "2026-04-24",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-04-24",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-25",
+      "date": "2026-04-25",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-04-25",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-26",
+      "date": "2026-04-26",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-04-26",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-27",
+      "date": "2026-04-27",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-04-27",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-28",
+      "date": "2026-04-28",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-04-28",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-29",
+      "date": "2026-04-29",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-04-29",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-04-30",
+      "date": "2026-04-30",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-04-30",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-01",
+      "date": "2026-05-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-01",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-02",
+      "date": "2026-05-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-02",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-03",
+      "date": "2026-05-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-03",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-04",
+      "date": "2026-05-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-05-04",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-05",
+      "date": "2026-05-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-05",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-06",
+      "date": "2026-05-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-06",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-07",
+      "date": "2026-05-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-07",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-08",
+      "date": "2026-05-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-08",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-09",
+      "date": "2026-05-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-05-09",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-10",
+      "date": "2026-05-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-10",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-11",
+      "date": "2026-05-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-11",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-12",
+      "date": "2026-05-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-12",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-13",
+      "date": "2026-05-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-13",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-14",
+      "date": "2026-05-14",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-14",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-15",
+      "date": "2026-05-15",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-15",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-16",
+      "date": "2026-05-16",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-05-16",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-17",
+      "date": "2026-05-17",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-17",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-18",
+      "date": "2026-05-18",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-05-18",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-19",
+      "date": "2026-05-19",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-19",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-20",
+      "date": "2026-05-20",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-20",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-21",
+      "date": "2026-05-21",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-21",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-22",
+      "date": "2026-05-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-22",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-23",
+      "date": "2026-05-23",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-05-23",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-24",
+      "date": "2026-05-24",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-24",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-25",
+      "date": "2026-05-25",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-05-25",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-26",
+      "date": "2026-05-26",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-05-26",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-27",
+      "date": "2026-05-27",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-05-27",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-28",
+      "date": "2026-05-28",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-05-28",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-29",
+      "date": "2026-05-29",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-05-29",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-30",
+      "date": "2026-05-30",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-05-30",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-05-31",
+      "date": "2026-05-31",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-05-31",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-01",
+      "date": "2026-06-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-06-01",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-02",
+      "date": "2026-06-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 42000.0,
+      "amount_usd": 168420,
+      "period": "2026-06-02",
+      "tx_count": 11,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-03",
+      "date": "2026-06-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 74000.0,
+      "amount_usd": 296740,
+      "period": "2026-06-03",
+      "tx_count": 22,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-04",
+      "date": "2026-06-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 46000.0,
+      "amount_usd": 184460,
+      "period": "2026-06-04",
+      "tx_count": 13,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-10",
+      "date": "2026-06-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 16000.0,
+      "amount_usd": 64160,
+      "period": "2026-06-10",
+      "tx_count": 4,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-11",
+      "date": "2026-06-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 208000.0,
+      "amount_usd": 834080,
+      "period": "2026-06-11",
+      "tx_count": 98,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-12",
+      "date": "2026-06-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 48000.0,
+      "amount_usd": 192480,
+      "period": "2026-06-12",
+      "tx_count": 18,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-06-13",
+      "date": "2026-06-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 18000.0,
+      "amount_usd": 72180,
+      "period": "2026-06-13",
+      "tx_count": 7,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-02",
+      "date": "2026-07-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-02",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-03",
+      "date": "2026-07-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 60000.0,
+      "amount_usd": 240600,
+      "period": "2026-07-03",
+      "tx_count": 27,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-04",
+      "date": "2026-07-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-04",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-05",
+      "date": "2026-07-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-05",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-06",
+      "date": "2026-07-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-06",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-07",
+      "date": "2026-07-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-07",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-08",
+      "date": "2026-07-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-08",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-09",
+      "date": "2026-07-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-09",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-10",
+      "date": "2026-07-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-10",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-11",
+      "date": "2026-07-11",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-11",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-12",
+      "date": "2026-07-12",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-07-12",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-13",
+      "date": "2026-07-13",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 84000.0,
+      "amount_usd": 336840,
+      "period": "2026-07-13",
+      "tx_count": 35,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-14",
+      "date": "2026-07-14",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-14",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-15",
+      "date": "2026-07-15",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-15",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-16",
+      "date": "2026-07-16",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-07-16",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-17",
+      "date": "2026-07-17",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-17",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-18",
+      "date": "2026-07-18",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 10000.0,
+      "amount_usd": 40100,
+      "period": "2026-07-18",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-19",
+      "date": "2026-07-19",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 6000.0,
+      "amount_usd": 24060,
+      "period": "2026-07-19",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-20",
+      "date": "2026-07-20",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-20",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-21",
+      "date": "2026-07-21",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-07-21",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-22",
+      "date": "2026-07-22",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-22",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-23",
+      "date": "2026-07-23",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-07-23",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-24",
+      "date": "2026-07-24",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-07-24",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-25",
+      "date": "2026-07-25",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-07-25",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-26",
+      "date": "2026-07-26",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-26",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-27",
+      "date": "2026-07-27",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-27",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-28",
+      "date": "2026-07-28",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-28",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-29",
+      "date": "2026-07-29",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 12000.0,
+      "amount_usd": 48120,
+      "period": "2026-07-29",
+      "tx_count": 3,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-30",
+      "date": "2026-07-30",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-30",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-07-31",
+      "date": "2026-07-31",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-07-31",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-01",
+      "date": "2026-08-01",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-08-01",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-02",
+      "date": "2026-08-02",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-08-02",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-03",
+      "date": "2026-08-03",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 30000.0,
+      "amount_usd": 120300,
+      "period": "2026-08-03",
+      "tx_count": 11,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-04",
+      "date": "2026-08-04",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 24000.0,
+      "amount_usd": 96240,
+      "period": "2026-08-04",
+      "tx_count": 9,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-05",
+      "date": "2026-08-05",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 46000.0,
+      "amount_usd": 184460,
+      "period": "2026-08-05",
+      "tx_count": 19,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-06",
+      "date": "2026-08-06",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 4000.0,
+      "amount_usd": 16040,
+      "period": "2026-08-06",
+      "tx_count": 1,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-07",
+      "date": "2026-08-07",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 8000.0,
+      "amount_usd": 32080,
+      "period": "2026-08-07",
+      "tx_count": 2,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-08",
+      "date": "2026-08-08",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 236000.0,
+      "amount_usd": 946360,
+      "period": "2026-08-08",
+      "tx_count": 110,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-09",
+      "date": "2026-08-09",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 38000.0,
+      "amount_usd": 152380,
+      "period": "2026-08-09",
+      "tx_count": 16,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    },
+    {
+      "id": "uni-burn-2026-08-10",
+      "date": "2026-08-10",
+      "type": "buyback_burn",
+      "mechanism": "Firepit Burn (via fee switch)",
+      "amount_uni": 44000.0,
+      "amount_usd": 176440,
+      "period": "2026-08-10",
+      "tx_count": 20,
+      "source": {
+        "type": "onchain",
+        "provider": "Etherscan V2",
+        "note": "过去 365 天 UNI → 0xdead (排除 >=10M 一次性事件)"
+      }
+    }
+  ]
+}

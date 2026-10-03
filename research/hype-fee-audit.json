@@ -1,0 +1,930 @@
+{
+  "verified_on": "2026-10-03",
+  "parent_snapshot_as_of": "2026-10-02",
+  "parent_sources": [
+    {
+      "kind": "fees",
+      "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyFees",
+      "retrieved_at": "2026-10-02T11:05:10.086729+00:00",
+      "sha256": "52d9ebea4ee80a1040bf8921a88dcadcc44b2f37c6fa7788d1a8b603d7898dbd",
+      "status": "offline-cache",
+      "original_response_sha256": "47dccf7033968ec724a3633c42bccef30f60b3bc8110e244fb12a24d82b1cb77",
+      "hash_scope": "stored-json",
+      "storage_note": "Early capture parsed and pretty-printed JSON; stored-file and downloaded-response hashes retained separately.",
+      "response_path": "../data/responses/52d9ebea4ee80a1040bf8921a88dcadcc44b2f37c6fa7788d1a8b603d7898dbd.json",
+      "stored_sha256": "52d9ebea4ee80a1040bf8921a88dcadcc44b2f37c6fa7788d1a8b603d7898dbd",
+      "latest_observation": "2026-10-01"
+    },
+    {
+      "kind": "revenue",
+      "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue",
+      "retrieved_at": "2026-10-02T11:05:10.078793+00:00",
+      "sha256": "50fd7b39f9f320f6db4665ddb9a79859ff300a1c36a56fb4d7cccea60fac2706",
+      "status": "offline-cache",
+      "original_response_sha256": "e026499d3931e6de8b70c3f07b78f82d19ed0f07466ae20974a79b511fcf8f6b",
+      "hash_scope": "stored-json",
+      "storage_note": "Early capture parsed and pretty-printed JSON; stored-file and downloaded-response hashes retained separately.",
+      "response_path": "../data/responses/50fd7b39f9f320f6db4665ddb9a79859ff300a1c36a56fb4d7cccea60fac2706.json",
+      "stored_sha256": "50fd7b39f9f320f6db4665ddb9a79859ff300a1c36a56fb4d7cccea60fac2706",
+      "latest_observation": "2026-10-01"
+    },
+    {
+      "kind": "holders",
+      "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue",
+      "retrieved_at": "2026-10-02T11:05:10.038975+00:00",
+      "sha256": "0a37a35b83d1cdca689101ab2cf461dbd9ea77a5a74c80e4590c2387b4c3d2e4",
+      "status": "offline-cache",
+      "original_response_sha256": "5352cb2a289f596181db9b0fc681b08d9ab159e194a0d569d9117403e0dd6eff",
+      "hash_scope": "stored-json",
+      "storage_note": "Early capture parsed and pretty-printed JSON; stored-file and downloaded-response hashes retained separately.",
+      "response_path": "../data/responses/0a37a35b83d1cdca689101ab2cf461dbd9ea77a5a74c80e4590c2387b4c3d2e4.json",
+      "stored_sha256": "0a37a35b83d1cdca689101ab2cf461dbd9ea77a5a74c80e4590c2387b4c3d2e4",
+      "latest_observation": "2026-10-01"
+    }
+  ],
+  "label_sources": {
+    "audit_created_at": "2026-10-02T16:48:48.259599+00:00",
+    "window_end": "2026-10-01",
+    "records": [
+      {
+        "slug": "hyperliquid-perps",
+        "data_type": "dailyFees",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-perps/label-breakdown?dataType=dailyFees",
+        "request_started_at": "2026-10-02T16:48:19.915920+00:00",
+        "retrieved_at": "2026-10-02T16:48:20.839003+00:00",
+        "sha256": "1e8dc54553e1d7984f667b77805940bdb4ad237ab2eb122f30dfc27dc4c4120f",
+        "response_path": "../data/responses/1e8dc54553e1d7984f667b77805940bdb4ad237ab2eb122f30dfc27dc4c4120f.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:20 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "193",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 11322230,
+              "Builder Code Fees": 1999850
+            },
+            "label_total": 13322080,
+            "parent_child_total": 13322081,
+            "label_minus_parent_child": -1
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 58902895,
+              "Builder Code Fees": 9395934
+            },
+            "label_total": 68298829,
+            "parent_child_total": 68298832,
+            "label_minus_parent_child": -3
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 158886767,
+              "Builder Code Fees": 22686992
+            },
+            "label_total": 181573759,
+            "parent_child_total": 181573763,
+            "label_minus_parent_child": -4
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 785815189,
+              "Builder Code Fees": 80602320
+            },
+            "label_total": 866417509,
+            "parent_child_total": 866417508,
+            "label_minus_parent_child": 1
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-perps",
+        "data_type": "dailyRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-perps/label-breakdown?dataType=dailyRevenue",
+        "request_started_at": "2026-10-02T16:48:19.919392+00:00",
+        "retrieved_at": "2026-10-02T16:48:20.714237+00:00",
+        "sha256": "5e51248d7127565742709d35accd1edbfb7471d9823ae13e83a1d91e5fc2e846",
+        "response_path": "../data/responses/5e51248d7127565742709d35accd1edbfb7471d9823ae13e83a1d91e5fc2e846.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:20 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "147",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 10222071
+            },
+            "label_total": 10222071,
+            "parent_child_total": 10222071,
+            "label_minus_parent_child": 0
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 53283842
+            },
+            "label_total": 53283842,
+            "parent_child_total": 53283842,
+            "label_minus_parent_child": 0
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 137105427
+            },
+            "label_total": 137105427,
+            "parent_child_total": 137105427,
+            "label_minus_parent_child": 0
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 657789696
+            },
+            "label_total": 657789696,
+            "parent_child_total": 657789696,
+            "label_minus_parent_child": 0
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-perps",
+        "data_type": "dailyHoldersRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-perps/label-breakdown?dataType=dailyHoldersRevenue",
+        "request_started_at": "2026-10-02T16:48:19.919601+00:00",
+        "retrieved_at": "2026-10-02T16:48:20.743806+00:00",
+        "sha256": "1c2fa7126237d21f44c2230b1cbcadeaf31af72d82058e7f0a4420477157ee82",
+        "response_path": "../data/responses/1c2fa7126237d21f44c2230b1cbcadeaf31af72d82058e7f0a4420477157ee82.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:20 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "146",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 10222071
+            },
+            "label_total": 10222071,
+            "parent_child_total": 10222071,
+            "label_minus_parent_child": 0
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 53283842
+            },
+            "label_total": 53283842,
+            "parent_child_total": 53283842,
+            "label_minus_parent_child": 0
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 137105427
+            },
+            "label_total": 137105427,
+            "parent_child_total": 137105427,
+            "label_minus_parent_child": 0
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 657789696
+            },
+            "label_total": 657789696,
+            "parent_child_total": 657789696,
+            "label_minus_parent_child": 0
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-perps",
+        "data_type": "dailySupplySideRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-perps/label-breakdown?dataType=dailySupplySideRevenue",
+        "request_started_at": "2026-10-02T16:48:20.717241+00:00",
+        "retrieved_at": "2026-10-02T16:48:22.204082+00:00",
+        "sha256": "59d81e72e2d6885595712095115ea21cf69b2d07459ca9560a6e0b7c19dc0f10",
+        "response_path": "../data/responses/59d81e72e2d6885595712095115ea21cf69b2d07459ca9560a6e0b7c19dc0f10.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:21 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "193",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 103254,
+              "Builder Code Distribution": 1999850,
+              "HIP-3 Deployer Distribution": 423134,
+              "Maker Rebates": 572513
+            },
+            "label_total": 3098751,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 538222,
+              "Builder Code Distribution": 9395934,
+              "HIP-3 Deployer Distribution": 2109843,
+              "Maker Rebates": 2963115
+            },
+            "label_total": 15007114,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 1384904,
+              "Builder Code Distribution": 22686992,
+              "HIP-3 Deployer Distribution": 8490028,
+              "Maker Rebates": 7757783
+            },
+            "label_total": 40319707,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 6644344,
+              "Builder Code Distribution": 80602320,
+              "HIP-3 Deployer Distribution": 17427235,
+              "Maker Rebates": 41794830
+            },
+            "label_total": 146468729,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-spot-orderbook",
+        "data_type": "dailyFees",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-spot-orderbook/label-breakdown?dataType=dailyFees",
+        "request_started_at": "2026-10-02T16:48:20.745814+00:00",
+        "retrieved_at": "2026-10-02T16:48:22.358967+00:00",
+        "sha256": "2be8add4c51fd8395c6c1a2d740bad3a5bbfe48c0b360bf48bcb5eacec546d01",
+        "response_path": "../data/responses/2be8add4c51fd8395c6c1a2d740bad3a5bbfe48c0b360bf48bcb5eacec546d01.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:22 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "194",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 323336,
+              "Spot fees on Unit markets": 92602
+            },
+            "label_total": 415938,
+            "parent_child_total": 415938,
+            "label_minus_parent_child": 0
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 1870410,
+              "Spot fees on Unit markets": 500403,
+              "Spot Deployment Auction Burns": 220149
+            },
+            "label_total": 2590962,
+            "parent_child_total": 2590957,
+            "label_minus_parent_child": 5
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 4491812,
+              "Spot fees on Unit markets": 1193645,
+              "Spot Deployment Auction Burns": 471719
+            },
+            "label_total": 6157176,
+            "parent_child_total": 6157171,
+            "label_minus_parent_child": 5
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 26248684,
+              "Spot fees on Unit markets": 6945117,
+              "Spot Deployment Auction Burns": 471719
+            },
+            "label_total": 33665520,
+            "parent_child_total": 33665515,
+            "label_minus_parent_child": 5
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-spot-orderbook",
+        "data_type": "dailyRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-spot-orderbook/label-breakdown?dataType=dailyRevenue",
+        "request_started_at": "2026-10-02T16:48:20.840185+00:00",
+        "retrieved_at": "2026-10-02T16:48:21.784331+00:00",
+        "sha256": "1540a8415b91df9c60eefdd4cd942311561c7445f7cfe96cb3f447750b7486ca",
+        "response_path": "../data/responses/1540a8415b91df9c60eefdd4cd942311561c7445f7cfe96cb3f447750b7486ca.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:21 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "146",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 320101
+            },
+            "label_total": 320101,
+            "parent_child_total": 320101,
+            "label_minus_parent_child": 0
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 1851704,
+              "Spot Deployment Auction Burns": 220149
+            },
+            "label_total": 2071853,
+            "parent_child_total": 2071853,
+            "label_minus_parent_child": 0
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 4446895,
+              "Spot Deployment Auction Burns": 471719
+            },
+            "label_total": 4918614,
+            "parent_child_total": 4918613,
+            "label_minus_parent_child": 1
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Spot Fees": 25986191,
+              "Spot Deployment Auction Burns": 471719
+            },
+            "label_total": 26457910,
+            "parent_child_total": 26457909,
+            "label_minus_parent_child": 1
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-spot-orderbook",
+        "data_type": "dailyHoldersRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-spot-orderbook/label-breakdown?dataType=dailyHoldersRevenue",
+        "request_started_at": "2026-10-02T16:48:21.787539+00:00",
+        "retrieved_at": "2026-10-02T16:48:22.745144+00:00",
+        "sha256": "d3f13275b9d8e731e333e2cf384dba8a79d6c53e0931874e474e4d1b8febc42b",
+        "response_path": "../data/responses/d3f13275b9d8e731e333e2cf384dba8a79d6c53e0931874e474e4d1b8febc42b.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:22 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "145",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 320101
+            },
+            "label_total": 320101,
+            "parent_child_total": 320101,
+            "label_minus_parent_child": 0
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 1851704,
+              "Spot Deployment Auction Burns": 220149
+            },
+            "label_total": 2071853,
+            "parent_child_total": 2071853,
+            "label_minus_parent_child": 0
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 4446895,
+              "Spot Deployment Auction Burns": 471719
+            },
+            "label_total": 4918614,
+            "parent_child_total": 4918613,
+            "label_minus_parent_child": 1
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Token Buy Back": 25986191,
+              "Spot Deployment Auction Burns": 471719
+            },
+            "label_total": 26457910,
+            "parent_child_total": 26457909,
+            "label_minus_parent_child": 1
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-spot-orderbook",
+        "data_type": "dailySupplySideRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-spot-orderbook/label-breakdown?dataType=dailySupplySideRevenue",
+        "request_started_at": "2026-10-02T16:48:22.206260+00:00",
+        "retrieved_at": "2026-10-02T16:48:23.244736+00:00",
+        "sha256": "bb33632d1be5bd6788d6e2fbd0932ab3b78d822238c24364e9172cc02ed9b5db",
+        "response_path": "../data/responses/bb33632d1be5bd6788d6e2fbd0932ab3b78d822238c24364e9172cc02ed9b5db.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:22 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "195",
+        "rows": 644,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 3234,
+              "Unit Revenue": 92602
+            },
+            "label_total": 95836,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 18704,
+              "Unit Revenue": 500403
+            },
+            "label_total": 519107,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 44920,
+              "Unit Revenue": 1193645
+            },
+            "label_total": 1238565,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "HLP": 262495,
+              "Unit Revenue": 6945117
+            },
+            "label_total": 7207612,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-hlp",
+        "data_type": "dailyFees",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-hlp/label-breakdown?dataType=dailyFees",
+        "request_started_at": "2026-10-02T16:48:22.360113+00:00",
+        "retrieved_at": "2026-10-02T16:48:23.465187+00:00",
+        "sha256": "2f921d1fa1c922904bb579c0e5beae0da931fd816d8c44636293d05d4c6bad25",
+        "response_path": "../data/responses/2f921d1fa1c922904bb579c0e5beae0da931fd816d8c44636293d05d4c6bad25.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:23 GMT",
+        "http_last_modified": null,
+        "http_cache_age": "141",
+        "rows": 634,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 103254,
+              "Spot Fees": 3234
+            },
+            "label_total": 106488,
+            "parent_child_total": 106486,
+            "label_minus_parent_child": 2
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 538223,
+              "Spot Fees": 18705
+            },
+            "label_total": 556928,
+            "parent_child_total": 556924,
+            "label_minus_parent_child": 4
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 1384910,
+              "Spot Fees": 44920
+            },
+            "label_total": 1429830,
+            "parent_child_total": 1429830,
+            "label_minus_parent_child": 0
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 6645700,
+              "Spot Fees": 264174
+            },
+            "label_total": 6909874,
+            "parent_child_total": 6909876,
+            "label_minus_parent_child": -2
+          }
+        }
+      },
+      {
+        "slug": "hyperliquid-hlp",
+        "data_type": "dailySupplySideRevenue",
+        "url": "https://api.llama.fi/v2/chart/fees/protocol/hyperliquid-hlp/label-breakdown?dataType=dailySupplySideRevenue",
+        "request_started_at": "2026-10-02T16:48:22.748124+00:00",
+        "retrieved_at": "2026-10-02T16:48:48.256589+00:00",
+        "sha256": "2f921d1fa1c922904bb579c0e5beae0da931fd816d8c44636293d05d4c6bad25",
+        "response_path": "../data/responses/2f921d1fa1c922904bb579c0e5beae0da931fd816d8c44636293d05d4c6bad25.json",
+        "http_cache_date": "Fri, 02 Oct 2026 16:48:48 GMT",
+        "http_last_modified": null,
+        "http_cache_age": null,
+        "rows": 634,
+        "latest_observation": "2026-10-01",
+        "windows": {
+          "7": {
+            "start": "2026-09-25",
+            "end": "2026-10-01",
+            "observed_days": 7,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 103254,
+              "Spot Fees": 3234
+            },
+            "label_total": 106488,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "30": {
+            "start": "2026-09-02",
+            "end": "2026-10-01",
+            "observed_days": 30,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 538223,
+              "Spot Fees": 18705
+            },
+            "label_total": 556928,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "90": {
+            "start": "2026-07-04",
+            "end": "2026-10-01",
+            "observed_days": 90,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 1384910,
+              "Spot Fees": 44920
+            },
+            "label_total": 1429830,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          },
+          "365": {
+            "start": "2025-10-02",
+            "end": "2026-10-01",
+            "observed_days": 365,
+            "complete": true,
+            "missing_days": [],
+            "parts": {
+              "Perp Fees": 6645700,
+              "Spot Fees": 264174
+            },
+            "label_total": 6909874,
+            "parent_child_total": null,
+            "label_minus_parent_child": null
+          }
+        }
+      }
+    ],
+    "notes": [
+      "Label responses captured Oct3; saved parent responses captured Oct2. Same-window child summary totals matched Oct2 parent for 30d. Integer rounding and valuation bases may cause small residuals; no attribution invented.",
+      "HLP revenue/holder labels absent (revenue label returns empty; holders returns404), consistent with adapter revenue0."
+    ],
+    "parent_totals": {
+      "fees": {
+        "7": 13844505,
+        "30": 71446713,
+        "90": 189160764,
+        "365": 906992899
+      },
+      "revenue": {
+        "7": 10542172,
+        "30": 55355695,
+        "90": 142024040,
+        "365": 684247605
+      },
+      "holders": {
+        "7": 10542172,
+        "30": 55355695,
+        "90": 142024040,
+        "365": 684247605
+      }
+    }
+  },
+  "adapter_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/DefiLlama/dimension-adapters/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/helpers/hyperliquid.ts",
+      "commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab",
+      "sha256": "73e9597bc05e3e1777ff71889a1ca4232a55fed645074307bdcaf42886ec73f3",
+      "path": "evidence/hype-fees/helpers/hyperliquid.ts",
+      "retrieved_at": "2026-10-02T16:52:29.352078+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DefiLlama/dimension-adapters/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/fees/hyperliquid-hlp.ts",
+      "commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab",
+      "sha256": "b5d76a5f8b899c1c36df8d540bd5074c3fe3f2841cd2282534b84017a362934a",
+      "path": "evidence/hype-fees/fees/hyperliquid-hlp.ts",
+      "retrieved_at": "2026-10-02T16:52:29.178434+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DefiLlama/dimension-adapters/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/dexs/hyperliquid-perp/index.ts",
+      "commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab",
+      "sha256": "89d643e545f731a28a382bd862666ab43557e2942ae17db3229329ed167f8374",
+      "path": "evidence/hype-fees/dexs/hyperliquid-perp/index.ts",
+      "retrieved_at": "2026-10-02T16:52:29.351831+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DefiLlama/dimension-adapters/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/dexs/hyperliquid-spot/index.ts",
+      "commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab",
+      "sha256": "016bac6b2826893ca92eea2b7a9e68df877c9346383db1bc902e840198eeaaae",
+      "path": "evidence/hype-fees/dexs/hyperliquid-spot/index.ts",
+      "retrieved_at": "2026-10-02T16:52:29.178561+00:00"
+    }
+  ],
+  "reconciliation": {
+    "created_at": "2026-10-02T16:49:27.885800+00:00",
+    "confidence": {
+      "saved_parent_child_aggregates": "verified saved bytes/hash and exact same-window breakdown sum",
+      "live_label_aggregates": "verified publicly returned raw JSON, latest Oct1, all 7/30/90/365 daily rows complete, recorded source times/hashes in metadata.json; not Oct2 original snapshot",
+      "hlp_duplicate": "confirmed adapter doublecounted=true; parent explicitly sums HLP on top of Perps/Spot; child summary doublecounted=true",
+      "unexplained_residual": "unattributed, not counted as builder/Unit/HIP3; integer rounding explains few dollars of label/summary differences, not entire residual",
+      "af_token_buyback_label": "allocation/accounting proxy from 99% remaining eligible revenue clone; not proof of executed cash purchases",
+      "hip1_auction_burn": "HYPE burn valued in USD, not cash repurchase spend"
+    },
+    "adapter_sources": [
+      "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/helpers/hyperliquid.ts",
+      "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/fees/hyperliquid-hlp.ts",
+      "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/dexs/hyperliquid-perp/index.ts",
+      "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/dexs/hyperliquid-spot/index.ts"
+    ],
+    "windows": [
+      {
+        "days": 7,
+        "start": "2026-09-25",
+        "end": "2026-10-01",
+        "parent_fees": 13844505,
+        "parent_holders_revenue": 10542172,
+        "duplicated_hlp_in_parent": 106486,
+        "deduplicated_fees": 13738019,
+        "raw_capture_ratio": 0.7614697672470052,
+        "deduplicated_capture_ratio": 0.7673720643420278,
+        "builder_distribution_labels": 1999850,
+        "hip3_deployer_labels": 423134,
+        "maker_rebates_labels": 572513,
+        "unit_revenue_labels": 92602,
+        "hlp_distribution_labels": 106488,
+        "non_holders_distribution_labels_total": 3194587,
+        "non_holders_gap_deduplicated_parent": 3195847,
+        "unreconciled_using_label_totals": 1260,
+        "hip1_spot_auction_burn_usd_valuation_labels": 0,
+        "af_token_buyback_usd_labels": 10542172
+      },
+      {
+        "days": 30,
+        "start": "2026-09-02",
+        "end": "2026-10-01",
+        "parent_fees": 71446713,
+        "parent_holders_revenue": 55355695,
+        "duplicated_hlp_in_parent": 556924,
+        "deduplicated_fees": 70889789,
+        "raw_capture_ratio": 0.7747829490770275,
+        "deduplicated_capture_ratio": 0.7808697949432464,
+        "builder_distribution_labels": 9395934,
+        "hip3_deployer_labels": 2109843,
+        "maker_rebates_labels": 2963115,
+        "unit_revenue_labels": 500403,
+        "hlp_distribution_labels": 556926,
+        "non_holders_distribution_labels_total": 15526221,
+        "non_holders_gap_deduplicated_parent": 15534094,
+        "unreconciled_using_label_totals": 7873,
+        "hip1_spot_auction_burn_usd_valuation_labels": 220149,
+        "af_token_buyback_usd_labels": 55135546
+      },
+      {
+        "days": 90,
+        "start": "2026-07-04",
+        "end": "2026-10-01",
+        "parent_fees": 189160764,
+        "parent_holders_revenue": 142024040,
+        "duplicated_hlp_in_parent": 1429830,
+        "deduplicated_fees": 187730934,
+        "raw_capture_ratio": 0.7508113046107172,
+        "deduplicated_capture_ratio": 0.756529768290611,
+        "builder_distribution_labels": 22686992,
+        "hip3_deployer_labels": 8490028,
+        "maker_rebates_labels": 7757783,
+        "unit_revenue_labels": 1193645,
+        "hlp_distribution_labels": 1429824,
+        "non_holders_distribution_labels_total": 41558272,
+        "non_holders_gap_deduplicated_parent": 45706894,
+        "unreconciled_using_label_totals": 4148622,
+        "hip1_spot_auction_burn_usd_valuation_labels": 471719,
+        "af_token_buyback_usd_labels": 141552322
+      },
+      {
+        "days": 365,
+        "start": "2025-10-02",
+        "end": "2026-10-01",
+        "parent_fees": 906992899,
+        "parent_holders_revenue": 684247605,
+        "duplicated_hlp_in_parent": 6909876,
+        "deduplicated_fees": 900083023,
+        "raw_capture_ratio": 0.7544134091396012,
+        "deduplicated_capture_ratio": 0.7602049894457347,
+        "builder_distribution_labels": 80602320,
+        "hip3_deployer_labels": 17427235,
+        "maker_rebates_labels": 41794830,
+        "unit_revenue_labels": 6945117,
+        "hlp_distribution_labels": 6906839,
+        "non_holders_distribution_labels_total": 153676341,
+        "non_holders_gap_deduplicated_parent": 215835418,
+        "unreconciled_using_label_totals": 62159077,
+        "hip1_spot_auction_burn_usd_valuation_labels": 471719,
+        "af_token_buyback_usd_labels": 683775887
+      }
+    ]
+  },
+  "refresh_note": "分项标签是本次单独保存的核对证据，抓取时间与父级Oct2行情快照不同；不随常规refresh自动更新。窗口按同一完成UTC日重算，未混入Oct2未完成流量。未解释差额保持待核。"
+}

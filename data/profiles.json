@@ -1,0 +1,675 @@
+[
+  {
+    "ticker": "HYPE",
+    "name": "Hyperliquid",
+    "sector": "永续 / 现货 / L1",
+    "initial_supply": 1000000000,
+    "capture": {
+      "permanent_burn_proxy": true,
+      "label": "收入拨入 AF + 费用销毁",
+      "kind": "burn",
+      "basis": "按产生的费用计算的金额；不是逐笔实际回购支出",
+      "policy": "符合条件的交易费按99%分配给 Assistance Fund；永续费先扣 builder、HIP-3部署者分成和做市返佣，现货费排除 Unit。2025-12-24后 AF 持币被确认为不可取回的经济销毁。",
+      "denominator": "合格交易费；不是全部生态收入或交易量",
+      "annualization_note": "HYPE 当前机制可映射永久价值捕获；历史跨确认事件的窗口不能全按当时已销毁解释。",
+      "permanent_from": "2025-12-24",
+      "pre_burn_kind": "treasury-or-unconfirmed",
+      "stat_label": "分给回购基金的收入 + 销毁估值",
+      "stat_note": "按手续费去向统计分给 Assistance Fund 的收入，并计入 HIP-1 部署竞价销毁的估值；没有逐笔加总基金买入 HYPE 的实际成本。",
+      "eligible_fee_policy": {
+        "rate": 0.99,
+        "effective_from": "2025-08-31",
+        "basis": "永续费先扣 builder、HIP-3 部署者分成和 maker rebates；现货费排除 Unit。HIP-1 竞价销毁另计。",
+        "source_url": "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/helpers/hyperliquid.ts#L193",
+        "threshold_utc": "2025-08-30 00:00 UTC"
+      }
+    },
+    "business": "永续和现货撮合手续费、HIP-1 部署拍卖、优先订单等。HyperEVM gas 是独立链口径，当前 parent 数据未合并；HLP 交易盈亏不是代币现金收入。",
+    "sustainability": "交易需求真实，但杠杆交易量、波动率和市场份额决定收入。HIP-3 与非加密资产扩展需求；熊市低波动、手续费竞争、做市深度下降都会压低回购。",
+    "allocations": [
+      {
+        "label": "创世空投",
+        "pct": 31
+      },
+      {
+        "label": "核心贡献者",
+        "pct": 23.8
+      },
+      {
+        "label": "未来排放 / 社区",
+        "pct": 38.888
+      },
+      {
+        "label": "基金会",
+        "pct": 6
+      },
+      {
+        "label": "社区拨款",
+        "pct": 0.3
+      },
+      {
+        "label": "HIP-2",
+        "pct": 0.012
+      }
+    ],
+    "allocation_note": "初始分配，无私募投资人；38.888%原始公告称尚未铸出的预留排放。供应商 total 不等于链上已铸数量。",
+    "supply_note": "核心贡献者首年锁仓，大部分于2027–28归属，部分更晚；官方没有完整未来12月排放表。不能把排期上限当实际出售。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "贡献者归属 + 未来排放缺完整台账；总有效供应可减少而流通仍增长。"
+    },
+    "scenario_release_tokens": null,
+    "scenario_note": "输入贡献者分发和储备排放情景；默认未知。",
+    "zero_before": {},
+    "events": [
+      {
+        "date": "2024-11-29",
+        "title": "HYPE 创世分发 / AF 回购阶段",
+        "status": "已启动",
+        "source": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f",
+        "note": "回购启动近创世期；精确首笔成交需 AF fills 校验。"
+      },
+      {
+        "date": "2025-08-31",
+        "title": "合格交易手续费 AF 份额97%→99%",
+        "status": "适配器生效日",
+        "source": "https://github.com/DefiLlama/dimension-adapters/tree/master/dexs/hyperliquid-spot",
+        "note": "适配器对UTC日零点使用 timestamp > 2025-08-30 00:00 UTC，逐日口径从8月31日取99%；这是实现日期，未把它当作官方公告日。"
+      },
+      {
+        "date": "2025-12-24",
+        "title": "AF 存量及后续持币确认为经济销毁",
+        "status": "治理确认",
+        "source": "https://t.me/s/hyperliquid_announcements/497",
+        "note": "不是此日新增现金回购；不能与过去逐日回购再加总。 官方Jan4回顾确认Dec24共识。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方手续费规则",
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/fees"
+      },
+      {
+        "title": "官方创世分配",
+        "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f"
+      },
+      {
+        "title": "研究与证据",
+        "url": "../research/hype-pump.md"
+      },
+      {
+        "title": "99%与总手续费的核对",
+        "url": "../research/hype-fee-audit.md"
+      }
+    ],
+    "fee_normalization": {
+      "id": "exclude-hlp-duplicate-v1",
+      "valid_from": "2024-12-23",
+      "verified_on": "2026-10-03",
+      "chain": "Hyperliquid L1",
+      "child": "Hyperliquid HLP",
+      "required_children": [
+        "Hyperliquid HLP",
+        "Hyperliquid Perps",
+        "Hyperliquid Spot Orderbook"
+      ],
+      "expected_fee_methodologies": {
+        "Hyperliquid HLP": "1% of perp and spot trading revenue (excluding builders and unit revenue) share for HLP.",
+        "Hyperliquid Perps": "Include perps trading fees on crypto and HIP-3 deployed markets + builders fees, excluding all spot fees.",
+        "Hyperliquid Spot Orderbook": "Include spot trading fees, unit protocol fees, and HYPE burned in successful HIP-1 token-deployment auctions, excluding perps fees."
+      },
+      "note": "父级手续费把 Perps、Spot 的用户费用与已包含在其中的 HLP 分成再次相加。仅在每日子项与父级对账、统计方法未变化时剔除重复项；缺子项时保留未知。上游已去重时不再扣一次。",
+      "source_url": "https://github.com/DefiLlama/dimension-adapters/blob/3e56fc842b3d26aac2648a5a506cd282ceb9b6ab/fees/hyperliquid-hlp.ts",
+      "adapter_commit": "3e56fc842b3d26aac2648a5a506cd282ceb9b6ab",
+      "audit_url": "../research/hype-fee-audit.md"
+    },
+    "flow": {
+      "revenue_is_income": true,
+      "mode": "allocation",
+      "other_label": "其他费用去向（统计差额）",
+      "fees_label": "用户费用＋竞价销毁估值",
+      "revenue_label": "分给AF＋直接销毁的统计",
+      "origins": "永续交易、现货交易、HIP-1部署竞价",
+      "parties": "第三方界面、HIP-3市场部署者、做市返佣、Unit、HLP。",
+      "funding_label": "归入HYPE回购／销毁路径",
+      "funding_rule": "先扣第三方界面、HIP-3部署者、返佣、Unit等相关分成，剩余合格交易费的99%分给AF；99%的分母不是左侧总费用。",
+      "funding_note": "与左侧收入是同一份统计，不再加一次；AF逐笔实际买入花费未重建。",
+      "outcome_label": "AF持币不可取回＋HIP-1直接销毁",
+      "outcome_note": "当前AF持币不可取回；HIP-1直接销毁另一路进入统计。",
+      "cautions": [
+        "持有人统计包括直接销毁估值，并非全部是市场买入现金。"
+      ],
+      "composition_axis": "products",
+      "source_note_url": "../research/flow-hype-pump-notes.md",
+      "direct_path_note": "直接销毁支线：HIP-1部署者支付HYPE → 直接销毁，不经过现金回购；本图合计已包含其估值，不能再加一次。"
+    }
+  },
+  {
+    "ticker": "PUMP",
+    "name": "Pump.fun",
+    "sector": "Meme 发行 / 交易",
+    "initial_supply": 1000000000000,
+    "capture": {
+      "permanent_burn_proxy": true,
+      "label": "回购并永久销毁",
+      "kind": "burn",
+      "basis": "链上销毁数量×当天价格；不等同回购花费",
+      "policy": "2025-07启动回购；2026-04-28起50% net revenue 程序化回购并永久销毁，承诺持续一年。历史100%回购宣传不可直接沿用。",
+      "denominator": "净收入 net revenue；不是所有用户手续费",
+      "annualization_note": "DefiLlama holders 值已经代表销毁代币的美元估值，不能再次乘50%。官方累计支出与当日burn估值口径不同。",
+      "permanent_from": "2026-04-28",
+      "pre_burn_kind": "treasury-or-unconfirmed",
+      "stat_label": "已销毁代币的美元估值",
+      "stat_note": "按Solana SPL实际burn指令的数量，用当日代币价格估值；没有逐笔现金回购成本。跨2026-04-28存量销毁事件的窗口，API是否纳入及经常性部分尚未对账，不年化。"
+    },
+    "business": "Bonding curve发行交易费、毕业费用、PumpSwap及其他产品收入；扣创作者分成、LP、cashback，且全产品销毁在一个子适配器集中记录。",
+    "sustainability": "真实链上收费，但五个项目中最直接依赖Meme发行、短线交易与投机热度。费率竞争、creator分成和cashback会改变净收入；产品扩张不自动降低同一市场周期风险。",
+    "allocations": [
+      {
+        "label": "ICO",
+        "pct": 33
+      },
+      {
+        "label": "团队",
+        "pct": 20
+      },
+      {
+        "label": "既有投资人",
+        "pct": 13
+      },
+      {
+        "label": "社区 / 生态",
+        "pct": 24
+      },
+      {
+        "label": "直播激励",
+        "pct": 3
+      },
+      {
+        "label": "流动性 / 交易所",
+        "pct": 2.6
+      },
+      {
+        "label": "生态基金",
+        "pct": 2.4
+      },
+      {
+        "label": "基金会",
+        "pct": 2
+      }
+    ],
+    "allocation_note": "初始团队+投资人33%。ICO并非团队投资人归属。当前官网旧总量/流通口径与销毁后供应商数值冲突，主表统一用同次市场快照。 ICO含机构私售份额，existing investors13%不是全部机构相关持仓上限。",
+    "supply_note": "2026-07团队/投资人进入cliff。剩余线性归属资料有冲突，未来社区分发未完整披露；不能宣称销毁已抵消全部释放。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "余下团队/投资人归属形状及社区释放未知。"
+    },
+    "scenario_release_tokens": 82500000000,
+    "scenario_note": "仅情景：若33%分配先归属25%、余75%按36月摊销，未来一年82.5B；非已核实排期，且不含社区。",
+    "zero_before": {
+      "holders": "2025-07-14"
+    },
+    "events": [
+      {
+        "date": "2025-07-14",
+        "title": "PUMP 回购开始",
+        "status": "适配器起算",
+        "source": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/pumpdotfun.ts",
+        "note": "早期回购与后来永久销毁承诺分开。"
+      },
+      {
+        "date": "2026-04-28",
+        "title": "50%净收入回购并销毁，承诺一年",
+        "status": "官方已执行政策",
+        "source": "https://pump.fun/pump-token",
+        "note": "期限到2027-04-28；不默认续期。"
+      },
+      {
+        "date": "2026-07-12",
+        "title": "团队 / 投资人一年cliff到期",
+        "status": "二级来源归属排期",
+        "source": "https://tokenomist.ai/research/pump-tokenomics-what-the-july-12-2026-insider-cliff-means-for-a-fixed-1t-supply-2",
+        "note": "归属不等于当天全部到账或出售；线性后续需核合约。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方token及回购台账",
+        "url": "https://pump.fun/pump-token"
+      },
+      {
+        "title": "链上burn适配器",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/pumpdotfun.ts"
+      },
+      {
+        "title": "研究与证据",
+        "url": "../research/hype-pump.md"
+      }
+    ],
+    "holder_oneoff_dates": [
+      "2026-04-28"
+    ],
+    "flow": {
+      "revenue_is_income": true,
+      "mode": "burn_valuation",
+      "other_label": "其他费用去向（统计差额）",
+      "fees_label": "用户交易及发行费用",
+      "revenue_label": "扣分成后的协议收入",
+      "origins": "发行平台、PumpSwap、Terminal；移动端属于交易入口",
+      "parties": "创作者、LP、cashback与推荐等分成。",
+      "funding_label": "50%合格净收入的回购政策",
+      "funding_rule": "2026-04-28起，50%合格net revenue用于程序化回购，承诺一年；Mayhem费用排除。",
+      "funding_note": "合格净收入与左侧协议收入尚未逐项对账，不能直接把左侧乘50%当成实付。实际现金买入成本未取得。",
+      "outcome_label": "销毁PUMP的美元估值",
+      "outcome_note": "销毁代币枚数×当日价格；这是烧币估值，不等于回购花费。",
+      "cautions": [
+        "移动端与发行平台／PumpSwap重复，已按日从费用和收入中去重。",
+        "历史库存销毁单独看；跨事件的窗口是否已纳入API统计仍待对账。"
+      ],
+      "composition_axis": "products",
+      "source_note_url": "../research/flow-hype-pump-notes.md",
+      "funding_effective_from": "2026-04-28"
+    },
+    "flow_normalizations": {
+      "fees": {
+        "id": "exclude-pump-mobile-duplicate-v1",
+        "valid_from": "2026-05-21",
+        "verified_on": "2026-10-03",
+        "chain": "Solana",
+        "child": "pump.fun Mobile App",
+        "required_children": [
+          "pump.fun",
+          "PumpSwap",
+          "pump.fun Mobile App"
+        ],
+        "tolerance_usd": 1,
+        "expected_fee_methodologies": {
+          "pump.fun Mobile App": "Pump.fun bonding-curve and PumpSwap trade fees generated by trades placed through the official pump.fun mobile app (transactions invoking the app program). Already counted in the parent pump.fun and PumpSwap listings."
+        },
+        "note": "移动端仅为发行平台与PumpSwap的交易入口，其费用和协议收入已在两者计入。缺5月21日首日子项时保持未知，不自动补零。",
+        "source_url": "https://github.com/DefiLlama/dimension-adapters/blob/9bd52fb339e32e05fa975ab9b86b73db2fb0b01e/fees/pumpfun-app.ts",
+        "audit_url": "../research/flow-hype-pump-notes.md"
+      },
+      "revenue": {
+        "id": "exclude-pump-mobile-duplicate-v1",
+        "valid_from": "2026-05-21",
+        "verified_on": "2026-10-03",
+        "chain": "Solana",
+        "child": "pump.fun Mobile App",
+        "required_children": [
+          "pump.fun",
+          "PumpSwap",
+          "pump.fun Mobile App"
+        ],
+        "tolerance_usd": 1,
+        "expected_fee_methodologies": {
+          "pump.fun Mobile App": "Pump.fun bonding-curve and PumpSwap trade fees generated by trades placed through the official pump.fun mobile app (transactions invoking the app program). Already counted in the parent pump.fun and PumpSwap listings.",
+          "Terminal": "Trading fees paid by users while using Pump Trading Terminal(previously known as Padre)."
+        },
+        "note": "移动端仅为发行平台与PumpSwap的交易入口，其费用和协议收入已在两者计入。缺5月21日首日子项时保持未知，不自动补零。 Terminal净收入保留费用减返现／推荐支出的负项；不把负项改成零。",
+        "source_url": "https://github.com/DefiLlama/dimension-adapters/blob/9bd52fb339e32e05fa975ab9b86b73db2fb0b01e/fees/pumpfun-app.ts",
+        "audit_url": "../research/flow-hype-pump-notes.md",
+        "allow_signed_components": true
+      }
+    }
+  },
+  {
+    "ticker": "UNI",
+    "name": "Uniswap",
+    "sector": "多链现货 DEX",
+    "initial_supply": 1000000000,
+    "capture": {
+      "permanent_burn_proxy": true,
+      "label": "协议费换取 UNI 送dead地址",
+      "kind": "burn",
+      "basis": "释放记录×UNI阈值×币价的代币估值；非手续费现金收入",
+      "policy": "UNIfication执行后将已启用池的协议费用于UNI经济销毁。v2约1/6 swap fee；v3依池参数；v4首批7链已执行，不能称全池全链。",
+      "denominator": "已启用协议费；绝大多数总交易费仍属于LP",
+      "annualization_note": "估值反映兑换／销毁统计速度，不能代替营业收入或实际买币成本；跨政策窗口仍保留未知。",
+      "stat_label": "用于费用兑换的UNI估值",
+      "stat_note": "按Firepit释放日志及UNI阈值计算提交UNI数量，再用币价估值；API revenue复制同一估值，不是独立手续费收入或市场现金回购。跨链最终销毁和逐事件历史阈值仍需对账。"
+    },
+    "business": "v2/v3及部分v4协议手续费。用户总swap fees不是UNI收入。Uniswap Labs历史前端收费不能自动归到UNI；Unichain等来源需要单独纳入和去重。",
+    "sustainability": "基础换币需求比单一Meme发行更广，但仍依赖交易量、波动率和LP深度。fee switch提升捕获同时可能促使LP/路由流量转移；应追踪协议费增长与市场份额。",
+    "allocations": [
+      {
+        "label": "社区",
+        "pct": 60
+      },
+      {
+        "label": "团队",
+        "pct": 21.266
+      },
+      {
+        "label": "投资人",
+        "pct": 18.044
+      },
+      {
+        "label": "顾问",
+        "pct": 0.69
+      }
+    ],
+    "allocation_note": "原始team/investor/advisor约40%，截至2026原始归属已结束；2%/年是可治理行使的mint权限，目前无活跃mint，不能机械算作每年20M已增发。",
+    "supply_note": "2026起每年20M UNI treasury growth budget是金库释放，仍可能造成流通稀释。至少Jan5 5M已获官方财报验证；完整滚动12月现金销售/自由流通需台账。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "已知20M/年预算可作压力项；不是20M新mint或保证全数卖出。"
+    },
+    "scenario_release_tokens": 20000000,
+    "scenario_note": "预算情景：20M UNI/年金库释放；现时2% mint未行使，可另外测试20M治理增发上限。",
+    "zero_before": {
+      "holders": "2025-12-28",
+      "revenue": "2025-12-28"
+    },
+    "events": [
+      {
+        "date": "2025-11-10",
+        "title": "UNIfication提案公开",
+        "status": "公告事件",
+        "source": "https://blog.uniswap.org/unification",
+        "note": "公告不等于手续费已开启。"
+      },
+      {
+        "date": "2025-12-28",
+        "title": "协议费开启 / 100M库存经济销毁",
+        "status": "Agora #93执行；统计日期另核",
+        "source": "https://vote.uniswapfoundation.org/proposals/93",
+        "note": "治理执行、财报日期与统计起算须区分；适配器方法文字写12月28日，固定源码阈值为12月29日。观察窗口按此治理事件日列示，不称同日adapter起算。排除库存burn年化。"
+      },
+      {
+        "date": "2026-03-08",
+        "title": "扩至多链 / 更多v3池",
+        "status": "Agora #95执行 / adapter起算",
+        "source": "https://vote.uniswapfoundation.org/proposals/95",
+        "note": "#94于Mar7执行；统计生效日按adapter Mar8。"
+      },
+      {
+        "date": "2026-06-02",
+        "title": "Polygon / BNB / Celo收费覆盖扩展",
+        "status": "adapter起算，治理Jun1执行",
+        "source": "https://vote.uniswapfoundation.org/proposals/96",
+        "note": "区分治理执行与次日数据起算。"
+      },
+      {
+        "date": "2026-07-27",
+        "title": "v4首批7链 + Robinhood费用开启",
+        "status": "Agora #99/#100执行",
+        "source": "https://vote.uniswapfoundation.org/proposals/100",
+        "note": "Arc截至Oct2仍Active，不计已生效。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "UNI当前经济机制",
+        "url": "https://developers.uniswap.org/docs/ecosystem/governance/uni"
+      },
+      {
+        "title": "协议费与burn",
+        "url": "https://developers.uniswap.org/docs/protocols/protocol-fee/overview"
+      },
+      {
+        "title": "官方金库财报",
+        "url": "https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update"
+      },
+      {
+        "title": "研究与证据",
+        "url": "../research/uni.md"
+      }
+    ],
+    "flow": {
+      "revenue_is_income": false,
+      "mode": "token_redemption_valuation",
+      "other_label": "LP等所得（金额待核）",
+      "fees_label": "用户swap手续费",
+      "revenue_label": "归集的协议手续费",
+      "origins": "v1／v2／v3／v4换币；协议费覆盖依版本、链和池配置",
+      "parties": "LP获得其份额；协议费的实际窗口总额未独立取得。",
+      "funding_label": "执行者交UNI，领取费用资产",
+      "funding_rule": "协议费进入TokenJar；执行者提供UNI换走费用资产。UNI可能来自其已有库存。",
+      "funding_note": "费用资产出、UNI入；没有逐笔市场现金买入成本。",
+      "outcome_label": "用于费用兑换的UNI估值",
+      "outcome_note": "按Firepit释放记录与UNI阈值估值；主网送dead，跨链最终到账仍需另核。",
+      "cautions": [
+        "API名为revenue，但当前值是UNI兑换估值，不能当作独立手续费收入，也不用于P/S。",
+        "统计集中挂在v3适配器，不代表全部来源都是v3。",
+        "Unichain排序器费用为另一收入来源，扣L1数据成本与Optimism分成后进入销毁路径；同窗金额未单独取得，不加在本图总额。"
+      ],
+      "composition_axis": "chains",
+      "source_note_url": "../research/flow-uni-notes.md"
+    }
+  },
+  {
+    "ticker": "JUP",
+    "name": "Jupiter",
+    "sector": "聚合 / 永续 / 借贷",
+    "initial_supply": 10000000000,
+    "capture": {
+      "permanent_burn_proxy": false,
+      "label": "战略储备 / 长期锁仓回购",
+      "kind": "lock",
+      "basis": "多数适配器为50%收入政策推算；不是买入成交",
+      "policy": "50% Jupiter所得协议收入用于JUP回购，战略储备 / Litterbox长期锁定。官方承诺两年；锁仓不是永久burn。历史库存burn另记。",
+      "denominator": "Jupiter自己的收入；Perps为总费25%，JUP回购份额为总费12.5%",
+      "annualization_note": "年化金额表示按政策计算的回购额度；未来政策执行和到期处置须验证。 曾有Litterbox存量burn，但未核实未来新买入都自动burn，永久列0是本框架保守经常性口径。",
+      "stat_label": "按收入比例计算的回购额度",
+      "stat_note": "多数产品按 Jupiter 自己所得收入的 50% 计算回购额度；不是买入成交记录，代币通常进入战略储备或锁仓。不同产品须按对应规则统计。"
+    },
+    "business": "Ultra聚合收费、Perps协议分成、DCA/Trigger、jupSOL管理费与借贷reserve收入。聚合交易量不能当收入，也不能把路由下游DEX费用再计一次。",
+    "sustainability": "多产品需求有分散作用，永续和聚合仍随Solana交易周期。借贷和质押收费较稳定但部分由Fluid/LP分走；父级汇总仍须监控Trigger重复覆盖。",
+    "allocations": [
+      {
+        "label": "社区",
+        "pct": 50
+      },
+      {
+        "label": "团队 / 战略储备 / 流动性等",
+        "pct": 50
+      }
+    ],
+    "allocation_note": "初始10B，2025一次性3B库存销毁后历史有效上限约7B；供应商max字段仍10B，不能直接套为当前FDV。团队初始20%；流通分类与ASR可交易供应不同。 销毁后团队1.4B/7B=20%，Mercurial350M/7B=5%；后续ParaFi数量和锁定终期未完整核，当前团队/全部投资人持仓未知。",
+    "supply_note": "2026 Net-Zero已于2月22日表决通过，finalized RPC核得75.26447%总票支持；但该proposal instructionCount=0，暂停分发、off-chain credits与Mercurial对冲执行仍未全核。ASR每季50M来自旧已纳入circulating库存，未新增mint，却可能增加可交易自由流通。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": null,
+      "note": "净零政策不等于所有类别释放为0；ASR与金库处置需防重复计算。"
+    },
+    "scenario_release_tokens": 200000000,
+    "scenario_note": "仅自由流通情景：ASR 50M/季×4。它可能已被供应商circulating计入，不可再拿来解释reported circulating新增。",
+    "zero_before": {
+      "holders": "2025-02-17"
+    },
+    "events": [
+      {
+        "date": "2025-01-26",
+        "title": "3B库存销毁 / 50%收入回购政策公布",
+        "status": "政策公布",
+        "source": "https://discuss.jup.ag/t/jup-community-audit-feb-2025/34764",
+        "note": "库存销毁不产生现金，不年化；后续实际生效需单独验证。 burn交易为Jan26 UTC / 北京时间Jan27。"
+      },
+      {
+        "date": "2025-02-17",
+        "title": "50%收入拨入回购账户起算",
+        "status": "adapter应计生效",
+        "source": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jupiter.ts",
+        "note": "实际回购启动约Feb25的首笔tx待核；不可把2月17视为已成交。"
+      },
+      {
+        "date": "2025-10-28",
+        "title": "已有Litterbox库存销毁提案",
+        "status": "存量提案",
+        "source": "https://discuss.jup.ag/t/new-dao-vote-proposal-to-burn-the-litterbox/39627",
+        "note": "未来50%收入用途是另一个问题，不能推定后来每次回购均burn。"
+      },
+      {
+        "date": "2025-11-25",
+        "title": "约135M Litterbox库存burn记录",
+        "status": "第三方记录，执行交易待核",
+        "source": "https://blockworks.com/analytics/jupiter/jupiter-jup-token/jupiter-jup-burned",
+        "note": "不将一次性stock burn加入未来经常性burn收益率。"
+      },
+      {
+        "date": "2026-02-13",
+        "title": "Net-Zero Emissions提案",
+        "status": "提案；后于2月22日通过，执行未全核",
+        "source": "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948",
+        "note": "不得由提案直接推算未来流通释放=0。"
+      },
+      {
+        "date": "2026-02-22",
+        "title": "Net-Zero Emissions表决通过",
+        "status": "链上票数已核；政策执行待逐项对账",
+        "source": "https://vote.jup.ag/proposal/C5XRDvjHZXmMs45WhjzEKdg2dcSg2aCSwEvPvivWpBF6",
+        "note": "finalized RPC解码：Net-Zero选项361.296102M votes，占含弃权总票75.26447%；超过quorum266.3M。proposal无可执行instructions，不能由投票通过推定全部未来净释放为0。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方战略储备承诺",
+        "url": "https://meow.bio/jup-4.html"
+      },
+      {
+        "title": "JUP研究与证据",
+        "url": "../research/jup-ray.md"
+      }
+    ],
+    "flow": {
+      "revenue_is_income": true,
+      "mode": "allocation",
+      "other_label": "其他费用去向（统计差额）",
+      "fees_label": "纳入统计的用户费用",
+      "revenue_label": "协议收入统计（重叠待核）",
+      "origins": "聚合交易、永续、质押管理、借贷、订单等产品",
+      "parties": "LP、借贷供给方、质押收益参与者、合作方／外部平台等；不同产品分成不同。",
+      "funding_label": "按产品规则计算的JUP回购额度",
+      "funding_rule": "多数产品使用Jupiter自己所得收入的50%；Perps相当于用户费用12.5%；Offerbook和Lend DEX当前不进入回购。",
+      "funding_note": "这是费用分配计算的额度，不是实际买入成交。",
+      "outcome_label": "JUP战略储备／锁仓",
+      "outcome_note": "经常性回购通常保留在储备或锁仓；不能全部当永久销毁。",
+      "cautions": [
+        "DCA中Trigger V2与Aggregator有覆盖重叠，尚未精确去重；构成与合计均为原始API参考。",
+        "分配接口与父级收入未完全对平，不把差额叫已保留现金。"
+      ],
+      "composition_axis": "products",
+      "source_note_url": "../research/flow-jup-ray-notes.md"
+    }
+  },
+  {
+    "ticker": "RAY",
+    "name": "Raydium",
+    "sector": "Solana AMM / 发行",
+    "initial_supply": 555000000,
+    "capture": {
+      "permanent_burn_proxy": null,
+      "label": "AMM保留 / LaunchLab待核",
+      "kind": "mixed-uncertain",
+      "basis": "费用分配 / 应计回购额度；需对实际买入核账",
+      "policy": "AMM/CLMM/CPMM通常12%交易手续费用于RAY回购。AMM另88%给LP；CLMM/CPMM为84%LP、4%treasury。回购币留公开协议地址，未确认永久销毁。 LaunchLab适配器另按25%协议收入标注buyback-and-burn，但仅统计TradeEvent手续费，未检测RAY销毁指令；官方回购文档仍为协议持有。父级永久份额待核。",
+      "denominator": "交易手续费；CLMM/CPMM回购占可留收入12/16=75%",
+      "annualization_note": "AMM回购保留已核，LaunchLab25% burn标签缺实际销毁对账。父级永久销毁列未知，不能记0或全额burn；12%规则只适用于swap产品。",
+      "stat_label": "按费用分配计算的回购额度",
+      "stat_note": "AMM 类按交易费 12%、LaunchLab 按协议收入 25% 计算回购额度；不是逐笔实际买入支出，LaunchLab 实际销毁仍待核对。"
+    },
+    "business": "AMM/CLMM/CPMM交易费、LaunchLab发行 / 毕业等费用。长尾Meme币手续费按USD标价不一定能全部变现为实际回购资金。",
+    "sustainability": "收入真实但高费率Meme交易贡献集中。项目2025Q4报告称Meme为swap收入87%、volume21%；同季度swap revenue环比-60%。量、费率和变现能力必须同时看。",
+    "allocations": [
+      {
+        "label": "挖矿储备",
+        "pct": 34
+      },
+      {
+        "label": "伙伴生态",
+        "pct": 30
+      },
+      {
+        "label": "团队",
+        "pct": 20
+      },
+      {
+        "label": "流动性",
+        "pct": 8
+      },
+      {
+        "label": "社区 / seed",
+        "pct": 6
+      },
+      {
+        "label": "顾问",
+        "pct": 2
+      }
+    ],
+    "allocation_note": "原始team20%、community & seed合计6%（投资人单独比例未知），原团队/seed归属于2024-02-21结束；mint authority已撤销，但储备奖励释放可增加流通。",
+    "supply_note": "官方现行文档给mining reserve emissions约1.9M RAY/年，属于储备释放。是否回购币已排除于reported circulating未知，不能再次自动扣。",
+    "supply_ledger": {
+      "complete": false,
+      "next365_unlock_tokens": null,
+      "next365_reserve_rewards_tokens": null,
+      "next365_new_mint_tokens": 0,
+      "note": "1.9M/年为当前run-rate，生态 / 金库其他处置未知，完整自由流通台账待核。"
+    },
+    "scenario_release_tokens": 1900000,
+    "scenario_note": "官方挖矿储备当前排放run-rate情景1.9M/年，非完整所有释放。",
+    "zero_before": {},
+    "events": [
+      {
+        "date": "2024-02-21",
+        "title": "原团队 / seed归属结束",
+        "status": "官方排期",
+        "source": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx",
+        "note": "回购早已有，精确首笔日期本次未核实；不编造启动事件。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "官方费用分配与回购地址",
+        "url": "https://docs.raydium.io/raydium/protocol/protocol-fees"
+      },
+      {
+        "title": "官方回购持币规则",
+        "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/ray-buybacks.mdx"
+      },
+      {
+        "title": "LaunchLab费用适配器与burn标签",
+        "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/launchlab/index.ts"
+      },
+      {
+        "title": "官方RAY供应",
+        "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx"
+      },
+      {
+        "title": "研究与证据",
+        "url": "../research/jup-ray.md"
+      }
+    ],
+    "flow": {
+      "revenue_is_income": true,
+      "mode": "allocation",
+      "other_label": "分给LP、平台与创作者等",
+      "fees_label": "AMM及LaunchLab用户费用",
+      "revenue_label": "扣供应侧分成后的协议收入",
+      "origins": "AMM／CLMM／CPMM交易、LaunchLab发行与交易",
+      "parties": "LP、LaunchLab平台及创作者等分成。",
+      "funding_label": "按产品规则计算的RAY回购额度",
+      "funding_rule": "AMM类用交易费的12%；LaunchLab用协议收入的25%，分母不同。",
+      "funding_note": "按费用规则统计回购额度；长尾代币估值不保证全部变现为同额现金。",
+      "outcome_label": "AMM保留；LaunchLab销毁待核",
+      "outcome_note": "AMM回购币由协议地址持有；LaunchLab burn标签仍需核对实际销毁。",
+      "cautions": [
+        "额度统计不等于已支付现金或已永久销毁。",
+        "LaunchLab细分标签覆盖不完整，未把部分日期外推为完整窗口。"
+      ],
+      "composition_axis": "products",
+      "source_note_url": "../research/flow-jup-ray-notes.md"
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "url": "https://api.coingecko.com/api/v3/coins/hyperliquid/market_chart?vs_currency=usd&days=365&interval=daily",
+  "retrieved_at": "2026-10-02T21:32:25.527497+00:00",
+  "sha256": "50889bc8ce78c5cf35c7631a14ab78bc5d9ff824c93575be47edbeb95f19e589",
+  "status": "fresh"
+}

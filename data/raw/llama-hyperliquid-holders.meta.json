@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue",
+  "retrieved_at": "2026-10-02T21:32:24.746721+00:00",
+  "sha256": "5352cb2a289f596181db9b0fc681b08d9ab159e194a0d569d9117403e0dd6eff",
+  "status": "fresh"
+}

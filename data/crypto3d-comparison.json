@@ -1,0 +1,109 @@
+{
+  "compiled_at": "2026-10-02T19:12:55.280689+00:00",
+  "generated_at": "2026-10-02T00:14:56.314668+00:00",
+  "retrieved_at": "2026-10-02T18:52:45.825141+00:00",
+  "reference_url": "https://crypto3d.pro/equity/",
+  "reference_data_url": "https://crypto3d.pro/data/all-protocols.json",
+  "reference_html_path": "../research/evidence/crypto3d/equity.html",
+  "reference_data_path": "../research/evidence/crypto3d/all-protocols.json",
+  "reference_html_sha256": "b0cafa1148db269c3eaf2ecab9ca331f6663c1c8ed23c905c3d7f9dd45ff3a30",
+  "reference_data_sha256": "e5d26221ef25e41b2daf811ad6e136e77deb536d3eccd2e175b931b9f0450fe1",
+  "projects": [
+    {
+      "ticker": "HYPE",
+      "available": true,
+      "key": "hype",
+      "windows": {
+        "7": {
+          "pe": 17.18213058419244,
+          "ps": 17.18213058419244,
+          "shareholder_yield_percent": 5.82,
+          "total_yield_percent": 5.82
+        },
+        "30": {
+          "pe": 17.301038062283737,
+          "ps": 17.301038062283737,
+          "shareholder_yield_percent": 5.78,
+          "total_yield_percent": 5.78
+        },
+        "90": {
+          "pe": 12.738853503184714,
+          "ps": 12.738853503184714,
+          "shareholder_yield_percent": 7.85,
+          "total_yield_percent": 7.85
+        },
+        "365": {
+          "pe": 25.477057909352627,
+          "ps": 25.221953188054883,
+          "shareholder_yield_percent": 3.9251,
+          "total_yield_percent": 3.9648
+        }
+      },
+      "market_cap_usd": 19496307623,
+      "last_updated": "2026-10-02",
+      "revenue_usd_365d": 772987701,
+      "net_income_usd_365d": 772987701,
+      "daily_source_url": "https://crypto3d.pro/data/daily/hype/latest.json",
+      "daily_retrieved_at": "2026-10-02T18:53:47.585066+00:00",
+      "daily_sha256": "7fa286dfdd0a200aeb54b1ff2a32cbac613451a7d2ab619aac3b122dd228ad60",
+      "source_url": "https://crypto3d.pro/equity/protocol?id=hype",
+      "note": "短窗收益率字段与当前市值、同期金额并非同次复算；AF统计范围与本地金额不同。"
+    },
+    {
+      "ticker": "PUMP",
+      "available": false,
+      "note": "本次参考站主表未收录，不推定为零。"
+    },
+    {
+      "ticker": "UNI",
+      "available": true,
+      "key": "uniswap",
+      "windows": {
+        "7": {
+          "pe": 114.94252873563218,
+          "ps": 114.94252873563218,
+          "shareholder_yield_percent": 0.87,
+          "total_yield_percent": 0.87
+        },
+        "30": {
+          "pe": 144.92753623188406,
+          "ps": 144.92753623188406,
+          "shareholder_yield_percent": 0.69,
+          "total_yield_percent": 0.69
+        },
+        "90": {
+          "pe": 133.33333333333334,
+          "ps": 133.33333333333334,
+          "shareholder_yield_percent": 0.75,
+          "total_yield_percent": 0.75
+        },
+        "365": {
+          "pe": 305.8103975535168,
+          "ps": 305.8103975535168,
+          "shareholder_yield_percent": 0.327,
+          "total_yield_percent": 0.327
+        }
+      },
+      "market_cap_usd": 5616491951,
+      "last_updated": "2026-10-02",
+      "revenue_usd_365d": 18365812.03,
+      "net_income_usd_365d": 18365812.03,
+      "daily_source_url": "https://crypto3d.pro/data/daily/uniswap/latest.json",
+      "daily_retrieved_at": "2026-10-02T18:52:37.961481+00:00",
+      "daily_sha256": "040d9318a9a3b669c19ea01a07f94a6d8ab52944da87e31ff06a36f9811e4da6",
+      "source_url": "https://crypto3d.pro/equity/protocol?id=uniswap",
+      "note": "参考站采用主网dead转账、旧价烧币估值；本地采用多链兑换记录估值，覆盖范围和计价不同。"
+    },
+    {
+      "ticker": "JUP",
+      "available": false,
+      "note": "本次参考站主表未收录，不推定为零。"
+    },
+    {
+      "ticker": "RAY",
+      "available": false,
+      "note": "本次参考站主表未收录，不推定为零。"
+    }
+  ],
+  "note": "按本次保存源码与字段复算参考站算法；不是跨时点实时价格比较。短窗百分比可能回退365天；Rev/NetInc列始终365天。"
+}

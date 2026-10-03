@@ -1,0 +1,6 @@
+{
+  "url": "https://api.coingecko.com/api/v3/coins/raydium/market_chart?vs_currency=usd&days=365&interval=daily",
+  "retrieved_at": "2026-10-02T21:36:05.301301+00:00",
+  "sha256": "26370f9cbd6d03a6962d5d09ad4cc29feefd3a5bd33a3822e95dbc177bd11499",
+  "status": "fresh"
+}

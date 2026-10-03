@@ -1,0 +1,6 @@
+{
+  "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=hyperliquid,pump-fun,uniswap,jupiter-exchange-solana,raydium",
+  "retrieved_at": "2026-10-02T21:32:24.728928+00:00",
+  "sha256": "75804c3d7d5779813f92e7e0f64a9395eea285df929d149a46b0416aaf41a357",
+  "status": "fresh"
+}

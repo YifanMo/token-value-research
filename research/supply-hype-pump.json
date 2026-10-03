@@ -1,0 +1,444 @@
+{
+  "research_as_of_utc": "2026-10-02T12:00:00Z",
+  "timezone": "Asia/Shanghai",
+  "window_definition": "(as_of, as_of + days], discrete monthly events; amounts token units",
+  "status_definition": "verified means cited source checked, not independent audit of tracker or media execution",
+  "evidence": [
+    {
+      "id": "H1",
+      "token": "HYPE",
+      "claim": "官方贡献者238M锁一年，多数归属于2027–2028完成，部分2028后；没有全体未来逐月表。",
+      "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f",
+      "published_date": "2024-11-28",
+      "effective_date": "2024-11-29",
+      "status": "verified",
+      "source_type": "primary"
+    },
+    {
+      "id": "H2",
+      "token": "HYPE",
+      "claim": "Tokenomist公开页研究日列下一次2026-10-06；金额表有付费限制。",
+      "url": "https://tokenomist.ai/hyperliquid/unlock-events?event-type=upcoming&preset=default-big_unlock",
+      "published_date": null,
+      "effective_date": "2026-10-06",
+      "status": "verified",
+      "source_type": "tracker"
+    },
+    {
+      "id": "H3",
+      "token": "HYPE",
+      "claim": "二级引用Tokenomist列10月6日约9.92M，与238M/24相符；统一24月不是官方已核验承诺。",
+      "url": "https://ambcrypto.com/hyperliquid-faces-860m-token-unlock-can-hype-absorb-the-supply/",
+      "published_date": "2026-09-06",
+      "effective_date": "2026-10-06",
+      "status": "inferred",
+      "source_type": "secondary-tracker-citation"
+    },
+    {
+      "id": "H4",
+      "token": "HYPE",
+      "claim": "媒体转述iliensinc官方Discord：Labs拟unstake3.75M用于10月团队批次，全部OTC给一机构；买家/价/锁期未披露。未直接取得Discord原帖。",
+      "url": "https://beincrypto.com/hyperliquid-token-unlock-320-million-price-impact/",
+      "published_date": "2026-09-30T17:43:00Z",
+      "effective_date": "2026-10-07",
+      "status": "verified",
+      "source_type": "secondary-report-of-primary",
+      "execution_status": "reported_plan_not_executed_as_of_research"
+    },
+    {
+      "id": "H5",
+      "token": "HYPE",
+      "claim": "另一9月30日报道明确3.75M拟10月7日分发；并非已执行流通。",
+      "url": "https://www.tokenpost.com/news/business/25890",
+      "published_date": "2026-09-30T15:47:00Z",
+      "effective_date": "2026-10-07",
+      "status": "verified",
+      "source_type": "secondary-report-of-primary"
+    },
+    {
+      "id": "H6",
+      "token": "HYPE",
+      "claim": "DeFiLlama跟踪HyperLabs至贡献者实际转账，最后2026-09-06为433419；2027年底结束日为其模型假设。",
+      "url": "https://defillama.com/unlocks/hyperliquid",
+      "published_date": null,
+      "effective_date": "2026-09-06T00:00:00Z",
+      "status": "verified",
+      "source_type": "tracker"
+    },
+    {
+      "id": "H7",
+      "token": "HYPE",
+      "claim": "官方奖励来自future emissions储备；400M总质押例示2.37%APR，退出质押7天。",
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore/staking",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary"
+    },
+    {
+      "id": "P1",
+      "token": "PUMP",
+      "claim": "交易所复制白皮书列team200B/investors130B/community240B/ICO330B，ICO首日全解锁。",
+      "url": "https://feed-content.bithumb.com/cms/copied-4ae8afe0-8f7d-4d46-a9f2-5416aac8d507.pdf",
+      "published_date": null,
+      "effective_date": "2025-07",
+      "status": "verified",
+      "source_type": "issuer-document-copy"
+    },
+    {
+      "id": "P2",
+      "token": "PUMP",
+      "claim": "DeFiLlama列2026-10-12 02:15UTC，team4.167B+investors2.708B；社区原计划TGE50%余下一年按月，但未遵循且部分TGE留Squads，故TBD。",
+      "url": "https://defillama.com/unlocks/pump",
+      "published_date": null,
+      "effective_date": "2026-10-12T02:15:00Z",
+      "status": "verified",
+      "source_type": "tracker"
+    },
+    {
+      "id": "P3",
+      "token": "PUMP",
+      "claim": "Blockworks列Oct/Nov/Dec14，每次约6.9B；25%cliff后余75%约36月；假设列明确按图估cliff和月度建模。remaining141.67B+92.08B。",
+      "url": "https://app.blockworks.com/projects/pump-fun/token-unlocks",
+      "published_date": null,
+      "effective_date": "2026-10-14",
+      "status": "verified",
+      "source_type": "tracker"
+    },
+    {
+      "id": "P4",
+      "token": "PUMP",
+      "claim": "Tokenomics.com列Oct12 9166666667/月、remaining302.5B/33批，又描述25%cliff后36月；月量正好330B/36，与247.5B/36冲突。",
+      "url": "https://app.tokenomics.com/tokenomics/pump-fun/unlocks",
+      "published_date": null,
+      "effective_date": "2026-10-12",
+      "status": "verified",
+      "source_type": "tracker-conflict"
+    },
+    {
+      "id": "P5",
+      "token": "PUMP",
+      "claim": "Tokenomist7月10日研究列Jul12 insidercliff82.5B，后续执行需另核。",
+      "url": "https://tokenomist.ai/research/pump-tokenomics-what-the-july-12-2026-insider-cliff-means-for-a-fixed-1t-supply-2",
+      "published_date": "2026-07-10",
+      "effective_date": "2026-07-12",
+      "status": "verified",
+      "source_type": "tracker-research"
+    },
+    {
+      "id": "P6",
+      "token": "PUMP",
+      "claim": "独立追踪器以Sep29钱包研究主张另有625M/月、未来90日22.5B；未取得完整地址与交易凭证，尚未对账。",
+      "url": "https://mrnasdog.com/research/pump",
+      "published_date": null,
+      "effective_date": "2026-10-12",
+      "status": "verified",
+      "source_type": "independent-tracker-unreconciled",
+      "data_as_of": "2026-09-29"
+    },
+    {
+      "id": "P7",
+      "token": "PUMP",
+      "claim": "此前本地公开RPC核验PUMP普通mint/freezing权限null；无普通mint新增权限不等于无现存储备流通稀释。",
+      "url": "https://api.mainnet-beta.solana.com",
+      "published_date": null,
+      "effective_date": "2026-10-02T11:30:00Z",
+      "status": "verified",
+      "source_type": "chain-rpc",
+      "local_evidence_file": "research/hype-pump.json",
+      "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "slot": 452597013,
+      "total_supply": 830417823755.2446,
+      "decimals": 6,
+      "mint_authority": null,
+      "freeze_authority": null
+    }
+  ],
+  "windows": [
+    {
+      "days": 30,
+      "event_count": 1,
+      "end_utc": "2026-11-01T12:00:00Z"
+    },
+    {
+      "days": 90,
+      "event_count": 3,
+      "end_utc": "2026-12-31T12:00:00Z"
+    },
+    {
+      "days": 365,
+      "event_count": 12,
+      "end_utc": "2027-10-02T12:00:00Z"
+    }
+  ],
+  "projects": {
+    "HYPE": {
+      "official_rules": {
+        "contributors_allocation": 238000000,
+        "lock_one_year_after_genesis": true,
+        "majority_vesting_completion_years": [
+          2027,
+          2028
+        ],
+        "some_after_2028": true,
+        "complete_official_schedule_available": false,
+        "future_emissions_reserve_genesis": 388880000,
+        "foundation_grants_unlocked_at_tge": 63000000
+      },
+      "next_events": [
+        {
+          "date": "2026-10-06",
+          "amount_model": 9916666.666666666,
+          "amount_display": 9920000,
+          "stage": "theoretical_entitlement",
+          "authority": "tracker_model",
+          "status": "inferred",
+          "source_ids": [
+            "H1",
+            "H2",
+            "H3"
+          ],
+          "additive_group": "contributor_entitlement"
+        },
+        {
+          "date": "2026-10-07",
+          "amount": 3750000,
+          "stage": "reported_distribution_plan",
+          "authority": "secondary_reporting_official_discord",
+          "status": "reported_plan",
+          "source_ids": [
+            "H4",
+            "H5"
+          ],
+          "additive_group": "contributor_execution",
+          "buyer_name": null,
+          "buyer_lock_period": null,
+          "public_orderbook_sale": false
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "hype_tracker_entitlement",
+          "name": "贡献者理论归属238M/24月",
+          "monthly_amount": 9916666.666666666,
+          "future_amounts": {
+            "30": 9916666.666666666,
+            "90": 29750000,
+            "365": 119000000
+          },
+          "calendar_assumption": "6th monthly October 2026 through September 2027",
+          "stage": "entitlement",
+          "status": "inferred",
+          "official": false,
+          "is_complete_supply_forecast": false,
+          "is_hard_upper_bound": false,
+          "additive_with_reported_distribution": false,
+          "source_ids": [
+            "H1",
+            "H2",
+            "H3"
+          ],
+          "limitations": "No official member-level table. Unclaimed vested backlog may be distributed later."
+        },
+        {
+          "id": "hype_announced_subset",
+          "name": "已报道拟分发部分，非全期间预测",
+          "stage": "reported_execution_plan",
+          "future_amounts": {
+            "30": 3750000,
+            "90": 3750000,
+            "365": 3750000
+          },
+          "status": "reported_plan",
+          "is_complete_supply_forecast": false,
+          "requires_execution_confirmation": true,
+          "additive_with_tracker_entitlement": false,
+          "source_ids": [
+            "H4",
+            "H5"
+          ]
+        },
+        {
+          "id": "hype_staking_example",
+          "name": "400M质押2.37%APR条件例",
+          "stage": "reserved_emission",
+          "annual_amount": 9480000,
+          "future_amounts": {
+            "30": 779178.0821917808,
+            "90": 2337534.2465753425,
+            "365": 9480000
+          },
+          "status": "inferred",
+          "is_current_network_forecast": false,
+          "is_complete_supply_forecast": false,
+          "source_ids": [
+            "H7"
+          ]
+        }
+      ],
+      "known_actual_history": [
+        {
+          "date": "2026-09-06T00:00:00Z",
+          "amount": 433419,
+          "stage": "tracker_observed_transfer",
+          "source_ids": [
+            "H6"
+          ]
+        }
+      ],
+      "unknown_components": [
+        "member-specific vesting schedules",
+        "unclaimed vested backlog and timing",
+        "future community distributions",
+        "foundation/grant spend rate",
+        "actual future stake/reward rate",
+        "institution buyer holding restrictions"
+      ],
+      "complete_future_30_90_365": null
+    },
+    "PUMP": {
+      "allocations": {
+        "team": 200000000000,
+        "existing_investors": 130000000000,
+        "community_ecosystem": 240000000000
+      },
+      "vesting_math": {
+        "insider_pool": 330000000000,
+        "cliff_fraction": 0.25,
+        "cliff_amount": 82500000000,
+        "post_cliff_vesting_pool_at_july_2026": 247500000000,
+        "post_cliff_months": 36,
+        "team_monthly": 4166666666.6666665,
+        "investors_monthly": 2708333333.3333335,
+        "combined_monthly": 6875000000,
+        "remaining_theoretical_after_august_september": 233750000000,
+        "remaining_theoretical_months": 34
+      },
+      "next_events": [
+        {
+          "date": "2026-10-12T02:15:00Z",
+          "amount": 6875000000,
+          "stage": "vesting_schedule",
+          "authority": "defillama_tracker",
+          "status": "tracker_schedule",
+          "source_ids": [
+            "P2"
+          ]
+        },
+        {
+          "date": "2026-10-14",
+          "amount_display": 6900000000,
+          "amount_model": 6875000000,
+          "stage": "vesting_schedule",
+          "authority": "blockworks_tracker",
+          "status": "tracker_schedule",
+          "date_conflict": true,
+          "source_ids": [
+            "P3"
+          ]
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "pump_remaining_75pct_over_36",
+          "name": "LLama/Blockworks共同月量模型（默认已知部分）",
+          "monthly_amount": 6875000000,
+          "future_amounts": {
+            "30": 6875000000,
+            "90": 20625000000,
+            "365": 82500000000
+          },
+          "status": "inferred_from_tracker_schedule",
+          "is_complete_supply_forecast": false,
+          "source_ids": [
+            "P2",
+            "P3"
+          ],
+          "future_monthly_dates": [
+            "2026-10-12",
+            "2026-11-12",
+            "2026-12-12",
+            "2027-01-12",
+            "2027-02-12",
+            "2027-03-12",
+            "2027-04-12",
+            "2027-05-12",
+            "2027-06-12",
+            "2027-07-12",
+            "2027-08-12",
+            "2027-09-12"
+          ],
+          "calendar_conflict": "Blockworks14th vs LLama12th; both yield1/3/12events in these horizons",
+          "annual_team_amount": 50000000000,
+          "annual_investors_amount": 32500000000
+        },
+        {
+          "id": "pump_additional_wallet_scenario",
+          "name": "额外625M/月未对账情景",
+          "extra_monthly_amount": 625000000,
+          "monthly_combined_amount": 7500000000,
+          "future_amounts": {
+            "30": 7500000000,
+            "90": 22500000000,
+            "365": 90000000000
+          },
+          "status": "unreconciled_tracker_scenario",
+          "default": false,
+          "is_complete_supply_forecast": false,
+          "source_ids": [
+            "P6"
+          ]
+        },
+        {
+          "id": "pump_conflicting_full_pool_over_36",
+          "name": "330B/36冲突模型，仅对照",
+          "monthly_amount": 9166666666.666666,
+          "future_amounts": {
+            "30": 9166666666.666666,
+            "90": 27500000000,
+            "365": 110000000000
+          },
+          "status": "conflicting_tracker",
+          "default": false,
+          "source_ids": [
+            "P4"
+          ],
+          "reason": "This fits full insider allocation, not247.5B remaining after25%cliff."
+        }
+      ],
+      "mint_emissions": {
+        "amount": 0,
+        "basis": "mint authority null at checked RPC slot",
+        "does_not_mean_circulating_unlocks_zero": true,
+        "source_ids": [
+          "P7"
+        ]
+      },
+      "unknown_components": [
+        "actual contract execution and timing",
+        "community undistributed Squads vault amount/release timing",
+        "extra625Mwallet ownership/schedule",
+        "cross-tracker allocation reconciliation"
+      ],
+      "complete_future_30_90_365": null
+    }
+  },
+  "data_access": {
+    "public_pages": [
+      "https://defillama.com/unlocks/pump",
+      "https://defillama.com/unlocks/hyperliquid"
+    ],
+    "defillama_emissions_api": "https://api.llama.fi/emissions/pump",
+    "api_attempt": "HTTP402 Payment Required; not used",
+    "adapter_attempt": "DefiLlama/emissions-adapters404; old0xnirmal/emissions-adapters tree accessible but no pump/hyperliquid; no current adapter source snapshot verified",
+    "old_official_pump_whitepaper": "https://token.pump.fun/pump-whitepaper-07-10.pdf",
+    "whitepaper_access": "Redirect to current pump.fun/pump-token; used exchange copy for allocations and explicitly labeled tracker assumptions"
+  },
+  "model_rules": [
+    "Do not add HYPE reported3.75M execution to tracker9.9167M entitlement.",
+    "Entitlement, eligible claim, distribution, OTC transfer, exchange deposit and sale are distinct.",
+    "PUMP mint emissions0 does not mean circulating unlocks0.",
+    "Keep complete unknown forward supply null.",
+    "Burn token-value proxy is not actual cash buyback cost."
+  ]
+}

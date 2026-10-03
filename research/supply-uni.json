@@ -1,0 +1,155 @@
+{
+  "symbol": "UNI",
+  "as_of_date": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "scope": "Original insider vesting, UNIfication Labs treasury growth budget, mint authority and float uncertainty",
+  "status": "authorized_schedule_verified_current_claim_state_unknown",
+  "window_start_utc": "2026-10-02T00:00:00Z",
+  "window_convention": "(start, start + N days]; newly eligible schedule excludes already eligible carry-in",
+  "contracts": {
+    "uni": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    "vesting": "0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2",
+    "original_approval_owner": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC",
+    "current_owner": null,
+    "current_recipient": null,
+    "source_commit": "0c071d199dc32556365c78e03ec3f4d09b9fbf37",
+    "source_commit_date": "2026-07-23T17:15:31Z"
+  },
+  "original_growth_budget": {
+    "authorization_proposal_id": 93,
+    "proposal_status": "executed",
+    "execution_tx": "0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e",
+    "initial_allowance_uni": 40000000,
+    "annual_budget_uni": 20000000,
+    "default_quarterly_amount_uni": 5000000,
+    "first_eligibility_timestamp": 1767225600,
+    "first_eligibility_utc": "2026-01-01T00:00:00Z",
+    "last_original_authorized_tranche_utc": "2027-10-01T00:00:00Z",
+    "token_source": "existing treasury inventory",
+    "minted_by_budget": false,
+    "funds_prefunded_in_vesting_contract": false,
+    "hardcoded_contract_end_date": null,
+    "limit_mechanism": "original 40M governance ERC20 approval; contract itself has no end-date or total-amount cap",
+    "renewal_automatic": false,
+    "governance_can_cancel_allowance": true,
+    "owner_can_update_quarterly_amount_when_no_accrued_unpaid_quarters": true,
+    "recipient_can_update_recipient": true,
+    "late_withdrawal_shifts_future_eligibility_dates": false,
+    "current_quarterly_amount_uni": null,
+    "current_allowance_uni": null,
+    "current_state_status": "not_independently_read"
+  },
+  "schedule": [
+    {"eligible_utc":"2026-01-01T00:00:00Z","eligible_beijing":"2026-01-01T08:00:00+08:00","unix_timestamp":1767225600,"amount_uni":5000000,"cumulative_original_schedule_uni":5000000,"as_of_status":"past_eligible_confirmed_official_transfer","transfer_date":"2026-01-05","transfer_amount_uni":5000000},
+    {"eligible_utc":"2026-04-01T00:00:00Z","eligible_beijing":"2026-04-01T08:00:00+08:00","unix_timestamp":1775001600,"amount_uni":5000000,"cumulative_original_schedule_uni":10000000,"as_of_status":"past_eligible_indexed_withdraw_call_only","transfer_date":null,"transfer_amount_uni":null},
+    {"eligible_utc":"2026-07-01T00:00:00Z","eligible_beijing":"2026-07-01T08:00:00+08:00","unix_timestamp":1782864000,"amount_uni":5000000,"cumulative_original_schedule_uni":15000000,"as_of_status":"past_eligible_indexed_withdraw_call_only","transfer_date":null,"transfer_amount_uni":null},
+    {"eligible_utc":"2026-10-01T00:00:00Z","eligible_beijing":"2026-10-01T08:00:00+08:00","unix_timestamp":1790812800,"amount_uni":5000000,"cumulative_original_schedule_uni":20000000,"as_of_status":"past_eligible_actual_claim_unknown","transfer_date":null,"transfer_amount_uni":null},
+    {"eligible_utc":"2027-01-01T00:00:00Z","eligible_beijing":"2027-01-01T08:00:00+08:00","unix_timestamp":1798761600,"amount_uni":5000000,"cumulative_original_schedule_uni":25000000,"as_of_status":"future_original_authorized_schedule_conditional"},
+    {"eligible_utc":"2027-04-01T00:00:00Z","eligible_beijing":"2027-04-01T08:00:00+08:00","unix_timestamp":1806537600,"amount_uni":5000000,"cumulative_original_schedule_uni":30000000,"as_of_status":"future_original_authorized_schedule_conditional"},
+    {"eligible_utc":"2027-07-01T00:00:00Z","eligible_beijing":"2027-07-01T08:00:00+08:00","unix_timestamp":1814400000,"amount_uni":5000000,"cumulative_original_schedule_uni":35000000,"as_of_status":"future_original_authorized_schedule_conditional"},
+    {"eligible_utc":"2027-10-01T00:00:00Z","eligible_beijing":"2027-10-01T08:00:00+08:00","unix_timestamp":1822348800,"amount_uni":5000000,"cumulative_original_schedule_uni":40000000,"as_of_status":"future_last_original_authorized_tranche_conditional"}
+  ],
+  "horizons": [
+    {"days":30,"end_utc":"2026-11-01T00:00:00Z","newly_eligible_growth_budget_uni":0,"eligible_dates":[],"original_team_investor_advisor_new_vesting_uni":0,"scheduled_automatic_mint_uni":0,"actual_budget_treasury_outflow_uni":null,"actual_float_increase_uni":null,"carry_in_eligible_unclaimed_uni":null,"other_treasury_outflow_uni":null},
+    {"days":90,"end_utc":"2026-12-31T00:00:00Z","newly_eligible_growth_budget_uni":0,"eligible_dates":[],"original_team_investor_advisor_new_vesting_uni":0,"scheduled_automatic_mint_uni":0,"actual_budget_treasury_outflow_uni":null,"actual_float_increase_uni":null,"carry_in_eligible_unclaimed_uni":null,"other_treasury_outflow_uni":null},
+    {"days":365,"end_utc":"2027-10-02T00:00:00Z","newly_eligible_growth_budget_uni":20000000,"eligible_dates":["2027-01-01T00:00:00Z","2027-04-01T00:00:00Z","2027-07-01T00:00:00Z","2027-10-01T00:00:00Z"],"original_team_investor_advisor_new_vesting_uni":0,"scheduled_automatic_mint_uni":0,"actual_budget_treasury_outflow_uni":null,"actual_float_increase_uni":null,"carry_in_eligible_unclaimed_uni":null,"other_treasury_outflow_uni":null}
+  ],
+  "carry_in": {
+    "cumulative_eligible_original_schedule_uni": 20000000,
+    "confirmed_official_treasury_transfer_uni": 5000000,
+    "actual_all_withdrawals_uni": null,
+    "eligible_unclaimed_uni": null,
+    "immediately_withdrawable_uni": null,
+    "status": "unknown_current_state",
+    "conditional_range_uni": {"minimum":0,"maximum":15000000,"assumptions":["Quarterly amount and original approved plan unchanged","First 5M transfer confirmed; later transfers not fully reconciled"],"is_live_balance_estimate":false},
+    "unverified_scenario": {"april_and_july_calls_succeeded_at_5m_each":true,"october_not_claimed":true,"scenario_unclaimed_uni":5000000,"status":"conditional_not_adopted_as_fact"},
+    "withdrawal_formula": "For A>0, prepared quarters = min(quartersPassed, floor(allowance/A)); transaction succeeds only if prepared quarters >0 and owner balance >= prepared quarters*A. Balance shortage does not trigger a smaller payment.",
+    "indexed_withdrawals": [
+      {"utc":"2026-01-05T17:04:23Z","tx":"0x3143564279cec3aab40ec01146c0ca4a9b8339f1516646ac58496f6d198148b2","amount_uni":5000000,"amount_status":"official_report_verified","receipt_independently_read":false},
+      {"utc":"2026-04-10T17:55:23Z","tx":"0x727c2a1d6c8df448aa5bc55a6f2c59a5960e7d08367536225b093b224b0f17c0","amount_uni":null,"amount_status":"unknown","receipt_independently_read":false},
+      {"utc":"2026-07-14T20:41:47Z","tx":"0x9a9d5b96ac13cec677ef134abc6e4195562610dacf1e4ae6c8a188e9ad42de14","amount_uni":null,"amount_status":"unknown","receipt_independently_read":false}
+    ]
+  },
+  "legacy_allocation": {
+    "team_future_employee_uni":212660000,
+    "investor_uni":180440000,
+    "advisor_uni":6900000,
+    "original_announced_vesting_years":4,
+    "current_docs_vesting_end":"2025-09",
+    "exact_original_final_vesting_date":null,
+    "date_conflict":"Four years from September 2020 versus current docs September 2025; original contracts not individually reconciled",
+    "ongoing_original_scheduled_unlocks_after_as_of_uni":0,
+    "future_schedule_evidence_status":"official_docs_say_completed; exact historic final date unresolved",
+    "current_insider_unsold_balances_uni":null,
+    "already_unlocked_sales_are_new_mint":false
+  },
+  "mint_authority": {
+    "active_inflation":false,
+    "official_statement_authority_exercised_to_date":false,
+    "independent_full_mint_logs_reconciled":false,
+    "cap_per_call_pct_of_contract_totalSupply":2,
+    "minimum_days_between_mint_calls":365,
+    "automatic_calendar_emission":false,
+    "unused_annual_cap_accumulates":false,
+    "next_scheduled_mint_date":null,
+    "baseline_scheduled_mint_uni":0,
+    "current_contract_totalSupply_independently_read_uni":null,
+    "conditional_cap_if_totalSupply_is_1b_uni":20000000,
+    "dead_address_transfers_reduce_contract_totalSupply":false,
+    "potential_mint_scenario_is_future_baseline":false
+  },
+  "accounting_integration": {
+    "growth_budget_new_economic_supply_uni":0,
+    "growth_budget_future_float_change_uni":null,
+    "newly_eligible_is_actual_payment":false,
+    "treasury_payment_is_guaranteed_sale":false,
+    "avoid_add_budget_to_mint_row":true,
+    "avoid_treating_30_90_day_new_eligibility_zero_as_no_future_outflow":true,
+    "future_net_float_formula":"newly eligible treasury release actually entering float + carry-in release actually entering float + other inventory releases + newly minted tokens entering float - permanent removal of circulating tokens",
+    "all_future_supply_pressure_complete":false
+  },
+  "verification_recipe": {
+    "pin_same_block":true,
+    "vesting_reads":[
+      {"signature":"quarterlyVestingAmount()","selector":"0x8627a6b5"},
+      {"signature":"lastUnlockTimestamp()","selector":"0x21226f40"},
+      {"signature":"quartersPassed()","selector":"0x049176a6"},
+      {"signature":"recipient()","selector":"0x66d003ac"},
+      {"signature":"owner()","selector":"0x8da5cb5b"},
+      {"signature":"UNI()","selector":"0x541bcb76"}
+    ],
+    "uni_reads":["allowance(owner,vesting)","balanceOf(owner)","totalSupply()","minter()","mintingAllowedAfter()"],
+    "vesting_logs":["Withdrawn(address,uint256,uint48)","VestingAmountUpdated(uint256)","RecipientUpdated(address)","OwnershipTransferred(address,address)"],
+    "uni_logs":["Approval(owner,vesting,amount)","Transfer(owner,recipient,amount)","Transfer(address(0),recipient,amount) for actual mint"]
+  },
+  "query_attempts": [
+    {"url":"https://etherscan.io/address/0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2","accessed_date":"2026-10-02","result":"indexed snapshot through July 2026; direct current page unavailable","supports_current_unclaimed":false},
+    {"url":"https://api.etherscan.io/v2/api","accessed_date":"2026-10-02","result":"Missing/Invalid API Key","supports_current_unclaimed":false},
+    {"url":"https://ethereum-rpc.publicnode.com","accessed_date":"2026-10-02","method":"eth_call","fields_attempted":["lastUnlockTimestamp()","owner()","quarterlyVestingAmount()","UNI.allowance(original_owner,vesting)"],"result":"All HTTP403, error code1010","supports_current_unclaimed":false},
+    {"url":"https://eth.llamarpc.com","accessed_date":"2026-10-02","result":"HTTP403","supports_current_unclaimed":false},
+    {"url":"https://cloudflare-eth.com","accessed_date":"2026-10-02","result":"HTTP403","supports_current_unclaimed":false},
+    {"url":"https://eth.drpc.org","accessed_date":"2026-10-02","result":"HTTP403","supports_current_unclaimed":false},
+    {"url":"https://ethereum.publicnode.com","accessed_date":"2026-10-02","result":"HTTP403","supports_current_unclaimed":false},
+    {"url":"https://rpc.flashbots.net","accessed_date":"2026-10-02","result":"block header accessible; eth_call method not whitelisted; eth_getStorageAt HTTP504; full-history eth_getLogs pruned history unavailable; known January receipt returned null","observed_header":{"block_number":26104595,"block_hex":"0x18e5313","timestamp_utc":"2026-10-02T12:19:11Z","hash":"0xb0bc7105b441e41d6f08604e93c788badbf596981f3b95fb0c12ec068633a306"},"valid_supply_state_obtained":false,"supports_current_unclaimed":false}
+  ],
+  "evidence": [
+    {"id":"growth_budget_execution","url":"https://vote.uniswapfoundation.org/proposals/93","claim":"Executed actions authorize a 40M UNI allowance to UNIVesting, not a mint; proposed schedule is 20M annually from Jan1 2026; governance can revoke approval","published_date":"2025-12","effective_date":"2025-12","accessed_date":"2026-10-02","status":"verified_executed_proposal_frontend","current_allowance_verified":false},
+    {"id":"vesting_source","url":"https://github.com/Uniswap/protocol-fees/blob/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol","raw_url":"https://raw.githubusercontent.com/Uniswap/protocol-fees/0c071d199dc32556365c78e03ec3f4d09b9fbf37/src/UNIVesting.sol","claim":"Default A=5M; first eligibility Jan1 2026 UTC; calendar quarters; treasury transferFrom; allowance-limited complete quarters; no hardcoded end timestamp; governance parameter changes supported","published_date":"2026-07-23","effective_date":"2026-01-01","accessed_date":"2026-10-02","status":"verified_source_code_schedule_derived_current_parameters_unknown"},
+    {"id":"deployment","url":"https://developers.uniswap.org/docs/protocols/protocol-fee/deployments","claim":"Ethereum UNIVesting and canonical UNI addresses","published_date":null,"effective_date":null,"accessed_date":"2026-10-02","status":"verified_official_deployment_table"},
+    {"id":"financial_report","url":"https://vote.uniswapfoundation.org/forums/7/duni-q4-and-year-end-2025-financial-statements-and-tax-update","claim":"Annual20M, two-year40M budget; first5M actually transferred Jan5 2026; unvested budget cancellable; tokens remain DUNI treasury until vested","published_date":null,"effective_date":"2026-01-05","accessed_date":"2026-10-02","status":"verified_official_unaudited_report"},
+    {"id":"withdraw_index","url":"https://etherscan.io/address/0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2","claim":"Indexed Jan5,Apr10,Jul14 withdraw function calls; latest cached crawl July2026 does not establish Oct2 current state or later-call amounts","published_date":null,"effective_date":"2026-07-14","accessed_date":"2026-10-02","status":"verified_indexed_calls_receipts_and_amounts_unknown"},
+    {"id":"genesis","url":"https://blog.uniswap.org/uni","claim":"Initial1B allocation and team/investor/advisor four-year vesting; original inflation language","published_date":"2020-09-16","effective_date":"2020-09","accessed_date":"2026-10-02","status":"verified_original_announcement"},
+    {"id":"current_uni_docs","url":"https://developers.uniswap.org/docs/ecosystem/governance/uni","claim":"No active inflation, governance2% authority not used to date; original vesting said completed Sep2025; exact-end conflict with four-year announcement unresolved","published_date":null,"effective_date":null,"accessed_date":"2026-10-02","status":"verified_official_current_statement_not_independent_full_logs"},
+    {"id":"mint_source","url":"https://github.com/Uniswap/governance/blob/ab22c084bacb2636a1aebf9759890063eb6e4946/contracts/Uni.sol","claim":"Explicit minter call, max2% contract totalSupply per call, minimum365days; no automatic issuance or unused-cap accumulation; dead transfer does not reduce totalSupply","published_date":"2020-09-24","effective_date":"2020-09","accessed_date":"2026-10-02","status":"verified_source_code"}
+  ],
+  "unknowns": [
+    "Current quarterlyVestingAmount, lastUnlockTimestamp, quartersPassed, owner and recipient at a common as-of block",
+    "Current allowance and treasury balance; accrued unclaimed and immediately withdrawable amount",
+    "Independent successful April/July Withdrawn receipt amounts and any October or later claims",
+    "All later changes to allowance, vesting amount, recipient or ownership",
+    "Actual Labs budget downstream sale and inclusion in vendor circulating supply",
+    "All other Foundation, incentive and treasury release future dates and amounts",
+    "Exact original final team/investor/advisor vesting dates and current remaining insider holdings",
+    "Independent full mint log and current contract totalSupply reconciliation"
+  ]
+}

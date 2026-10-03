@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-02",
+  "window_as_of_utc_date": "2026-10-02",
+  "method": "Official source policies, independently decoded finalized Solana accounts, official APIs, tracker estimates, and scenarios kept distinct.",
+  "jup": {
+    "net_zero_vote": {
+      "status": "verified_onchain_vote_passed",
+      "proposal_address": "C5XRDvjHZXmMs45WhjzEKdg2dcSg2aCSwEvPvivWpBF6",
+      "metadata_address": "JAGPaqzeLAPpKFhjeibPfj8jabHbSfHuBzx1DcoNdFhp",
+      "option_metadata_address": "HBVW59iCWosgvqfXabtMBv6N3RtuozgCEf6SMmjvt8JR",
+      "governance_program": "GovaE4iu227srtG2s3tZzB4RmWBzw8sTwrCLZz7kN7rY",
+      "finalized_slot": 452608812,
+      "created_at_utc": "2026-02-16T13:46:48Z",
+      "starts_at_utc": "2026-02-17T10:59:30Z",
+      "ends_at_utc": "2026-02-22T10:59:30Z",
+      "quorum_jup": 266300000,
+      "options": [
+        {
+          "index": 0,
+          "label": "Abstain",
+          "raw_votes": "8937773262",
+          "votes_jup": 8937.773262
+        },
+        {
+          "index": 1,
+          "label": "Proceed with Jupuary as Planned",
+          "raw_votes": "118730351488857",
+          "votes_jup": 118730351.488857
+        },
+        {
+          "index": 2,
+          "label": "Net-Zero Emissions",
+          "raw_votes": "361296102221466",
+          "votes_jup": 361296102.221466,
+          "share_including_abstain": 0.7526447187672008
+        }
+      ],
+      "proposal_type": 1,
+      "instruction_count": 0,
+      "queued_at": 0,
+      "execution_status": "unknown_separate_wallet_and_buyback_reconciliation_required",
+      "sources": [
+        "https://vote.jup.ag/proposal/C5XRDvjHZXmMs45WhjzEKdg2dcSg2aCSwEvPvivWpBF6",
+        "https://solscan.io/account/C5XRDvjHZXmMs45WhjzEKdg2dcSg2aCSwEvPvivWpBF6",
+        "https://vote.jup.ag/_next/static/chunks/984-2814a3b3b66c0c50.js",
+        "https://api.mainnet-beta.solana.com"
+      ]
+    },
+    "approved_policy": {
+      "status": "verified_vote_and_official_terms_implementation_not_fully_verified",
+      "jupuary_2026_postponed_tokens": 700000000,
+      "jupuary_future_release_under_policy_tokens": 0,
+      "team_reserve_new_onchain_distribution_under_policy_tokens": 0,
+      "team_compensation": "Off-chain JUP balance-sheet credits; Jupiter directly absorbs member sales.",
+      "mercurial": "Accelerate vesting; match known wallet sales or CEX transfers with market purchases into team treasury during the rest of 2026.",
+      "mercurial_actual_net_future_tokens": null,
+      "permanent_burn": false,
+      "sources": [
+        "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948",
+        "https://discuss.jup.ag/t/faqs-net-zero-emission-proposal/39974"
+      ]
+    },
+    "tbd_inventory": {
+      "status": "tracker_current_estimates_not_exact_onchain_recomputed_balances",
+      "source": "https://defillama.com/protocol/unlocks/jupiter",
+      "source_notes": "Page says data provided by Jupiter team. Team and Mercurial quantities explicitly approximate. Raw adapter exact quantities not acquired.",
+      "team_approx_tokens": 427780000,
+      "mercurial_approx_tokens": 82450000,
+      "jupuary_tokens": 1400000000,
+      "jupuary_postponed_subset_tokens": 700000000,
+      "jupuary_unscheduled_reserve_subset_tokens": 700000000,
+      "community_reserve_tokens": 300000000,
+      "strategic_reserve_tokens": 1332700000,
+      "scheduled_dates": null,
+      "historical_mercurial_event": {
+        "date_utc": "2026-02-25",
+        "approx_tokens": 77970000,
+        "include_in_future_window": false
+      },
+      "do_not_sum_as_future_increment": true
+    },
+    "asr": {
+      "status": "verified_official_api_snapshot",
+      "endpoint": "https://datapi.jup.ag/rewards/v1/campaigns",
+      "newest_asr_campaign_found": "asr-2026-q2",
+      "q3_2026_or_later_campaign_found": false,
+      "funding": "Excess unclaimed tokens from first Jupuary already counted in reported circulating; not new mint.",
+      "claim_destination": "Automatically added to stake account.",
+      "campaigns": [
+        {
+          "slug": "asr-2026-q1",
+          "address": "2UNJwekXSYygCFS55CEUYHT3rPBhacf4cW8MxfQb3znx",
+          "period_start_utc": "2026-01-01T00:00:00Z",
+          "period_end_utc": "2026-03-31T23:59:59.999Z",
+          "claim_start_utc": "2026-04-08T15:30:00Z",
+          "claim_end_utc": "2026-07-08T15:29:59.999Z",
+          "pool_tokens": 50000000,
+          "claimed_tokens_snapshot": 49780052.3533236,
+          "remaining_tokens_snapshot": 219947.6466763988,
+          "currently_within_claim_window": false,
+          "include_remaining_as_carry_in": false
+        },
+        {
+          "slug": "asr-2026-q2",
+          "address": "J4W94wtULKdUixPwokCJDMRdt1cMUspphLuo6uUcbftV",
+          "period_start_utc": "2026-04-01T00:00:00Z",
+          "period_end_utc": "2026-06-30T23:59:59.999Z",
+          "claim_start_utc": "2026-07-08T14:00:00Z",
+          "claim_end_utc": "2026-10-08T14:00:00Z",
+          "pool_tokens": 50000000,
+          "claimed_tokens_snapshot": 47412091.194282144,
+          "remaining_tokens_snapshot": 2587908.8057178557,
+          "currently_within_claim_window": true,
+          "include_remaining_as_carry_in": true,
+          "future_guaranteed_claimed_tokens": null,
+          "carry_in_is_upper_bound_not_dated_cliff": true
+        }
+      ],
+      "continuation_scenario": {
+        "status": "scenario_official_quarterly_rate_not_complete_dated_future_calendar",
+        "quarterly_tokens": 50000000,
+        "four_quarter_tokens": 200000000,
+        "reported_circulating_increment_assumption": 0,
+        "free_float_distribution_scenario_tokens": 200000000,
+        "future_claim_dates": null,
+        "funding_and_claim_rate_not_guaranteed": true
+      }
+    },
+    "legacy_rates_do_not_auto_extend": {
+      "source": "https://discuss.jup.ag/t/jup-community-audit-feb-2025/34764",
+      "team_monthly_tokens": 38888888.89,
+      "mercurial_monthly_tokens": 14583333.33,
+      "relocked_first_team_cliff_tokens": 466666666.67,
+      "exact_future_relock_expiry_verified": false
+    }
+  },
+  "ray": {
+    "original_insiders": {
+      "status": "official_document_ended",
+      "original_team_and_seed_vesting_end": "2024-02-21",
+      "future_original_schedule_unlock_tokens": {
+        "30d": 0,
+        "90d": 0,
+        "365d": 0
+      },
+      "existing_holders_may_sell": true,
+      "source": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx",
+      "document_qualification": "Official-hosted repository README says community-maintained."
+    },
+    "mint": {
+      "status": "verified_onchain",
+      "address": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+      "finalized_slot": 452596632,
+      "mint_authority": null,
+      "decimals": 6,
+      "supply_raw": "554997391047118",
+      "supply_tokens": 554997391.047118,
+      "additional_mint_capacity_tokens": 0,
+      "reserve_release_can_change_float": true,
+      "source": "https://api.mainnet-beta.solana.com"
+    },
+    "staking": {
+      "status": "verified_onchain_rate_future_annual_amount_scenario",
+      "farm_address": "4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW",
+      "program_id": "EhhTKczWMGQt46ynNeRX1WfeagwwJd7ufHvCDjRxjo5Q",
+      "rpc_finalized_slot": 452609487,
+      "account_size_bytes": 200,
+      "per_slot_reward_raw": 16712,
+      "per_slot_reward_tokens": 0.016712,
+      "api_per_second_raw": "41780",
+      "api_implied_slots_per_second": 2.5,
+      "nominal_annual_tokens": 1317574.08,
+      "nominal_scenario_tokens": {
+        "30d": 108293.76,
+        "90d": 324881.28,
+        "365d": 1317574.08
+      },
+      "observed_performance": {
+        "sample_period_secs": 60,
+        "slots": [
+          222,
+          220,
+          223,
+          223
+        ],
+        "mean_slots_per_second": 3.7,
+        "sample_only_annual_tokens": 1950009.6384
+      },
+      "fixed_reward_end_time": null,
+      "reward_vault": "BihEG2r7hYax6EherbRmuLLrySBuSXx4PYGd9gAsktKY",
+      "reward_vault_balance_tokens": 74634.822826,
+      "reward_vault_balance_finalized_slot": 452609495,
+      "vault_exhaustion_date_cannot_be_inferred_as_guarantee": true,
+      "sources": [
+        "https://api.raydium.io/v2/sdk/farm/mainnet.json",
+        "https://api-v3.raydium.io/farms/info/ids?ids=4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW",
+        "https://github.com/raydium-io/raydium-sdk-V2/blob/master/src/raydium/farm/layout.ts",
+        "https://api.mainnet-beta.solana.com"
+      ]
+    },
+    "document_rate_scenario": {
+      "status": "official_document_current_approximate_run_rate_scenario",
+      "mining_reserve_initial_tokens": 188700000,
+      "annual_tokens_approx": 1900000,
+      "window_tokens_approx": {
+        "30d": 156164.38356164383,
+        "90d": 468493.1506849315,
+        "365d": 1900000
+      },
+      "do_not_add_to_staking_scenario": true,
+      "source": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx"
+    },
+    "dated_farms_coverage": {
+      "status": "verified_api_and_clmm_onchain_snapshot_not_all_treasury_outflows",
+      "official_legacy_metadata_ray_reward_farms_requested": 136,
+      "official_legacy_metadata_ray_reward_farms_returned": 136,
+      "nonzero_rate_farms": [
+        "4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW"
+      ],
+      "zero_api_rate_farms": 135,
+      "farm_v2_metadata_counts": {
+        "stake": 1,
+        "raydium": 12,
+        "fusion": 122,
+        "ecosystem": 1437
+      },
+      "farm_v2_v6_ray_reward_records_found": 48,
+      "farm_v2_v6_ray_rewards_with_future_end_found": 0,
+      "farm_v2_v6_latest_end_utc": "2026-09-12T11:12:00Z",
+      "clmm_program_id": "CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK",
+      "clmm_reward_mint_memcmp_offsets": [
+        454,
+        623,
+        792
+      ],
+      "clmm_matches_per_offset": [
+        119,
+        26,
+        0
+      ],
+      "clmm_finalized_slots": [
+        452609964,
+        452609971,
+        452609975
+      ],
+      "clmm_matching_pools_deduplicated": 145,
+      "clmm_ray_reward_records": 145,
+      "clmm_ray_rewards_with_future_end_found": 0,
+      "clmm_existing_future_dated_reward_tokens": 0,
+      "new_configuration_and_unclaimed_past_rewards_excluded": true,
+      "all_other_treasury_outflow_future_tokens": null,
+      "sources": [
+        "https://api.raydium.io/v2/sdk/farm/mainnet.json",
+        "https://api.raydium.io/v2/sdk/farm-v2/mainnet.json",
+        "https://api-v3.raydium.io/farms/info/ids",
+        "https://github.com/raydium-io/raydium-sdk-V2/blob/master/src/raydium/clmm/layout.ts",
+        "https://api.mainnet-beta.solana.com"
+      ],
+      "v6_onchain": {
+        "status": "verified_existing_dated_reward_configuration_not_guaranteed_float_increment",
+        "program_id": "FarmqiPv5eAj3j1GMdMCMUGXqPUvmquZtMy86QH6rzhG",
+        "account_size_bytes": 1976,
+        "reward_mint_memcmp_offsets": [
+          248,
+          552,
+          856,
+          1160,
+          1464
+        ],
+        "matches_per_offset": [
+          78,
+          24,
+          11,
+          1,
+          5
+        ],
+        "slots": [
+          452610288,
+          452610288,
+          452610292,
+          452610292,
+          452610296
+        ],
+        "deduplicated_farms": 119,
+        "past_rewards": 113,
+        "future_end_configurations": [
+          {
+            "farm": "6LncuypduatNpXdLLdtZomNHZAhSuL6kky59NadV64i6",
+            "rewardIndex": 0,
+            "state": 1,
+            "openTime": 1784827995,
+            "endTime": 1791307995,
+            "perSecondRaw": 1,
+            "rewardSender": "DPzQE76E2B7BdXtAzsNChx5hXwy9KxTDdWvWXn34wfZq",
+            "start_utc": "2026-07-23T17:33:15+00:00",
+            "end_utc": "2026-10-06T17:33:15+00:00",
+            "future_remaining_from_midnight_tokens": 0.40879499999999996
+          },
+          {
+            "farm": "983v2giTjbE2T3wWPZBE8EKMny4tESY7yCo4ENuzekqc",
+            "rewardIndex": 0,
+            "state": 1,
+            "openTime": 1784828129,
+            "endTime": 1791048929,
+            "perSecondRaw": 1,
+            "rewardSender": "DPzQE76E2B7BdXtAzsNChx5hXwy9KxTDdWvWXn34wfZq",
+            "start_utc": "2026-07-23T17:35:29+00:00",
+            "end_utc": "2026-10-03T17:35:29+00:00",
+            "future_remaining_from_midnight_tokens": 0.149729
+          },
+          {
+            "farm": "CXajvtnWmnEpgsczzMgNvAo1tXNdqi4J7zMCJzSx1Efm",
+            "rewardIndex": 0,
+            "state": 1,
+            "openTime": 1798767180,
+            "endTime": 1799371980,
+            "perSecondRaw": 1,
+            "rewardSender": "2Ak6KEMeqmLy4Gp3kWyGo7q8erhR2BNam3CyiddHVpEU",
+            "start_utc": "2027-01-01T01:33:00+00:00",
+            "end_utc": "2027-01-08T01:33:00+00:00",
+            "future_remaining_from_midnight_tokens": 0.6048
+          },
+          {
+            "farm": "FrA2JjqnvndUrG32vbY3crzUvnYy28NzfHGxXXSSfajT",
+            "rewardIndex": 0,
+            "state": 1,
+            "openTime": 1790307649,
+            "endTime": 1790912449,
+            "perSecondRaw": 13,
+            "rewardSender": "DPzQE76E2B7BdXtAzsNChx5hXwy9KxTDdWvWXn34wfZq",
+            "start_utc": "2026-09-25T03:40:49+00:00",
+            "end_utc": "2026-10-02T03:40:49+00:00",
+            "future_remaining_from_midnight_tokens": 0.172237
+          },
+          {
+            "farm": "G7DrRSGXphRKaWTR1YxdJbasmfy6xCWbbiRg9tW82Kji",
+            "rewardIndex": 0,
+            "state": 1,
+            "openTime": 1784827924,
+            "endTime": 1791048724,
+            "perSecondRaw": 1,
+            "rewardSender": "DPzQE76E2B7BdXtAzsNChx5hXwy9KxTDdWvWXn34wfZq",
+            "start_utc": "2026-07-23T17:32:04+00:00",
+            "end_utc": "2026-10-03T17:32:04+00:00",
+            "future_remaining_from_midnight_tokens": 0.149524
+          },
+          {
+            "farm": "3xrPBiabhaD8tYRk4mMncb6pi8ALBRiwQidYgwuamgVR",
+            "rewardIndex": 1,
+            "state": 1,
+            "openTime": 1790307824,
+            "endTime": 1790912624,
+            "perSecondRaw": 9,
+            "rewardSender": "DPzQE76E2B7BdXtAzsNChx5hXwy9KxTDdWvWXn34wfZq",
+            "start_utc": "2026-09-25T03:43:44+00:00",
+            "end_utc": "2026-10-02T03:43:44+00:00",
+            "future_remaining_from_midnight_tokens": 0.120816
+          }
+        ],
+        "integral_from_utc_midnight": {
+          "30d": 1.001101,
+          "90d": 1.001101,
+          "365d": 1.605901
+        },
+        "source_of_reward_funding_unknown": true,
+        "metadata_coverage_is_incomplete": true,
+        "reference_time_utc": "2026-10-02T12:29:02Z",
+        "integral_from_reference_time": {
+          "30d": 0.5732219999999999,
+          "90d": 0.5732219999999999,
+          "365d": 1.178022
+        },
+        "configurations_still_future_at_reference_time": 4
+      }
+    }
+  }
+}

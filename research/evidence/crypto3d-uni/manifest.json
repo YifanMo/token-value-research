@@ -1,0 +1,149 @@
+[
+  {
+    "name": "equity.html",
+    "url": "https://crypto3d.pro/equity/",
+    "final_url": "https://crypto3d.pro/equity/",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:52:19.207895+00:00",
+    "sha256": "b0cafa1148db269c3eaf2ecab9ca331f6663c1c8ed23c905c3d7f9dd45ff3a30",
+    "bytes": 50414,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:52:19 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=0, must-revalidate"
+    }
+  },
+  {
+    "name": "all-protocols.json",
+    "url": "https://crypto3d.pro/data/all-protocols.json",
+    "final_url": "https://crypto3d.pro/data/all-protocols.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:52:19.420445+00:00",
+    "sha256": "e5d26221ef25e41b2daf811ad6e136e77deb536d3eccd2e175b931b9f0450fe1",
+    "bytes": 152768,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:52:19 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"ff80b3725d46a909fb47b89157e30865\""
+    }
+  },
+  {
+    "name": "daily-uniswap-latest.json",
+    "url": "https://crypto3d.pro/data/daily/uniswap/latest.json",
+    "final_url": "https://crypto3d.pro/data/daily/uniswap/latest.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:52:37.961481+00:00",
+    "sha256": "040d9318a9a3b669c19ea01a07f94a6d8ab52944da87e31ff06a36f9811e4da6",
+    "bytes": 831,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:52:37 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"5771b61c8436ae231958c9c3243e0ef9\""
+    }
+  },
+  {
+    "name": "snapshot-uniswap.json",
+    "url": "https://crypto3d.pro/data/snapshots/uniswap.json",
+    "final_url": "https://crypto3d.pro/data/snapshots/uniswap.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:52:38.185667+00:00",
+    "sha256": "fac24a0462ddbf8c78e245750466ce4048b35f98eb9e035b0e72f8f4af7d6d9b",
+    "bytes": 3027,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:52:38 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"e8ea1b84f8a1296d2e082608322ba8a9\""
+    }
+  },
+  {
+    "name": "protocol-uniswap.html",
+    "url": "https://crypto3d.pro/equity/protocol.html?id=uniswap",
+    "error": "HTTP Error 308: Permanent Redirect"
+  },
+  {
+    "name": "protocol-uniswap.html",
+    "url": "https://crypto3d.pro/equity/protocol?id=uniswap",
+    "final_url": "https://crypto3d.pro/equity/protocol?id=uniswap",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:53:26.533042+00:00",
+    "sha256": "ecac3a6ec6e4dcde0eb7661813e5c0a347704f6730a0ad0ccb27cc4fad0e5cc1",
+    "bytes": 104098,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:53:26 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=0, must-revalidate"
+    }
+  },
+  {
+    "name": "config-uniswap.json",
+    "url": "https://crypto3d.pro/data/protocols/uniswap/config.json",
+    "final_url": "https://crypto3d.pro/data/protocols/uniswap/config.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:53:52.685743+00:00",
+    "sha256": "ef542b9742a52e8105ffc2ce1d46df9b8dc7579e908d9a59e79b1dc07360c5f2",
+    "bytes": 12496,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:53:52 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"1fca13caf5b99ac06b9d0c9c4052bebf\""
+    }
+  },
+  {
+    "name": "tev-records-uniswap.json",
+    "url": "https://crypto3d.pro/data/protocols/uniswap/tev-records.json",
+    "final_url": "https://crypto3d.pro/data/protocols/uniswap/tev-records.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:53:53.155637+00:00",
+    "sha256": "cdc6e9f8cab8c1757839c9d68ae9fa6803604390ce9772230ffb88713f8b13d3",
+    "bytes": 88968,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:53:52 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"dfe30e8946cbef03e4e20f25d590363f\""
+    }
+  },
+  {
+    "name": "history-uniswap.json",
+    "url": "https://crypto3d.pro/data/history/uniswap.json",
+    "final_url": "https://crypto3d.pro/data/history/uniswap.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:53:53.182553+00:00",
+    "sha256": "ab0ebf558aca23d158c28c26e5703f96f4992bc49d4a158bc8ab0b9eebabb31c",
+    "bytes": 98646,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:53:52 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"a2136503f9be58cbd1635352ac362dc2\""
+    }
+  },
+  {
+    "name": "burn-history-uniswap.json",
+    "url": "https://crypto3d.pro/data/protocols/uniswap/burn-history.json",
+    "final_url": "https://crypto3d.pro/data/protocols/uniswap/burn-history.json",
+    "status": 200,
+    "retrieved_at": "2026-10-02T18:54:19.801408+00:00",
+    "sha256": "852dba7b0d1f9c4c740a2a165f731667299c4828cee8177d27fc33056641b37c",
+    "bytes": 17618,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 18:54:19 GMT",
+      "Content-Type": "application/json",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "public, max-age=300",
+      "ETag": "W/\"73514013a674c534174a70845c2c1b23\""
+    }
+  }
+]

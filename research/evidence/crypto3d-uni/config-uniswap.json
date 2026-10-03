@@ -1,0 +1,315 @@
+{
+  "id": "uniswap",
+  "name": "Uniswap",
+  "ticker": "UNI",
+  "icon": "https://coin-images.coingecko.com/coins/images/12504/large/uniswap-logo.png",
+  "category": "dex",
+  "description": "最大的去中心化交易所",
+  "website": "https://uniswap.org",
+  "docs": "https://docs.uniswap.org",
+  "token": {
+    "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "chain": "ethereum",
+    "coingecko_id": "uniswap",
+    "defillama_id": "uniswap-v3"
+  },
+  "contracts": {
+    "ethereum": {
+      "tokenJar": "0xf38521f130fcCF29dB1961597bc5d2B60F995f85",
+      "firepit": "0x0D5Cd355e2aBEB8fb1552F56c965B867346d6721",
+      "v3FeeAdapter": "0x5E74C9f42EEd283bFf3744fBD1889d398d40867d",
+      "uniVesting": "0xCa046A83EDB78F74aE338bb5A291bF6FdAc9e1D2",
+      "burnAddress": "0x000000000000000000000000000000000000dEaD"
+    },
+    "unichain": {
+      "tokenJar": "0xD576BDF6b560079a4c204f7644e556DbB19140b5",
+      "firepit": "0xe0A780E9105aC10Ee304448224Eb4A2b11A77eeB"
+    }
+  },
+  "return_mechanisms": [
+    {
+      "type": "buyback_burn",
+      "name": "UNI Burn via Firepit",
+      "description": "协议费用流入 TokenJar，通过 Firepit 合约销毁 UNI（发送至 0xdead）",
+      "status": "active",
+      "start_date": "2025-12-28",
+      "burn_threshold": "2000 UNI",
+      "source": {
+        "type": "governance",
+        "title": "UNIfication Proposal",
+        "url": "https://blog.uniswap.org/unification"
+      }
+    },
+    {
+      "type": "treasury_burn",
+      "name": "Retroactive Treasury Burn",
+      "description": "一次性销毁 1 亿 UNI，模拟若 fee switch 从代币发行起就开启的效果",
+      "status": "executed",
+      "amount": "100,000,000 UNI"
+    },
+    {
+      "type": "sequencer_revenue",
+      "name": "Unichain Sequencer Fees",
+      "description": "Unichain 85% sequencer 收入（扣除 L1 数据成本和 15% 给 Optimism 后）用于 UNI 销毁",
+      "status": "active"
+    },
+    {
+      "type": "mev_internalization",
+      "name": "Protocol Fee Discount Auctions (PFDA)",
+      "description": "拍卖免协议费交易权，MEV 内化后用于 UNI 销毁",
+      "status": "planned"
+    },
+    {
+      "type": "aggregator_hooks",
+      "name": "Aggregator Hooks (v4)",
+      "description": "v4 hooks 聚合外部流动性并收取费用，用于 UNI 销毁",
+      "status": "planned"
+    }
+  ],
+  "fee_structure": {
+    "v2": {
+      "lp_fee": "0.25%",
+      "protocol_fee": "0.05%",
+      "note": "硬编码，全池统一"
+    },
+    "v3": {
+      "0.01%_pool": "protocol fee = 1/4 of LP fee",
+      "0.05%_pool": "protocol fee = 1/4 of LP fee",
+      "0.30%_pool": "protocol fee = 1/6 of LP fee",
+      "1.00%_pool": "protocol fee = 1/6 of LP fee"
+    }
+  },
+  "return_summary": {
+    "fee_switch": "ON",
+    "fee_switch_details": "2025-12-28 通过 UNIfication 提案开启",
+    "buybacks": "ACTIVE",
+    "dividends": "NONE",
+    "burns": "ACTIVE",
+    "burn_mechanism": "Firepit 合约 → 0xdead 地址",
+    "primary_value_accrual": "协议费 + Unichain Sequencer 收入 → Firepit 销毁 UNI"
+  },
+  "market_data": {
+    "price_usd": 8.98,
+    "circulating_supply": 625276422.6104751,
+    "circulating_market_cap": 5616491951,
+    "total_supply": 1000000000,
+    "holders": 387973,
+    "snapshot_date": "2026-03-02",
+    "tvl": 3091182140.0588913,
+    "tvl_updated": "2026-03-27T01:01:16.651Z",
+    "price_updated_at": "2026-10-02T00:05:03.747409+00:00"
+  },
+  "confidence": "high",
+  "data_sources": [
+    {
+      "name": "DefiLlama API",
+      "type": "api",
+      "url": "https://api.llama.fi/protocol/uniswap",
+      "reliability": "high"
+    },
+    {
+      "name": "Uniswap Protocol Fees GitHub",
+      "type": "github",
+      "url": "https://github.com/Uniswap/protocol-fees",
+      "reliability": "high"
+    },
+    {
+      "name": "Etherscan",
+      "type": "explorer",
+      "url": "https://etherscan.io/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "reliability": "high"
+    },
+    {
+      "name": "Etherscan V2 API",
+      "type": "api",
+      "url": "https://api.etherscan.io/v2/api?chainid=1",
+      "reliability": "high",
+      "note": "UNI → 0xdead 转账记录，TEV 主数据源"
+    }
+  ],
+  "analyst_notes": "【2026-04-22 更新 - 数据源切换到 Etherscan 链上直查】\n\n## TEV 口径（A 口径，Boss 2026-04-22 定）\n\n**TEV = 过去 365 天 UNI 转入 0xdead 地址的累计（USD 当前价重估）**\n- 排除 >=10M UNI 的一次性治理事件（如 2025-12-27 Timelock 执行的 100M retroactive burn）\n- 不使用 DefiLlama `dailyRevenue`（那是协议费流入 treasury 的口径，可能未实际 burn）\n- 数据源：Etherscan V2 logs API，按日汇总 `burn-history.json`\n\n## Fee Switch 启动历史\n\n- **2025-12-28**：UNIfication 提案生效，fee switch 开启\n- **2025-12-27**：Timelock 合约（0x1a9c...35bc）执行 100M UNI 一次性 retroactive burn\n  - 目的：模拟 fee switch 从 token genesis 起就开启的效果\n  - tx: 0x091f0083242a777d55821c1189e568d6d033d9da501b75087dc736fa143d2c1e\n  - **属于一次性操作，不计入 TEV**（脚本自动识别并排除）\n\n## 持续销毁数据（由脚本每日刷新）\n\n具体数字见主表和 `validation` 字段。截至 2026-04-22 快照：\n- 365d 累计持续 burn：~3.41M UNI（$11.6M @ $3.41）\n- 365d TEV Yield：~0.54%\n- 短周期加速（7d 年化 > 30d > 90d > 365d）\n\n## 销毁路径\n\n协议费用 → TokenJar → Firepit 合约 → 0xdead（每次 release 阈值 2,000 UNI，大量 ~4000 UNI tx 是 2 次 release 或 batch）\n\n## 已知局限\n\n1. **当前脚本只覆盖 Ethereum mainnet**。Firepit 同时部署在 **Unichain**，Unichain 上的 burn **未计入**。若要完整覆盖，需扩展 `update-uni-tev.py` 查询 Unichain 链上数据\n2. **from 地址分布复杂**：63 个不同地址，top 包括 L2 桥代理、EOA 等，并非全部是 Firepit 合约。A 口径按『到 0xdead 即算 supply 收缩』处理，无论来源\n3. **2025-06 之前没有 burn 数据**（fee switch 启动前），365d 窗口前半段实际为 0。短周期 yield 高于 365d 反映加速趋势\n\n## 收入来源列表\n\n- v2 协议费 0.05%（全池统一）\n- v3 协议费 1/4~1/6 of LP fee（按池费率不同）\n- Unichain sequencer 收入 85%（未计入当前 TEV，需扩展）\n- v4 / PFDA / Aggregator Hooks：规划中\n\n## 历史口径变更\n\n- 2026-04-22: 从 DefiLlama revenue 切换到 Etherscan 链上直查 0xdead（A 口径，Boss 指示）；每日增量由 `update-uni-tev.py` 维护\n- 2026-03-02: 初版 Firepit 分析，用 DefiLlama 估算",
+  "last_updated": "2026-08-02",
+  "return_data": {
+    "has_returns": true,
+    "shareholder_yield_percent": 0.72,
+    "market_cap_usd": 2542249880.4217114,
+    "calculation_date": "2026-08-02",
+    "sources": [
+      {
+        "name": "On-chain Firepit burns",
+        "type": "onchain",
+        "annual_usd": 35217943,
+        "note": "63d actual → annualized, 1,444,003 UNI burned"
+      }
+    ],
+    "calculation": "详见 calc_pipeline 数组（6 steps 端到端推导）",
+    "trailing_365d_shareholder_returns_usd": 31503243,
+    "last_updated": "2026-03-27",
+    "validation": {
+      "method": "A 口径：365d UNI 转入 0xdead（链上）减去 >=10M UNI 一次性事件",
+      "burn_7d_uni": 106000,
+      "burn_30d_uni": 358000,
+      "burn_90d_uni": 1174000,
+      "burn_365d_uni": 4580003,
+      "retro_events_count": 1,
+      "retro_total_uni": 100000000,
+      "uni_price_usd": 4.01,
+      "data_days": 196,
+      "data_range": {
+        "start": "2025-06-07",
+        "end": "2026-08-01"
+      }
+    }
+  },
+  "burn_progress": {
+    "total_burned": 101870003,
+    "target": 1000000000,
+    "ticker": "UNI",
+    "note": "含 1 亿枚一次性国库销毁 + Firepit 持续销毁。占总供应 10 亿的 10.1%。",
+    "target_label": "total_supply",
+    "segments": [
+      {
+        "label": "一次性国库销毁",
+        "label_en": "Retroactive Burn",
+        "amount": 100000000,
+        "color": "rgba(239,68,68,0.35)"
+      },
+      {
+        "label": "Firepit 持续销毁",
+        "label_en": "Firepit Burns",
+        "amount": 1493580,
+        "color": "rgba(239,68,68,0.85)",
+        "value": 1870003,
+        "pct": 0.19
+      }
+    ],
+    "pct": 10.19
+  },
+  "return_status": "active",
+  "confidence_reason": {
+    "zh": "Firepit 销毁 UNI→0xdead 完全链上可追踪（Etherscan）",
+    "en": "Firepit burn UNI→0xdead fully on-chain trackable (Etherscan)"
+  },
+  "payout_ratio": 1,
+  "total_yield_percent": 0.72,
+  "market_cap_usd": 2542249880.4217114,
+  "shareholder_yield_percent": 0.72,
+  "metrics": {
+    "trailing_7d_revenue_usd": 425339,
+    "trailing_30d_revenue_usd": 1436522,
+    "trailing_90d_revenue_usd": 4710831,
+    "shareholder_yield_7d_ann": 0.87,
+    "shareholder_yield_30d_ann": 0.69,
+    "shareholder_yield_90d_ann": 0.75,
+    "total_yield_7d_ann": 0.87,
+    "total_yield_30d_ann": 0.69,
+    "total_yield_90d_ann": 0.75,
+    "trailing_365d_revenue_usd": 18377870,
+    "dividend_yield_7d_ann": 0,
+    "buyback_yield_7d_ann": 0.87,
+    "dividend_yield_30d_ann": 0,
+    "buyback_yield_30d_ann": 0.69,
+    "dividend_yield_90d_ann": 0,
+    "buyback_yield_90d_ann": 0.75
+  },
+  "calc_pipeline": [
+    {
+      "step": 1,
+      "label": "原始数据源",
+      "description": "Etherscan V2 logs API 监听 UNI 合约到 0xdead 的 Transfer 事件（Firepit burn 机制 + 用户 burn 等）。A 口径按『到 0xdead 即算 supply 收缩』处理所有来源。",
+      "source_url": "https://api.etherscan.io/v2/api?chainid=1&module=logs&action=getLogs",
+      "addresses": {
+        "UNI 合约": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+        "Burn 地址": "0x000000000000000000000000000000000000dead"
+      }
+    },
+    {
+      "step": 2,
+      "label": "排除一次性治理事件",
+      "description": "单笔 ≥ 10M UNI 视为 retro burn（如 2025-12-27 Timelock 执行的 100M UNI 一次性销毁，Boss 指示不计入持续 股东回报）。",
+      "output_file": "data/protocols/uniswap/burn-history.json",
+      "updated_by": "~/crypto3d-updater/scripts/update-uni-tev.py"
+    },
+    {
+      "step": 3,
+      "label": "按周期窗口求和（UNI 数量）",
+      "formula": "Σ(UNI Transfer to 0xdead) 过去 N 天，排除 retro events",
+      "value_fields_by_period": {
+        "7d": "validation.burn_7d_uni",
+        "30d": "validation.burn_30d_uni",
+        "90d": "validation.burn_90d_uni",
+        "365d": "validation.burn_365d_uni"
+      },
+      "unit": "UNI"
+    },
+    {
+      "step": 4,
+      "label": "按当前价重估（USD）",
+      "formula": "UNI_sum × UNI_price",
+      "inputs": {
+        "UNI price": "validation.uni_price_usd",
+        "source": "CoinGecko"
+      }
+    },
+    {
+      "step": 5,
+      "label": "年化 + 除以市值",
+      "formula": "USD × (365/N) ÷ market_cap × 100%",
+      "inputs": {
+        "market_cap": "market_cap_usd"
+      }
+    },
+    {
+      "step": 6,
+      "label": "最终 股东回报率",
+      "derived": true,
+      "value_fields_by_period": {
+        "7d": "metrics.shareholder_yield_7d_ann",
+        "30d": "metrics.shareholder_yield_30d_ann",
+        "90d": "metrics.shareholder_yield_90d_ann",
+        "365d": "shareholder_yield_percent"
+      },
+      "unit": "%"
+    }
+  ],
+  "dividend_yield_percent": 0,
+  "buyback_yield_percent": 0.72,
+  "style": "growth",
+  "revenue_recognition": {
+    "entity_type": "app",
+    "principle": "收入 = 抽成手续费（容易计算）；收入基本全部用于回购（Firepit 销毁 UNI）",
+    "revenue_included": {
+      "fees": {
+        "note": "fee switch 2025-12-28 已开启；抽成手续费"
+      }
+    },
+    "revenue_excluded": {},
+    "calculation": {
+      "payout_ratio": 1,
+      "note": "Firepit 销毁 = 回购性质；365d 0xdead 累计口径"
+    },
+    "source_type": "chain",
+    "source_url": "https://etherscan.io/address/0x000000000000000000000000000000000000dEaD"
+  },
+  "data_pipeline": {
+    "sources": [
+      {
+        "type": "chain",
+        "method": "Etherscan 直查 0xdead / Firepit 合约地址",
+        "frequency": "daily",
+        "script": "update-uniswap.py"
+      },
+      {
+        "type": "defillama",
+        "method": "dailyRevenue 日频",
+        "frequency": "daily",
+        "script": "fetch-defillama.js"
+      }
+    ],
+    "ai_self_check": [
+      "mechanism-change",
+      "data-plausibility",
+      "freshness"
+    ]
+  }
+}

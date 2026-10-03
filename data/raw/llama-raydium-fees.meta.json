@@ -1,0 +1,6 @@
+{
+  "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyFees",
+  "retrieved_at": "2026-10-02T21:32:28.768381+00:00",
+  "sha256": "ce96c6212b4b7746f29eb042f84ddd220c7ce2d9b7f184ede952cf6f6813bb99",
+  "status": "fresh"
+}

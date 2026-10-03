@@ -1,0 +1,9 @@
+{
+  "url": "https://crypto3d.pro/data/daily/hype/latest.json",
+  "final_url": "https://crypto3d.pro/data/daily/hype/latest.json",
+  "retrieved_at": "2026-10-02T18:53:47.585066+00:00",
+  "sha256": "7fa286dfdd0a200aeb54b1ff2a32cbac613451a7d2ab619aac3b122dd228ad60",
+  "file": "research/evidence/crypto3d/hype-daily.json",
+  "http_status": 200,
+  "content_type": "application/json"
+}

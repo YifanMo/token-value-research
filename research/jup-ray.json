@@ -1,0 +1,672 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "scope": "JUP/RAY primary policy and data-methodology evidence",
+  "claims": [
+    {
+      "id": "JUP-001",
+      "project": "JUP",
+      "claim": "JUP mint 已在官方 token-list FAQ列出。",
+      "url": "https://discuss.jup.ag/t/faq-token-list-v3-verification/23074",
+      "verified_at": "2026-10-02",
+      "event_date": "2024-10-03",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"
+      }
+    },
+    {
+      "id": "JUP-002",
+      "project": "JUP",
+      "claim": "官方2024-08-01提案将供应10B降至7B，team-managed和community各烧1.5B。",
+      "url": "https://discuss.jup.ag/t/proposal-enhance-certainty-for-jup-holders-and-community-via-a-token-supply-reduction/20919",
+      "verified_at": "2026-10-02",
+      "event_date": "2024-08-01",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": null
+    },
+    {
+      "id": "JUP-003",
+      "project": "JUP",
+      "claim": "官方2025-02审计记录2025-01-26实际销毁3B，其中32.7M来自流通、2,967.3M来自非流通。",
+      "url": "https://discuss.jup.ag/t/jup-community-audit-feb-2025/34764",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-01-26",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "independent_public_rpc_getTransaction_decode_plus_official_audit_for_circulating_split",
+      "details": {
+        "burn_token_qty": 3000000000,
+        "circulating_burn_token_qty": 32700000,
+        "noncirculating_burn_token_qty": 2967300000,
+        "tx": "hVMkqg6XJUrBykRF3L5JMJoVL8J3MEQrH1Apufw2oxXwXoJVN6b3U1CP71saHzghWmcPuqVyDpf6T6zMaanQQGW",
+        "tx_url": "https://solscan.io/tx/hVMkqg6XJUrBykRF3L5JMJoVL8J3MEQrH1Apufw2oxXwXoJVN6b3U1CP71saHzghWmcPuqVyDpf6T6zMaanQQGW",
+        "rpc_url": "https://api.mainnet-beta.solana.com",
+        "rpc_method": "getTransaction",
+        "blockTime": 1737912290,
+        "executed_at_utc": "2025-01-26T17:24:50Z",
+        "executed_at_asia_shanghai": "2025-01-27T01:24:50+08:00",
+        "instruction": "burnChecked",
+        "raw_amount": "3000000000000000",
+        "decimals": 6,
+        "transaction_err": null
+      }
+    },
+    {
+      "id": "JUP-004",
+      "project": "JUP",
+      "claim": "2025-02审计给团队分配1.4B、Mercurial350M；团队首年cliff466.666667M计入流通但自愿再锁2年。",
+      "url": "https://discuss.jup.ag/t/jup-community-audit-feb-2025/34764",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-02-01",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "post_burn_supply": 7000000000,
+        "team_allocation": 1400000000,
+        "mercurial_allocation": 350000000,
+        "team_cliff_additional_lock_years": 2
+      }
+    },
+    {
+      "id": "JUP-005",
+      "project": "JUP",
+      "claim": "团队管理50%包含流动性与战略储备，不能等同全为员工/创始人权益。",
+      "url": "https://discuss.jup.ag/t/jup-cat-ppp-a-full-review-of-the-key-ethos-that-drives-jup/20875",
+      "verified_at": "2026-10-02",
+      "event_date": "2024-07-31",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": null
+    },
+    {
+      "id": "JUP-006",
+      "project": "JUP",
+      "claim": "创始人原始Litterbox承诺为未来两年拨50%协议收入，用于战略积累JUP；不是永久burn承诺。",
+      "url": "https://meow.bio/jup-4.html",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "allocation_ratio": 0.5,
+        "commitment_period_years": 2,
+        "initial_destination": "strategic_reserve",
+        "future_after_commitment": "unknown"
+      }
+    },
+    {
+      "id": "JUP-007",
+      "project": "JUP",
+      "claim": "DefiLlama ratio自2025-02-17设为0.5；holdersRevenue由revenue乘ratio推算，不是逐笔执行回购。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jupiter.ts",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-02-17",
+      "status": "verified",
+      "authority": "data_provider_primary_code",
+      "verification_scope": "policy_accrual_proxy",
+      "details": {
+        "adapter_commit": "485b9f65e2742ecc32721041965e3430bd8b93bb",
+        "adapter_commit_date": "2026-08-30",
+        "accrual_start": "2025-02-17",
+        "allocation_ratio": 0.5,
+        "executed_buyback_observed": false
+      }
+    },
+    {
+      "id": "JUP-008",
+      "project": "JUP",
+      "claim": "Blockworks时间线区分2月17收集USDC与2月25实际回购Activated；首笔交易本次未独立解析。",
+      "url": "https://app.blockworks.com/projects/jupiter-exchange",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-02-25",
+      "status": "inferred",
+      "authority": "data_provider",
+      "verification_scope": "secondary_timeline",
+      "details": null
+    },
+    {
+      "id": "JUP-009",
+      "project": "JUP",
+      "claim": "Perps gross fees75%给LP，25%为Jupiter revenue；后者50%回购即gross fee12.5%。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jupiter-perpetual/index.ts",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "data_provider_primary_code",
+      "verification_scope": "adapter_methodology",
+      "details": {
+        "supply_side_gross_fees_ratio": 0.75,
+        "revenue_gross_fees_ratio": 0.25,
+        "buyback_revenue_ratio": 0.5,
+        "buyback_gross_fees_ratio": 0.125
+      }
+    },
+    {
+      "id": "JUP-010",
+      "project": "JUP",
+      "claim": "JupLend先扣lender利息，再将reserve cut各50%给Fluid/Jupiter，Jupiter share再50%回购。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jupiter-lend/index.ts",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "data_provider_primary_code",
+      "verification_scope": "adapter_methodology",
+      "details": null
+    },
+    {
+      "id": "JUP-011",
+      "project": "JUP",
+      "claim": "Trigger V2自2026-03-10的DCA adapter收入与aggregator重叠，不能简单相加。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jupiter-dca.ts",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-03-10",
+      "status": "verified",
+      "authority": "data_provider_primary_code",
+      "verification_scope": "adapter_methodology",
+      "details": {
+        "double_count_risk": true
+      }
+    },
+    {
+      "id": "JUP-012",
+      "project": "JUP",
+      "claim": "2025-10-28 burn proposal仅询问已有约130M库存是否销毁，未来50%onchain revenue用途是独立的第二个问题。",
+      "url": "https://discuss.jup.ag/t/new-dao-vote-proposal-to-burn-the-litterbox/39627",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-10-28",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "stock_qty_approx": 130000000,
+        "future_automatic_burn_verified": false
+      }
+    },
+    {
+      "id": "JUP-013",
+      "project": "JUP",
+      "claim": "Blockworks dashboard记录2025-11-25约135M Litterbox burn；本次未解析交易清单。",
+      "url": "https://blockworks.com/analytics/jupiter/jupiter-jup-token/jupiter-jup-burned",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-11-25",
+      "status": "inferred",
+      "authority": "data_provider",
+      "verification_scope": "provider_dashboard",
+      "details": {
+        "burn_qty_approx": 135000000,
+        "transaction_execution_verified": false
+      }
+    },
+    {
+      "id": "JUP-014",
+      "project": "JUP",
+      "claim": "官方Net-Zero提案机制：700M Jupuary退社区冷库且须再投票释放；team改表内credit；Mercurial加速归属并由团队资金抵消出售/转CEX。",
+      "url": "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-02-13",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "proposal_text_not_final_vote_or_execution",
+      "details": {
+        "jupuary_return_qty": 700000000,
+        "pause_is_burn": false,
+        "mercurial_offset_destination": "team_treasury",
+        "funding_source": "team_balance_sheet"
+      }
+    },
+    {
+      "id": "JUP-015",
+      "project": "JUP",
+      "claim": "ASR仍50M/季度，来源为过去未领且已计为circulating的Jupuary；不等于新铸币。",
+      "url": "https://discuss.jup.ag/t/faqs-net-zero-emission-proposal/39974",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-02-15",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "asr_tokens_per_quarter": 50000000,
+        "annualized_run_rate_tokens": 200000000,
+        "run_rate_is_guaranteed_future_budget": false,
+        "new_mint": false,
+        "reported_circulating_increment": 0,
+        "free_float_increment": "depends_on_claims_and_current_reserve_classification"
+      }
+    },
+    {
+      "id": "JUP-016",
+      "project": "JUP",
+      "claim": "约75%通过Net-Zero的说法有社区/第三方交叉报道，但官方最终投票结果与执行交易本次未获得。",
+      "url": "https://vote.jup.ag/",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-02-22",
+      "status": "unknown",
+      "authority": "official",
+      "verification_scope": "final_vote_and_execution",
+      "details": {
+        "official_vote_http_read": "web_empty_shell_and_direct_http_403",
+        "cua_attempt": "timed_out",
+        "future_12m_release_tokens": null
+      }
+    },
+    {
+      "id": "JUP-017",
+      "project": "JUP",
+      "claim": "2026年50%→70%有社区草案，未见批准执行，不将现行ratio改为70%。",
+      "url": "https://discuss.jup.ag/t/increase-the-litterbox-buyback-allocation-from-50-to-70/40136",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-05-30",
+      "status": "verified",
+      "authority": "official_forum_community_author",
+      "verification_scope": "draft_not_approved_policy",
+      "details": null
+    },
+    {
+      "id": "JUP-018",
+      "project": "JUP",
+      "claim": "官方Net-Zero提案披露ParaFi买$35M JUP且锁定不能投票；币数/全锁期本次未知。",
+      "url": "https://discuss.jup.ag/t/proposal-net-zero-emissions/39948",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-02-13",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "parafi_purchase_usd": 35000000,
+        "parafi_tokens": null,
+        "parafi_unlock_date": null
+      }
+    },
+    {
+      "id": "JUP-019",
+      "project": "JUP",
+      "claim": "团队提交的透明度披露列Litterbox与cold/hot multisig地址。",
+      "url": "https://blockworks.com/token-transparency/filing/jupiter",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "project_submitted_to_data_provider",
+      "verification_scope": "project_disclosure",
+      "details": {
+        "litterbox_owner": "6tZT9AUcQn4iHMH79YZEXSy55kDLQ4VbA3PMtfLVNsFX",
+        "community_cold": "EXJHiMkj6NRFDfhWBMKccHNwdSpCT7tdvQeRf87yHm6T"
+      }
+    },
+    {
+      "id": "RAY-001",
+      "project": "RAY",
+      "claim": "max555M且mint authority disabled；矿储备当前约释放1.9M/年；team/seed vesting结束2024-02-21。",
+      "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx",
+      "verified_at": "2026-10-02",
+      "event_date": "2024-02-21",
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "max_supply_tokens": 555000000,
+        "mint_authority_disabled": true,
+        "annual_reserve_release_run_rate_tokens": 1900000,
+        "release_is_mint": false,
+        "fixed_future_12m_schedule": false,
+        "docs_commit": "10dd5f7d9f23f0be7daabd571fc9e7c65ce269dc",
+        "docs_commit_date": "2026-05-08"
+      }
+    },
+    {
+      "id": "RAY-002",
+      "project": "RAY",
+      "claim": "分配34%mining、30%ecosystem、20%team、8%liquidity、6%community&seed、2%advisors；seed/投资者单独比例未知。",
+      "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/index.mdx",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "allocation_pct": {
+          "mining": 34,
+          "ecosystem": 30,
+          "team": 20,
+          "liquidity": 8,
+          "community_seed": 6,
+          "advisors": 2
+        },
+        "private_investors_pct": null,
+        "source_precision_note": "vesting prose states25.9% while rounded bucket percentages20+6=26%"
+      }
+    },
+    {
+      "id": "RAY-003",
+      "project": "RAY",
+      "claim": "AMM v4LP88%/buyback12%；CLMM/CPMMLP84%/buyback12%/treasury4%；回购分母为trading fees。",
+      "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/protocol-fees.mdx",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "v4": {
+          "lp": 0.88,
+          "buyback": 0.12,
+          "treasury": 0
+        },
+        "clmm_cpmm": {
+          "lp": 0.84,
+          "buyback": 0.12,
+          "treasury": 0.04
+        },
+        "denominator": "gross_swap_fees_not_volume_or_protocol_revenue"
+      }
+    },
+    {
+      "id": "RAY-004",
+      "project": "RAY",
+      "claim": "AMM回购文档明确bought-back RAY由协议地址持有；LaunchLab adapter另声称burn，尚未核实执行。",
+      "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/ray-buybacks.mdx",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "amm_buyback_documentation_not_entire_parent",
+      "details": {
+        "buyback_destination": "protocol_held_treasury",
+        "buyback_holding_owner": "DdHDoz94o2WJmD9myRobHCwtx1bESpHTd4SSPe6VEZaz",
+        "automatic_burn_policy": null,
+        "burn_total_observed": null,
+        "burn_policy_scope": "AMM retention verified; LaunchLab adapter burn claim unverified"
+      }
+    },
+    {
+      "id": "RAY-005",
+      "project": "RAY",
+      "claim": "Raydium AMM子协议adapter按poolAPI估算12%手续费回购；父级Raydium另外包含LaunchLab子协议，不能混用覆盖。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/raydium/index.ts",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "data_provider_primary_code",
+      "verification_scope": "policy_accrual_proxy",
+      "details": {
+        "holder_revenue_executed": false,
+        "coverage_excludes": [
+          "LaunchLab_bonding_curve",
+          "pool_creation",
+          "validator",
+          "perps"
+        ],
+        "data_start": "2022-08-15",
+        "data_start_is_first_buyback_date": false
+      }
+    },
+    {
+      "id": "RAY-006",
+      "project": "RAY",
+      "claim": "只有AMM子协议非LP交易收入中的回购分配为75%至100%；Raydium父级含LaunchLab25%分配，可低于75%。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/raydium/index.ts",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "inferred",
+      "authority": "calculation_from_primary_code",
+      "verification_scope": "derived_math",
+      "details": {
+        "buyback_share_of_non_lp_swap_revenue_min": 0.75,
+        "max": 1.0
+      }
+    },
+    {
+      "id": "RAY-007",
+      "project": "RAY",
+      "claim": "官方公开programfee、USDCtreasury与SOL建池费地址，回购钱包余额变化需排除内部转账。",
+      "url": "https://github.com/raydium-io/raydium-docs-v1/blob/main/ray/treasury.mdx",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "official",
+      "verification_scope": "policy_text",
+      "details": {
+        "clmm_fee": "projjosVCPQH49d5em7VYS7fJZzaqKixqKtus7yk416",
+        "cpmm_fee": "ProCXqRcXJjoUd1RNoo28bSizAA6EEqt9wURZYPDc5u",
+        "v4_fee": "PNLCQcVCD26aC7ZWgRyr5ptfaR7bBrWdTFgRWwu2tvF"
+      }
+    },
+    {
+      "id": "RAY-008",
+      "project": "RAY",
+      "claim": "Q4报告含Raydium团队Management Commentary；记2021–2023回购$9.4M，不能把2024或adapter起始日当首笔。",
+      "url": "https://blockworks.com/api/investor-report/investor-relations-report/pdf",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "project_management_commentary_and_data_provider",
+      "verification_scope": "report_text_not_reconstructed_chain_ledger",
+      "details": {
+        "historical_2021_2023_buyback_usd": 9400000,
+        "first_actual_buyback_date": null
+      }
+    },
+    {
+      "id": "RAY-009",
+      "project": "RAY",
+      "claim": "2025Q4 LaunchLab收入$1.5M vsQ3$12.7M；swap revenue$5.4M(-60%QoQ)；OCF$7.6M(-72%QoQ)；Meme占21%volume/87%swaprevenue。",
+      "url": "https://blockworks.com/api/investor-report/investor-relations-report/pdf",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-12-31",
+      "status": "verified",
+      "authority": "data_provider_with_project_management_commentary",
+      "verification_scope": "report_segment_metrics",
+      "details": {
+        "launchlab_q3_usd": 12700000,
+        "launchlab_q4_usd": 1500000,
+        "swap_revenue_q4_usd": 5400000,
+        "operating_cashflow_q4_usd": 7600000,
+        "full_year_headline_not_used": "internally conflicting revenue prose"
+      }
+    },
+    {
+      "id": "RAY-010",
+      "project": "RAY",
+      "claim": "团队披露长尾币手续费账面美元收入不一定全部变现为回购，并提出2026 temporal smoothing。",
+      "url": "https://blockworks.com/api/investor-report/investor-relations-report/pdf",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "project_management_commentary",
+      "verification_scope": "management_disclosure_not_execution",
+      "details": null
+    },
+    {
+      "id": "RAY-011",
+      "project": "RAY",
+      "claim": "2025Q2探索用LaunchLab收入单边SOL CLMM仓位转换RAY、撤出并入回购钱包；应分离预算与实际转换。",
+      "url": "https://app.blockworks.com/projects/raydium/institutional-relations/q2-2025",
+      "verified_at": "2026-10-02",
+      "event_date": "2025-06-30",
+      "status": "verified",
+      "authority": "data_provider",
+      "verification_scope": "historical_strategy_report",
+      "details": null
+    },
+    {
+      "id": "RAY-012",
+      "project": "RAY",
+      "claim": "本次直连Raydium供给、pool/farmAPI返回403，未取到具体farm/staking实时rewardInfos。",
+      "url": "https://api-v3.raydium.io/docs",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "unknown",
+      "authority": "official_api",
+      "verification_scope": "fetch_failed",
+      "details": {
+        "future_12m_exact_release_tokens": null,
+        "run_rate_scenario_tokens": 1900000
+      }
+    },
+    {
+      "id": "RAY-013",
+      "project": "RAY",
+      "claim": "LaunchLab adapter将Raydium protocol fee25%记holdersRevenue，并在文字称buyback and burn；代码没有实际RAY swap/burn识别。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/launchlab/index.ts",
+      "verified_at": "2026-10-02",
+      "event_date": null,
+      "status": "verified",
+      "authority": "data_provider_primary_code",
+      "verification_scope": "policy_accrual_and_burn_label_only_not_execution",
+      "details": {
+        "buyback_protocol_fee_ratio": 0.25,
+        "protocol_retention_ratio": 0.75,
+        "gross_fee_components": [
+          "protocol_fee",
+          "platform_fee",
+          "creator_fee"
+        ],
+        "raydium_revenue_component": "protocol_fee",
+        "automatic_burn_execution_verified": false,
+        "adapter_commit": "6ac81236548dde55538cd601ca8d1a4050e0ffce",
+        "adapter_commit_date": "2026-09-09"
+      }
+    },
+    {
+      "id": "RAY-014",
+      "project": "RAY",
+      "claim": "独立RPC当前RAY mint supply554997391.047118且mintAuthority为空；差额未归因于收入回购销毁。",
+      "url": "https://api.mainnet-beta.solana.com",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-10-02",
+      "status": "verified",
+      "authority": "onchain_public_rpc",
+      "verification_scope": "finalized_mint_state_not_burn_funding_attribution",
+      "details": {
+        "method": "getAccountInfo",
+        "params": [
+          "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+          {
+            "encoding": "jsonParsed",
+            "commitment": "finalized"
+          }
+        ],
+        "finalized_slot": 452596632,
+        "mint_authority": null,
+        "raw_supply": "554997391047118",
+        "decimals": 6,
+        "supply_tokens": 554997391.047118,
+        "difference_from_nominal_555m_tokens": 2608.952882,
+        "burn_attribution": null
+      }
+    },
+    {
+      "id": "RAY-015",
+      "project": "RAY",
+      "claim": "本地Raydium父级AMM+LaunchLab的30日holdersRevenue/revenue为62.57%，是预算代理加权比率。",
+      "url": "https://api.llama.fi/summary/fees/raydium?dataType=dailyRevenue",
+      "verified_at": "2026-10-02",
+      "event_date": "2026-10-02",
+      "status": "inferred",
+      "authority": "data_provider_snapshot_and_derived_math",
+      "verification_scope": "parent_coverage_and_accrual_math",
+      "details": {
+        "children": [
+          "Raydium AMM",
+          "LaunchLab"
+        ],
+        "revenue30d_usd": 7511897,
+        "holdersRevenue30d_usd": 4700219,
+        "ratio": 0.625703334324206,
+        "source_local": [
+          "data/raw/llama-raydium-revenue.json",
+          "data/raw/llama-raydium-holders.json"
+        ]
+      }
+    }
+  ],
+  "market_snapshots": {
+    "JUP": {
+      "id": "jupiter-exchange-solana",
+      "current_price": 0.329467,
+      "market_cap": 1093721154,
+      "fully_diluted_valuation": 2260837063,
+      "circulating_supply": 3319369204.37,
+      "total_supply": 6861486492.127128,
+      "max_supply": 10000000000.0,
+      "last_updated": "2026-10-02T11:03:20.000Z"
+    },
+    "RAY": {
+      "id": "raydium",
+      "current_price": 1.96,
+      "market_cap": 527353195,
+      "fully_diluted_valuation": 1084551681,
+      "circulating_supply": 269863602.195736,
+      "total_supply": 555000000.0,
+      "max_supply": 555000000.0,
+      "last_updated": "2026-10-02T11:03:20.000Z"
+    }
+  },
+  "market_source": {
+    "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=jupiter-exchange-solana,raydium",
+    "local_snapshot": "data/raw/coingecko-markets.json",
+    "status": "verified_provider_snapshot_not_independent_onchain_supply"
+  },
+  "model_inputs": {
+    "JUP": {
+      "buyback_policy_ratio": 0.5,
+      "buyback_ratio_denominator": "attributable_onchain_protocol_revenue_after_supply_side_and_partner_splits",
+      "buyback_accrual_start": "2025-02-17",
+      "actual_initial_buyback_date_reported": "2025-02-25",
+      "initial_destination": "locked_or_strategic_litterbox_inventory",
+      "known_inventory_burn": {
+        "date": "2025-11-25",
+        "qty_approx": 135000000,
+        "status": "provider_report_not_independent_tx_decode"
+      },
+      "future_12m_unlock_release_tokens": null,
+      "asr_quarterly_tokens": 50000000,
+      "asr_annualized_run_rate_tokens": 200000000,
+      "asr_new_mint": false,
+      "netzero_final_vote_status": "not_independently_verified",
+      "netzero_execution_status": "not_independently_verified",
+      "automatic_future_buyback_burn_ratio": null
+    },
+    "RAY": {
+      "buyback_gross_swap_fee_ratio": 0.12,
+      "buyback_destination": "AMM protocol-held; LaunchLab adapter buyback-and-burn claim execution unverified",
+      "automatic_burn_policy": null,
+      "annualized_mining_release_run_rate_tokens": 1900000,
+      "future_12m_exact_release_tokens": null,
+      "team_seed_vesting_end": "2024-02-21",
+      "mint_authority_disabled": true,
+      "protocol_income_share_to_buybacks_swap_only_min": 0.75,
+      "protocol_income_share_to_buybacks_swap_only_max": 1,
+      "actual_income_funded_burn_usd": null,
+      "burn_policy_by_product": {
+        "Raydium AMM": "protocol_held_inventory",
+        "LaunchLab": "adapter_claims_burn_execution_not_verified"
+      },
+      "parent_holders_to_revenue_30d_proxy_ratio": 0.625703334324206,
+      "onchain_total_supply_tokens": 554997391.047118,
+      "onchain_supply_slot": 452596632
+    }
+  },
+  "warnings": [
+    "dailyHoldersRevenue is policy accrual proxy in the inspected adapters; not audited executed USD buyback.",
+    "Do not treat treasury holding or temporary lock as permanent burn.",
+    "JUP CoinGecko max_supply=10B is stale relative to official 3B burn and current total; use clearly labelled reported FDV/current total.",
+    "JUP ASR redistribution of already circulating reserves can increase free-float despite no reported circulating or minted supply increase.",
+    "Do not extend pre-Net-Zero JUP schedules automatically; do not fill incomplete releases with zero.",
+    "RAY release run-rate is current approximate policy, not immutable forward schedule; ecosystem/treasury outflows are additional unknowns.",
+    "Raydium adapter excludes LaunchLab bonding curve, pool-creation, validator and perps financial flows.",
+    "Historical reserve burn cannot be annualized as revenue-funded buyback yield.",
+    "3B JUP burn occurred Jan26 UTC / Jan27 AsiaShanghai; Jan28 is not supported by transaction blockTime.",
+    "Raydium parent contains AMM + LaunchLab; 75%-100% applies only to AMM non-LP swap revenue; LaunchLab25% makes parent weighted ratio lower.",
+    "LaunchLab adapter says burn but only clones fee balances: actual income-funded permanent burn remains null. LP burn_scale is not RAY burn.",
+    "RAY onchain mint supply554997391.047118 differs slightly from provider555M; gap funding/window unknown, not current revenue-funded burn."
+  ]
+}

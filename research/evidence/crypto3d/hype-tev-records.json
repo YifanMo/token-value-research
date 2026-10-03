@@ -1,0 +1,5918 @@
+{
+  "protocol": "hyperliquid",
+  "updated_at": "2026-08-10T13:11:02.172505Z",
+  "data_source": "DefiLlama dailyRevenue (= holdersRevenue for Hyperliquid)",
+  "data_source_url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue",
+  "records": [
+    {
+      "date": "2024-12-23",
+      "type": "buyback_burn",
+      "amount_usd": 1424462,
+      "period": "2024-12-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-24",
+      "type": "buyback_burn",
+      "amount_usd": 1303665,
+      "period": "2024-12-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-25",
+      "type": "buyback_burn",
+      "amount_usd": 1014518,
+      "period": "2024-12-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-26",
+      "type": "buyback_burn",
+      "amount_usd": 1273897,
+      "period": "2024-12-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-27",
+      "type": "buyback_burn",
+      "amount_usd": 1258520,
+      "period": "2024-12-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-28",
+      "type": "buyback_burn",
+      "amount_usd": 949315,
+      "period": "2024-12-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-29",
+      "type": "buyback_burn",
+      "amount_usd": 471167,
+      "period": "2024-12-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-30",
+      "type": "buyback_burn",
+      "amount_usd": 1486794,
+      "period": "2024-12-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2024-12-31",
+      "type": "buyback_burn",
+      "amount_usd": 1327977,
+      "period": "2024-12-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-01",
+      "type": "buyback_burn",
+      "amount_usd": 498037,
+      "period": "2025-01-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-02",
+      "type": "buyback_burn",
+      "amount_usd": 1270220,
+      "period": "2025-01-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-03",
+      "type": "buyback_burn",
+      "amount_usd": 1369500,
+      "period": "2025-01-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-04",
+      "type": "buyback_burn",
+      "amount_usd": 1042972,
+      "period": "2025-01-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-05",
+      "type": "buyback_burn",
+      "amount_usd": 985187,
+      "period": "2025-01-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-06",
+      "type": "buyback_burn",
+      "amount_usd": 1036760,
+      "period": "2025-01-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-07",
+      "type": "buyback_burn",
+      "amount_usd": 2114140,
+      "period": "2025-01-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-08",
+      "type": "buyback_burn",
+      "amount_usd": 1758819,
+      "period": "2025-01-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-09",
+      "type": "buyback_burn",
+      "amount_usd": 1921239,
+      "period": "2025-01-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-10",
+      "type": "buyback_burn",
+      "amount_usd": 1475032,
+      "period": "2025-01-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-11",
+      "type": "buyback_burn",
+      "amount_usd": 458402,
+      "period": "2025-01-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-14",
+      "type": "buyback_burn",
+      "amount_usd": 1230157,
+      "period": "2025-01-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-15",
+      "type": "buyback_burn",
+      "amount_usd": 1231497,
+      "period": "2025-01-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-16",
+      "type": "buyback_burn",
+      "amount_usd": 1644992,
+      "period": "2025-01-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-17",
+      "type": "buyback_burn",
+      "amount_usd": 1647338,
+      "period": "2025-01-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-18",
+      "type": "buyback_burn",
+      "amount_usd": 2754660,
+      "period": "2025-01-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-19",
+      "type": "buyback_burn",
+      "amount_usd": 4182537,
+      "period": "2025-01-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-20",
+      "type": "buyback_burn",
+      "amount_usd": 3956440,
+      "period": "2025-01-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-21",
+      "type": "buyback_burn",
+      "amount_usd": 2003967,
+      "period": "2025-01-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-22",
+      "type": "buyback_burn",
+      "amount_usd": 1392360,
+      "period": "2025-01-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-23",
+      "type": "buyback_burn",
+      "amount_usd": 2736794,
+      "period": "2025-01-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-24",
+      "type": "buyback_burn",
+      "amount_usd": 1268918,
+      "period": "2025-01-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-25",
+      "type": "buyback_burn",
+      "amount_usd": 1043099,
+      "period": "2025-01-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-26",
+      "type": "buyback_burn",
+      "amount_usd": 1050474,
+      "period": "2025-01-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-27",
+      "type": "buyback_burn",
+      "amount_usd": 2618211,
+      "period": "2025-01-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-28",
+      "type": "buyback_burn",
+      "amount_usd": 1482994,
+      "period": "2025-01-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-29",
+      "type": "buyback_burn",
+      "amount_usd": 1822611,
+      "period": "2025-01-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-30",
+      "type": "buyback_burn",
+      "amount_usd": 1405939,
+      "period": "2025-01-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-01-31",
+      "type": "buyback_burn",
+      "amount_usd": 1723246,
+      "period": "2025-01-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-01",
+      "type": "buyback_burn",
+      "amount_usd": 1390845,
+      "period": "2025-02-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-02",
+      "type": "buyback_burn",
+      "amount_usd": 2002237,
+      "period": "2025-02-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-03",
+      "type": "buyback_burn",
+      "amount_usd": 4133623,
+      "period": "2025-02-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-04",
+      "type": "buyback_burn",
+      "amount_usd": 2436561,
+      "period": "2025-02-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-05",
+      "type": "buyback_burn",
+      "amount_usd": 1400074,
+      "period": "2025-02-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-06",
+      "type": "buyback_burn",
+      "amount_usd": 1300731,
+      "period": "2025-02-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-07",
+      "type": "buyback_burn",
+      "amount_usd": 1510714,
+      "period": "2025-02-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-08",
+      "type": "buyback_burn",
+      "amount_usd": 770646,
+      "period": "2025-02-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-09",
+      "type": "buyback_burn",
+      "amount_usd": 964647,
+      "period": "2025-02-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-10",
+      "type": "buyback_burn",
+      "amount_usd": 1101082,
+      "period": "2025-02-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-11",
+      "type": "buyback_burn",
+      "amount_usd": 1507923,
+      "period": "2025-02-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-12",
+      "type": "buyback_burn",
+      "amount_usd": 1755146,
+      "period": "2025-02-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-13",
+      "type": "buyback_burn",
+      "amount_usd": 1364454,
+      "period": "2025-02-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-14",
+      "type": "buyback_burn",
+      "amount_usd": 995279,
+      "period": "2025-02-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-15",
+      "type": "buyback_burn",
+      "amount_usd": 719690,
+      "period": "2025-02-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-16",
+      "type": "buyback_burn",
+      "amount_usd": 590017,
+      "period": "2025-02-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-17",
+      "type": "buyback_burn",
+      "amount_usd": 1284898,
+      "period": "2025-02-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-18",
+      "type": "buyback_burn",
+      "amount_usd": 1600692,
+      "period": "2025-02-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-19",
+      "type": "buyback_burn",
+      "amount_usd": 979405,
+      "period": "2025-02-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-20",
+      "type": "buyback_burn",
+      "amount_usd": 1159166,
+      "period": "2025-02-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-21",
+      "type": "buyback_burn",
+      "amount_usd": 2316528,
+      "period": "2025-02-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-22",
+      "type": "buyback_burn",
+      "amount_usd": 871664,
+      "period": "2025-02-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-23",
+      "type": "buyback_burn",
+      "amount_usd": 730962,
+      "period": "2025-02-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-24",
+      "type": "buyback_burn",
+      "amount_usd": 1485788,
+      "period": "2025-02-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-25",
+      "type": "buyback_burn",
+      "amount_usd": 3739612,
+      "period": "2025-02-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-26",
+      "type": "buyback_burn",
+      "amount_usd": 2149527,
+      "period": "2025-02-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-27",
+      "type": "buyback_burn",
+      "amount_usd": 1512278,
+      "period": "2025-02-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-02-28",
+      "type": "buyback_burn",
+      "amount_usd": 2432393,
+      "period": "2025-02-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-01",
+      "type": "buyback_burn",
+      "amount_usd": 986055,
+      "period": "2025-03-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-02",
+      "type": "buyback_burn",
+      "amount_usd": 2543535,
+      "period": "2025-03-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-03",
+      "type": "buyback_burn",
+      "amount_usd": 2309308,
+      "period": "2025-03-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-04",
+      "type": "buyback_burn",
+      "amount_usd": 2752695,
+      "period": "2025-03-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-05",
+      "type": "buyback_burn",
+      "amount_usd": 1426600,
+      "period": "2025-03-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-06",
+      "type": "buyback_burn",
+      "amount_usd": 1542778,
+      "period": "2025-03-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-07",
+      "type": "buyback_burn",
+      "amount_usd": 2285221,
+      "period": "2025-03-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-08",
+      "type": "buyback_burn",
+      "amount_usd": 625934,
+      "period": "2025-03-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-09",
+      "type": "buyback_burn",
+      "amount_usd": 1192088,
+      "period": "2025-03-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-10",
+      "type": "buyback_burn",
+      "amount_usd": 2131600,
+      "period": "2025-03-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-11",
+      "type": "buyback_burn",
+      "amount_usd": 1830963,
+      "period": "2025-03-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-12",
+      "type": "buyback_burn",
+      "amount_usd": 1519532,
+      "period": "2025-03-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-13",
+      "type": "buyback_burn",
+      "amount_usd": 1101752,
+      "period": "2025-03-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-14",
+      "type": "buyback_burn",
+      "amount_usd": 932668,
+      "period": "2025-03-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-15",
+      "type": "buyback_burn",
+      "amount_usd": 603903,
+      "period": "2025-03-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-16",
+      "type": "buyback_burn",
+      "amount_usd": 818086,
+      "period": "2025-03-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-17",
+      "type": "buyback_burn",
+      "amount_usd": 785447,
+      "period": "2025-03-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-18",
+      "type": "buyback_burn",
+      "amount_usd": 1091874,
+      "period": "2025-03-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-19",
+      "type": "buyback_burn",
+      "amount_usd": 1374072,
+      "period": "2025-03-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-20",
+      "type": "buyback_burn",
+      "amount_usd": 1127141,
+      "period": "2025-03-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-21",
+      "type": "buyback_burn",
+      "amount_usd": 832781,
+      "period": "2025-03-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-22",
+      "type": "buyback_burn",
+      "amount_usd": 513437,
+      "period": "2025-03-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-23",
+      "type": "buyback_burn",
+      "amount_usd": 542472,
+      "period": "2025-03-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-24",
+      "type": "buyback_burn",
+      "amount_usd": 1214013,
+      "period": "2025-03-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-25",
+      "type": "buyback_burn",
+      "amount_usd": 953188,
+      "period": "2025-03-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-26",
+      "type": "buyback_burn",
+      "amount_usd": 1092328,
+      "period": "2025-03-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-27",
+      "type": "buyback_burn",
+      "amount_usd": 804346,
+      "period": "2025-03-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-28",
+      "type": "buyback_burn",
+      "amount_usd": 1070808,
+      "period": "2025-03-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-29",
+      "type": "buyback_burn",
+      "amount_usd": 765441,
+      "period": "2025-03-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-30",
+      "type": "buyback_burn",
+      "amount_usd": 658882,
+      "period": "2025-03-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-03-31",
+      "type": "buyback_burn",
+      "amount_usd": 1264433,
+      "period": "2025-03-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-01",
+      "type": "buyback_burn",
+      "amount_usd": 1146261,
+      "period": "2025-04-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-02",
+      "type": "buyback_burn",
+      "amount_usd": 1838424,
+      "period": "2025-04-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-03",
+      "type": "buyback_burn",
+      "amount_usd": 1342024,
+      "period": "2025-04-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-04",
+      "type": "buyback_burn",
+      "amount_usd": 1753908,
+      "period": "2025-04-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-05",
+      "type": "buyback_burn",
+      "amount_usd": 531489,
+      "period": "2025-04-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-06",
+      "type": "buyback_burn",
+      "amount_usd": 1688801,
+      "period": "2025-04-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-07",
+      "type": "buyback_burn",
+      "amount_usd": 3047300,
+      "period": "2025-04-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-08",
+      "type": "buyback_burn",
+      "amount_usd": 1701570,
+      "period": "2025-04-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-09",
+      "type": "buyback_burn",
+      "amount_usd": 2747769,
+      "period": "2025-04-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-10",
+      "type": "buyback_burn",
+      "amount_usd": 1633750,
+      "period": "2025-04-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-11",
+      "type": "buyback_burn",
+      "amount_usd": 1287708,
+      "period": "2025-04-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-12",
+      "type": "buyback_burn",
+      "amount_usd": 1107249,
+      "period": "2025-04-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-13",
+      "type": "buyback_burn",
+      "amount_usd": 1330520,
+      "period": "2025-04-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-14",
+      "type": "buyback_burn",
+      "amount_usd": 1315723,
+      "period": "2025-04-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-15",
+      "type": "buyback_burn",
+      "amount_usd": 1205931,
+      "period": "2025-04-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-16",
+      "type": "buyback_burn",
+      "amount_usd": 1447280,
+      "period": "2025-04-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-17",
+      "type": "buyback_burn",
+      "amount_usd": 1048295,
+      "period": "2025-04-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-18",
+      "type": "buyback_burn",
+      "amount_usd": 499722,
+      "period": "2025-04-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-19",
+      "type": "buyback_burn",
+      "amount_usd": 562144,
+      "period": "2025-04-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-20",
+      "type": "buyback_burn",
+      "amount_usd": 638294,
+      "period": "2025-04-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-21",
+      "type": "buyback_burn",
+      "amount_usd": 1428484,
+      "period": "2025-04-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-22",
+      "type": "buyback_burn",
+      "amount_usd": 2130799,
+      "period": "2025-04-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-23",
+      "type": "buyback_burn",
+      "amount_usd": 1924793,
+      "period": "2025-04-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-24",
+      "type": "buyback_burn",
+      "amount_usd": 1289136,
+      "period": "2025-04-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-25",
+      "type": "buyback_burn",
+      "amount_usd": 1572104,
+      "period": "2025-04-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-26",
+      "type": "buyback_burn",
+      "amount_usd": 819070,
+      "period": "2025-04-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-27",
+      "type": "buyback_burn",
+      "amount_usd": 758823,
+      "period": "2025-04-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-28",
+      "type": "buyback_burn",
+      "amount_usd": 1474786,
+      "period": "2025-04-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-29",
+      "type": "buyback_burn",
+      "amount_usd": 1093237,
+      "period": "2025-04-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-04-30",
+      "type": "buyback_burn",
+      "amount_usd": 1294782,
+      "period": "2025-04-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-01",
+      "type": "buyback_burn",
+      "amount_usd": 1331945,
+      "period": "2025-05-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-02",
+      "type": "buyback_burn",
+      "amount_usd": 945722,
+      "period": "2025-05-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-03",
+      "type": "buyback_burn",
+      "amount_usd": 589460,
+      "period": "2025-05-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-04",
+      "type": "buyback_burn",
+      "amount_usd": 796437,
+      "period": "2025-05-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-05",
+      "type": "buyback_burn",
+      "amount_usd": 1273013,
+      "period": "2025-05-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-06",
+      "type": "buyback_burn",
+      "amount_usd": 1456479,
+      "period": "2025-05-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-07",
+      "type": "buyback_burn",
+      "amount_usd": 1552175,
+      "period": "2025-05-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-08",
+      "type": "buyback_burn",
+      "amount_usd": 3180904,
+      "period": "2025-05-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-09",
+      "type": "buyback_burn",
+      "amount_usd": 2764942,
+      "period": "2025-05-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-10",
+      "type": "buyback_burn",
+      "amount_usd": 1634095,
+      "period": "2025-05-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-11",
+      "type": "buyback_burn",
+      "amount_usd": 2026291,
+      "period": "2025-05-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-12",
+      "type": "buyback_burn",
+      "amount_usd": 3258453,
+      "period": "2025-05-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-13",
+      "type": "buyback_burn",
+      "amount_usd": 2413414,
+      "period": "2025-05-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-14",
+      "type": "buyback_burn",
+      "amount_usd": 1942177,
+      "period": "2025-05-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-15",
+      "type": "buyback_burn",
+      "amount_usd": 2138675,
+      "period": "2025-05-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-16",
+      "type": "buyback_burn",
+      "amount_usd": 1682786,
+      "period": "2025-05-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-17",
+      "type": "buyback_burn",
+      "amount_usd": 1204256,
+      "period": "2025-05-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-18",
+      "type": "buyback_burn",
+      "amount_usd": 1985988,
+      "period": "2025-05-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-19",
+      "type": "buyback_burn",
+      "amount_usd": 2670748,
+      "period": "2025-05-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-20",
+      "type": "buyback_burn",
+      "amount_usd": 3063747,
+      "period": "2025-05-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-21",
+      "type": "buyback_burn",
+      "amount_usd": 4775512,
+      "period": "2025-05-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-22",
+      "type": "buyback_burn",
+      "amount_usd": 3281122,
+      "period": "2025-05-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-23",
+      "type": "buyback_burn",
+      "amount_usd": 3703225,
+      "period": "2025-05-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-24",
+      "type": "buyback_burn",
+      "amount_usd": 1937253,
+      "period": "2025-05-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-25",
+      "type": "buyback_burn",
+      "amount_usd": 2434658,
+      "period": "2025-05-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-26",
+      "type": "buyback_burn",
+      "amount_usd": 1948708,
+      "period": "2025-05-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-27",
+      "type": "buyback_burn",
+      "amount_usd": 3014974,
+      "period": "2025-05-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-28",
+      "type": "buyback_burn",
+      "amount_usd": 2452815,
+      "period": "2025-05-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-29",
+      "type": "buyback_burn",
+      "amount_usd": 2998876,
+      "period": "2025-05-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-30",
+      "type": "buyback_burn",
+      "amount_usd": 3018432,
+      "period": "2025-05-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-05-31",
+      "type": "buyback_burn",
+      "amount_usd": 1249877,
+      "period": "2025-05-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-01",
+      "type": "buyback_burn",
+      "amount_usd": 1064900,
+      "period": "2025-06-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-02",
+      "type": "buyback_burn",
+      "amount_usd": 1781250,
+      "period": "2025-06-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-03",
+      "type": "buyback_burn",
+      "amount_usd": 2086025,
+      "period": "2025-06-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-04",
+      "type": "buyback_burn",
+      "amount_usd": 1659254,
+      "period": "2025-06-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-05",
+      "type": "buyback_burn",
+      "amount_usd": 3007634,
+      "period": "2025-06-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-06",
+      "type": "buyback_burn",
+      "amount_usd": 1813845,
+      "period": "2025-06-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-07",
+      "type": "buyback_burn",
+      "amount_usd": 891466,
+      "period": "2025-06-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-10",
+      "type": "buyback_burn",
+      "amount_usd": 2686696,
+      "period": "2025-06-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-11",
+      "type": "buyback_burn",
+      "amount_usd": 2661255,
+      "period": "2025-06-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-12",
+      "type": "buyback_burn",
+      "amount_usd": 2930457,
+      "period": "2025-06-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-13",
+      "type": "buyback_burn",
+      "amount_usd": 3893988,
+      "period": "2025-06-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-14",
+      "type": "buyback_burn",
+      "amount_usd": 1286727,
+      "period": "2025-06-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-15",
+      "type": "buyback_burn",
+      "amount_usd": 1172074,
+      "period": "2025-06-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-16",
+      "type": "buyback_burn",
+      "amount_usd": 2786502,
+      "period": "2025-06-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-17",
+      "type": "buyback_burn",
+      "amount_usd": 3354162,
+      "period": "2025-06-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-18",
+      "type": "buyback_burn",
+      "amount_usd": 2301003,
+      "period": "2025-06-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-19",
+      "type": "buyback_burn",
+      "amount_usd": 1501749,
+      "period": "2025-06-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-20",
+      "type": "buyback_burn",
+      "amount_usd": 2554695,
+      "period": "2025-06-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-21",
+      "type": "buyback_burn",
+      "amount_usd": 1637405,
+      "period": "2025-06-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-22",
+      "type": "buyback_burn",
+      "amount_usd": 3569490,
+      "period": "2025-06-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-23",
+      "type": "buyback_burn",
+      "amount_usd": 3944376,
+      "period": "2025-06-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-24",
+      "type": "buyback_burn",
+      "amount_usd": 2177249,
+      "period": "2025-06-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-25",
+      "type": "buyback_burn",
+      "amount_usd": 2046869,
+      "period": "2025-06-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-26",
+      "type": "buyback_burn",
+      "amount_usd": 1647659,
+      "period": "2025-06-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-27",
+      "type": "buyback_burn",
+      "amount_usd": 1529530,
+      "period": "2025-06-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-28",
+      "type": "buyback_burn",
+      "amount_usd": 602010,
+      "period": "2025-06-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-29",
+      "type": "buyback_burn",
+      "amount_usd": 1096694,
+      "period": "2025-06-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-06-30",
+      "type": "buyback_burn",
+      "amount_usd": 1775211,
+      "period": "2025-06-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-01",
+      "type": "buyback_burn",
+      "amount_usd": 1762027,
+      "period": "2025-07-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-02",
+      "type": "buyback_burn",
+      "amount_usd": 2522787,
+      "period": "2025-07-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-03",
+      "type": "buyback_burn",
+      "amount_usd": 1854022,
+      "period": "2025-07-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-04",
+      "type": "buyback_burn",
+      "amount_usd": 1606529,
+      "period": "2025-07-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-05",
+      "type": "buyback_burn",
+      "amount_usd": 725921,
+      "period": "2025-07-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-06",
+      "type": "buyback_burn",
+      "amount_usd": 1209561,
+      "period": "2025-07-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-07",
+      "type": "buyback_burn",
+      "amount_usd": 1568309,
+      "period": "2025-07-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-08",
+      "type": "buyback_burn",
+      "amount_usd": 1595903,
+      "period": "2025-07-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-09",
+      "type": "buyback_burn",
+      "amount_usd": 2634456,
+      "period": "2025-07-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-10",
+      "type": "buyback_burn",
+      "amount_usd": 3348131,
+      "period": "2025-07-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-11",
+      "type": "buyback_burn",
+      "amount_usd": 3728928,
+      "period": "2025-07-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-12",
+      "type": "buyback_burn",
+      "amount_usd": 1725696,
+      "period": "2025-07-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-13",
+      "type": "buyback_burn",
+      "amount_usd": 1930147,
+      "period": "2025-07-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-14",
+      "type": "buyback_burn",
+      "amount_usd": 3976865,
+      "period": "2025-07-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-15",
+      "type": "buyback_burn",
+      "amount_usd": 4906721,
+      "period": "2025-07-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-16",
+      "type": "buyback_burn",
+      "amount_usd": 4351078,
+      "period": "2025-07-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-17",
+      "type": "buyback_burn",
+      "amount_usd": 4849291,
+      "period": "2025-07-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-18",
+      "type": "buyback_burn",
+      "amount_usd": 4959301,
+      "period": "2025-07-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-19",
+      "type": "buyback_burn",
+      "amount_usd": 1733285,
+      "period": "2025-07-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-20",
+      "type": "buyback_burn",
+      "amount_usd": 3113432,
+      "period": "2025-07-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-21",
+      "type": "buyback_burn",
+      "amount_usd": 4169553,
+      "period": "2025-07-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-22",
+      "type": "buyback_burn",
+      "amount_usd": 4666512,
+      "period": "2025-07-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-23",
+      "type": "buyback_burn",
+      "amount_usd": 3873940,
+      "period": "2025-07-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-24",
+      "type": "buyback_burn",
+      "amount_usd": 3662390,
+      "period": "2025-07-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-25",
+      "type": "buyback_burn",
+      "amount_usd": 4258573,
+      "period": "2025-07-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-26",
+      "type": "buyback_burn",
+      "amount_usd": 1619632,
+      "period": "2025-07-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-27",
+      "type": "buyback_burn",
+      "amount_usd": 2094899,
+      "period": "2025-07-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-28",
+      "type": "buyback_burn",
+      "amount_usd": 3224547,
+      "period": "2025-07-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-29",
+      "type": "buyback_burn",
+      "amount_usd": 3259798,
+      "period": "2025-07-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-30",
+      "type": "buyback_burn",
+      "amount_usd": 2733566,
+      "period": "2025-07-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-07-31",
+      "type": "buyback_burn",
+      "amount_usd": 3128876,
+      "period": "2025-07-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-01",
+      "type": "buyback_burn",
+      "amount_usd": 5051611,
+      "period": "2025-08-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-02",
+      "type": "buyback_burn",
+      "amount_usd": 2309376,
+      "period": "2025-08-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-03",
+      "type": "buyback_burn",
+      "amount_usd": 1658714,
+      "period": "2025-08-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-04",
+      "type": "buyback_burn",
+      "amount_usd": 2528101,
+      "period": "2025-08-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-05",
+      "type": "buyback_burn",
+      "amount_usd": 2792245,
+      "period": "2025-08-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-06",
+      "type": "buyback_burn",
+      "amount_usd": 2080983,
+      "period": "2025-08-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-07",
+      "type": "buyback_burn",
+      "amount_usd": 2941674,
+      "period": "2025-08-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-08",
+      "type": "buyback_burn",
+      "amount_usd": 3031647,
+      "period": "2025-08-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-09",
+      "type": "buyback_burn",
+      "amount_usd": 2923686,
+      "period": "2025-08-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-10",
+      "type": "buyback_burn",
+      "amount_usd": 2623386,
+      "period": "2025-08-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-11",
+      "type": "buyback_burn",
+      "amount_usd": 4633983,
+      "period": "2025-08-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-12",
+      "type": "buyback_burn",
+      "amount_usd": 4554420,
+      "period": "2025-08-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-13",
+      "type": "buyback_burn",
+      "amount_usd": 5533565,
+      "period": "2025-08-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-14",
+      "type": "buyback_burn",
+      "amount_usd": 7573652,
+      "period": "2025-08-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-15",
+      "type": "buyback_burn",
+      "amount_usd": 3894104,
+      "period": "2025-08-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-16",
+      "type": "buyback_burn",
+      "amount_usd": 1435560,
+      "period": "2025-08-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-17",
+      "type": "buyback_burn",
+      "amount_usd": 1810300,
+      "period": "2025-08-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-18",
+      "type": "buyback_burn",
+      "amount_usd": 4301414,
+      "period": "2025-08-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-19",
+      "type": "buyback_burn",
+      "amount_usd": 4358459,
+      "period": "2025-08-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-20",
+      "type": "buyback_burn",
+      "amount_usd": 3988830,
+      "period": "2025-08-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-21",
+      "type": "buyback_burn",
+      "amount_usd": 3176177,
+      "period": "2025-08-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-22",
+      "type": "buyback_burn",
+      "amount_usd": 6183377,
+      "period": "2025-08-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-23",
+      "type": "buyback_burn",
+      "amount_usd": 2567145,
+      "period": "2025-08-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-24",
+      "type": "buyback_burn",
+      "amount_usd": 5625476,
+      "period": "2025-08-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-25",
+      "type": "buyback_burn",
+      "amount_usd": 5969966,
+      "period": "2025-08-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-26",
+      "type": "buyback_burn",
+      "amount_usd": 4681548,
+      "period": "2025-08-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-27",
+      "type": "buyback_burn",
+      "amount_usd": 3891964,
+      "period": "2025-08-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-28",
+      "type": "buyback_burn",
+      "amount_usd": 3033787,
+      "period": "2025-08-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-29",
+      "type": "buyback_burn",
+      "amount_usd": 4826665,
+      "period": "2025-08-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-30",
+      "type": "buyback_burn",
+      "amount_usd": 1992536,
+      "period": "2025-08-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-08-31",
+      "type": "buyback_burn",
+      "amount_usd": 1880766,
+      "period": "2025-08-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-01",
+      "type": "buyback_burn",
+      "amount_usd": 3276566,
+      "period": "2025-09-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-02",
+      "type": "buyback_burn",
+      "amount_usd": 3175629,
+      "period": "2025-09-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-03",
+      "type": "buyback_burn",
+      "amount_usd": 2331292,
+      "period": "2025-09-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-04",
+      "type": "buyback_burn",
+      "amount_usd": 2680729,
+      "period": "2025-09-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-05",
+      "type": "buyback_burn",
+      "amount_usd": 3640496,
+      "period": "2025-09-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-06",
+      "type": "buyback_burn",
+      "amount_usd": 1026804,
+      "period": "2025-09-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-07",
+      "type": "buyback_burn",
+      "amount_usd": 1116861,
+      "period": "2025-09-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-08",
+      "type": "buyback_burn",
+      "amount_usd": 2808372,
+      "period": "2025-09-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-09",
+      "type": "buyback_burn",
+      "amount_usd": 3030772,
+      "period": "2025-09-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-10",
+      "type": "buyback_burn",
+      "amount_usd": 3260466,
+      "period": "2025-09-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-11",
+      "type": "buyback_burn",
+      "amount_usd": 3316189,
+      "period": "2025-09-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-12",
+      "type": "buyback_burn",
+      "amount_usd": 3724399,
+      "period": "2025-09-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-13",
+      "type": "buyback_burn",
+      "amount_usd": 2473584,
+      "period": "2025-09-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-14",
+      "type": "buyback_burn",
+      "amount_usd": 2566839,
+      "period": "2025-09-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-15",
+      "type": "buyback_burn",
+      "amount_usd": 3307993,
+      "period": "2025-09-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-16",
+      "type": "buyback_burn",
+      "amount_usd": 2657341,
+      "period": "2025-09-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-17",
+      "type": "buyback_burn",
+      "amount_usd": 3820376,
+      "period": "2025-09-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-18",
+      "type": "buyback_burn",
+      "amount_usd": 3100106,
+      "period": "2025-09-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-19",
+      "type": "buyback_burn",
+      "amount_usd": 2834767,
+      "period": "2025-09-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-20",
+      "type": "buyback_burn",
+      "amount_usd": 1482654,
+      "period": "2025-09-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-21",
+      "type": "buyback_burn",
+      "amount_usd": 1800075,
+      "period": "2025-09-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-22",
+      "type": "buyback_burn",
+      "amount_usd": 5088267,
+      "period": "2025-09-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-23",
+      "type": "buyback_burn",
+      "amount_usd": 2966209,
+      "period": "2025-09-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-24",
+      "type": "buyback_burn",
+      "amount_usd": 2759260,
+      "period": "2025-09-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-25",
+      "type": "buyback_burn",
+      "amount_usd": 5311271,
+      "period": "2025-09-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-26",
+      "type": "buyback_burn",
+      "amount_usd": 3118614,
+      "period": "2025-09-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-27",
+      "type": "buyback_burn",
+      "amount_usd": 1458903,
+      "period": "2025-09-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-28",
+      "type": "buyback_burn",
+      "amount_usd": 1880829,
+      "period": "2025-09-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-29",
+      "type": "buyback_burn",
+      "amount_usd": 2537952,
+      "period": "2025-09-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-09-30",
+      "type": "buyback_burn",
+      "amount_usd": 2643016,
+      "period": "2025-09-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-01",
+      "type": "buyback_burn",
+      "amount_usd": 3044612,
+      "period": "2025-10-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-02",
+      "type": "buyback_burn",
+      "amount_usd": 3339384,
+      "period": "2025-10-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-03",
+      "type": "buyback_burn",
+      "amount_usd": 3245564,
+      "period": "2025-10-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-04",
+      "type": "buyback_burn",
+      "amount_usd": 1477279,
+      "period": "2025-10-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-05",
+      "type": "buyback_burn",
+      "amount_usd": 2878524,
+      "period": "2025-10-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-06",
+      "type": "buyback_burn",
+      "amount_usd": 3267246,
+      "period": "2025-10-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-07",
+      "type": "buyback_burn",
+      "amount_usd": 4579084,
+      "period": "2025-10-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-08",
+      "type": "buyback_burn",
+      "amount_usd": 2846057,
+      "period": "2025-10-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-09",
+      "type": "buyback_burn",
+      "amount_usd": 3709198,
+      "period": "2025-10-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-10",
+      "type": "buyback_burn",
+      "amount_usd": 8813108,
+      "period": "2025-10-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-11",
+      "type": "buyback_burn",
+      "amount_usd": 3140796,
+      "period": "2025-10-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-12",
+      "type": "buyback_burn",
+      "amount_usd": 3521581,
+      "period": "2025-10-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-13",
+      "type": "buyback_burn",
+      "amount_usd": 2910967,
+      "period": "2025-10-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-14",
+      "type": "buyback_burn",
+      "amount_usd": 4694313,
+      "period": "2025-10-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-15",
+      "type": "buyback_burn",
+      "amount_usd": 3171265,
+      "period": "2025-10-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-16",
+      "type": "buyback_burn",
+      "amount_usd": 3392051,
+      "period": "2025-10-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-17",
+      "type": "buyback_burn",
+      "amount_usd": 3585027,
+      "period": "2025-10-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-18",
+      "type": "buyback_burn",
+      "amount_usd": 1067075,
+      "period": "2025-10-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-19",
+      "type": "buyback_burn",
+      "amount_usd": 1593365,
+      "period": "2025-10-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-20",
+      "type": "buyback_burn",
+      "amount_usd": 2534018,
+      "period": "2025-10-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-21",
+      "type": "buyback_burn",
+      "amount_usd": 4283968,
+      "period": "2025-10-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-22",
+      "type": "buyback_burn",
+      "amount_usd": 3474673,
+      "period": "2025-10-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-23",
+      "type": "buyback_burn",
+      "amount_usd": 2650415,
+      "period": "2025-10-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-24",
+      "type": "buyback_burn",
+      "amount_usd": 2011212,
+      "period": "2025-10-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-25",
+      "type": "buyback_burn",
+      "amount_usd": 1034917,
+      "period": "2025-10-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-26",
+      "type": "buyback_burn",
+      "amount_usd": 1999168,
+      "period": "2025-10-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-27",
+      "type": "buyback_burn",
+      "amount_usd": 2646613,
+      "period": "2025-10-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-28",
+      "type": "buyback_burn",
+      "amount_usd": 2969111,
+      "period": "2025-10-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-29",
+      "type": "buyback_burn",
+      "amount_usd": 3272982,
+      "period": "2025-10-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-30",
+      "type": "buyback_burn",
+      "amount_usd": 3807095,
+      "period": "2025-10-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-10-31",
+      "type": "buyback_burn",
+      "amount_usd": 2235116,
+      "period": "2025-10-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-01",
+      "type": "buyback_burn",
+      "amount_usd": 959029,
+      "period": "2025-11-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-02",
+      "type": "buyback_burn",
+      "amount_usd": 1324606,
+      "period": "2025-11-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-03",
+      "type": "buyback_burn",
+      "amount_usd": 3664825,
+      "period": "2025-11-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-04",
+      "type": "buyback_burn",
+      "amount_usd": 5604258,
+      "period": "2025-11-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-05",
+      "type": "buyback_burn",
+      "amount_usd": 2826420,
+      "period": "2025-11-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-06",
+      "type": "buyback_burn",
+      "amount_usd": 3028805,
+      "period": "2025-11-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-07",
+      "type": "buyback_burn",
+      "amount_usd": 3473167,
+      "period": "2025-11-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-08",
+      "type": "buyback_burn",
+      "amount_usd": 1712108,
+      "period": "2025-11-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-09",
+      "type": "buyback_burn",
+      "amount_usd": 1857632,
+      "period": "2025-11-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-10",
+      "type": "buyback_burn",
+      "amount_usd": 2673152,
+      "period": "2025-11-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-11",
+      "type": "buyback_burn",
+      "amount_usd": 2825631,
+      "period": "2025-11-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-12",
+      "type": "buyback_burn",
+      "amount_usd": 2439108,
+      "period": "2025-11-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-13",
+      "type": "buyback_burn",
+      "amount_usd": 3964066,
+      "period": "2025-11-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-14",
+      "type": "buyback_burn",
+      "amount_usd": 4127415,
+      "period": "2025-11-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-15",
+      "type": "buyback_burn",
+      "amount_usd": 1452131,
+      "period": "2025-11-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-16",
+      "type": "buyback_burn",
+      "amount_usd": 2212100,
+      "period": "2025-11-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-17",
+      "type": "buyback_burn",
+      "amount_usd": 3031005,
+      "period": "2025-11-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-18",
+      "type": "buyback_burn",
+      "amount_usd": 3089762,
+      "period": "2025-11-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-19",
+      "type": "buyback_burn",
+      "amount_usd": 3155609,
+      "period": "2025-11-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-20",
+      "type": "buyback_burn",
+      "amount_usd": 3582972,
+      "period": "2025-11-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-21",
+      "type": "buyback_burn",
+      "amount_usd": 5041462,
+      "period": "2025-11-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-22",
+      "type": "buyback_burn",
+      "amount_usd": 1460149,
+      "period": "2025-11-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-23",
+      "type": "buyback_burn",
+      "amount_usd": 1958753,
+      "period": "2025-11-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-24",
+      "type": "buyback_burn",
+      "amount_usd": 2798443,
+      "period": "2025-11-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-25",
+      "type": "buyback_burn",
+      "amount_usd": 2419743,
+      "period": "2025-11-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-26",
+      "type": "buyback_burn",
+      "amount_usd": 2118900,
+      "period": "2025-11-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-27",
+      "type": "buyback_burn",
+      "amount_usd": 1450788,
+      "period": "2025-11-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-28",
+      "type": "buyback_burn",
+      "amount_usd": 1658600,
+      "period": "2025-11-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-29",
+      "type": "buyback_burn",
+      "amount_usd": 885057,
+      "period": "2025-11-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-11-30",
+      "type": "buyback_burn",
+      "amount_usd": 856846,
+      "period": "2025-11-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-01",
+      "type": "buyback_burn",
+      "amount_usd": 3121199,
+      "period": "2025-12-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-02",
+      "type": "buyback_burn",
+      "amount_usd": 2383830,
+      "period": "2025-12-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-03",
+      "type": "buyback_burn",
+      "amount_usd": 2197819,
+      "period": "2025-12-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-04",
+      "type": "buyback_burn",
+      "amount_usd": 1830455,
+      "period": "2025-12-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-05",
+      "type": "buyback_burn",
+      "amount_usd": 2164924,
+      "period": "2025-12-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-06",
+      "type": "buyback_burn",
+      "amount_usd": 724963,
+      "period": "2025-12-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-07",
+      "type": "buyback_burn",
+      "amount_usd": 1883348,
+      "period": "2025-12-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-08",
+      "type": "buyback_burn",
+      "amount_usd": 1862051,
+      "period": "2025-12-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-09",
+      "type": "buyback_burn",
+      "amount_usd": 2621806,
+      "period": "2025-12-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-10",
+      "type": "buyback_burn",
+      "amount_usd": 2465542,
+      "period": "2025-12-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-11",
+      "type": "buyback_burn",
+      "amount_usd": 2378891,
+      "period": "2025-12-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-12",
+      "type": "buyback_burn",
+      "amount_usd": 1833473,
+      "period": "2025-12-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-13",
+      "type": "buyback_burn",
+      "amount_usd": 481913,
+      "period": "2025-12-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-14",
+      "type": "buyback_burn",
+      "amount_usd": 1023414,
+      "period": "2025-12-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-15",
+      "type": "buyback_burn",
+      "amount_usd": 2277411,
+      "period": "2025-12-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-16",
+      "type": "buyback_burn",
+      "amount_usd": 1638639,
+      "period": "2025-12-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-17",
+      "type": "buyback_burn",
+      "amount_usd": 2426260,
+      "period": "2025-12-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-18",
+      "type": "buyback_burn",
+      "amount_usd": 2655735,
+      "period": "2025-12-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-19",
+      "type": "buyback_burn",
+      "amount_usd": 2147684,
+      "period": "2025-12-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-20",
+      "type": "buyback_burn",
+      "amount_usd": 520733,
+      "period": "2025-12-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-21",
+      "type": "buyback_burn",
+      "amount_usd": 763605,
+      "period": "2025-12-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-22",
+      "type": "buyback_burn",
+      "amount_usd": 1833843,
+      "period": "2025-12-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-23",
+      "type": "buyback_burn",
+      "amount_usd": 1549395,
+      "period": "2025-12-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-24",
+      "type": "buyback_burn",
+      "amount_usd": 1014492,
+      "period": "2025-12-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-25",
+      "type": "buyback_burn",
+      "amount_usd": 718144,
+      "period": "2025-12-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-26",
+      "type": "buyback_burn",
+      "amount_usd": 1395255,
+      "period": "2025-12-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-27",
+      "type": "buyback_burn",
+      "amount_usd": 454070,
+      "period": "2025-12-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-28",
+      "type": "buyback_burn",
+      "amount_usd": 590078,
+      "period": "2025-12-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-29",
+      "type": "buyback_burn",
+      "amount_usd": 2043582,
+      "period": "2025-12-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-30",
+      "type": "buyback_burn",
+      "amount_usd": 1212409,
+      "period": "2025-12-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2025-12-31",
+      "type": "buyback_burn",
+      "amount_usd": 997471,
+      "period": "2025-12-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-01",
+      "type": "buyback_burn",
+      "amount_usd": 755646,
+      "period": "2026-01-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-02",
+      "type": "buyback_burn",
+      "amount_usd": 2092453,
+      "period": "2026-01-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-03",
+      "type": "buyback_burn",
+      "amount_usd": 1063521,
+      "period": "2026-01-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-04",
+      "type": "buyback_burn",
+      "amount_usd": 1109956,
+      "period": "2026-01-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-05",
+      "type": "buyback_burn",
+      "amount_usd": 2266791,
+      "period": "2026-01-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-06",
+      "type": "buyback_burn",
+      "amount_usd": 2630611,
+      "period": "2026-01-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-07",
+      "type": "buyback_burn",
+      "amount_usd": 1956441,
+      "period": "2026-01-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-08",
+      "type": "buyback_burn",
+      "amount_usd": 2285788,
+      "period": "2026-01-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-09",
+      "type": "buyback_burn",
+      "amount_usd": 1961270,
+      "period": "2026-01-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-10",
+      "type": "buyback_burn",
+      "amount_usd": 493819,
+      "period": "2026-01-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-11",
+      "type": "buyback_burn",
+      "amount_usd": 899483,
+      "period": "2026-01-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-12",
+      "type": "buyback_burn",
+      "amount_usd": 2244385,
+      "period": "2026-01-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-13",
+      "type": "buyback_burn",
+      "amount_usd": 2539882,
+      "period": "2026-01-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-14",
+      "type": "buyback_burn",
+      "amount_usd": 2582306,
+      "period": "2026-01-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-15",
+      "type": "buyback_burn",
+      "amount_usd": 2074668,
+      "period": "2026-01-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "type": "buyback_burn",
+      "amount_usd": 1225802,
+      "period": "2026-01-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-17",
+      "type": "buyback_burn",
+      "amount_usd": 561272,
+      "period": "2026-01-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-18",
+      "type": "buyback_burn",
+      "amount_usd": 878586,
+      "period": "2026-01-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-19",
+      "type": "buyback_burn",
+      "amount_usd": 1867434,
+      "period": "2026-01-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-20",
+      "type": "buyback_burn",
+      "amount_usd": 2650898,
+      "period": "2026-01-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-21",
+      "type": "buyback_burn",
+      "amount_usd": 2754489,
+      "period": "2026-01-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "type": "buyback_burn",
+      "amount_usd": 1611672,
+      "period": "2026-01-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-23",
+      "type": "buyback_burn",
+      "amount_usd": 1769364,
+      "period": "2026-01-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-24",
+      "type": "buyback_burn",
+      "amount_usd": 454973,
+      "period": "2026-01-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-25",
+      "type": "buyback_burn",
+      "amount_usd": 1611801,
+      "period": "2026-01-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-26",
+      "type": "buyback_burn",
+      "amount_usd": 1852752,
+      "period": "2026-01-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-27",
+      "type": "buyback_burn",
+      "amount_usd": 1803039,
+      "period": "2026-01-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-28",
+      "type": "buyback_burn",
+      "amount_usd": 2390759,
+      "period": "2026-01-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "type": "buyback_burn",
+      "amount_usd": 3796145,
+      "period": "2026-01-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-30",
+      "type": "buyback_burn",
+      "amount_usd": 3807893,
+      "period": "2026-01-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-01-31",
+      "type": "buyback_burn",
+      "amount_usd": 3843466,
+      "period": "2026-01-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-01",
+      "type": "buyback_burn",
+      "amount_usd": 2454880,
+      "period": "2026-02-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-02",
+      "type": "buyback_burn",
+      "amount_usd": 2976923,
+      "period": "2026-02-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-03",
+      "type": "buyback_burn",
+      "amount_usd": 3498241,
+      "period": "2026-02-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-04",
+      "type": "buyback_burn",
+      "amount_usd": 3387835,
+      "period": "2026-02-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-05",
+      "type": "buyback_burn",
+      "amount_usd": 5990971,
+      "period": "2026-02-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-06",
+      "type": "buyback_burn",
+      "amount_usd": 4265536,
+      "period": "2026-02-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-07",
+      "type": "buyback_burn",
+      "amount_usd": 1813886,
+      "period": "2026-02-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-08",
+      "type": "buyback_burn",
+      "amount_usd": 1164390,
+      "period": "2026-02-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-09",
+      "type": "buyback_burn",
+      "amount_usd": 1794946,
+      "period": "2026-02-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-10",
+      "type": "buyback_burn",
+      "amount_usd": 1512320,
+      "period": "2026-02-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-11",
+      "type": "buyback_burn",
+      "amount_usd": 1954221,
+      "period": "2026-02-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-12",
+      "type": "buyback_burn",
+      "amount_usd": 1601528,
+      "period": "2026-02-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-13",
+      "type": "buyback_burn",
+      "amount_usd": 1359021,
+      "period": "2026-02-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-14",
+      "type": "buyback_burn",
+      "amount_usd": 806944,
+      "period": "2026-02-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-15",
+      "type": "buyback_burn",
+      "amount_usd": 1079582,
+      "period": "2026-02-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-16",
+      "type": "buyback_burn",
+      "amount_usd": 1044931,
+      "period": "2026-02-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-17",
+      "type": "buyback_burn",
+      "amount_usd": 1374973,
+      "period": "2026-02-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-18",
+      "type": "buyback_burn",
+      "amount_usd": 1275824,
+      "period": "2026-02-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-19",
+      "type": "buyback_burn",
+      "amount_usd": 1131609,
+      "period": "2026-02-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-20",
+      "type": "buyback_burn",
+      "amount_usd": 1502980,
+      "period": "2026-02-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-21",
+      "type": "buyback_burn",
+      "amount_usd": 531922,
+      "period": "2026-02-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-22",
+      "type": "buyback_burn",
+      "amount_usd": 544310,
+      "period": "2026-02-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-23",
+      "type": "buyback_burn",
+      "amount_usd": 1871576,
+      "period": "2026-02-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-24",
+      "type": "buyback_burn",
+      "amount_usd": 1682481,
+      "period": "2026-02-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-25",
+      "type": "buyback_burn",
+      "amount_usd": 2308735,
+      "period": "2026-02-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-26",
+      "type": "buyback_burn",
+      "amount_usd": 1537808,
+      "period": "2026-02-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-27",
+      "type": "buyback_burn",
+      "amount_usd": 1438392,
+      "period": "2026-02-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-02-28",
+      "type": "buyback_burn",
+      "amount_usd": 2097285,
+      "period": "2026-02-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-01",
+      "type": "buyback_burn",
+      "amount_usd": 1616215,
+      "period": "2026-03-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-02",
+      "type": "buyback_burn",
+      "amount_usd": 2242097,
+      "period": "2026-03-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-03",
+      "type": "buyback_burn",
+      "amount_usd": 2225165,
+      "period": "2026-03-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-04",
+      "type": "buyback_burn",
+      "amount_usd": 2725844,
+      "period": "2026-03-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-05",
+      "type": "buyback_burn",
+      "amount_usd": 1812466,
+      "period": "2026-03-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-06",
+      "type": "buyback_burn",
+      "amount_usd": 2093087,
+      "period": "2026-03-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-07",
+      "type": "buyback_burn",
+      "amount_usd": 818420,
+      "period": "2026-03-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-08",
+      "type": "buyback_burn",
+      "amount_usd": 1273518,
+      "period": "2026-03-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-09",
+      "type": "buyback_burn",
+      "amount_usd": 2253351,
+      "period": "2026-03-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-10",
+      "type": "buyback_burn",
+      "amount_usd": 1961757,
+      "period": "2026-03-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-11",
+      "type": "buyback_burn",
+      "amount_usd": 1546589,
+      "period": "2026-03-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-12",
+      "type": "buyback_burn",
+      "amount_usd": 1523347,
+      "period": "2026-03-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-13",
+      "type": "buyback_burn",
+      "amount_usd": 2073581,
+      "period": "2026-03-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-14",
+      "type": "buyback_burn",
+      "amount_usd": 673681,
+      "period": "2026-03-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-15",
+      "type": "buyback_burn",
+      "amount_usd": 1063670,
+      "period": "2026-03-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-16",
+      "type": "buyback_burn",
+      "amount_usd": 2314094,
+      "period": "2026-03-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-17",
+      "type": "buyback_burn",
+      "amount_usd": 1882804,
+      "period": "2026-03-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-18",
+      "type": "buyback_burn",
+      "amount_usd": 2262822,
+      "period": "2026-03-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-19",
+      "type": "buyback_burn",
+      "amount_usd": 2206262,
+      "period": "2026-03-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-20",
+      "type": "buyback_burn",
+      "amount_usd": 1625848,
+      "period": "2026-03-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-21",
+      "type": "buyback_burn",
+      "amount_usd": 618800,
+      "period": "2026-03-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-22",
+      "type": "buyback_burn",
+      "amount_usd": 1322200,
+      "period": "2026-03-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-23",
+      "type": "buyback_burn",
+      "amount_usd": 2446838,
+      "period": "2026-03-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-24",
+      "type": "buyback_burn",
+      "amount_usd": 1650365,
+      "period": "2026-03-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-25",
+      "type": "buyback_burn",
+      "amount_usd": 1536493,
+      "period": "2026-03-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-26",
+      "type": "buyback_burn",
+      "amount_usd": 1498330,
+      "period": "2026-03-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-27",
+      "type": "buyback_burn",
+      "amount_usd": 1427827,
+      "period": "2026-03-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-28",
+      "type": "buyback_burn",
+      "amount_usd": 661786,
+      "period": "2026-03-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-29",
+      "type": "buyback_burn",
+      "amount_usd": 752506,
+      "period": "2026-03-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-30",
+      "type": "buyback_burn",
+      "amount_usd": 1355254,
+      "period": "2026-03-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-03-31",
+      "type": "buyback_burn",
+      "amount_usd": 2041983,
+      "period": "2026-03-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-01",
+      "type": "buyback_burn",
+      "amount_usd": 1706247,
+      "period": "2026-04-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-02",
+      "type": "buyback_burn",
+      "amount_usd": 1885244,
+      "period": "2026-04-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-03",
+      "type": "buyback_burn",
+      "amount_usd": 794288,
+      "period": "2026-04-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-04",
+      "type": "buyback_burn",
+      "amount_usd": 422471,
+      "period": "2026-04-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-05",
+      "type": "buyback_burn",
+      "amount_usd": 853487,
+      "period": "2026-04-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "type": "buyback_burn",
+      "amount_usd": 1604151,
+      "period": "2026-04-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "type": "buyback_burn",
+      "amount_usd": 2245674,
+      "period": "2026-04-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-08",
+      "type": "buyback_burn",
+      "amount_usd": 1865099,
+      "period": "2026-04-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-09",
+      "type": "buyback_burn",
+      "amount_usd": 1795595,
+      "period": "2026-04-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-10",
+      "type": "buyback_burn",
+      "amount_usd": 1402435,
+      "period": "2026-04-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-11",
+      "type": "buyback_burn",
+      "amount_usd": 793723,
+      "period": "2026-04-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-12",
+      "type": "buyback_burn",
+      "amount_usd": 1218489,
+      "period": "2026-04-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-13",
+      "type": "buyback_burn",
+      "amount_usd": 1723353,
+      "period": "2026-04-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-14",
+      "type": "buyback_burn",
+      "amount_usd": 2111719,
+      "period": "2026-04-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-15",
+      "type": "buyback_burn",
+      "amount_usd": 1406227,
+      "period": "2026-04-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-16",
+      "type": "buyback_burn",
+      "amount_usd": 1689447,
+      "period": "2026-04-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-17",
+      "type": "buyback_burn",
+      "amount_usd": 2117086,
+      "period": "2026-04-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-18",
+      "type": "buyback_burn",
+      "amount_usd": 922902,
+      "period": "2026-04-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-19",
+      "type": "buyback_burn",
+      "amount_usd": 1386006,
+      "period": "2026-04-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-20",
+      "type": "buyback_burn",
+      "amount_usd": 1409776,
+      "period": "2026-04-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-21",
+      "type": "buyback_burn",
+      "amount_usd": 1759925,
+      "period": "2026-04-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-22",
+      "type": "buyback_burn",
+      "amount_usd": 1682862,
+      "period": "2026-04-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-23",
+      "type": "buyback_burn",
+      "amount_usd": 1697011,
+      "period": "2026-04-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-24",
+      "type": "buyback_burn",
+      "amount_usd": 1124800,
+      "period": "2026-04-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-25",
+      "type": "buyback_burn",
+      "amount_usd": 458444,
+      "period": "2026-04-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-26",
+      "type": "buyback_burn",
+      "amount_usd": 711485,
+      "period": "2026-04-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-27",
+      "type": "buyback_burn",
+      "amount_usd": 1364419,
+      "period": "2026-04-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-28",
+      "type": "buyback_burn",
+      "amount_usd": 1253855,
+      "period": "2026-04-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-29",
+      "type": "buyback_burn",
+      "amount_usd": 1686579,
+      "period": "2026-04-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-04-30",
+      "type": "buyback_burn",
+      "amount_usd": 1263596,
+      "period": "2026-04-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-01",
+      "type": "buyback_burn",
+      "amount_usd": 1331010,
+      "period": "2026-05-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-02",
+      "type": "buyback_burn",
+      "amount_usd": 552752,
+      "period": "2026-05-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-03",
+      "type": "buyback_burn",
+      "amount_usd": 755351,
+      "period": "2026-05-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-04",
+      "type": "buyback_burn",
+      "amount_usd": 2059779,
+      "period": "2026-05-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-05",
+      "type": "buyback_burn",
+      "amount_usd": 1745298,
+      "period": "2026-05-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-06",
+      "type": "buyback_burn",
+      "amount_usd": 2107324,
+      "period": "2026-05-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-07",
+      "type": "buyback_burn",
+      "amount_usd": 1679292,
+      "period": "2026-05-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-08",
+      "type": "buyback_burn",
+      "amount_usd": 1428272,
+      "period": "2026-05-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-09",
+      "type": "buyback_burn",
+      "amount_usd": 869113,
+      "period": "2026-05-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-10",
+      "type": "buyback_burn",
+      "amount_usd": 1271087,
+      "period": "2026-05-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-11",
+      "type": "buyback_burn",
+      "amount_usd": 1473514,
+      "period": "2026-05-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-12",
+      "type": "buyback_burn",
+      "amount_usd": 1395197,
+      "period": "2026-05-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-13",
+      "type": "buyback_burn",
+      "amount_usd": 1438780,
+      "period": "2026-05-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-14",
+      "type": "buyback_burn",
+      "amount_usd": 1886463,
+      "period": "2026-05-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-15",
+      "type": "buyback_burn",
+      "amount_usd": 1833601,
+      "period": "2026-05-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-16",
+      "type": "buyback_burn",
+      "amount_usd": 1050332,
+      "period": "2026-05-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-17",
+      "type": "buyback_burn",
+      "amount_usd": 1190130,
+      "period": "2026-05-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-18",
+      "type": "buyback_burn",
+      "amount_usd": 1834785,
+      "period": "2026-05-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-19",
+      "type": "buyback_burn",
+      "amount_usd": 1217870,
+      "period": "2026-05-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-20",
+      "type": "buyback_burn",
+      "amount_usd": 1576395,
+      "period": "2026-05-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-21",
+      "type": "buyback_burn",
+      "amount_usd": 1948574,
+      "period": "2026-05-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-22",
+      "type": "buyback_burn",
+      "amount_usd": 1861556,
+      "period": "2026-05-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-23",
+      "type": "buyback_burn",
+      "amount_usd": 1742143,
+      "period": "2026-05-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-24",
+      "type": "buyback_burn",
+      "amount_usd": 1584992,
+      "period": "2026-05-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-25",
+      "type": "buyback_burn",
+      "amount_usd": 1131431,
+      "period": "2026-05-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-26",
+      "type": "buyback_burn",
+      "amount_usd": 1820053,
+      "period": "2026-05-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-27",
+      "type": "buyback_burn",
+      "amount_usd": 1692477,
+      "period": "2026-05-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-28",
+      "type": "buyback_burn",
+      "amount_usd": 1893938,
+      "period": "2026-05-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-29",
+      "type": "buyback_burn",
+      "amount_usd": 1787127,
+      "period": "2026-05-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-30",
+      "type": "buyback_burn",
+      "amount_usd": 926103,
+      "period": "2026-05-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-05-31",
+      "type": "buyback_burn",
+      "amount_usd": 1243054,
+      "period": "2026-05-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-01",
+      "type": "buyback_burn",
+      "amount_usd": 2746575,
+      "period": "2026-06-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-02",
+      "type": "buyback_burn",
+      "amount_usd": 3770851,
+      "period": "2026-06-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-03",
+      "type": "buyback_burn",
+      "amount_usd": 3308892,
+      "period": "2026-06-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-04",
+      "type": "buyback_burn",
+      "amount_usd": 4223670,
+      "period": "2026-06-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-05",
+      "type": "buyback_burn",
+      "amount_usd": 5027608,
+      "period": "2026-06-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-06",
+      "type": "buyback_burn",
+      "amount_usd": 1706369,
+      "period": "2026-06-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-07",
+      "type": "buyback_burn",
+      "amount_usd": 1917843,
+      "period": "2026-06-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-08",
+      "type": "buyback_burn",
+      "amount_usd": 2070576,
+      "period": "2026-06-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-09",
+      "type": "buyback_burn",
+      "amount_usd": 2117875,
+      "period": "2026-06-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-10",
+      "type": "buyback_burn",
+      "amount_usd": 2109791,
+      "period": "2026-06-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-11",
+      "type": "buyback_burn",
+      "amount_usd": 1791502,
+      "period": "2026-06-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-12",
+      "type": "buyback_burn",
+      "amount_usd": 1483769,
+      "period": "2026-06-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-13",
+      "type": "buyback_burn",
+      "amount_usd": 769446,
+      "period": "2026-06-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-14",
+      "type": "buyback_burn",
+      "amount_usd": 1299238,
+      "period": "2026-06-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-15",
+      "type": "buyback_burn",
+      "amount_usd": 1848853,
+      "period": "2026-06-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-16",
+      "type": "buyback_burn",
+      "amount_usd": 1923451,
+      "period": "2026-06-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-17",
+      "type": "buyback_burn",
+      "amount_usd": 2158542,
+      "period": "2026-06-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-18",
+      "type": "buyback_burn",
+      "amount_usd": 2045290,
+      "period": "2026-06-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-19",
+      "type": "buyback_burn",
+      "amount_usd": 1164902,
+      "period": "2026-06-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-20",
+      "type": "buyback_burn",
+      "amount_usd": 833179,
+      "period": "2026-06-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-21",
+      "type": "buyback_burn",
+      "amount_usd": 961175,
+      "period": "2026-06-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-22",
+      "type": "buyback_burn",
+      "amount_usd": 1865990,
+      "period": "2026-06-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-23",
+      "type": "buyback_burn",
+      "amount_usd": 1820571,
+      "period": "2026-06-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-24",
+      "type": "buyback_burn",
+      "amount_usd": 2260187,
+      "period": "2026-06-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-25",
+      "type": "buyback_burn",
+      "amount_usd": 2020952,
+      "period": "2026-06-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-26",
+      "type": "buyback_burn",
+      "amount_usd": 2007928,
+      "period": "2026-06-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-27",
+      "type": "buyback_burn",
+      "amount_usd": 704471,
+      "period": "2026-06-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-28",
+      "type": "buyback_burn",
+      "amount_usd": 799088,
+      "period": "2026-06-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-29",
+      "type": "buyback_burn",
+      "amount_usd": 1703644,
+      "period": "2026-06-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-06-30",
+      "type": "buyback_burn",
+      "amount_usd": 1499363,
+      "period": "2026-06-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-01",
+      "type": "buyback_burn",
+      "amount_usd": 2062067,
+      "period": "2026-07-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-02",
+      "type": "buyback_burn",
+      "amount_usd": 1890705,
+      "period": "2026-07-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-03",
+      "type": "buyback_burn",
+      "amount_usd": 1260451,
+      "period": "2026-07-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "type": "buyback_burn",
+      "amount_usd": 914967,
+      "period": "2026-07-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "type": "buyback_burn",
+      "amount_usd": 788113,
+      "period": "2026-07-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-06",
+      "type": "buyback_burn",
+      "amount_usd": 1918929,
+      "period": "2026-07-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-07",
+      "type": "buyback_burn",
+      "amount_usd": 1326128,
+      "period": "2026-07-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-08",
+      "type": "buyback_burn",
+      "amount_usd": 1477879,
+      "period": "2026-07-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-09",
+      "type": "buyback_burn",
+      "amount_usd": 1237986,
+      "period": "2026-07-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-10",
+      "type": "buyback_burn",
+      "amount_usd": 1241825,
+      "period": "2026-07-10",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-11",
+      "type": "buyback_burn",
+      "amount_usd": 639667,
+      "period": "2026-07-11",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-12",
+      "type": "buyback_burn",
+      "amount_usd": 622690,
+      "period": "2026-07-12",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-13",
+      "type": "buyback_burn",
+      "amount_usd": 1672478,
+      "period": "2026-07-13",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-14",
+      "type": "buyback_burn",
+      "amount_usd": 1634522,
+      "period": "2026-07-14",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-15",
+      "type": "buyback_burn",
+      "amount_usd": 1337036,
+      "period": "2026-07-15",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-16",
+      "type": "buyback_burn",
+      "amount_usd": 1382751,
+      "period": "2026-07-16",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-17",
+      "type": "buyback_burn",
+      "amount_usd": 1445516,
+      "period": "2026-07-17",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-18",
+      "type": "buyback_burn",
+      "amount_usd": 542197,
+      "period": "2026-07-18",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-19",
+      "type": "buyback_burn",
+      "amount_usd": 607415,
+      "period": "2026-07-19",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-20",
+      "type": "buyback_burn",
+      "amount_usd": 1603331,
+      "period": "2026-07-20",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-21",
+      "type": "buyback_burn",
+      "amount_usd": 1357373,
+      "period": "2026-07-21",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-22",
+      "type": "buyback_burn",
+      "amount_usd": 1029393,
+      "period": "2026-07-22",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-23",
+      "type": "buyback_burn",
+      "amount_usd": 1064168,
+      "period": "2026-07-23",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-24",
+      "type": "buyback_burn",
+      "amount_usd": 1201793,
+      "period": "2026-07-24",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-25",
+      "type": "buyback_burn",
+      "amount_usd": 444686,
+      "period": "2026-07-25",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-26",
+      "type": "buyback_burn",
+      "amount_usd": 667938,
+      "period": "2026-07-26",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-27",
+      "type": "buyback_burn",
+      "amount_usd": 1508785,
+      "period": "2026-07-27",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-28",
+      "type": "buyback_burn",
+      "amount_usd": 1371206,
+      "period": "2026-07-28",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-29",
+      "type": "buyback_burn",
+      "amount_usd": 1708726,
+      "period": "2026-07-29",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-30",
+      "type": "buyback_burn",
+      "amount_usd": 1006911,
+      "period": "2026-07-30",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-07-31",
+      "type": "buyback_burn",
+      "amount_usd": 1451214,
+      "period": "2026-07-31",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-01",
+      "type": "buyback_burn",
+      "amount_usd": 513764,
+      "period": "2026-08-01",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-02",
+      "type": "buyback_burn",
+      "amount_usd": 777244,
+      "period": "2026-08-02",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-03",
+      "type": "buyback_burn",
+      "amount_usd": 1160738,
+      "period": "2026-08-03",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-04",
+      "type": "buyback_burn",
+      "amount_usd": 1120832,
+      "period": "2026-08-04",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-05",
+      "type": "buyback_burn",
+      "amount_usd": 1145610,
+      "period": "2026-08-05",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-06",
+      "type": "buyback_burn",
+      "amount_usd": 963094,
+      "period": "2026-08-06",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-07",
+      "type": "buyback_burn",
+      "amount_usd": 1132293,
+      "period": "2026-08-07",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-08",
+      "type": "buyback_burn",
+      "amount_usd": 378920,
+      "period": "2026-08-08",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    },
+    {
+      "date": "2026-08-09",
+      "type": "buyback_burn",
+      "amount_usd": 534851,
+      "period": "2026-08-09",
+      "source": {
+        "type": "api",
+        "provider": "DefiLlama"
+      }
+    }
+  ]
+}

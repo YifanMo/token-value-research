@@ -1,0 +1,126 @@
+{
+  "checked_at": "2026-10-02T18:14:55.936063+00:00",
+  "snapshots": {
+    "fees": {
+      "current_child_id": "8404",
+      "current_doublecounted": true,
+      "chains": [
+        "Solana"
+      ],
+      "cached_parent_daily_mobile_present_count": 133,
+      "child_matches_count": 133,
+      "mismatches": [],
+      "first_parent_mobile_day": "2026-05-22",
+      "child_first_days": [
+        [
+          "2026-05-22",
+          7191
+        ],
+        [
+          "2026-05-23",
+          5071
+        ],
+        [
+          "2026-05-24",
+          2728
+        ]
+      ],
+      "max_parent_vs_children_daily_rounding_delta": 0.4899999999906868,
+      "windows": {
+        "7": {
+          "raw_parent": 51497875,
+          "sum_all_children": "51497875",
+          "mobile_overlap": "2613194",
+          "unique_children": "48884681",
+          "start": "2026-09-25",
+          "end": "2026-10-01"
+        },
+        "30": {
+          "raw_parent": 167205123,
+          "sum_all_children": "167205122.65",
+          "mobile_overlap": "7690918",
+          "unique_children": "159514204.65",
+          "start": "2026-09-02",
+          "end": "2026-10-01"
+        },
+        "90": {
+          "raw_parent": 395627616,
+          "sum_all_children": "395627616.29",
+          "mobile_overlap": "15315442",
+          "unique_children": "380312174.29",
+          "start": "2026-07-04",
+          "end": "2026-10-01"
+        },
+        "365": {
+          "raw_parent": 1156485763,
+          "sum_all_children": "1156485760.55",
+          "mobile_overlap": "15570882",
+          "unique_children": "1140914878.55",
+          "start": "2025-10-02",
+          "end": "2026-10-01"
+        }
+      }
+    },
+    "revenue": {
+      "current_child_id": "8404",
+      "current_doublecounted": true,
+      "chains": [
+        "Solana"
+      ],
+      "cached_parent_daily_mobile_present_count": 133,
+      "child_matches_count": 133,
+      "mismatches": [],
+      "first_parent_mobile_day": "2026-05-22",
+      "child_first_days": [
+        [
+          "2026-05-22",
+          2764
+        ],
+        [
+          "2026-05-23",
+          1951
+        ],
+        [
+          "2026-05-24",
+          903
+        ]
+      ],
+      "max_parent_vs_children_daily_rounding_delta": 0.4899999999906868,
+      "windows": {
+        "7": {
+          "raw_parent": 17374848,
+          "sum_all_children": "17374848",
+          "mobile_overlap": "1193994",
+          "unique_children": "16180854",
+          "start": "2026-09-25",
+          "end": "2026-10-01"
+        },
+        "30": {
+          "raw_parent": 53599784,
+          "sum_all_children": "53599783.65",
+          "mobile_overlap": "3739971",
+          "unique_children": "49859812.65",
+          "start": "2026-09-02",
+          "end": "2026-10-01"
+        },
+        "90": {
+          "raw_parent": 143900608,
+          "sum_all_children": "143900608.29",
+          "mobile_overlap": "7343803",
+          "unique_children": "136556805.29",
+          "start": "2026-07-04",
+          "end": "2026-10-01"
+        },
+        "365": {
+          "raw_parent": 465832442,
+          "sum_all_children": "465832439.55",
+          "mobile_overlap": "7455367",
+          "unique_children": "458377072.55",
+          "start": "2025-10-02",
+          "end": "2026-10-01"
+        }
+      }
+    }
+  },
+  "rule": "Remove Mobile only when metadata doublecounted=true, exact Solana child key exists, and parent daily total matches all children within per-day rounding tolerance 1 USD; rebuild from remaining child values."
+}

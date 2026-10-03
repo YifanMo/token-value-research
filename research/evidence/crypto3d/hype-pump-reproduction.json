@@ -1,0 +1,121 @@
+{
+  "verified_at": "2026-10-02T18:56:49.511024+00:00",
+  "source_generated_at": "2026-10-02T00:14:56.314668+00:00",
+  "primary_source_only": true,
+  "formulas": {
+    "frontend_pe": "100 / selected shareholder yield percent = market cap / annualized shareholder returns, not net income",
+    "frontend_ps": "100 / selected earning yield percent = market cap / annualized configured revenue",
+    "frontend_income_columns": "revenue_usd_365d and net_income_usd_365d; fixed 365d independent of selected yield period",
+    "missing_period_fallback": "falls back to top-level 365d percent rather than forcing unknown"
+  },
+  "hype": {
+    "main_marketcap_usd": 19496307623,
+    "snapshot_revenue_usd_365d": 772987701,
+    "snapshot_net_income_usd_365d": 772987701,
+    "operating_cost_usd_365d": null,
+    "lp_share_cost_usd_365d": null,
+    "gross_and_net_margin_percent": 100,
+    "snapshot_holder_returns_usd_365d": 765257823.99,
+    "snapshot_pe_reproduced": 25.476783133490404,
+    "snapshot_ps_reproduced": 25.2220153021555,
+    "pe_if_actual_net_income_field_used": 25.2220153021555,
+    "reported_cost_model": "No operating or LP cost model; revenue is copied to net income. Site labels margin as non-operating-profit model.",
+    "default_yield_period": "365d",
+    "selected_periods": [
+      {
+        "days": 7,
+        "reported_trailing_revenue_usd": 8228544,
+        "reported_shareholder_yield_percent": 5.82,
+        "reported_earning_yield_percent": 5.82,
+        "frontend_pe": 17.18213058419244,
+        "frontend_ps": 17.18213058419244,
+        "recomputed_revenue_yield_using_current_main_marketcap_percent": 2.2007233501975927,
+        "recomputed_revenue_yield_using_old_config_marketcap_percent": 5.823235579232957,
+        "precise_window_start": null,
+        "precise_window_end": null
+      },
+      {
+        "days": 30,
+        "reported_trailing_revenue_usd": 34979838,
+        "reported_shareholder_yield_percent": 5.78,
+        "reported_earning_yield_percent": 5.78,
+        "frontend_pe": 17.301038062283737,
+        "frontend_ps": 17.301038062283737,
+        "recomputed_revenue_yield_using_current_main_marketcap_percent": 2.1829160537964087,
+        "recomputed_revenue_yield_using_old_config_marketcap_percent": 5.776116489064711,
+        "precise_window_start": null,
+        "precise_window_end": null
+      },
+      {
+        "days": 90,
+        "reported_trailing_revenue_usd": 142582881,
+        "reported_shareholder_yield_percent": 7.85,
+        "reported_earning_yield_percent": 7.85,
+        "frontend_pe": 12.738853503184714,
+        "frontend_ps": 12.738853503184714,
+        "recomputed_revenue_yield_using_current_main_marketcap_percent": 2.9659605621143137,
+        "recomputed_revenue_yield_using_old_config_marketcap_percent": 7.848095522935732,
+        "precise_window_start": null,
+        "precise_window_end": null
+      },
+      {
+        "days": 365,
+        "reported_trailing_revenue_usd": 772987701,
+        "reported_shareholder_yield_percent": 3.9251,
+        "reported_earning_yield_percent": 3.9648,
+        "frontend_pe": 25.477057909352627,
+        "frontend_ps": 25.221953188054883,
+        "recomputed_revenue_yield_using_current_main_marketcap_percent": 3.964790235911636,
+        "recomputed_revenue_yield_using_old_config_marketcap_percent": 10.491054027251137,
+        "precise_window_start": null,
+        "precise_window_end": null
+      }
+    ],
+    "daily_record": {
+      "date": "2026-10-02",
+      "price_usd": 51.51,
+      "market_cap_usd": 11458194541,
+      "daily_fees_usd": 1649618,
+      "total30d_fees_usd": 72175776,
+      "total1y_fees_usd": 908918369
+    },
+    "daily_updated_at": "2026-10-02T00:14:09.000Z",
+    "old_config_marketcap_usd": 7368065201,
+    "local_comparison": {
+      "marketcap_usd": 20215108768,
+      "fee_unique_30d_usd": 70889789,
+      "revenue_and_holder_proxy_30d_usd": 55355695,
+      "revenue_and_holder_proxy_365d_usd": 684247605,
+      "income_scope": "AF fee allocation plus HIP-1 burn valuation; not actual AF fills cash spending",
+      "independent_net_income_usd": null
+    },
+    "genuinely_new_verified_profit_data_found": false
+  },
+  "pump": {
+    "in_main_protocol_keys": false,
+    "main_protocol_count": 26,
+    "requested_id": "pump",
+    "detail_http_status": 200,
+    "detail_is_generic_shell": true,
+    "config_http_status": 404,
+    "daily_http_status": 404,
+    "snapshot_http_status": 404,
+    "pe": null,
+    "ps": null,
+    "no_claim_about_other_undiscovered_aliases": true,
+    "local_normalized_30d": {
+      "fees_usd": 159514205,
+      "revenue_usd": 49859813,
+      "burn_valuation_usd": 23922255,
+      "net_income_usd": null,
+      "ps": 4.487199335882425,
+      "holder_return_multiple": 9.352417645444458
+    }
+  },
+  "new_real_missing_data": {
+    "hype": false,
+    "pump": false,
+    "note": "No independently complete operating-cost/net-profit dataset found in tested first-party current files; Crypto3D can compute its holder-return multiple from sources already available locally."
+  },
+  "scope_limit": "Frontend source and first-party public JSON only; unpublished updater scripts/server logic not inspected."
+}

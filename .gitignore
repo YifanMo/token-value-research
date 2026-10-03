@@ -1,0 +1,19 @@
+# Local caches and operating-system files
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+
+# Credentials and personal runtime overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Repeated generated snapshots and local execution logs
+# Keep dashboard.json, raw source responses and hash-pinned evidence in Git.
+data/snapshots/
+research/daily-update-log.md
+*.log

@@ -1,0 +1,9 @@
+{
+  "url": "https://crypto3d.pro/data/snapshots/hyperliquid.json",
+  "final_url": "https://crypto3d.pro/data/snapshots/hyperliquid.json",
+  "retrieved_at": "2026-10-02T18:52:19.810412+00:00",
+  "sha256": "37c1f5d59b1fc4c60b19cae94a9830059186f1ed479b16feff8c57b4f4b14f35",
+  "file": "research/evidence/crypto3d/hype-snapshot.json",
+  "http_status": 200,
+  "content_type": "application/json"
+}

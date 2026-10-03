@@ -1,0 +1,578 @@
+{
+  "research_date": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "evidence": [
+    {
+      "id": "hype-genesis",
+      "token": "HYPE",
+      "claim": "初始经济最大供应10亿；31%Genesis、38.888%未来排放、23.8%贡献者、6%基金会、0.3%资助、0.012%HIP-2。未来排放原始公告称未铸币；无私募投资人/CEX/MM分配。",
+      "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f",
+      "published_date": "2024-11-28",
+      "effective_date": "2024-11-29",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-contributor-vesting",
+      "token": "HYPE",
+      "claim": "贡献者锁一年，大部分归属于2027–2028年完成，部分更晚；完整未来12月逐成员实际分发表未核验。",
+      "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f",
+      "published_date": "2024-11-28",
+      "effective_date": "2025-11-29",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-fee-mechanics",
+      "token": "HYPE",
+      "claim": "交易费分给HLP、AF及部署人；AF在L1执行层自动换成HYPE，当前官方文档认为永久销毁。全生态毛手续费不等于AF合格净费用。",
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/trading/fees",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-burn-proposal",
+      "token": "HYPE",
+      "claim": "AF无私钥；社会共识承诺不授权协议升级取出；不需额外链上burn交易。",
+      "url": "https://t.me/s/hyperliquid_announcements/490",
+      "published_date": "2025-12-17",
+      "effective_date": "2025-12-24T04:00:00Z",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-burn-result",
+      "token": "HYPE",
+      "claim": "官方回顾报告85%权益赞成、7%反对、8%弃权。",
+      "url": "https://t.me/s/hyperliquid_announcements/497",
+      "published_date": "2026-01-04",
+      "effective_date": "2025-12-24",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-fee-share-announcement",
+      "token": "HYPE",
+      "claim": "SEC发行人披露把AF97%→99%的公告日期记为2025-08-26。",
+      "url": "https://www.sec.gov/Archives/edgar/data/2078856/000119312526370281/purr-20260630.htm",
+      "published_date": null,
+      "effective_date": "2025-08-26",
+      "status": "verified",
+      "source_type": "secondary-regulated-disclosure",
+      "note": null
+    },
+    {
+      "id": "hype-fee-share-adapter",
+      "token": "HYPE",
+      "claim": "helper使用timestamp>1756512000取99%，否则97%；注释称30Aug2025，严格边界需核验。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/helpers/hyperliquid.ts",
+      "published_date": null,
+      "effective_date": "2025-08-30",
+      "status": "verified",
+      "source_type": "primary-adapter",
+      "note": null
+    },
+    {
+      "id": "hype-staking",
+      "token": "HYPE",
+      "claim": "质押奖励来自未来排放储备；400M总质押时示例APR约2.37%，每日派发并自动复投。",
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore/staking",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-staking-scenario",
+      "token": "HYPE",
+      "claim": "400M×2.37%=9.48M HYPE/年仅条件化储备奖励情景，不能当研究日真实未来一年新增。",
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore/staking",
+      "published_date": null,
+      "effective_date": null,
+      "status": "inferred",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-evm-burn",
+      "token": "HYPE",
+      "claim": "HyperEVM base fee从EVM总量扣除，priority fee送零地址。",
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-aqav2",
+      "token": "HYPE",
+      "claim": "约90%成本调整后稳定币储备收益回流协议；30日区间后8日进入AF。",
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/hypercore/aligned-quote-assets",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "hype-aqav2-dates",
+      "token": "HYPE",
+      "claim": "二级TTF报告USDC收益2026-08-26计提、2026-10-03首次支付；研究日首次支付仍未来。",
+      "url": "https://app.blockworks.com/projects/hyperliquid/token-disclosures",
+      "published_date": "2026-09-21",
+      "effective_date": "2026-08-26",
+      "status": "verified",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "hype-proxy",
+      "token": "HYPE",
+      "claim": "holder revenue按扣builder/deployer/maker rebates后的费用分成算；不是AF逐笔已成交美元成本；priority fee部分代码注释。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/hyperliquid-perp/index.ts",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary-adapter",
+      "note": null
+    },
+    {
+      "id": "hype-spot-proxy",
+      "token": "HYPE",
+      "claim": "spot holder revenue还含HIP-1直接burn日估值，排除Unit费用，不能统称实际现金回购。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/hyperliquid-spot/index.ts",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary-adapter",
+      "note": null
+    },
+    {
+      "id": "hype-first-buyback",
+      "token": "HYPE",
+      "claim": "准确首笔回购日期未独立核验；同期2024-12-31研究已观测AF持有回购HYPE。",
+      "url": "https://research.mintventures.fund/2024/12/31/a-quick-overview-of-hyperliquid-current-product-status-economic-model-and-valuation/",
+      "published_date": "2024-12-31",
+      "effective_date": null,
+      "status": "unknown",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "hype-future12m",
+      "token": "HYPE",
+      "claim": "完整未来12月流通增量未知；贡献者实际分发、社区储备排放未完整公布。",
+      "url": "https://hyperfnd.medium.com/hype-genesis-1830a4dc2e3f",
+      "published_date": null,
+      "effective_date": null,
+      "status": "unknown",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-policy",
+      "token": "PUMP",
+      "claim": "2026-04-28起50%合格净收入程序化用于一年buyback-and-burn。Revenue含bonding curve、PumpSwap、Terminal扣referral/cashback，排除Mayhem。",
+      "url": "https://pump.fun/pump-token",
+      "published_date": null,
+      "effective_date": "2026-04-28",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-revenue-definition",
+      "token": "PUMP",
+      "claim": "当前合格Revenue定义官网注明自2025-10-24适用。",
+      "url": "https://pump.fun/pump-token",
+      "published_date": null,
+      "effective_date": "2025-10-24",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-dashboard-warning",
+      "token": "PUMP",
+      "claim": "官网承认custom pairs上线后收入与回购dashboard不正确，等待修正。",
+      "url": "https://pump.fun/pump-token",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary",
+      "note": "必须与自报累计及运行率同屏展示"
+    },
+    {
+      "id": "pump-snapshot",
+      "token": "PUMP",
+      "claim": "抓取时官网90日收入年化535.05M美元、累计回购约470.89M美元、169.30B PUMP销毁；最新日表为Oct1。",
+      "url": "https://pump.fun/pump-token",
+      "published_date": null,
+      "effective_date": "2026-10-01",
+      "status": "verified",
+      "source_type": "primary",
+      "note": "官方自报可变数字，非独立全链审计"
+    },
+    {
+      "id": "pump-market-card-conflict",
+      "token": "PUMP",
+      "claim": "官网total1T/circulating399.46B与累计burn和CG供应口径不一致，估值应统一同次快照。",
+      "url": "https://pump.fun/pump-token",
+      "published_date": null,
+      "effective_date": "2026-10-02",
+      "status": "inferred",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-fees",
+      "token": "PUMP",
+      "claim": "bonding curve毛费1.25%=协议0.95%+creator/cashback0.30%；USDC配对自2026-05-21。",
+      "url": "https://pump.fun/docs/fees",
+      "published_date": "2026-05-20",
+      "effective_date": "2026-05-21",
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-gross-capture-example",
+      "token": "PUMP",
+      "claim": "单看bonding curve当前档位，50%净收入回购相当于0.95×50%/1.25=38%毛费用；不能外推全平台。",
+      "url": "https://pump.fun/docs/fees",
+      "published_date": null,
+      "effective_date": null,
+      "status": "inferred",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-adapter-policy-dates",
+      "token": "PUMP",
+      "claim": "适配器按2025-07-14开始100%协议份额回购、2026-04-28改50%；Project Ascend边界2025-09-15，Cashback Coins2026-02-17。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/pumpdotfun.ts",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary-adapter",
+      "note": null
+    },
+    {
+      "id": "pump-proxy",
+      "token": "PUMP",
+      "claim": "当前holder revenue使用Allium burn/burnChecked数量乘CG PUMP日价格；聚合所有产品并只放launchpad，不等于实付现金回购成本。",
+      "url": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/pumpdotfun.ts",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary-adapter",
+      "note": "2026-10-03: source-code method verified; historical API series application and inclusion of one-time stock burn remain unreconciled. Burn valuation is not actual purchase cash."
+    },
+    {
+      "id": "pump-old-api",
+      "token": "PUMP",
+      "claim": "旧fees.pump.fun/api/buybacks请求返回HTML，当前不是稳定JSON数据入口。",
+      "url": "https://fees.pump.fun/api/buybacks",
+      "published_date": null,
+      "effective_date": "2026-10-02",
+      "status": "verified",
+      "source_type": "primary",
+      "note": "实测HTTP内容"
+    },
+    {
+      "id": "pump-allocation",
+      "token": "PUMP",
+      "claim": "初始1T分配ICO33%、community24%、team20%、existing13%、livestream3%、liquidity2.6%、ecosystemfund2.4%、foundation2%；ICO中另含机构私售。",
+      "url": "https://tokenomist.ai/pump-fun",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "pump-cliff",
+      "token": "PUMP",
+      "claim": "2026-07-12首个insider cliff资格82.5B=team50B+investors32.5B，各桶25%；该Jul10研究称余247.5B形状未公开。",
+      "url": "https://tokenomist.ai/research/pump-tokenomics-what-the-july-12-2026-insider-cliff-means-for-a-fixed-1t-supply-2",
+      "published_date": "2026-07-10",
+      "effective_date": "2026-07-12",
+      "status": "verified",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "pump-distribution",
+      "token": "PUMP",
+      "claim": "二级报告2026-07-15实际向121钱包分发57.279B；此次未逐笔核验，不等于已售出。",
+      "url": "https://blockworks.com/token-transparency/filing/pump/f1c25ac2-1f7c-4d63-8f01-359f879fbe10",
+      "published_date": null,
+      "effective_date": "2026-07-15",
+      "status": "verified",
+      "source_type": "secondary",
+      "note": "搜索索引可读，直接HTTP403"
+    },
+    {
+      "id": "pump-linear-conflict",
+      "token": "PUMP",
+      "claim": "TTF称6.875B/月，tokenomics.com称9.1667B/月，Tokenomist较早研究称余款schedule未知。未来12月完整释放不能确定。",
+      "url": "https://app.tokenomics.com/tokenomics/pump-fun/unlocks",
+      "published_date": null,
+      "effective_date": null,
+      "status": "unknown",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "pump-linear-scenario",
+      "token": "PUMP",
+      "claim": "假设余247.5B在36月均匀释放，则6.875B/月、82.5B/年；仅场景，另有社区未知。",
+      "url": "https://blockworks.com/token-transparency/filing/pump/f1c25ac2-1f7c-4d63-8f01-359f879fbe10",
+      "published_date": null,
+      "effective_date": null,
+      "status": "inferred",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "pump-future12m",
+      "token": "PUMP",
+      "claim": "完整未来12月流通增量未知；community释放和insider实际分发需补台账。",
+      "url": "https://tokenomist.ai/pump-fun",
+      "published_date": null,
+      "effective_date": null,
+      "status": "unknown",
+      "source_type": "secondary",
+      "note": null
+    },
+    {
+      "id": "pump-rights",
+      "token": "PUMP",
+      "claim": "官方disclaimer否认token代表收入/分配权；一年程序化例外不意味着永久承诺。",
+      "url": "https://pump.fun/pump-token",
+      "published_date": null,
+      "effective_date": null,
+      "status": "verified",
+      "source_type": "primary",
+      "note": null
+    },
+    {
+      "id": "pump-mint-rpc",
+      "token": "PUMP",
+      "claim": "Finalized slot 452597013: getAccountInfo and getTokenSupply agree on supply 830417823755.244606, decimals 6, null mintAuthority and freezeAuthority. Token-2022 transferHook authority remains non-null while programId is null.",
+      "url": "https://api.mainnet-beta.solana.com",
+      "published_date": null,
+      "effective_date": "2026-10-02T11:30:00.631201+00:00",
+      "status": "verified",
+      "source_type": "primary-onchain-rpc",
+      "note": "Point-in-time total supply, not circulating supply; not all extension authorities revoked"
+    }
+  ],
+  "market_snapshot": [
+    {
+      "id": "hyperliquid",
+      "symbol": "hype",
+      "current_price": 90.84,
+      "market_cap": 20215108768,
+      "fully_diluted_valuation": 86815053270,
+      "circulating_supply": 222445714.07414138,
+      "total_supply": 955307079.4341414,
+      "max_supply": 1000000000.0,
+      "last_updated": "2026-10-02T11:03:20.000Z",
+      "holder_proxy_30d_usd": 55355695,
+      "holder_proxy_30d_annualized_usd": 673494289.1666666,
+      "holder_proxy_yield_mcap": 0.033316382162276115,
+      "holder_proxy_yield_aggregator_fdv": 0.007757805401236801,
+      "proxy_end_day": "2026-10-01",
+      "note": "代理值收益率，不是已核验实际现金回购收益率"
+    },
+    {
+      "id": "pump-fun",
+      "symbol": "pump",
+      "current_price": 0.00585644,
+      "market_cap": 2722059524,
+      "fully_diluted_valuation": 4862061905,
+      "circulating_supply": 464927020902.7715,
+      "total_supply": 830423107638.9471,
+      "max_supply": 1000000000000.0,
+      "last_updated": "2026-10-02T11:03:20.000Z",
+      "holder_proxy_30d_usd": 23922255,
+      "holder_proxy_30d_annualized_usd": 291054102.5,
+      "holder_proxy_yield_mcap": 0.10692422407879719,
+      "holder_proxy_yield_aggregator_fdv": 0.05986227822411899,
+      "proxy_end_day": "2026-10-01",
+      "note": "代理值收益率，不是已核验实际现金回购收益率"
+    }
+  ],
+  "complete_future_12m_supply": {
+    "HYPE": null,
+    "PUMP": null
+  },
+  "scenario_assumptions": {
+    "HYPE_rewards_at_400m_staked_per_year": 9480000,
+    "PUMP_remaining_insider_36m_per_month": 6875000000,
+    "PUMP_remaining_insider_36m_per_year": 82500000000
+  },
+  "endpoints": {
+    "HYPE_holder_proxy": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue",
+    "PUMP_holder_proxy": "https://api.llama.fi/summary/fees/pump?dataType=dailyHoldersRevenue",
+    "HYPE_fees": "https://api.hypurrscan.io/fees",
+    "HYPE_auctions": "https://api.hypurrscan.io/pastAuctions",
+    "HYPE_info": "https://api.hyperliquid.xyz/info",
+    "PUMP_mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "PUMP_buy_burn_accounts": [
+      "99mRw3EzdJZWEUjgp1nrU4WeHsukUBjbh7gYE7pm4F3c",
+      "9jHrTCwpDANHLNQz5cem6XLUBM8KiTWKe766Br6KVCXM"
+    ]
+  },
+  "unknowns": [
+    "HYPE first executed buyback timestamp",
+    "Complete actual distributions and future releases",
+    "PUMP executed buyback cash cost not reconstructed",
+    "HYPE AF executed fills not completely reconstructed",
+    "USDC first AQAv2 payment still future as of research date",
+    "PUMP normalized 365-day complete window: missing Mobile on 2026-05-21",
+    "Whether cached PUMP holders series includes historical 129B stock burn"
+  ],
+  "warnings": [
+    "Do not double count historical buyback and subsequent one-time burn",
+    "PUMP custom-pair dashboard official accuracy warning",
+    "PUMP circulating and total supply official card inconsistent",
+    "PUMP linear unlock trackers conflict",
+    "HYPE reserve initially unminted; distinguish minted and economic supply",
+    "Annualized proxy does not imply future guaranteed flow"
+  ],
+  "pump_onchain_mint_check": {
+    "retrieved_at_utc": "2026-10-02T11:30:00.631201+00:00",
+    "retrieved_at_asia_shanghai": "2026-10-02T19:30:00.631201+08:00",
+    "rpc_url": "https://api.mainnet-beta.solana.com",
+    "commitment": "finalized",
+    "slot": 452597013,
+    "api_version": "4.3.0",
+    "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+    "method_results": {
+      "getAccountInfo": {
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "program": "spl-token-2022",
+        "parsed_info": {
+          "decimals": 6,
+          "extensions": [
+            {
+              "extension": "transferHook",
+              "state": {
+                "authority": "DMdBa812dBW1CHVhmTyUyVcrBnSbZbfoFC7U14k4riH1",
+                "programId": null
+              }
+            },
+            {
+              "extension": "metadataPointer",
+              "state": {
+                "authority": null,
+                "metadataAddress": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn"
+              }
+            },
+            {
+              "extension": "tokenMetadata",
+              "state": {
+                "additionalMetadata": [],
+                "mint": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+                "name": "Pump",
+                "symbol": "PUMP",
+                "updateAuthority": null,
+                "uri": "https://ipfs.io/ipfs/bafkreibcglldkfdekdkxgumlveoe6qv3pbiceypkwtli33clbzul7leo4m"
+              }
+            }
+          ],
+          "freezeAuthority": null,
+          "isInitialized": true,
+          "mintAuthority": null,
+          "supply": "830417823755244606"
+        }
+      },
+      "getTokenSupply": {
+        "amount": "830417823755244606",
+        "decimals": 6,
+        "uiAmountString": "830417823755.244606"
+      }
+    },
+    "verified_facts": {
+      "supply_tokens_exact": "830417823755.244606",
+      "decimals": 6,
+      "mint_authority": null,
+      "freeze_authority": null
+    },
+    "limitations": [
+      "Point-in-time finalized mint check; no historical burn cash reconstruction",
+      "Circulating supply is not inferred from mint total",
+      "TransferHook authority remains non-null while programId null; do not claim every admin authority is revoked",
+      "Insider/community future releases remain unknown"
+    ]
+  },
+  "verification_corrections": [
+    {
+      "verified_on": "2026-10-03",
+      "token": "PUMP",
+      "status": "verified_with_explicit_gaps",
+      "claim": "Mobile is a duplicated Solana channel subset of bonding-curve/PumpSwap; remove observed duplicate child from original parent F and R after per-day reconciliation. Preserve signed Terminal net revenue. H is burn valuation, not cash buyback cost.",
+      "source_urls": [
+        "https://api.llama.fi/summary/fees/pump.fun-mobile-app?dataType=dailyFees",
+        "https://api.llama.fi/summary/fees/pump.fun-mobile-app?dataType=dailyRevenue",
+        "https://github.com/DefiLlama/dimension-adapters/blob/9bd52fb339e32e05fa975ab9b86b73db2fb0b01e/fees/pumpfun-app.ts"
+      ],
+      "durable_evidence_directory": "research/evidence/pump-mobile",
+      "window": {
+        "start": "2026-09-02",
+        "end": "2026-10-01",
+        "days": 30,
+        "fees_raw_parent_usd": 167205123,
+        "revenue_raw_parent_usd": 53599784,
+        "mobile_duplicate_fees_usd": 7690918,
+        "mobile_duplicate_revenue_usd": 3739971,
+        "fees_unique_children_usd": 159514204.65,
+        "revenue_unique_children_usd": 49859812.65,
+        "fees_display_usd": 159514205,
+        "revenue_display_usd": 49859813,
+        "holders_usd": 23922255,
+        "revenue_to_fees_pct": 31.257287086125025,
+        "holder_valuation_to_revenue_pct": 47.97903072761223,
+        "holder_valuation_to_fees_pct": 14.996943375669899,
+        "revenue_annualized_reference_usd": 606627724.8333334,
+        "ps_circulating": 4.487199335882425,
+        "fdv_to_annualized_revenue": 8.01490223074756,
+        "ratios_do_not_verify_cash_buyback": true,
+        "normalization_method": "Original parent daily total minus verified Mobile overlap; child composition rounding differences retained separately.",
+        "fees_normalized_usd": 159514205,
+        "revenue_normalized_usd": 49859813,
+        "component_rounding_difference_fees_usd": 0.35,
+        "component_rounding_difference_revenue_usd": 0.35
+      },
+      "gaps": {
+        "mobile_adapter_start": "2026-05-21",
+        "first_api_record": "2026-05-22",
+        "365_day_complete_normalization": null,
+        "normalization_gap_date": "2026-05-21",
+        "historical_129b_stock_burn_in_cached_holders_series": null
+      },
+      "negative_terminal_daily_revenue_is_not_missing": [
+        {
+          "date": "2026-07-21",
+          "usd": -13289
+        },
+        {
+          "date": "2026-09-03",
+          "usd": -7451
+        }
+      ],
+      "supersedes_note": "Earlier claims that the 2026-04-28 inventory burn necessarily caused a jump in the cached holder series were not verified. Do not delete the full date or assume inclusion without reconciliation."
+    }
+  ]
+}

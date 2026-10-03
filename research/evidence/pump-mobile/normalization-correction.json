@@ -1,0 +1,31 @@
+{
+  "verified_on": "2026-10-03",
+  "status": "verified_with_explicit_gaps",
+  "original_audit_result_preserved": true,
+  "original_audit_result_sha256": "5ec97be865c4c20c238303d99e6a6620ad45c6ef85ab356304fd4d7db23e0a16",
+  "normalization_rule": "Original parent daily total minus observed Mobile overlap after verified metadata and daily reconciliation; preserve composition rounding gap. No child reconstruction replaces parent.",
+  "valid_from": "2026-05-21",
+  "first_record": "2026-05-22",
+  "missing_expected_child_is_unknown": true,
+  "terminal_signed_net_revenue_preserved": true,
+  "complete_365_normalization_usd": null,
+  "gap_date": "2026-05-21",
+  "window_30d": {
+    "fees_usd": 159514205,
+    "revenue_usd": 49859813,
+    "fees_component_sum_usd": 159514204.65,
+    "revenue_component_sum_usd": 49859812.65,
+    "component_rounding_gap_each_usd": 0.35
+  },
+  "candidate_365_parent_minus_known_overlap": {
+    "fees_usd": 1140914881,
+    "revenue_usd": 458377075,
+    "complete": false,
+    "warning": "Known overlap only; missing valid_from day means this is not a complete normalized window."
+  },
+  "sources": [
+    "https://github.com/DefiLlama/dimension-adapters/blob/9bd52fb339e32e05fa975ab9b86b73db2fb0b01e/fees/pumpfun-app.ts",
+    "https://api.llama.fi/summary/fees/pump.fun-mobile-app?dataType=dailyFees",
+    "https://api.llama.fi/summary/fees/pump.fun-mobile-app?dataType=dailyRevenue"
+  ]
+}

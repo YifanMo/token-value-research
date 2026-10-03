@@ -1,0 +1,18 @@
+{
+  "url": "https://api.mainnet-beta.solana.com",
+  "retrieved_at": "2026-10-02T21:32:29.816318+00:00",
+  "sha256": "7585063e2fcce77690b4af065d360c5194592966ce1df9d779d335eb2d8a2cdd",
+  "status": "fresh",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+      "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      {
+        "encoding": "jsonParsed",
+        "commitment": "finalized"
+      }
+    ]
+  }
+}
