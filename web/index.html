@@ -6,7 +6,7 @@
   <meta name="description" content="协议收入、回购去向、供应稀释与政策变更的本地研究框架。">
   <title>协议收入与代币价值 · 研究框架</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101b2c'/%3E%3Cpath d='M6 23h20M8 18v-5m8 5V7m8 11v-9' stroke='%23edc66d' stroke-width='3'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css?v=30">
+  <link rel="stylesheet" href="./styles.css?v=31">
 </head>
 <body>
   <main>
@@ -40,7 +40,7 @@
         <th class="financial-col"><button class="sort-header" data-sort="holderCapture" data-sort-label="回购／销毁占协议收入" aria-label="按回购销毁占协议收入排序">回购 / 销毁<br>占协议收入 <span class="sort-direction" aria-hidden="true">↕</span><small>同窗统计金额</small></button></th>
         <th>回购 / 销毁数据来源</th>
       </tr></thead><tbody id="comparison-body"></tbody></table></div>
-      <p class="financial-note">倍数上行按流通市值，下行按 CoinGecko FDV。P/S使用协议收入统计，持币者回报倍数使用回购／销毁统计；回购不代表实收现金。</p>
+      <p class="financial-note">每个倍数均标明“流通市值”和“FDV”，两行使用同一份年化金额。流通市值只计已流通代币；FDV采用CoinGecko完全稀释估值，考虑尚未流通的供应。P/S使用收入统计，持币者回报倍数使用回购／销毁统计。</p>
       <p class="footnote">年化 = 所选窗口金额 × 365 / 天数；收益率表示统计金额相对估值的比例，不是持币人的现金收益或币价增幅；含库存事件的历史倍数保留提示，收益率仅用可年化部分。“—”表示缺数据或口径待核。</p>
     </section>
     <details class="supply-comparison"><summary>查看全部代币的未来供应对比</summary><section id="supply-overview" aria-labelledby="supply-heading"></section></details>
@@ -54,6 +54,6 @@
     <div class="source-head"><div><span class="eyebrow">数据来源与计算过程</span><h2 id="source-title"></h2></div><button id="source-close" aria-label="关闭数据来源">关闭</button></div>
     <div id="source-content" aria-live="polite"></div>
   </dialog>
-  <script type="module" src="./app.js?v=31"></script>
+  <script type="module" src="./app.js?v=32"></script>
 </body>
 </html>
